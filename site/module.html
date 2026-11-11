@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module — MailGuard Course</title>
+    <meta name="description" content="MailGuard Course module page with worksheet and test downloads." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="grid-veil"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="brand-mark" href="index.html">MailGuard Course</a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html#syllabus">Syllabus</a>
+        <a href="index.html#how">How it works</a>
+      </nav>
+    </header>
+
+    <main class="module-page">
+      <p class="crumb"><a href="index.html#syllabus">Syllabus</a> / <span id="crumb-current">Module</span></p>
+      <div id="module-root" class="module-root" aria-live="polite">
+        <p class="muted">Loading module…</p>
+      </div>
+      <nav class="module-adjacent" id="module-adjacent" aria-label="Adjacent modules"></nav>
+    </main>
+
+    <footer class="site-footer">
+      <p><strong>MailGuard Course</strong> — cloud-security learning for students.</p>
+    </footer>
+
+    <script type="module" src="js/module.js"></script>
+  </body>
+</html>

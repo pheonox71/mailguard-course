@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MailGuard Course — Cloud-security learning</title>
+    <meta
+      name="description"
+      content="MailGuard Course: student-facing cloud-security learning across identity, email DLP, and secure SaaS engineering."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true">
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="grid-veil"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="brand-mark" href="index.html">MailGuard Course</a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="#syllabus">Syllabus</a>
+        <a href="#how">How it works</a>
+        <a class="nav-cta" href="module.html?id=01-challenge-gym">Start Module 01</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Course introduction">
+        <div class="hero-copy">
+          <p class="brand-hero">MailGuard Course</p>
+          <h1>Cloud-security skills, built module by module.</h1>
+          <p class="lede">
+            A student path through identity, email authentication, DLP-minded product work, and
+            cloud platform practice — with worksheets and tests you can download as you go.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#syllabus">Browse syllabus</a>
+            <a class="btn btn-ghost" href="module.html?id=01-challenge-gym">Open Challenge Gym</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <svg class="hero-art" viewBox="0 0 640 520" role="img">
+            <defs>
+              <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#163a3a" />
+                <stop offset="100%" stop-color="#0b1c24" />
+              </linearGradient>
+              <linearGradient id="signal" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#7dffd2" stop-opacity="0.1" />
+                <stop offset="50%" stop-color="#7dffd2" stop-opacity="0.85" />
+                <stop offset="100%" stop-color="#7dffd2" stop-opacity="0.1" />
+              </linearGradient>
+            </defs>
+            <rect x="48" y="56" width="420" height="280" rx="28" fill="url(#panel)" stroke="#2f6b66" stroke-width="2" />
+            <path d="M88 118h250M88 158h190M88 198h220" stroke="#7dffd2" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round" />
+            <circle cx="470" cy="300" r="96" fill="#102831" stroke="#e2a36a" stroke-width="3" />
+            <path d="M430 300h80M470 260v80" stroke="#e2a36a" stroke-width="8" stroke-linecap="round" />
+            <rect x="180" y="300" width="220" height="140" rx="22" fill="#12262f" stroke="#3d8f86" stroke-width="2" />
+            <path d="M210 360h160" stroke="url(#signal)" stroke-width="10" stroke-linecap="round" class="pulse-line" />
+            <path d="M210 400h110" stroke="#7dffd2" stroke-opacity="0.35" stroke-width="8" stroke-linecap="round" />
+          </svg>
+        </div>
+      </section>
+
+      <section class="band how" id="how">
+        <h2>How students move through a module</h2>
+        <p class="section-lede">
+          Read the topic, work the worksheet, implement against the tests. Quizzes stay questions-only
+          on this site.
+        </p>
+        <ol class="steps">
+          <li><strong>Read</strong> the module reading for the concept map.</li>
+          <li><strong>Download the worksheet</strong> and write your answers locally.</li>
+          <li><strong>Download the tests</strong> and implement until they pass.</li>
+        </ol>
+      </section>
+
+      <section class="band syllabus" id="syllabus">
+        <div class="section-head">
+          <h2>Syllabus</h2>
+          <p class="section-lede">Modules in learning order. Open a module to download its worksheets and tests.</p>
+        </div>
+        <div id="module-list" class="module-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p><strong>MailGuard Course</strong> — cloud-security learning for students.</p>
+      <p class="muted">Worksheets and kata implementations are filled in by the student.</p>
+    </footer>
+
+    <script type="module" src="js/home.js"></script>
+  </body>
+</html>

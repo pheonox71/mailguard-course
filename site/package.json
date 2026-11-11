@@ -1,0 +1,11 @@
+{
+  "name": "mailguard-course-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "prepare-downloads": "node scripts/prepare-downloads.mjs",
+    "dev": "npm run prepare-downloads && python3 -m http.server 5173 --bind 127.0.0.1",
+    "start": "npm run dev"
+  }
+}
