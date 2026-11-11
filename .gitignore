@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+.env
+.env.*
+
+# Node
+node_modules/
+dist/
+.next/
+.nuxt/
+.svelte-kit/
+
+# Go
+bin/
+*.exe
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+!*.tfvars.example
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
