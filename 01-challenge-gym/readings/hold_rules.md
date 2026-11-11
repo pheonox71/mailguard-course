@@ -6,13 +6,13 @@ By the end of this kata’s reading + worksheet + implementation, you should be 
 
 1. Describe email Data Loss Prevention (DLP) as ordered policy: match conditions → action (allow / hold-suspend / reject-discard).
 2. Implement **first-match-wins** evaluation over a small rule list without inventing a Domain-Specific Language (DSL).
-3. Connect the toy engine to real product language (HENNGE DLP; Purview / Workspace DLP) so you can explain trade-offs in an interview.
+3. Connect the toy engine to real product language (Microsoft Purview / Google Workspace DLP and similar SaaS email guards) so you can explain trade-offs in an interview.
 
 ## Short intro
 
 Email DLP products sit between sender and recipient and apply **policy**: allow, temporarily hold (suspend), or reject/discard. Admins express rules; engines evaluate messages in a defined order. This kata is a **tiny** version of that idea — domain and substring predicates, **first match wins**, no DSL. The point is clear specs and concise Python, not a production rule language.
 
-HENNGE’s email DLP team describes exactly this product shape: rules that allow, suspend, or discard to prevent costly mis-sends of sensitive information.
+Real email DLP products share this shape: rules that allow, suspend, or discard to prevent costly mis-sends of sensitive information. MailGuard later folders reuse the same allow / hold / reject vocabulary.
 
 ## Videos (verified)
 
@@ -27,23 +27,22 @@ HENNGE’s email DLP team describes exactly this product shape: rules that allow
 
 ## Read these (verified)
 
-### Product / domain context (HENNGE)
+### Product / domain context
 
-1. [Behind the Code: HENNGE Email DLP team](https://hennge.com/global/info/henka/interview/202408-meet-the-team-html/) — allow / suspend / discard; rules; missend prevention; Go workers / Vue / AWS stack notes for later folders.
-2. [HENNGE One](https://hennge.com/global/service/one/) — DLP Edition: protection, detection, response for email and sharing.
-3. [Secure Transfer JD](https://recruit.hennge.com/en/mid-career-ngh/senior-software-engineer-backend-infra-hennge-secure-transfer/) — backend/infra role on HENNGE One DLP Edition (years bars are separate).
-4. [Demystifying HENNGE’s Hiring Process](https://hennge.com/global/info/henka/interview/202406-demystifying_hennges_hiring_process/) — challenge bar: short, elegant solutions.
+1. [What is Data Loss Prevention (DLP)? — Google Workspace](https://support.google.com/a/answer/9646351) — rules that scan content and enforce actions.
+2. [Microsoft Purview Data Loss Prevention](https://learn.microsoft.com/en-us/purview/dlp-learn-about-dlp) — protection, detection, and response framing for email and sharing.
+3. Challenge bar for this kata: short, elegant solutions — keep the engine interview-explainable.
 
 ### Engineering craft for this kata
 
-5. [Python `dataclasses`](https://docs.python.org/3/library/dataclasses.html) — frozen message/rule records as used in the stub.
-6. [pytest — Get Started](https://docs.pytest.org/en/stable/getting-started.html) — tests are the contract; run them often.
+4. [Python `dataclasses`](https://docs.python.org/3/library/dataclasses.html) — frozen message/rule records as used in the stub.
+5. [pytest — Get Started](https://docs.pytest.org/en/stable/getting-started.html) — tests are the contract; run them often.
 
 ### Missend / privacy literacy (why “hold” exists)
 
-7. [NZ Privacy Commissioner — prevent privacy breaches through email](https://www.privacy.org.nz/resources-and-learning/knowledge-base/view/516/) — wrong recipient is a top reported breach; check recipients; delays/reminders help.
-8. [OVIC — tips to reduce data breaches when sending emails](https://ovic.vic.gov.au/privacy/resources-for-organisations/tips-to-reduce-data-breaches-when-sending-emails/) — human error, verify full addresses, delay-send patterns.
+6. [NZ Privacy Commissioner — prevent privacy breaches through email](https://www.privacy.org.nz/resources-and-learning/knowledge-base/view/516/) — wrong recipient is a top reported breach; check recipients; delays/reminders help.
+7. [OVIC — tips to reduce data breaches when sending emails](https://ovic.vic.gov.au/privacy/resources-for-organisations/tips-to-reduce-data-breaches-when-sending-emails/) — human error, verify full addresses, delay-send patterns.
 
 ## Keep in mind
 
-Production DLP adds attachment inspection, admin UX, queues, and richer matching. Your kata stays dumb on purpose — interview-explainable order and predicates first.
+Production DLP adds attachment inspection, admin UX, queues, and richer matching. Your kata stays dumb on purpose — interview-explainable order and predicates first. Later MailGuard folders (API, Go workers, Vue admin, AWS) extend this toy engine toward a fuller SaaS shape.

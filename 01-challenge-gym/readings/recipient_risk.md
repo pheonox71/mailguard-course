@@ -12,7 +12,7 @@ By the end of this kata’s reading + worksheet + implementation, you should be 
 
 A common missend pattern: a message meant for **internal** colleagues also includes an **external** address (or a typo’d / invalid address). Classifying recipients against an org domain and flagging **mixed** or **invalid** sets is the seed of a hold decision. This kata uses a **simple** `local@domain` normalizer — enough to practice specs and string discipline, not full RFC 5322 parsing.
 
-Pair this with the hold-rules kata: risk signals often feed “should we hold?” policies like those described for HENNGE email Data Loss Prevention (DLP).
+Pair this with the hold-rules kata: risk signals often feed “should we hold?” policies in email Data Loss Prevention (DLP) products.
 
 ## Videos (verified)
 
@@ -35,15 +35,14 @@ Pair this with the hold-rules kata: risk signals often feed “should we hold?�
 
 ### Missend / DLP motivation
 
-4. [Behind the Code: HENNGE Email DLP team](https://hennge.com/global/info/henka/interview/202408-meet-the-team-html/) — mis-sending sensitive info; rules that allow / suspend / discard.
-5. [HENNGE One](https://hennge.com/global/service/one/) — DLP Edition product framing.
-6. [NZ Privacy Commissioner — prevent privacy breaches through email](https://www.privacy.org.nz/resources-and-learning/knowledge-base/view/516/) — wrong recipient as a leading breach type.
-7. [OVIC — tips to reduce data breaches when sending emails](https://ovic.vic.gov.au/privacy/resources-for-organisations/tips-to-reduce-data-breaches-when-sending-emails/) — verify full addresses; delay-send as a practical control.
+4. [NZ Privacy Commissioner — prevent privacy breaches through email](https://www.privacy.org.nz/resources-and-learning/knowledge-base/view/516/) — wrong recipient as a leading breach type.
+5. [OVIC — tips to reduce data breaches when sending emails](https://ovic.vic.gov.au/privacy/resources-for-organisations/tips-to-reduce-data-breaches-when-sending-emails/) — verify full addresses; delay-send as a practical control.
+6. [Microsoft Purview Data Loss Prevention](https://learn.microsoft.com/en-us/purview/dlp-learn-about-dlp) — product framing for protection / detection / response on email and sharing.
 
-### Career signal (honest)
+### Career prep (honest)
 
-8. [Secure Transfer JD](https://recruit.hennge.com/en/mid-career-ngh/senior-software-engineer-backend-infra-hennge-secure-transfer/) — DLP / secure transfer engineering bar (portfolio ≠ years).
-9. [FAQs for Screening Process](https://recruit.hennge.com/faq-for-screening-process/) — challenge quality and stack familiarity matter in screening.
+7. DLP / secure-transfer engineering roles care about missend prevention and policy engines — portfolio work shows fluency; calendar years are separate.
+8. Challenge quality and stack familiarity matter in screening for cloud security SaaS roles.
 
 ## Keep in mind
 

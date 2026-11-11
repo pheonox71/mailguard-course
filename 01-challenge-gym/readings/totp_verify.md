@@ -12,7 +12,7 @@ By the end of this kata’s reading + worksheet + implementation, you should be 
 
 TOTP lets a server and an authenticator app compute the same short code from a **shared secret** and the **current time** (usually a 30-second step). You do **not** need to reimplement HMAC-SHA1 for a short challenge — understand the model, then use a well-regarded library (`pyotp`) to verify codes, including a small **window** for clock skew. Production MFA still needs replay protection, rate limits, and secret storage discipline; those belong later (`03-mailguard-mfa/`).
 
-HENNGE’s Admission Challenge explicitly pairs a short coding task with **MFA/One-Time Password (OTP) research**, and prefers elegant solutions over over-engineering.
+Challenge-style hiring tasks often pair a short coding exercise with **MFA/One-Time Password (OTP) research**, and prefer elegant solutions over over-engineering. That is the bar this kata trains.
 
 ## Videos (verified)
 
@@ -38,12 +38,10 @@ HENNGE’s Admission Challenge explicitly pairs a short coding task with **MFA/O
 4. [MDN — One-time passwords (OTP)](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/OTP) — email/SMS/TOTP comparison; why TOTP is preferred among OTP channels.
 5. [OWASP Multifactor Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html) — MFA factors, threats, practical controls.
 
-### Why this kata exists (HENNGE)
+### Why this kata exists (career prep)
 
-6. [Demystifying HENNGE’s Hiring Process](https://hennge.com/global/info/henka/interview/202406-demystifying_hennges_hiring_process/) — backend challenge: short task + MFA/OTP research; concise > over-engineered.
-7. [HENNGE One](https://hennge.com/global/service/one/) — Identity Edition / MFA as product context (literacy, not a clone).
-8. [GIP](https://recruit.hennge.com/en/gip/) — early-career path and challenge culture.
-9. [Access Control JD (Python)](https://recruit.hennge.com/en/mid-career-ngh/senior-software-engineer-python-web-dev-hennge-access-control/) — identity / access policy career signal (years bars are separate).
+6. Identity / access-control engineering roles expect MFA literacy and concise challenge solutions — not a crypto reimplementation.
+7. Cloud security SaaS products treat MFA as core product context (literacy for MailGuard’s identity path, not a clone of any vendor).
 
 ## Optional deepeners
 

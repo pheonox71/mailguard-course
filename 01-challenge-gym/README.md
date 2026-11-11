@@ -1,6 +1,6 @@
 # 01 — Challenge Gym
 
-Admission-challenge muscle: short, elegant Python with tests; MFA/OTP concepts without overbuilding.
+Challenge-style muscle: short, elegant Python with tests; MFA/OTP concepts without overbuilding.
 
 **Learn-by-building:** stubs in `katas/`, behavior defined by `tests/`, guided by `worksheets/` + `readings/`. Reference code lives in `solutions/` — peek only if stuck.
 
@@ -11,11 +11,11 @@ Admission-challenge muscle: short, elegant Python with tests; MFA/OTP concepts w
 - TOTP verify with a library (RFC 6238) — understand MFA/OTP, don’t reinvent crypto
 - Tiny string/rule engines that preview MailGuard hold / missend thinking
 
-## Where HENNGE said it matters
+## Why it matters for career prep
 
-- Backend Admission Challenge: short task + MFA/OTP research; elegant > over-engineered — [Demystifying HENNGE’s hiring process](https://hennge.com/global/info/henka/interview/202406-demystifying_hennges_hiring_process/)
-- Early-career stack and challenge culture — [GIP](https://recruit.hennge.com/en/gip/)
-- Screening values challenge quality and learning agility — [FAQ for screening process](https://recruit.hennge.com/faq-for-screening-process/)
+- Short coding tasks that pair implementation with MFA/OTP research; elegant > over-engineered
+- Early-career cloud security / SaaS stacks reward challenge quality and learning agility
+- Screening and interviews often value clear specs, trade-off writing, and stack familiarity
 
 Related reading: [OWASP MFA Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html), [MDN OTP](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/OTP).
 
@@ -23,7 +23,7 @@ Related reading: [OWASP MFA Cheat Sheet](https://cheatsheetseries.owasp.org/chea
 
 For **each** kata, in order:
 
-1. **Readings** — `readings/<kata>.md`: short intro + verified external links (RFC/OWASP/MDN/HENNGE/docs)
+1. **Readings** — `readings/<kata>.md`: short intro + verified external links (RFC/OWASP/MDN/docs)
 2. **Worksheet** — `worksheets/<kata>.md`: concepts, short written questions, REPL warm-up
 3. **Read tests** — `tests/test_<kata>.py` defines correct behavior
 4. **Implement stubs** — fill `katas/<kata>.py` (`NotImplementedError` → real code)
@@ -36,7 +36,7 @@ pytest -q                              # all katas
 
 **Do not** open `solutions/` until you have attempted the stub. Solutions are not imported by tests.
 
-Index of readings: [`readings/README.md`](./readings/README.md).
+Index of readings: [`readings/README-01-challenge-gym-readings.md`](./readings/README-01-challenge-gym-readings.md).
 
 ## Layout
 
@@ -87,9 +87,9 @@ git checkout -- katas/totp_verify.py  # restore stub / your WIP
 
 ## Trade-offs / what I’d harden next
 
-- **Library vs from-scratch TOTP:** use `pyotp` on purpose — hiring guidance emphasizes understanding OTP, not reimplementing HMAC. A from-scratch version would burn challenge budget and risk subtle bugs.
+- **Library vs from-scratch TOTP:** use `pyotp` on purpose — challenge-style tasks emphasize understanding OTP, not reimplementing HMAC. A from-scratch version would burn challenge budget and risk subtle bugs.
 - **Hold rules are deliberately dumb:** domain equality + substring only. No regex DSL, no priority weights. First match wins — easy to reason about in an interview; too coarse for production DLP.
 - **Recipient risk is local@domain only:** no RFC 5322 / display-name parsing. Enough for a kata; real mail needs a proper address parser.
 - **No rate limits / replay store on TOTP:** production MFA needs used-code tracking and lockout. Out of scope here; belongs in `03-mailguard-mfa/`.
 
-**Production gap (Horizon B):** Secure Transfer / Access Control bars still demand multi-year delivery of auth’d services, threat models, and ops — this gym only proves challenge-shaped Python + MFA literacy.
+**Production gap (later phase):** production identity / DLP / secure-transfer SaaS roles still demand multi-year delivery of auth’d services, threat models, and ops — this gym only proves challenge-shaped Python + MFA literacy.

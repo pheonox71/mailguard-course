@@ -23,8 +23,8 @@ Peek at `solutions/hold_rules.py` only after a real attempt.
 from katas.hold_rules import Message, Rule
 
 msg = Message(
-    sender="alice@hennge.example",
-    recipients=("bob@partner.example", "carol@hennge.example"),
+    sender="alice@mailguard.example",
+    recipients=("bob@partner.example", "carol@mailguard.example"),
     subject="Q4 forecast attached",
     body="Please review the confidential numbers.",
 )

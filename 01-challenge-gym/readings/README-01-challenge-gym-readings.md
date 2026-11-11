@@ -1,6 +1,6 @@
 # Readings
 
-**Module 1** of the HENNGE learning course (Challenge Gym). Short intros, learning objectives, **verified** article links, and **credited videos** for each kata. Read these alongside the matching worksheet — before or while implementing.
+**Module 1** of the MailGuard / cloud-security learning course (Challenge Gym). Short intros, learning objectives, **verified** article links, and **credited videos** for each kata. Read these alongside the matching worksheet — before or while implementing.
 
 | Kata | In-repo intro | Worksheet |
 |------|---------------|-----------|

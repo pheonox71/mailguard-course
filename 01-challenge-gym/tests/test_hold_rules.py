@@ -5,8 +5,8 @@ from __future__ import annotations
 from katas.hold_rules import Message, Rule, evaluate, matches
 
 MSG = Message(
-    sender="alice@hennge.example",
-    recipients=("bob@partner.example", "carol@hennge.example"),
+    sender="alice@mailguard.example",
+    recipients=("bob@partner.example", "carol@mailguard.example"),
     subject="Q4 forecast attached",
     body="Please review the confidential numbers.",
 )
