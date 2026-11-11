@@ -2,6 +2,10 @@
 
 Challenge-shaped string work: normalize emails, spot external recipients,
 and flag likely missends (internal + external mixed on one send).
+
+Implement the stubs. Read worksheets/recipient_risk.md and
+tests/test_recipient_risk.py before coding. Peek at
+solutions/recipient_risk.py only if stuck.
 """
 
 from __future__ import annotations
@@ -26,40 +30,20 @@ class RiskReport:
 
 
 def normalize_email(raw: str) -> str | None:
-    """Lowercase and strip; return None if it is not a simple local@domain."""
-    addr = raw.strip().lower()
-    if addr.count("@") != 1:
-        return None
-    local, domain = addr.split("@")
-    if not local or not domain or "." not in domain:
-        return None
-    return addr
+    """Lowercase and strip; return None if it is not a simple local@domain.
+
+    Valid for this kata: exactly one `@`, non-empty local, non-empty domain
+    that contains a `.`.
+    """
+    raise NotImplementedError("implement normalize_email — see worksheets/recipient_risk.md")
 
 
 def classify(recipients: list[str], *, internal_domain: str) -> RiskReport:
-    """Split recipients into internal / external / invalid for `internal_domain`."""
-    home = internal_domain.strip().lower()
-    if not home:
-        raise ValueError("internal_domain is required")
+    """Split recipients into internal / external / invalid for `internal_domain`.
 
-    internal: list[str] = []
-    external: list[str] = []
-    invalid: list[str] = []
-    seen: set[str] = set()
-
-    for raw in recipients:
-        addr = normalize_email(raw)
-        if addr is None:
-            invalid.append(raw.strip())
-            continue
-        if addr in seen:
-            continue
-        seen.add(addr)
-        domain = addr.rsplit("@", 1)[-1]
-        (internal if domain == home else external).append(addr)
-
-    return RiskReport(
-        internal=tuple(internal),
-        external=tuple(external),
-        invalid=tuple(invalid),
-    )
+    - Normalize each address; invalids keep a stripped original form in `invalid`.
+    - Compare domain to `internal_domain` (strip + lower).
+    - Deduplicate normalized addresses (first wins).
+    - Raise ValueError if `internal_domain` is empty/whitespace.
+    """
+    raise NotImplementedError("implement classify — see worksheets/recipient_risk.md")

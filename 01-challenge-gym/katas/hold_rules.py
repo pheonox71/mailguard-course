@@ -2,6 +2,9 @@
 
 MailGuard preview: given a message and ordered rules, return the first
 matching decision. Concise over clever — no plugin system, no DSL parser.
+
+Implement the stubs. Read worksheets/hold_rules.md and tests/test_hold_rules.py
+before coding. Peek at solutions/hold_rules.py only if stuck.
 """
 
 from __future__ import annotations
@@ -30,28 +33,18 @@ class Rule:
     contains: str | None = None
 
 
-def _domain(addr: str) -> str:
-    return addr.rsplit("@", 1)[-1].lower() if "@" in addr else ""
-
-
 def matches(rule: Rule, msg: Message) -> bool:
-    """True when every specified predicate on the rule holds."""
-    if rule.recipient_domain is not None:
-        want = rule.recipient_domain.lower()
-        if not any(_domain(r) == want for r in msg.recipients):
-            return False
-    if rule.contains is not None:
-        needle = rule.contains.lower()
-        hay = f"{msg.subject}\n{msg.body}".lower()
-        if needle not in hay:
-            return False
-    # A rule with no predicates never matches (avoid accidental catch-alls).
-    return rule.recipient_domain is not None or rule.contains is not None
+    """True when every specified predicate on the rule holds.
+
+    - If `recipient_domain` is set: at least one recipient's domain must equal it
+      (case-insensitive; domain = part after `@`).
+    - If `contains` is set: subject or body must contain the substring
+      (case-insensitive).
+    - A rule with no predicates never matches (avoid accidental catch-alls).
+    """
+    raise NotImplementedError("implement matches — see worksheets/hold_rules.md")
 
 
 def evaluate(msg: Message, rules: Iterable[Rule], *, default: Decision = "allow") -> Decision:
     """First matching rule wins; otherwise `default`."""
-    for rule in rules:
-        if matches(rule, msg):
-            return rule.decision
-    return default
+    raise NotImplementedError("implement evaluate — see worksheets/hold_rules.md")

@@ -2,15 +2,14 @@
 
 Uses pyotp (RFC 6238). Challenge-style: validate a code against a shared
 secret with a small time-step window; reject malformed input early.
+
+Implement the stubs. Read worksheets/totp_verify.md and tests/test_totp_verify.py
+before coding. Peek at solutions/totp_verify.py only if stuck.
 """
 
 from __future__ import annotations
 
-import re
-
-import pyotp
-
-_CODE = re.compile(r"^\d{6}$")
+# TODO: imports you need (e.g. re, pyotp)
 
 
 def verify_totp(
@@ -26,17 +25,13 @@ def verify_totp(
     - `code`: six-digit user-entered OTP.
     - `for_time`: unix seconds to evaluate (default: now). Useful in tests.
     - `window`: steps to tolerate clock skew (±window * 30s). Must be >= 0.
-    """
-    if window < 0:
-        raise ValueError("window must be >= 0")
-    if not secret or not _CODE.match(code.strip()):
-        return False
 
-    totp = pyotp.TOTP(secret)
-    return totp.verify(code.strip(), for_time=for_time, valid_window=window)
+    Raise ValueError if `window` is negative.
+    Return False for empty secret or malformed code (not exactly six digits).
+    """
+    raise NotImplementedError("implement verify_totp — see worksheets/totp_verify.md")
 
 
 def current_code(secret: str, *, for_time: float | None = None) -> str:
     """Generate the current TOTP for demos and tests (not a production API)."""
-    totp = pyotp.TOTP(secret)
-    return totp.at(for_time) if for_time is not None else totp.now()
+    raise NotImplementedError("implement current_code — see worksheets/totp_verify.md")
