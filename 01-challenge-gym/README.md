@@ -19,11 +19,11 @@ Related reading: [OWASP MFA Cheat Sheet](https://cheatsheetseries.owasp.org/chea
 
 ## Katas
 
-| Module | Lines (approx.) | Idea |
-|--------|-----------------|------|
-| `katas/totp_verify.py` | ~45 | Verify a 6-digit TOTP (`pyotp`); window for clock skew |
-| `katas/hold_rules.py` | ~70 | Ordered hold/allow/reject rules on message text/domains |
-| `katas/recipient_risk.py` | ~70 | Normalize emails; flag mixed internal/external missends |
+| Module | Lines | Idea |
+|--------|------:|------|
+| `katas/totp_verify.py` | 42 | Verify a 6-digit TOTP (`pyotp`); window for clock skew |
+| `katas/hold_rules.py` | 57 | Ordered hold/allow/reject rules on message text/domains |
+| `katas/recipient_risk.py` | 65 | Normalize emails; flag mixed internal/external missends |
 
 ## How to run
 
