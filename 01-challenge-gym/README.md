@@ -24,10 +24,11 @@ Related reading: [OWASP MFA Cheat Sheet](https://cheatsheetseries.owasp.org/chea
 For **each** kata, in order:
 
 1. **Readings** — `readings/<kata>.md`: short intro + verified external links (RFC/OWASP/MDN/docs)
-2. **Worksheet** — `worksheets/<kata>.md`: concepts, short written questions, REPL warm-up
-3. **Read tests** — `tests/test_<kata>.py` defines correct behavior
-4. **Implement stubs** — fill `katas/<kata>.py` (`NotImplementedError` → real code)
-5. **pytest green** — run that file’s tests, then the full suite when all three are done
+2. **Self-check** — `quizzes/<kata>.md`: short quiz after the reading (answer key at bottom)
+3. **Worksheet** — `worksheets/<kata>.md`: concepts, short written questions, REPL warm-up
+4. **Read tests** — `tests/test_<kata>.py` defines correct behavior
+5. **Implement stubs** — fill `katas/<kata>.py` (`NotImplementedError` → real code)
+6. **pytest green** — run that file’s tests, then the full suite when all three are done
 
 ```bash
 pytest tests/test_totp_verify.py -q    # first kata
@@ -36,13 +37,15 @@ pytest -q                              # all katas
 
 **Do not** open `solutions/` until you have attempted the stub. Solutions are not imported by tests.
 
-Index of readings: [`readings/README-01-challenge-gym-readings.md`](./readings/README-01-challenge-gym-readings.md).
+Index of readings: [`readings/README-01-challenge-gym-readings.md`](./readings/README-01-challenge-gym-readings.md).  
+Index of quizzes: [`quizzes/README-01-challenge-gym-quizzes.md`](./quizzes/README-01-challenge-gym-quizzes.md).
 
 ## Layout
 
 | Path | Role |
 |------|------|
 | `readings/` | Short intros + verified external links per kata |
+| `quizzes/` | Short self-checks after each reading (pattern for later modules) |
 | `worksheets/` | Guided learning before/while implementing |
 | `katas/` | Stubs you implement (`raise NotImplementedError`) |
 | `tests/` | Thorough pytest contract — do not weaken these |
@@ -50,11 +53,11 @@ Index of readings: [`readings/README-01-challenge-gym-readings.md`](./readings/R
 
 ## Katas
 
-| Kata | Readings | Worksheet | Stub | Tests |
-|------|----------|-----------|------|-------|
-| TOTP verify | [`readings/totp_verify.md`](./readings/totp_verify.md) | `worksheets/totp_verify.md` | `katas/totp_verify.py` | `tests/test_totp_verify.py` |
-| Hold rules | [`readings/hold_rules.md`](./readings/hold_rules.md) | `worksheets/hold_rules.md` | `katas/hold_rules.py` | `tests/test_hold_rules.py` |
-| Recipient risk | [`readings/recipient_risk.md`](./readings/recipient_risk.md) | `worksheets/recipient_risk.md` | `katas/recipient_risk.py` | `tests/test_recipient_risk.py` |
+| Kata | Readings | Quiz | Worksheet | Stub | Tests |
+|------|----------|------|-----------|------|-------|
+| TOTP verify | [`readings/totp_verify.md`](./readings/totp_verify.md) | [`quizzes/totp_verify.md`](./quizzes/totp_verify.md) | `worksheets/totp_verify.md` | `katas/totp_verify.py` | `tests/test_totp_verify.py` |
+| Hold rules | [`readings/hold_rules.md`](./readings/hold_rules.md) | [`quizzes/hold_rules.md`](./quizzes/hold_rules.md) | `worksheets/hold_rules.md` | `katas/hold_rules.py` | `tests/test_hold_rules.py` |
+| Recipient risk | [`readings/recipient_risk.md`](./readings/recipient_risk.md) | [`quizzes/recipient_risk.md`](./quizzes/recipient_risk.md) | `worksheets/recipient_risk.md` | `katas/recipient_risk.py` | `tests/test_recipient_risk.py` |
 
 Start with **totp_verify**: open [`readings/totp_verify.md`](./readings/totp_verify.md), then its worksheet.
 

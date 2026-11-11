@@ -47,3 +47,7 @@ Pair this with the hold-rules kata: risk signals often feed “should we hold?�
 ## Keep in mind
 
 Real mail needs proper parsers, display-name handling, and Unicode/IDN awareness (see OWASP). Document that production gap in your trade-offs; don’t pretend the kata is RFC-complete.
+
+## Self-check
+
+After this reading: [`../quizzes/recipient_risk.md`](../quizzes/recipient_risk.md).

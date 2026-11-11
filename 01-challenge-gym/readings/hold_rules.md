@@ -46,3 +46,7 @@ Real email DLP products share this shape: rules that allow, suspend, or discard 
 ## Keep in mind
 
 Production DLP adds attachment inspection, admin UX, queues, and richer matching. Your kata stays dumb on purpose — interview-explainable order and predicates first. Later MailGuard folders (API, Go workers, Vue admin, AWS) extend this toy engine toward a fuller SaaS shape.
+
+## Self-check
+
+After this reading: [`../quizzes/hold_rules.md`](../quizzes/hold_rules.md).

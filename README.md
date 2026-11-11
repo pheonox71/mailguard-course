@@ -6,7 +6,18 @@ CS grad choosing a year of deliberate challenge — building **cloud security Sa
 
 **Thread:** **MailGuard** — outbound message & file guard (identity / DLP / secure-transfer–shaped learning, not a product clone).
 
-**Authorship:** Course structure, readings, stubs, and tests are AI-generated. Worksheets answers and kata implementations are filled in by Chance.
+**Authorship:** Course structure, readings, stubs, tests, quizzes, and rubrics are AI-generated. Worksheet answers and kata implementations are filled in by the learner on the `work` branch (not published on `main`).
+
+**Start here (Module 0):** [SYLLABUS.md](./SYLLABUS.md) · [PREREQUISITES.md](./PREREQUISITES.md) · [GLOSSARY.md](./GLOSSARY.md) · [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md)
+
+**Branches (blank course vs personal progress):**
+
+| Branch | What you get |
+|--------|----------------|
+| **`main`** | The **blank course** — readings, videos, question-only worksheets, stub katas, tests, and reference solutions. Safe to share or fork as a clean curriculum. |
+| **`work`** | The learner’s private progress — filled answers under `my-answers/`, completed kata implementations. **Never merge `work` into `main`.** |
+
+When the course is updated, changes land on `main` first, then merge `main` → `work` so progress keeps the new material without putting answers on the blank fork. Details: see Agent Store doc `course-branch-workflow.md` once GitHub is live, or keep answers only on `work`.
 
 | Folder | Phase | Teaches | Career / skill focus |
 |--------|-------|---------|----------------------|

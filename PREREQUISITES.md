@@ -1,0 +1,51 @@
+# Prerequisites
+
+What you should already have (or be willing to pick up quickly) before Module `01`. This course surveys backend, frontend, and platform/infra; it does **not** teach programming from zero.
+
+**Authorship:** AI-generated course scaffolding. Learner fills worksheets and implements stubs.
+
+---
+
+## Required
+
+| Area | Bar |
+|------|-----|
+| **CS fundamentals** | Comfortable with variables, functions, data structures, basic algorithms, and reading error messages. |
+| **Python 3** | Write small modules, use a virtualenv, run scripts from a terminal. Strongest language assumed. |
+| **Git** | Clone/branch/commit; read a diff; do not force-push shared course branches. |
+| **Command line** | `cd`, env vars, pipes, install packages with `pip`. |
+| **English technical reading** | RFCs, OWASP cheat sheets, library docs (linked from readings). |
+
+## Strongly recommended before Phase A (`02`+)
+
+| Area | Why |
+|------|-----|
+| **HTTP basics** | Status codes, JSON bodies, headers — for FastAPI and admin UI work. |
+| **pytest literacy** | Tests are the contract in Challenge Gym; later APIs keep that habit. |
+| **SQL / persistence idea** | Enough to store users, rules, and held messages (exact store varies by module). |
+
+## Needed when you reach that module
+
+| When | Skill |
+|------|--------|
+| `04` | TypeScript + Vue 3 basics (or willingness to follow the official tutorials while building). |
+| `05` | Go tour-level syntax (interfaces, packages, `go test`). |
+| `07`–`08` | GitHub account; AWS free-tier or LocalStack/MinIO for local demos; Terraform install. |
+| `11`+ | Docker comfort; willingness to run kind/minikube. |
+| `13` | High-level OAuth2 / OIDC vocabulary (login redirect, tokens) — glossary helps. |
+
+## Tools to install early
+
+- Python 3.11+ (or current stable), `pip`, `venv`
+- Git
+- A code editor
+- Later: Node.js (for Vue/Svelte), Go toolchain, Docker, Terraform, `kubectl` / kind — install when the module README says so
+
+## Not required
+
+- Prior cloud security job experience
+- Prior MFA/OIDC product work
+- Production Kubernetes years
+- Any particular employer’s internal tools
+
+If a reading acronym is new, expand it once in [GLOSSARY.md](./GLOSSARY.md), then continue.
