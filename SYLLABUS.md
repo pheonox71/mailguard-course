@@ -2,7 +2,7 @@
 
 Orientation for **mailguard-course**: ordered modules, rough hours, progress checkboxes, and **done when** criteria. Work top → bottom for Phase A (`01`–`08`, `10`). Phase B (`09`, `11`–`14`) can overlap once the MailGuard core API, admin, CI, and infra exist.
 
-**Authorship:** Course structure, readings, stubs, tests, quizzes, and rubrics are AI-generated. Worksheet answers and kata implementations are filled in by the learner (on the `work` branch — see root README).
+**Authorship:** Course structure, readings, stubs, tests, quizzes, and rubrics are AI-generated. Worksheet answers and kata implementations are filled in by the student (on the `work` branch — see root README).
 
 **Related:** [PREREQUISITES.md](./PREREQUISITES.md) · [GLOSSARY.md](./GLOSSARY.md) · [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md)
 
@@ -15,7 +15,7 @@ Orientation for **mailguard-course**: ordered modules, rough hours, progress che
 3. Tick the checkbox when that module’s **Done when** is met from *your* work (not by copying `solutions/`).
 4. Capstone readiness is judged by [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md), not by finishing every stretch folder.
 
-Hours are **solo learner estimates** (CS background, Python-strong). They include reading + worksheets + implementation + a short writeup — not calendar deadlines.
+Hours are **solo student estimates** (CS background, Python-strong). They include reading + worksheets + implementation + a short writeup — not calendar deadlines.
 
 ---
 
