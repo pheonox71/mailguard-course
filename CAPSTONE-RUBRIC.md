@@ -29,7 +29,7 @@ You meet the capstone when **all Must** rows are honest **yes**, and at least **
 | # | Criterion | Evidence |
 |---|-----------|----------|
 | M8 | **Rule engine** | Hold/allow/reject (or equivalent) with tests; first-match or documented evaluation order. |
-| M9 | **Identity touch** | MFA/OTP path exists (gym +/or `03`) with enroll/verify literacy in README or notes. |
+| M9 | **Identity touch** | MFA/OTP path exists (gym +/or `02`) with enroll/verify literacy in README or notes. |
 | M10 | **Operator surface** | Admin UI *or* scripted operator flow to list held items and release/reject. |
 | M11 | **Async or transfer path** | Either Go worker applying rules *or* Secure Drop-style expiring link + audit — preferably both over time. |
 | M12 | **CI signal** | PR (or push) CI runs tests for at least one core service; badge or documented workflow. |
@@ -39,15 +39,15 @@ You meet the capstone when **all Must** rows are honest **yes**, and at least **
 | # | Criterion | Evidence |
 |---|-----------|----------|
 | S1 | **Infra as code** | Terraform (or equivalent) for at least storage/IAM/queue; `plan` documented. |
-| S2 | **Cloud deploy** | One real or carefully faked-local cloud deploy path documented (`07`). |
-| S3 | **Local K8s** | Manifests run on kind/minikube with probes/requests (`11`). |
-| S4 | **Observability + SRE** | Metrics/logs/traces enough to narrate one failed hold pipeline; SLI/SLO or postmortem worksheet (`12`). |
-| S5 | **OIDC lite** | Happy-path federated login on admin or API + revocation notes (`13`). |
-| S6 | **GitOps / policy** | CI rejects a bad manifest; sync story diagrammed (`14`). |
-| S7 | **Security notes mapped** | Lab notes explicitly tied to mitigations you implemented (`10`). |
-| S8 | **Email auth literacy** | SPF/DKIM/DMARC worksheet or `15` kata green; spoofing vs hold-rules gap explained. |
-| S9 | **Threat model** | STRIDE-lite table for hold/release (`16`) attached or linked. |
-| S10 | **Identity / access depth** | Passkeys *or* SAML/ZTNA worksheet evidence (`03` / `13` / `17`) without inflated claims. |
+| S2 | **Cloud deploy** | One real or carefully faked-local cloud deploy path documented (`12`). |
+| S3 | **Local K8s** | Manifests run on kind/minikube with probes/requests (`14`). |
+| S4 | **Observability + SRE** | Metrics/logs/traces enough to narrate one failed hold pipeline; SLI/SLO or postmortem worksheet (`15`). |
+| S5 | **OIDC lite** | Happy-path federated login on admin or API + revocation notes (`03`). |
+| S6 | **GitOps / policy** | CI rejects a bad manifest; sync story diagrammed (`16`). |
+| S7 | **Security notes mapped** | Lab notes explicitly tied to mitigations you implemented (`11`). |
+| S8 | **Email auth literacy** | SPF/DKIM/DMARC worksheet or `05` kata green; spoofing vs hold-rules gap explained. |
+| S9 | **Threat model** | STRIDE-lite table for hold/release (`06`) attached or linked. |
+| S10 | **Identity / access depth** | Passkeys *or* SAML/ZTNA worksheet evidence (`02` / `03` / `04`) without inflated claims. |
 | S11 | **OSS or security UX** *(optional)* | Upstream issue/PR note or warning-UX redesign (`18`). |
 
 ---

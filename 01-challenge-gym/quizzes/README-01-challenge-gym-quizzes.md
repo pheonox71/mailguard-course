@@ -14,7 +14,7 @@ For each topic that has a reading:
 4. Link the quiz from the module README and from the reading’s end (“Self-check”).
 5. Do **not** put office-hours / “ask for help” FAQ here — this course is self-serve.
 
-Suggested filenames later: `02-mailguard-api/quizzes/…`, `03-mailguard-mfa/quizzes/…`, mirroring the reading slug.
+Suggested filenames later: `07-mailguard-api/quizzes/…`, `02-mailguard-mfa/quizzes/…`, mirroring the reading slug.
 
 ## Index (Module 01)
 

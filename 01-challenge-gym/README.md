@@ -96,6 +96,6 @@ git checkout -- katas/totp_verify.py  # restore stub / your WIP
 - **Library vs from-scratch TOTP:** use `pyotp` on purpose — challenge-style tasks emphasize understanding OTP, not reimplementing HMAC. A from-scratch version would burn challenge budget and risk subtle bugs.
 - **Hold rules are deliberately dumb:** domain equality + substring only. No regex DSL, no priority weights. First match wins — easy to reason about in an interview; too coarse for production DLP.
 - **Recipient risk is local@domain only:** no RFC 5322 / display-name parsing. Enough for a kata; real mail needs a proper address parser.
-- **No rate limits / replay store on TOTP:** production MFA needs used-code tracking and lockout. Out of scope here; belongs in `03-mailguard-mfa/`.
+- **No rate limits / replay store on TOTP:** production MFA needs used-code tracking and lockout. Out of scope here; belongs in `02-mailguard-mfa/`.
 
 **Production gap (later phase):** production identity / DLP / secure-transfer SaaS roles still demand multi-year delivery of auth’d services, threat models, and ops — this gym only proves challenge-shaped Python + MFA literacy.

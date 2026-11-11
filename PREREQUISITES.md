@@ -16,7 +16,7 @@ What you should already have (or be willing to pick up quickly) before Module `0
 | **Command line** | `cd`, env vars, pipes, install packages with `pip`. |
 | **English technical reading** | RFCs, OWASP cheat sheets, library docs (linked from readings). |
 
-## Strongly recommended before Phase A (`02`+)
+## Strongly recommended before the product-build modules (`07`+)
 
 | Area | Why |
 |------|-----|
@@ -28,11 +28,11 @@ What you should already have (or be willing to pick up quickly) before Module `0
 
 | When | Skill |
 |------|--------|
-| `04` | TypeScript + Vue 3 basics (or willingness to follow the official tutorials while building). |
-| `05` | Go tour-level syntax (interfaces, packages, `go test`). |
-| `07`–`08` | GitHub account; AWS free-tier or LocalStack/MinIO for local demos; Terraform install. |
-| `11`+ | Docker comfort; willingness to run kind/minikube. |
-| `13` | High-level OAuth2 / OIDC vocabulary (login redirect, tokens) — glossary helps. |
+| `08` | TypeScript + Vue 3 basics (or willingness to follow the official tutorials while building). |
+| `09` | Go tour-level syntax (interfaces, packages, `go test`). |
+| `12`–`13` | GitHub account; AWS free-tier or LocalStack/MinIO for local demos; Terraform install. |
+| `14`+ | Docker comfort; willingness to run kind/minikube. |
+| `03` | High-level OAuth2 / OIDC vocabulary (login redirect, tokens) — glossary helps. |
 
 ## Tools to install early
 

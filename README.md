@@ -21,28 +21,24 @@ When the course is updated, changes land on `main` first, then merge `main` → 
 
 | Folder | Phase | Teaches | Career / skill focus |
 |--------|-------|---------|----------------------|
-| [`01-challenge-gym/`](./01-challenge-gym/) | A | Concise Python + TOTP/pytest + **crypto hygiene** | MFA/OTP literacy; HMAC/AEAD misuse avoidance |
-| `02-mailguard-api/` | A→B | FastAPI DLP-ish rule API | Identity / access-policy style backend |
-| [`03-mailguard-mfa/`](./03-mailguard-mfa/) | A→B | MFA/OTP + **passkeys / WebAuthn** literacy | MFA challenge theme; phishing-resistant factors |
-| `04-mailguard-admin/` | A→B | TypeScript/Vue admin | Full-stack SaaS admin UX |
-| `05-mailguard-worker/` | A→B | Go worker / queue path | Secure-transfer–shaped workers |
-| [`06-secure-drop/`](./06-secure-drop/) | A→B | Secure file transfer + **cloud-share DLP** | Backend / share-link governance |
-| `07-ci-aws/` | A→B | GitHub Actions + AWS deploy | DevOps + cloud deploy |
-| [`08-infra/`](./08-infra/) | A→B | Compose + Terraform + **IAM posture** | Platform / least-privilege IaC |
-| `09-phish-lite/` | B opt. | Svelte phishing quiz | Security awareness frontend |
-| `10-security-notes/` | A→B | OWASP → MailGuard mitigations | Threat notes for the MailGuard thread |
-| [`15-email-auth/`](./15-email-auth/) | A | **SPF / DKIM / DMARC** + SMTP/TLS | Email domain authentication |
-| [`16-threat-model/`](./16-threat-model/) | A | **STRIDE / lightweight secure SDLC** | Threat modeling before capstone |
-| `11-k8s-local/` | B | kind/minikube deploy | Platform / Kubernetes basics |
-| [`12-observability/`](./12-observability/) | B | Metrics/logs/traces + **SRE (SLI/SLO)** | Platform observability + reliability |
-| [`13-oidc-access/`](./13-oidc-access/) | B | OIDC + **SAML / device certs / password vault** literacy | Identity & access depth |
-| [`17-ztna-lite/`](./17-ztna-lite/) | B | **ZTNA** vs VPN concepts | Zero-trust access literacy |
-| `14-gitops-policy/` | B | GitOps + policy-as-code concepts | GitOps / policy engines |
-| [`18-oss-ux-stretch/`](./18-oss-ux-stretch/) | B opt. | **OSS contribution** + security UX notes | Collaboration / portfolio signals |
-
-**Progression note:** `01`–`14` keep their numbers. `15`–`18` add high-priority literacy without reshuffling earlier folders — see [SYLLABUS.md](./SYLLABUS.md).
-
-**Status:** `01-challenge-gym/` and new/extended literacy modules (`03` passkeys, `06` share-DLP, `08` IAM, `12` SRE, `13` identity depth, `15`–`18`) ship readings/worksheets/quizzes (plus katas where noted). Remaining product folders are still implementation-planned. Public display name: **mailguard-course**.
+| [`01-challenge-gym/`](./01-challenge-gym/) | A | Concise Python + TOTP/pytest + crypto hygiene | MFA/OTP literacy; HMAC/AEAD misuse avoidance |
+| [`02-mailguard-mfa/`](./02-mailguard-mfa/) | A | MFA/OTP + passkeys / WebAuthn literacy | Phishing-resistant MFA |
+| [`03-oidc-access/`](./03-oidc-access/) | A | OIDC + SAML / device certs / password-vault literacy | Identity & access depth |
+| [`04-ztna-lite/`](./04-ztna-lite/) | A | ZTNA vs VPN concepts | Zero-trust access literacy |
+| [`05-email-auth/`](./05-email-auth/) | A | SPF / DKIM / DMARC + SMTP/TLS | Email domain authentication |
+| [`06-threat-model/`](./06-threat-model/) | A | STRIDE / lightweight secure SDLC | Threat modeling before build |
+| [`07-mailguard-api/`](./07-mailguard-api/) | A | FastAPI DLP-ish rule API | Identity / access-policy style backend |
+| [`08-mailguard-admin/`](./08-mailguard-admin/) | A | TypeScript/Vue admin | Full-stack SaaS admin UX |
+| [`09-mailguard-worker/`](./09-mailguard-worker/) | A | Go worker / queue path | Secure-transfer–shaped workers |
+| [`10-secure-drop/`](./10-secure-drop/) | A | Secure file transfer + cloud-share DLP | Share-link governance |
+| [`11-security-notes/`](./11-security-notes/) | A | OWASP → MailGuard mitigations | Threat notes for the MailGuard thread |
+| [`12-ci-aws/`](./12-ci-aws/) | A | GitHub Actions + AWS deploy | DevOps + cloud deploy |
+| [`13-infra/`](./13-infra/) | A | Compose + Terraform + IAM posture | Platform / least-privilege IaC |
+| [`14-k8s-local/`](./14-k8s-local/) | B | kind/minikube deploy | Platform / Kubernetes basics |
+| [`15-observability/`](./15-observability/) | B | Metrics/logs/traces + SRE (SLI/SLO) | Observability + reliability |
+| [`16-gitops-policy/`](./16-gitops-policy/) | B | GitOps + policy-as-code concepts | GitOps / policy engines |
+| [`17-phish-lite/`](./17-phish-lite/) | B opt. | Svelte phishing quiz | Security awareness frontend |
+| [`18-oss-ux-stretch/`](./18-oss-ux-stretch/) | B opt. | OSS contribution + security UX notes | Collaboration / portfolio signals |
 
 **How to run (Challenge Gym):**
 
@@ -56,7 +52,7 @@ pytest -q
 **Email-auth kata:**
 
 ```bash
-cd 15-email-auth
+cd 05-email-auth
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 pytest -q
