@@ -1,10 +1,29 @@
 # Reading — Recipient risk (`recipient_risk`)
 
+## Learning objectives
+
+By the end of this kata’s reading + worksheet + implementation, you should be able to:
+
+1. Classify recipients as internal / external / invalid against an org domain after simple normalization.
+2. Explain why **mixed** or **invalid** recipient sets are a missend / data-loss signal that can feed a hold rule.
+3. Distinguish accidental missends from **business email compromise (BEC)** / phishing — same “verify the recipient” habit, different attacker model.
+
 ## Short intro
 
 A common missend pattern: a message meant for **internal** colleagues also includes an **external** address (or a typo’d / invalid address). Classifying recipients against an org domain and flagging **mixed** or **invalid** sets is the seed of a hold decision. This kata uses a **simple** `local@domain` normalizer — enough to practice specs and string discipline, not full RFC 5322 parsing.
 
 Pair this with the hold-rules kata: risk signals often feed “should we hold?” policies like those described for HENNGE email DLP.
+
+## Videos (verified)
+
+1. **[FBI Warns of Business Email Compromise Scams](https://www.youtube.com/watch?v=cBcjTJmxgh4)** — FBI – Federal Bureau of Investigation  
+   Why it helps: official framing of BEC — lookalike addresses and payment requests; reinforces **verify the recipient** before trusting mail.
+
+2. **[PSA: Business E-Mail Compromise Scams](https://www.youtube.com/watch?v=u3nAeVNSV24)** — FBI – Federal Bureau of Investigation  
+   Why it helps: short dramatization of a rushed wire on a suspicious “boss” email — same urgency/missend pressure DLP holds interrupt.
+
+3. **[Recognize and Report Phishing](https://www.youtube.com/watch?v=9pTW-F6V2N0)** — CISA  
+   Why it helps: quick checklist for sender/address mismatch and odd urgency — literacy that pairs with programmatic recipient classification.
 
 ## Read these (verified)
 

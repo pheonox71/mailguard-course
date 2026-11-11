@@ -1,10 +1,29 @@
 # Reading — TOTP verify (`totp_verify`)
 
+## Learning objectives
+
+By the end of this kata’s reading + worksheet + implementation, you should be able to:
+
+1. Explain TOTP as HOTP with a time-derived counter (shared secret + time step → short code).
+2. State why a small verification **window** exists (clock skew) and what it does *not* replace (rate limits, replay controls).
+3. Verify codes with `pyotp` instead of hand-rolling HMAC — and point to RFC 6238 / OWASP MFA literacy in an interview.
+
 ## Short intro
 
 Time-based one-time passwords (TOTP) let a server and an authenticator app compute the same short code from a **shared secret** and the **current time** (usually a 30-second step). You do **not** need to reimplement HMAC-SHA1 for a short challenge — understand the model, then use a well-regarded library (`pyotp`) to verify codes, including a small **window** for clock skew. Production MFA still needs replay protection, rate limits, and secret storage discipline; those belong later (`03-mailguard-mfa/`).
 
 HENNGE’s Admission Challenge explicitly pairs a short coding task with **MFA/OTP research**, and prefers elegant solutions over over-engineering.
+
+## Videos (verified)
+
+1. **[2FA: Two Factor Authentication](https://www.youtube.com/watch?v=ZXFYT-BG2So)** — Computerphile (feat. Dr Mike Pound)  
+   Why it helps: crisp mental model of MFA factors (know / have / are) before you touch libraries.
+
+2. **[How HOTP and TOTP work](https://www.youtube.com/watch?v=46AKWNOJ3-Y)** — loops  
+   Why it helps: walks HMAC → truncation → counter vs Unix-time step, plus the validation **window** you’ll use in `verify`.
+
+3. **[A Tale of Two Factors: A Deep Dive into Two Factor Authentication](https://www.youtube.com/watch?v=4wZ9jM4coV4)** — Kelley Robinson @ PyGotham 2019  
+   Why it helps: compares SMS vs TOTP soft tokens and includes Python-oriented TOTP implementation notes aligned with this kata.
 
 ## Read these (verified)
 
