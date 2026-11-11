@@ -4,15 +4,15 @@
 
 By the end of this kata’s reading + worksheet + implementation, you should be able to:
 
-1. Explain TOTP as HOTP with a time-derived counter (shared secret + time step → short code).
+1. Explain Time-based One-Time Password (TOTP) as HMAC-based One-Time Password (HOTP) with a time-derived counter (shared secret + time step → short code).
 2. State why a small verification **window** exists (clock skew) and what it does *not* replace (rate limits, replay controls).
-3. Verify codes with `pyotp` instead of hand-rolling HMAC — and point to RFC 6238 / OWASP MFA literacy in an interview.
+3. Verify codes with `pyotp` instead of hand-rolling Hash-based Message Authentication Code (HMAC) — and point to RFC 6238 / Open Worldwide Application Security Project (OWASP) Multi-Factor Authentication (MFA) literacy in an interview.
 
 ## Short intro
 
-Time-based one-time passwords (TOTP) let a server and an authenticator app compute the same short code from a **shared secret** and the **current time** (usually a 30-second step). You do **not** need to reimplement HMAC-SHA1 for a short challenge — understand the model, then use a well-regarded library (`pyotp`) to verify codes, including a small **window** for clock skew. Production MFA still needs replay protection, rate limits, and secret storage discipline; those belong later (`03-mailguard-mfa/`).
+TOTP lets a server and an authenticator app compute the same short code from a **shared secret** and the **current time** (usually a 30-second step). You do **not** need to reimplement HMAC-SHA1 for a short challenge — understand the model, then use a well-regarded library (`pyotp`) to verify codes, including a small **window** for clock skew. Production MFA still needs replay protection, rate limits, and secret storage discipline; those belong later (`03-mailguard-mfa/`).
 
-HENNGE’s Admission Challenge explicitly pairs a short coding task with **MFA/OTP research**, and prefers elegant solutions over over-engineering.
+HENNGE’s Admission Challenge explicitly pairs a short coding task with **MFA/One-Time Password (OTP) research**, and prefers elegant solutions over over-engineering.
 
 ## Videos (verified)
 
@@ -47,5 +47,5 @@ HENNGE’s Admission Challenge explicitly pairs a short coding task with **MFA/O
 
 ## Optional deepeners
 
-- [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticator guidance at a high level (linked from PyOTP’s reading list).
+- [National Institute of Standards and Technology (NIST) SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticator guidance at a high level (linked from PyOTP’s reading list).
 - Skim only: security considerations sections inside RFC 6238 / 4226 once the kata is green.

@@ -6,13 +6,13 @@ By the end of this kata’s reading + worksheet + implementation, you should be 
 
 1. Classify recipients as internal / external / invalid against an org domain after simple normalization.
 2. Explain why **mixed** or **invalid** recipient sets are a missend / data-loss signal that can feed a hold rule.
-3. Distinguish accidental missends from **business email compromise (BEC)** / phishing — same “verify the recipient” habit, different attacker model.
+3. Distinguish accidental missends from **Business Email Compromise (BEC)** / phishing — same “verify the recipient” habit, different attacker model.
 
 ## Short intro
 
 A common missend pattern: a message meant for **internal** colleagues also includes an **external** address (or a typo’d / invalid address). Classifying recipients against an org domain and flagging **mixed** or **invalid** sets is the seed of a hold decision. This kata uses a **simple** `local@domain` normalizer — enough to practice specs and string discipline, not full RFC 5322 parsing.
 
-Pair this with the hold-rules kata: risk signals often feed “should we hold?” policies like those described for HENNGE email DLP.
+Pair this with the hold-rules kata: risk signals often feed “should we hold?” policies like those described for HENNGE email Data Loss Prevention (DLP).
 
 ## Videos (verified)
 
@@ -29,7 +29,7 @@ Pair this with the hold-rules kata: risk signals often feed “should we hold?�
 
 ### Email address handling
 
-1. [OWASP Email Validation and Verification Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Email_Validation_and_Verification_Cheat_Sheet.html) — normalize before compare; don’t invent brittle regex empires; domain lowercasing.
+1. [Open Worldwide Application Security Project (OWASP) Email Validation and Verification Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Email_Validation_and_Verification_Cheat_Sheet.html) — normalize before compare; don’t invent brittle regex empires; domain lowercasing.
 2. [RFC 5321 — SMTP](https://datatracker.ietf.org/doc/html/rfc5321) — skim address / mailbox concepts (optional depth after the kata is green).
 3. [RFC 5322 — Internet Message Format](https://datatracker.ietf.org/doc/html/rfc5322) — full address syntax is richer than this kata; know the gap.
 
