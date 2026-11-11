@@ -41,10 +41,14 @@ You meet the capstone when **all Must** rows are honest **yes**, and at least **
 | S1 | **Infra as code** | Terraform (or equivalent) for at least storage/IAM/queue; `plan` documented. |
 | S2 | **Cloud deploy** | One real or carefully faked-local cloud deploy path documented (`07`). |
 | S3 | **Local K8s** | Manifests run on kind/minikube with probes/requests (`11`). |
-| S4 | **Observability** | Metrics/logs/traces enough to narrate one failed hold pipeline (`12`). |
+| S4 | **Observability + SRE** | Metrics/logs/traces enough to narrate one failed hold pipeline; SLI/SLO or postmortem worksheet (`12`). |
 | S5 | **OIDC lite** | Happy-path federated login on admin or API + revocation notes (`13`). |
 | S6 | **GitOps / policy** | CI rejects a bad manifest; sync story diagrammed (`14`). |
 | S7 | **Security notes mapped** | Lab notes explicitly tied to mitigations you implemented (`10`). |
+| S8 | **Email auth literacy** | SPF/DKIM/DMARC worksheet or `15` kata green; spoofing vs hold-rules gap explained. |
+| S9 | **Threat model** | STRIDE-lite table for hold/release (`16`) attached or linked. |
+| S10 | **Identity / access depth** | Passkeys *or* SAML/ZTNA worksheet evidence (`03` / `13` / `17`) without inflated claims. |
+| S11 | **OSS or security UX** *(optional)* | Upstream issue/PR note or warning-UX redesign (`18`). |
 
 ---
 

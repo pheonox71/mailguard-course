@@ -58,8 +58,11 @@ Index of quizzes: [`quizzes/README-01-challenge-gym-quizzes.md`](./quizzes/READM
 | TOTP verify | [`readings/totp_verify.md`](./readings/totp_verify.md) | [`quizzes/totp_verify.md`](./quizzes/totp_verify.md) | `worksheets/totp_verify.md` | `katas/totp_verify.py` | `tests/test_totp_verify.py` |
 | Hold rules | [`readings/hold_rules.md`](./readings/hold_rules.md) | [`quizzes/hold_rules.md`](./quizzes/hold_rules.md) | `worksheets/hold_rules.md` | `katas/hold_rules.py` | `tests/test_hold_rules.py` |
 | Recipient risk | [`readings/recipient_risk.md`](./readings/recipient_risk.md) | [`quizzes/recipient_risk.md`](./quizzes/recipient_risk.md) | `worksheets/recipient_risk.md` | `katas/recipient_risk.py` | `tests/test_recipient_risk.py` |
+| Crypto hygiene | [`readings/crypto_hygiene.md`](./readings/crypto_hygiene.md) | [`quizzes/crypto_hygiene.md`](./quizzes/crypto_hygiene.md) | `worksheets/crypto_hygiene.md` | `katas/crypto_hygiene.py` | `tests/test_crypto_hygiene.py` |
 
 Start with **totp_verify**: open [`readings/totp_verify.md`](./readings/totp_verify.md), then its worksheet.
+
+After the three MailGuard-preview katas, add **crypto_hygiene** (HMAC + AEAD misuse literacy).
 
 ## How to run
 
@@ -76,7 +79,7 @@ pytest -q
 | State | Command | Expect |
 |-------|---------|--------|
 | Fresh stubs (as shipped) | `pytest -q` | **FAIL** — `NotImplementedError` from unimplemented katas |
-| After you implement (or copy a solution into `katas/` to check) | `pytest -q` | **PASS** — 15 tests |
+| After you implement (or copy a solution into `katas/` to check) | `pytest -q` | **PASS** — all kata tests (incl. crypto hygiene) |
 
 To verify a reference solution without permanently overwriting your work:
 

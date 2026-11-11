@@ -23,3 +23,4 @@ Suggested filenames later: `02-mailguard-api/quizzes/…`, `03-mailguard-mfa/qui
 | [`../readings/totp_verify.md`](../readings/totp_verify.md) | [`totp_verify.md`](./totp_verify.md) |
 | [`../readings/hold_rules.md`](../readings/hold_rules.md) | [`hold_rules.md`](./hold_rules.md) |
 | [`../readings/recipient_risk.md`](../readings/recipient_risk.md) | [`recipient_risk.md`](./recipient_risk.md) |
+| [`../readings/crypto_hygiene.md`](../readings/crypto_hygiene.md) | [`crypto_hygiene.md`](./crypto_hygiene.md) |

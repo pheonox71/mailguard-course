@@ -9,6 +9,7 @@
 | [`../worksheets/totp_verify.md`](../worksheets/totp_verify.md) | `totp_verify.md` |
 | [`../worksheets/hold_rules.md`](../worksheets/hold_rules.md) | `hold_rules.md` |
 | [`../worksheets/recipient_risk.md`](../worksheets/recipient_risk.md) | `recipient_risk.md` |
+| [`../worksheets/crypto_hygiene.md`](../worksheets/crypto_hygiene.md) | `crypto_hygiene.md` |
 
 First time on `work`:
 

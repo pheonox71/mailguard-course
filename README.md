@@ -17,31 +17,46 @@ CS grad choosing a year of deliberate challenge — building **cloud security Sa
 | **`main`** | The **blank course** — readings, videos, question-only worksheets, stub katas, tests, and reference solutions. Safe to share or fork as a clean curriculum. |
 | **`work`** | The student’s private progress — filled answers under `my-answers/`, completed kata implementations. **Never merge `work` into `main`.** |
 
-When the course is updated, changes land on `main` first, then merge `main` → `work` so progress keeps the new material without putting answers on the blank fork. Details: see Agent Store doc `course-branch-workflow.md` once GitHub is live, or keep answers only on `work`.
+When the course is updated, changes land on `main` first, then merge `main` → `work` so progress keeps the new material without putting answers on the blank fork.
 
 | Folder | Phase | Teaches | Career / skill focus |
 |--------|-------|---------|----------------------|
-| [`01-challenge-gym/`](./01-challenge-gym/) | A | Concise Python + TOTP/pytest under a challenge bar | MFA/OTP literacy; elegant short solutions |
+| [`01-challenge-gym/`](./01-challenge-gym/) | A | Concise Python + TOTP/pytest + **crypto hygiene** | MFA/OTP literacy; HMAC/AEAD misuse avoidance |
 | `02-mailguard-api/` | A→B | FastAPI DLP-ish rule API | Identity / access-policy style backend |
-| `03-mailguard-mfa/` | A→B | MFA/OTP on the API | MFA challenge theme |
+| [`03-mailguard-mfa/`](./03-mailguard-mfa/) | A→B | MFA/OTP + **passkeys / WebAuthn** literacy | MFA challenge theme; phishing-resistant factors |
 | `04-mailguard-admin/` | A→B | TypeScript/Vue admin | Full-stack SaaS admin UX |
 | `05-mailguard-worker/` | A→B | Go worker / queue path | Secure-transfer–shaped workers |
-| `06-secure-drop/` | A→B | Secure file transfer lite | Backend / secure sharing |
+| [`06-secure-drop/`](./06-secure-drop/) | A→B | Secure file transfer + **cloud-share DLP** | Backend / share-link governance |
 | `07-ci-aws/` | A→B | GitHub Actions + AWS deploy | DevOps + cloud deploy |
-| `08-infra/` | A→B | Compose + Terraform | Platform / infra-as-code |
+| [`08-infra/`](./08-infra/) | A→B | Compose + Terraform + **IAM posture** | Platform / least-privilege IaC |
 | `09-phish-lite/` | B opt. | Svelte phishing quiz | Security awareness frontend |
-| `10-security-notes/` | A→B | OWASP → MailGuard mitigations | Threat models for the MailGuard thread |
+| `10-security-notes/` | A→B | OWASP → MailGuard mitigations | Threat notes for the MailGuard thread |
+| [`15-email-auth/`](./15-email-auth/) | A | **SPF / DKIM / DMARC** + SMTP/TLS | Email domain authentication |
+| [`16-threat-model/`](./16-threat-model/) | A | **STRIDE / lightweight secure SDLC** | Threat modeling before capstone |
 | `11-k8s-local/` | B | kind/minikube deploy | Platform / Kubernetes basics |
-| `12-observability/` | B | Metrics/logs/traces | Platform observability |
-| `13-oidc-access/` | B | OIDC + access policy lite | Identity & access literacy |
+| [`12-observability/`](./12-observability/) | B | Metrics/logs/traces + **SRE (SLI/SLO)** | Platform observability + reliability |
+| [`13-oidc-access/`](./13-oidc-access/) | B | OIDC + **SAML / device certs / password vault** literacy | Identity & access depth |
+| [`17-ztna-lite/`](./17-ztna-lite/) | B | **ZTNA** vs VPN concepts | Zero-trust access literacy |
 | `14-gitops-policy/` | B | GitOps + policy-as-code concepts | GitOps / policy engines |
+| [`18-oss-ux-stretch/`](./18-oss-ux-stretch/) | B opt. | **OSS contribution** + security UX notes | Collaboration / portfolio signals |
 
-**Status:** `01-challenge-gym/` is implemented locally. Remaining folders are planned. Public display name: **mailguard-course**.
+**Progression note:** `01`–`14` keep their numbers. `15`–`18` add high-priority literacy without reshuffling earlier folders — see [SYLLABUS.md](./SYLLABUS.md).
 
-**How to run (latest):**
+**Status:** `01-challenge-gym/` and new/extended literacy modules (`03` passkeys, `06` share-DLP, `08` IAM, `12` SRE, `13` identity depth, `15`–`18`) ship readings/worksheets/quizzes (plus katas where noted). Remaining product folders are still implementation-planned. Public display name: **mailguard-course**.
+
+**How to run (Challenge Gym):**
 
 ```bash
 cd 01-challenge-gym
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+pytest -q
+```
+
+**Email-auth kata:**
+
+```bash
+cd 15-email-auth
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 pytest -q

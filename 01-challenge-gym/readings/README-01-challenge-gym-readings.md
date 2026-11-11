@@ -7,5 +7,6 @@
 | Time-based One-Time Password (TOTP) / Multi-Factor Authentication (MFA) | [totp_verify.md](./totp_verify.md) | [../worksheets/totp_verify.md](../worksheets/totp_verify.md) |
 | Hold / allow / reject rules | [hold_rules.md](./hold_rules.md) | [../worksheets/hold_rules.md](../worksheets/hold_rules.md) |
 | Recipient / missend risk | [recipient_risk.md](./recipient_risk.md) | [../worksheets/recipient_risk.md](../worksheets/recipient_risk.md) |
+| Crypto hygiene (HMAC / AEAD / TLS literacy) | [crypto_hygiene.md](./crypto_hygiene.md) | [../worksheets/crypto_hygiene.md](../worksheets/crypto_hygiene.md) |
 
 Shared tooling: [pytest getting started](https://docs.pytest.org/en/stable/getting-started.html).
