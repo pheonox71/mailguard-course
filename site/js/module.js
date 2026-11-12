@@ -59,15 +59,40 @@ async function main() {
   }
 
   const quizButtons = []
-  if (mod.quizzesZip) {
+  if (mod.quizzesPdfZip) {
     quizButtons.push(
-      `<a class="btn btn-ghost" download href="${mod.quizzesZip}">Download quizzes (questions only)</a>`,
+      `<a class="btn btn-download" download href="${mod.quizzesPdfZip}">Download quizzes (PDF zip)</a>`,
     )
-  } else if (mod.quizSingle) {
-    quizButtons.push(
-      `<a class="btn btn-ghost" download href="${mod.quizSingle.href}">Download quiz (questions only)</a>`,
-    )
+  } else {
+    const singlePdf = mod.quizzes.find((q) => q.pdfHref)
+    if (singlePdf?.pdfHref) {
+      quizButtons.push(
+        `<a class="btn btn-download" download href="${singlePdf.pdfHref}">Download quiz (PDF)</a>`,
+      )
+    }
   }
+
+  const quizzesWithPdf = mod.quizzes.filter((q) => q.pdfHref)
+  const quizTopicRows =
+    quizzesWithPdf.length > 1
+      ? `
+    <div class="topic-grid" aria-label="Per-topic quiz PDF downloads" style="margin-top:1.25rem">
+      ${quizzesWithPdf
+        .map(
+          (q) => `
+          <div class="topic-item">
+            <div>
+              <h3>${escapeHtml(titleCase(q.label))}</h3>
+              <p>Fillable quiz PDF (questions only)</p>
+            </div>
+            <div class="download-actions">
+              <a class="btn btn-download" download href="${q.pdfHref}">Download quiz (PDF)</a>
+            </div>
+          </div>`,
+        )
+        .join('')}
+    </div>`
+      : ''
 
   const topicRows =
     mod.worksheets.length > 1
@@ -76,11 +101,12 @@ async function main() {
       ${mod.worksheets
         .map((w) => {
           const test = mod.tests.find((t) => t.id === w.id)
+          const quiz = mod.quizzes.find((q) => q.id === w.id && q.pdfHref)
           return `
           <div class="topic-item">
             <div>
               <h3>${escapeHtml(titleCase(w.label))}</h3>
-              <p>Worksheet${test ? ' and matching tests' : ''}</p>
+              <p>Worksheet${test ? ', tests' : ''}${quiz ? ', quiz PDF' : ''}</p>
             </div>
             <div class="download-actions">
               <a class="btn btn-download" download href="${w.href}">Worksheet</a>
@@ -89,12 +115,17 @@ async function main() {
                   ? `<a class="btn btn-download" download href="${test.href}">Test</a>`
                   : ''
               }
+              ${
+                quiz
+                  ? `<a class="btn btn-download" download href="${quiz.pdfHref}">Download quiz (PDF)</a>`
+                  : ''
+              }
             </div>
           </div>`
         })
         .join('')}
     </div>`
-      : ''
+      : quizTopicRows
 
   const readings =
     mod.readings.length > 0
@@ -114,8 +145,8 @@ async function main() {
       : ''
 
   const empty =
-    !mod.worksheets.length && !mod.tests.length
-      ? `<p class="empty-note">This module is a build / stretch step. Worksheet and test downloads appear here when those assets exist for the topic.</p>`
+    !mod.worksheets.length && !mod.tests.length && !quizzesWithPdf.length
+      ? `<p class="empty-note">This module is a build / stretch step. Worksheet, test, and quiz downloads appear here when those assets exist for the topic.</p>`
       : ''
 
   root.innerHTML = `
@@ -125,7 +156,7 @@ async function main() {
 
     <section class="download-panel" aria-label="Downloads">
       <h2>Downloads for students</h2>
-      <p>Files come from the course tree. Answer keys are not included in quiz downloads.</p>
+      <p>Files come from the course tree. Quiz PDFs are fillable (questions only — no answer keys). Save finished worksheets and filled quiz PDFs under <code>my-work/</code> in the course repo.</p>
       <div class="download-actions">
         ${worksheetButtons.join('') || '<span class="muted">No worksheet pack for this module yet.</span>'}
         ${quizButtons.join('')}

@@ -1,7 +1,7 @@
 {
   "brand": "MailGuard Course",
   "tagline": "Cloud-security learning for students building identity, email DLP, and secure SaaS skills.",
-  "generatedAt": "2026-11-11T19:19:19.039Z",
+  "generatedAt": "2026-11-12T11:10:40.732Z",
   "modules": [
     {
       "id": "01-challenge-gym",
@@ -71,28 +71,37 @@
           "id": "crypto_hygiene",
           "label": "crypto hygiene",
           "href": "downloads/01-challenge-gym/quizzes/crypto_hygiene.md",
-          "filename": "crypto_hygiene.md"
+          "filename": "crypto_hygiene.md",
+          "pdfHref": "downloads/01-challenge-gym/quizzes/crypto_hygiene.pdf",
+          "pdfFilename": "crypto_hygiene.pdf"
         },
         {
           "id": "hold_rules",
           "label": "hold rules",
           "href": "downloads/01-challenge-gym/quizzes/hold_rules.md",
-          "filename": "hold_rules.md"
+          "filename": "hold_rules.md",
+          "pdfHref": "downloads/01-challenge-gym/quizzes/hold_rules.pdf",
+          "pdfFilename": "hold_rules.pdf"
         },
         {
           "id": "recipient_risk",
           "label": "recipient risk",
           "href": "downloads/01-challenge-gym/quizzes/recipient_risk.md",
-          "filename": "recipient_risk.md"
+          "filename": "recipient_risk.md",
+          "pdfHref": "downloads/01-challenge-gym/quizzes/recipient_risk.pdf",
+          "pdfFilename": "recipient_risk.pdf"
         },
         {
           "id": "totp_verify",
           "label": "totp verify",
           "href": "downloads/01-challenge-gym/quizzes/totp_verify.md",
-          "filename": "totp_verify.md"
+          "filename": "totp_verify.md",
+          "pdfHref": "downloads/01-challenge-gym/quizzes/totp_verify.pdf",
+          "pdfFilename": "totp_verify.pdf"
         }
       ],
       "quizzesZip": "downloads/01-challenge-gym/quizzes.zip",
+      "quizzesPdfZip": "downloads/01-challenge-gym/quizzes-pdf.zip",
       "quizSingle": null,
       "readings": [
         {
@@ -147,15 +156,20 @@
           "id": "passkeys_webauthn",
           "label": "passkeys webauthn",
           "href": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.md",
-          "filename": "passkeys_webauthn.md"
+          "filename": "passkeys_webauthn.md",
+          "pdfHref": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.pdf",
+          "pdfFilename": "passkeys_webauthn.pdf"
         }
       ],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": {
         "id": "passkeys_webauthn",
         "label": "passkeys webauthn",
         "href": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.md",
-        "filename": "passkeys_webauthn.md"
+        "filename": "passkeys_webauthn.md",
+        "pdfHref": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.pdf",
+        "pdfFilename": "passkeys_webauthn.pdf"
       },
       "readings": [
         {
@@ -195,15 +209,20 @@
           "id": "identity_depth",
           "label": "identity depth",
           "href": "downloads/03-oidc-access/quizzes/identity_depth.md",
-          "filename": "identity_depth.md"
+          "filename": "identity_depth.md",
+          "pdfHref": "downloads/03-oidc-access/quizzes/identity_depth.pdf",
+          "pdfFilename": "identity_depth.pdf"
         }
       ],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": {
         "id": "identity_depth",
         "label": "identity depth",
         "href": "downloads/03-oidc-access/quizzes/identity_depth.md",
-        "filename": "identity_depth.md"
+        "filename": "identity_depth.md",
+        "pdfHref": "downloads/03-oidc-access/quizzes/identity_depth.pdf",
+        "pdfFilename": "identity_depth.pdf"
       },
       "readings": [
         {
@@ -243,15 +262,20 @@
           "id": "ztna_lite",
           "label": "ztna lite",
           "href": "downloads/04-ztna-lite/quizzes/ztna_lite.md",
-          "filename": "ztna_lite.md"
+          "filename": "ztna_lite.md",
+          "pdfHref": "downloads/04-ztna-lite/quizzes/ztna_lite.pdf",
+          "pdfFilename": "ztna_lite.pdf"
         }
       ],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": {
         "id": "ztna_lite",
         "label": "ztna lite",
         "href": "downloads/04-ztna-lite/quizzes/ztna_lite.md",
-        "filename": "ztna_lite.md"
+        "filename": "ztna_lite.md",
+        "pdfHref": "downloads/04-ztna-lite/quizzes/ztna_lite.pdf",
+        "pdfFilename": "ztna_lite.pdf"
       },
       "readings": [
         {
@@ -299,15 +323,20 @@
           "id": "email_auth",
           "label": "email auth",
           "href": "downloads/05-email-auth/quizzes/email_auth.md",
-          "filename": "email_auth.md"
+          "filename": "email_auth.md",
+          "pdfHref": "downloads/05-email-auth/quizzes/email_auth.pdf",
+          "pdfFilename": "email_auth.pdf"
         }
       ],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": {
         "id": "email_auth",
         "label": "email auth",
         "href": "downloads/05-email-auth/quizzes/email_auth.md",
-        "filename": "email_auth.md"
+        "filename": "email_auth.md",
+        "pdfHref": "downloads/05-email-auth/quizzes/email_auth.pdf",
+        "pdfFilename": "email_auth.pdf"
       },
       "readings": [
         {
@@ -347,15 +376,20 @@
           "id": "threat_model_sdlc",
           "label": "threat model sdlc",
           "href": "downloads/06-threat-model/quizzes/threat_model_sdlc.md",
-          "filename": "threat_model_sdlc.md"
+          "filename": "threat_model_sdlc.md",
+          "pdfHref": "downloads/06-threat-model/quizzes/threat_model_sdlc.pdf",
+          "pdfFilename": "threat_model_sdlc.pdf"
         }
       ],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": {
         "id": "threat_model_sdlc",
         "label": "threat model sdlc",
         "href": "downloads/06-threat-model/quizzes/threat_model_sdlc.md",
-        "filename": "threat_model_sdlc.md"
+        "filename": "threat_model_sdlc.md",
+        "pdfHref": "downloads/06-threat-model/quizzes/threat_model_sdlc.pdf",
+        "pdfFilename": "threat_model_sdlc.pdf"
       },
       "readings": [
         {
@@ -380,6 +414,7 @@
       "testsZip": null,
       "quizzes": [],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": null,
       "readings": []
     },
@@ -398,6 +433,7 @@
       "testsZip": null,
       "quizzes": [],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": null,
       "readings": []
     },
@@ -416,6 +452,7 @@
       "testsZip": null,
       "quizzes": [],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": null,
       "readings": []
     },
@@ -449,15 +486,20 @@
           "id": "cloud_share_dlp",
           "label": "cloud share dlp",
           "href": "downloads/10-secure-drop/quizzes/cloud_share_dlp.md",
-          "filename": "cloud_share_dlp.md"
+          "filename": "cloud_share_dlp.md",
+          "pdfHref": "downloads/10-secure-drop/quizzes/cloud_share_dlp.pdf",
+          "pdfFilename": "cloud_share_dlp.pdf"
         }
       ],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": {
         "id": "cloud_share_dlp",
         "label": "cloud share dlp",
         "href": "downloads/10-secure-drop/quizzes/cloud_share_dlp.md",
-        "filename": "cloud_share_dlp.md"
+        "filename": "cloud_share_dlp.md",
+        "pdfHref": "downloads/10-secure-drop/quizzes/cloud_share_dlp.pdf",
+        "pdfFilename": "cloud_share_dlp.pdf"
       },
       "readings": [
         {
@@ -482,6 +524,7 @@
       "testsZip": null,
       "quizzes": [],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": null,
       "readings": []
     },
@@ -500,6 +543,7 @@
       "testsZip": null,
       "quizzes": [],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": null,
       "readings": []
     },
@@ -533,15 +577,20 @@
           "id": "cloud_iam_posture",
           "label": "cloud iam posture",
           "href": "downloads/13-infra/quizzes/cloud_iam_posture.md",
-          "filename": "cloud_iam_posture.md"
+          "filename": "cloud_iam_posture.md",
+          "pdfHref": "downloads/13-infra/quizzes/cloud_iam_posture.pdf",
+          "pdfFilename": "cloud_iam_posture.pdf"
         }
       ],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": {
         "id": "cloud_iam_posture",
         "label": "cloud iam posture",
         "href": "downloads/13-infra/quizzes/cloud_iam_posture.md",
-        "filename": "cloud_iam_posture.md"
+        "filename": "cloud_iam_posture.md",
+        "pdfHref": "downloads/13-infra/quizzes/cloud_iam_posture.pdf",
+        "pdfFilename": "cloud_iam_posture.pdf"
       },
       "readings": [
         {
@@ -566,6 +615,7 @@
       "testsZip": null,
       "quizzes": [],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": null,
       "readings": []
     },
@@ -599,15 +649,20 @@
           "id": "sre_basics",
           "label": "sre basics",
           "href": "downloads/15-observability/quizzes/sre_basics.md",
-          "filename": "sre_basics.md"
+          "filename": "sre_basics.md",
+          "pdfHref": "downloads/15-observability/quizzes/sre_basics.pdf",
+          "pdfFilename": "sre_basics.pdf"
         }
       ],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": {
         "id": "sre_basics",
         "label": "sre basics",
         "href": "downloads/15-observability/quizzes/sre_basics.md",
-        "filename": "sre_basics.md"
+        "filename": "sre_basics.md",
+        "pdfHref": "downloads/15-observability/quizzes/sre_basics.pdf",
+        "pdfFilename": "sre_basics.pdf"
       },
       "readings": [
         {
@@ -632,6 +687,7 @@
       "testsZip": null,
       "quizzes": [],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": null,
       "readings": []
     },
@@ -650,6 +706,7 @@
       "testsZip": null,
       "quizzes": [],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": null,
       "readings": []
     },
@@ -683,15 +740,20 @@
           "id": "oss_and_security_ux",
           "label": "oss and security ux",
           "href": "downloads/18-oss-ux-stretch/quizzes/oss_and_security_ux.md",
-          "filename": "oss_and_security_ux.md"
+          "filename": "oss_and_security_ux.md",
+          "pdfHref": "downloads/18-oss-ux-stretch/quizzes/oss_and_security_ux.pdf",
+          "pdfFilename": "oss_and_security_ux.pdf"
         }
       ],
       "quizzesZip": null,
+      "quizzesPdfZip": null,
       "quizSingle": {
         "id": "oss_and_security_ux",
         "label": "oss and security ux",
         "href": "downloads/18-oss-ux-stretch/quizzes/oss_and_security_ux.md",
-        "filename": "oss_and_security_ux.md"
+        "filename": "oss_and_security_ux.md",
+        "pdfHref": "downloads/18-oss-ux-stretch/quizzes/oss_and_security_ux.pdf",
+        "pdfFilename": "oss_and_security_ux.pdf"
       },
       "readings": [
         {

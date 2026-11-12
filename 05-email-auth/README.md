@@ -24,7 +24,7 @@ pip install -r requirements.txt
 pytest -q
 ```
 
-**Done when:** tests green from *your* kata; worksheet answers recorded on `work`; you can explain SPF/DKIM/DMARC and `p=none→reject` in an interview without notes.
+**Done when:** tests green from *your* kata; worksheet answers saved under `my-work/worksheets/`; you can explain SPF/DKIM/DMARC and `p=none→reject` in an interview without notes.
 
 ## Trade-offs / harden next
 

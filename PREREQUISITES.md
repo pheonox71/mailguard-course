@@ -12,7 +12,7 @@ What you should already have (or be willing to pick up quickly) before Module `0
 |------|-----|
 | **CS fundamentals** | Comfortable with variables, functions, data structures, basic algorithms, and reading error messages. |
 | **Python 3** | Write small modules, use a virtualenv, run scripts from a terminal. Strongest language assumed. |
-| **Git** | Clone/branch/commit; read a diff; do not force-push shared course branches. |
+| **Git** | Clone/commit; read a diff; keep finished worksheets and quiz PDFs under `my-work/`. |
 | **Command line** | `cd`, env vars, pipes, install packages with `pip`. |
 | **English technical reading** | RFCs, OWASP cheat sheets, library docs (linked from readings). |
 

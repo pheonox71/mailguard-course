@@ -8,6 +8,10 @@ function assetsHint(mod) {
   if (mod.tests.length) {
     bits.push(`${mod.tests.length} test file${mod.tests.length > 1 ? 's' : ''}`)
   }
+  const pdfCount = (mod.quizzes || []).filter((q) => q.pdfHref).length
+  if (pdfCount) {
+    bits.push(`${pdfCount} quiz PDF${pdfCount > 1 ? 's' : ''}`)
+  }
   return bits.length ? bits.join(' · ') : 'Readings / build module'
 }
 

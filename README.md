@@ -6,18 +6,18 @@ CS grad choosing a year of deliberate challenge — building **cloud security Sa
 
 **Thread:** **MailGuard** — outbound message & file guard (identity / DLP / secure-transfer–shaped learning, not a product clone).
 
-**Authorship:** Course structure, readings, stubs, tests, quizzes, and rubrics are AI-generated. Worksheet answers and kata implementations are filled in by the student on the `work` branch (not published on `main`).
+**Authorship:** Course structure, readings, stubs, tests, quizzes, and rubrics are AI-generated. Worksheet answers, filled quiz PDFs, and kata implementations are filled in by the student under [`my-work/`](./my-work/).
 
-**Start here (Module 0):** [SYLLABUS.md](./SYLLABUS.md) · [PREREQUISITES.md](./PREREQUISITES.md) · [GLOSSARY.md](./GLOSSARY.md) · [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md)
+**Start here (Module 0):** [SYLLABUS.md](./SYLLABUS.md) · [PREREQUISITES.md](./PREREQUISITES.md) · [GLOSSARY.md](./GLOSSARY.md) · [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md) · student site in [`site/`](./site/)
 
-**Branches (blank course vs personal progress):**
+**Where finished work goes:**
 
-| Branch | What you get |
-|--------|----------------|
-| **`main`** | The **blank course** — readings, videos, question-only worksheets, stub katas, tests, and reference solutions. Safe to share or fork as a clean curriculum. |
-| **`work`** | The student’s private progress — filled answers under `my-answers/`, completed kata implementations. **Never merge `work` into `main`.** |
+| Path | What you put there |
+|------|--------------------|
+| [`my-work/worksheets/`](./my-work/worksheets/) | Completed worksheet answers |
+| [`my-work/quizzes/`](./my-work/quizzes/) | Filled quiz PDFs from the course site |
 
-When the course is updated, changes land on `main` first, then merge `main` → `work` so progress keeps the new material without putting answers on the blank fork.
+Leave blank worksheets/quizzes under each module unchanged. Implement kata stubs in place; keep written answers in `my-work/`.
 
 | Folder | Phase | Teaches | Career / skill focus |
 |--------|-------|---------|----------------------|

@@ -24,6 +24,7 @@ const SITE_ROOT = join(__dirname, '..')
 const COURSE_ROOT = join(SITE_ROOT, '..')
 const OUT_DIR = join(SITE_ROOT, 'downloads')
 const DATA_DIR = join(SITE_ROOT, 'data')
+const QUIZ_PDF_SCRIPT = join(__dirname, 'quiz_md_to_pdf.py')
 
 const MODULE_META = [
   {
@@ -298,13 +299,38 @@ for (const meta of MODULE_META) {
       const name = basename(src)
       const stripped = stripAnswerKey(readFileSync(src, 'utf8'))
       if (/##\s*Answer key/i.test(stripped)) continue
-      writeFileSync(join(qDir, name), stripped, 'utf8')
+      const mdOut = join(qDir, name)
+      writeFileSync(mdOut, stripped, 'utf8')
+      const id = basename(name, '.md')
+      const pdfName = `${id}.pdf`
+      const pdfOut = join(qDir, pdfName)
+      let pdfHref = null
+      try {
+        execFileSync('python3', [QUIZ_PDF_SCRIPT, mdOut, pdfOut], {
+          stdio: ['ignore', 'pipe', 'pipe'],
+        })
+        if (existsSync(pdfOut)) {
+          pdfHref = `downloads/${meta.id}/quizzes/${pdfName}`
+        }
+      } catch (err) {
+        const detail = err?.stderr?.toString?.() || err?.message || String(err)
+        console.warn(`quiz PDF skipped for ${meta.id}/${name}: ${detail.trim()}`)
+      }
       quizzes.push({
-        id: basename(name, '.md'),
+        id,
         label: topicLabel(name),
         href: `downloads/${meta.id}/quizzes/${name}`,
         filename: name,
+        pdfHref,
+        pdfFilename: pdfHref ? pdfName : null,
       })
+    }
+    const pdfFiles = quizzes
+      .filter((q) => q.pdfFilename)
+      .map((q) => join(qDir, q.pdfFilename))
+    if (pdfFiles.length > 1) {
+      const zipPath = join(moduleOut, 'quizzes-pdf.zip')
+      zipFiles(qDir, pdfFiles, zipPath)
     }
     if (quizzes.length > 1) {
       const zipPath = join(moduleOut, 'quizzes.zip')
@@ -333,6 +359,10 @@ for (const meta of MODULE_META) {
     testsZip: tests.length ? `downloads/${meta.id}/tests.zip` : null,
     quizzes,
     quizzesZip: quizzes.length > 1 ? `downloads/${meta.id}/quizzes.zip` : null,
+    quizzesPdfZip:
+      quizzes.filter((q) => q.pdfHref).length > 1
+        ? `downloads/${meta.id}/quizzes-pdf.zip`
+        : null,
     quizSingle: quizzes.length === 1 ? quizzes[0] : null,
     readings,
   })
@@ -350,6 +380,10 @@ writeFileSync(join(DATA_DIR, 'catalog.json'), JSON.stringify(catalog, null, 2) +
 
 const withWorksheets = modules.filter((m) => m.worksheets.length).length
 const withTests = modules.filter((m) => m.tests.length).length
+const withQuizPdfs = modules.reduce(
+  (n, m) => n + m.quizzes.filter((q) => q.pdfHref).length,
+  0,
+)
 console.log(
-  `Prepared downloads for ${modules.length} modules (${withWorksheets} with worksheets, ${withTests} with tests) → downloads/`,
+  `Prepared downloads for ${modules.length} modules (${withWorksheets} with worksheets, ${withTests} with tests, ${withQuizPdfs} quiz PDFs) → downloads/`,
 )

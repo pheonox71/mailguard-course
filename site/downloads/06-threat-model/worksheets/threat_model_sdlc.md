@@ -1,6 +1,6 @@
 # Worksheet — Threat model the MailGuard hold path
 
-**Order:** reading → quiz → this worksheet (answers on `work` under `my-answers/`).
+**Order:** reading → this worksheet (save finished answers under `my-work/worksheets/`) → self-check quiz PDF when ready.
 
 ## Part A — Scope (4 bullets)
 

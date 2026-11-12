@@ -2,7 +2,7 @@
 
 name threats on the MailGuard hold path, tie them to mitigations you already built, and run a short secure Software Development Life Cycle (**SDLC**) self-check.
 
-**No office-hours FAQ** — self-serve readings, worksheet, quiz. AI-generated course materials; the student fills worksheets on the `work` branch.
+**No office-hours FAQ** — self-serve readings, worksheet, quiz. AI-generated course materials; the student saves finished work under [`../my-work/`](../my-work/).
 
 ## What this teaches
 

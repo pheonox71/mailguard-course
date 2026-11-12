@@ -84,6 +84,6 @@ Mark yourself honestly:
 - Cloning a commercial DLP/email product’s UI or branding  
 - Certificate walls without linked modules  
 - Office-hours / “ask the author” FAQ for other students — this course is self-serve  
-- Merging personal worksheet answers onto the clean `main` course branch  
+- Editing answers into the blank module `worksheets/` / quiz sources instead of saving finished work under `my-work/`
 
 When in doubt, prefer a smaller green demo over a larger unfinished monorepo.

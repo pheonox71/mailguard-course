@@ -1,3 +1,3 @@
-# My answers — Infra / IAM
+# My answers — Infra
 
-Blank on `main`. Student answers on `work` only.
+Save finished worksheet answers under [`../../my-work/worksheets/`](../../my-work/worksheets/). Filled quiz PDFs go in [`../../my-work/quizzes/`](../../my-work/quizzes/). Leave blank worksheets under this module unchanged.

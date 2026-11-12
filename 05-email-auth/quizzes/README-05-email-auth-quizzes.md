@@ -1,6 +1,6 @@
 # Email auth — quizzes
 
-Self-checks after readings. AI-generated; the student answers privately (e.g. `my-answers/` on `work`).
+Self-checks after readings. AI-generated; download fillable quiz PDFs from the course site and save completed copies under [`../../my-work/quizzes/`](../../my-work/quizzes/).
 
 | After reading | Quiz |
 |---------------|------|
