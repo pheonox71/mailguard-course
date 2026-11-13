@@ -117,3 +117,8 @@ Module 0 (this file + prereqs + glossary)
 ```
 
 Quizzes follow the Challenge Gym pattern — see [`01-challenge-gym/quizzes/README-01-challenge-gym-quizzes.md`](./01-challenge-gym/quizzes/README-01-challenge-gym-quizzes.md).
+
+### Capstone
+
+- [ ] **19 — Capstone: mail filter** · est. 8-10h · [`19-capstone/`](./19-capstone/)  
+  **Done when:** Runnable mail-filter demo with tests; self-grade worksheet completed; required quiz done.

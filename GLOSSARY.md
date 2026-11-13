@@ -38,6 +38,7 @@ Shared terms for **mailguard-course**. Acronyms appear as **full name (ABBREV)**
 | **Sender Policy Framework (SPF)** | DNS-published authorization of which hosts may send mail for a domain. |
 | **DomainKeys Identified Mail (DKIM)** | Cryptographic signature on email with a public key published in DNS. |
 | **Domain-based Message Authentication, Reporting and Conformance (DMARC)** | Policy + alignment of the visible From domain with SPF/DKIM results, plus reporting. |
+| **Mail Exchanger (MX)** | DNS record type that names the hosts that accept mail for a domain. |
 | **Hold / suspend** | Temporary quarantine of a message pending review or timeout — neither allow nor hard reject. |
 | **Allow / reject (discard)** | Policy actions: pass through vs block (and often drop) the message. |
 | **First-match-wins** | Evaluate ordered rules; stop at the first matching rule’s action. |

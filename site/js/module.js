@@ -1,5 +1,6 @@
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.esm.js'
 import { withBase } from './base.js'
+import { initTheme } from './theme.js'
 import {
   loadProgress,
   markModuleVisited,
@@ -11,6 +12,10 @@ import {
   resumeLabel,
   resetProgress,
 } from './progress.js'
+
+initTheme()
+
+let glossaryTerms = []
 
 const params = new URLSearchParams(location.search)
 const id = params.get('id') || '00-setup'
@@ -82,6 +87,48 @@ function enhanceFigures(html, base) {
   return wrap.innerHTML
 }
 
+function linkGlossaryTerms(html) {
+  if (!glossaryTerms.length) return html
+  const wrap = document.createElement('div')
+  wrap.innerHTML = html
+  const skip = new Set(['A', 'CODE', 'PRE', 'ABBR', 'SCRIPT', 'STYLE'])
+  const terms = [...glossaryTerms].sort((a, b) => b.abbrev.length - a.abbrev.length)
+  const walk = (node) => {
+    if (node.nodeType === Node.ELEMENT_NODE && skip.has(node.tagName)) return
+    if (node.nodeType === Node.TEXT_NODE) {
+      let text = node.nodeValue
+      let changed = false
+      for (const t of terms) {
+        if (!t.abbrev || t.abbrev.length < 2) continue
+        const re = new RegExp(`\\b(${t.abbrev.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'g')
+        if (!re.test(text)) continue
+        re.lastIndex = 0
+        const span = document.createElement('span')
+        let last = 0
+        let m
+        const src = text
+        while ((m = re.exec(src))) {
+          span.appendChild(document.createTextNode(src.slice(last, m.index)))
+          const a = document.createElement('a')
+          a.href = withBase(`glossary.html#${t.id}`)
+          a.className = 'glossary-ref'
+          a.textContent = m[1]
+          span.appendChild(a)
+          last = m.index + m[0].length
+          changed = true
+        }
+        span.appendChild(document.createTextNode(src.slice(last)))
+        node.replaceWith(span)
+        return
+      }
+      return
+    }
+    ;[...node.childNodes].forEach(walk)
+  }
+  walk(wrap)
+  return wrap.innerHTML
+}
+
 async function loadReadingHtml(reading) {
   if (!reading?.href) {
     return `<p class="empty-note">Reading file not prepared. Run <code>npm run prepare-readings</code> from <code>site/</code>.</p>`
@@ -91,7 +138,7 @@ async function loadReadingHtml(reading) {
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const md = await res.text()
     const raw = marked.parse(md, { async: false })
-    return enhanceFigures(raw, readingBase(reading.href))
+    return linkGlossaryTerms(enhanceFigures(raw, readingBase(reading.href)))
   } catch {
     return `<p class="empty-note">Could not load <code>${escapeHtml(reading.href)}</code>. Run <code>npm run prepare-readings</code>.</p>`
   }
@@ -130,11 +177,19 @@ function downloadButtonsForTopic(mod, topicId) {
 }
 
 async function main() {
-  const res = await fetch(withBase('data/catalog.json'))
+  const [res, glossRes] = await Promise.all([
+    fetch(withBase('data/catalog.json')),
+    fetch(withBase('data/glossary.json')),
+  ])
   if (!res.ok) {
     root.innerHTML =
       '<p class="empty-note">Catalog missing. Run <code>npm run prepare-readings</code> (fast) or <code>npm run prepare-downloads</code> from <code>site/</code>.</p>'
     return
+  }
+
+  if (glossRes.ok) {
+    const gloss = await glossRes.json()
+    glossaryTerms = gloss.sections.flatMap((s) => s.terms)
   }
 
   const catalog = await res.json()
@@ -273,6 +328,14 @@ async function main() {
         ? ` — <span class="muted">${escapeHtml(mod.languageDetail)}</span>`
         : ''
     }</p>
+    ${
+      (mod.objectives || []).length
+        ? `<section class="objectives" aria-label="Learning objectives">
+            <h2>Learning objectives</h2>
+            <ul>${mod.objectives.map((o) => `<li>${escapeHtml(o)}</li>`).join('')}</ul>
+          </section>`
+        : ''
+    }
     <label class="progress-toggle module-complete-toggle">
       <input type="checkbox" id="module-complete" ${moduleDone ? 'checked' : ''} />
       Mark module complete

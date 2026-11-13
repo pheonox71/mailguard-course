@@ -4,7 +4,13 @@ export function loadProgress() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) {
-      return { completedModules: {}, completedTopics: {}, lastModuleId: null, lastTopicId: null }
+      return {
+        completedModules: {},
+        completedTopics: {},
+        lastModuleId: null,
+        lastTopicId: null,
+        certificateName: '',
+      }
     }
     const parsed = JSON.parse(raw)
     return {
@@ -12,9 +18,16 @@ export function loadProgress() {
       completedTopics: parsed.completedTopics || {},
       lastModuleId: parsed.lastModuleId || null,
       lastTopicId: parsed.lastTopicId || null,
+      certificateName: parsed.certificateName || '',
     }
   } catch {
-    return { completedModules: {}, completedTopics: {}, lastModuleId: null, lastTopicId: null }
+    return {
+      completedModules: {},
+      completedTopics: {},
+      lastModuleId: null,
+      lastTopicId: null,
+      certificateName: '',
+    }
   }
 }
 

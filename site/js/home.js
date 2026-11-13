@@ -1,4 +1,5 @@
 import { withBase } from './base.js'
+import { initTheme } from './theme.js'
 import {
   loadProgress,
   resetProgress,
@@ -6,6 +7,8 @@ import {
   resumeHref,
   resumeLabel,
 } from './progress.js'
+
+initTheme()
 
 const list = document.getElementById('module-list')
 const resumeCta = document.getElementById('resume-cta')

@@ -1,0 +1,413 @@
+{
+  "generatedAt": "2026-11-13T10:51:30.244Z",
+  "sections": [
+    {
+      "title": "Identity & authentication",
+      "terms": [
+        {
+          "id": "mfa",
+          "term": "Multi-Factor Authentication",
+          "abbrev": "MFA",
+          "meaning": "Require more than one independent factor (e.g. password + device code) to authenticate."
+        },
+        {
+          "id": "otp",
+          "term": "One-Time Password",
+          "abbrev": "OTP",
+          "meaning": "Short-lived code used once (or within a short window) as a second factor."
+        },
+        {
+          "id": "hotp",
+          "term": "HMAC-based One-Time Password",
+          "abbrev": "HOTP",
+          "meaning": "OTP from a shared secret and an incrementing counter (RFC 4226)."
+        },
+        {
+          "id": "hmac",
+          "term": "Hash-based Message Authentication Code",
+          "abbrev": "HMAC",
+          "meaning": "Keyed hash proving integrity/authenticity of a message; building block for HOTP/TOTP."
+        },
+        {
+          "id": "totp",
+          "term": "Time-based One-Time Password",
+          "abbrev": "TOTP",
+          "meaning": "HOTP where the counter is derived from Unix time ÷ time step (often 30s; RFC 6238)."
+        },
+        {
+          "id": "oidc",
+          "term": "OpenID Connect",
+          "abbrev": "OIDC",
+          "meaning": "Identity layer on OAuth 2.0: login + ID token so apps can know *who* signed in."
+        },
+        {
+          "id": "oauth-2-0",
+          "term": "OAuth 2.0",
+          "abbrev": "",
+          "meaning": "Authorization framework for delegated access (tokens), not a full login protocol by itself."
+        },
+        {
+          "id": "jwt",
+          "term": "JSON Web Token",
+          "abbrev": "JWT",
+          "meaning": "Compact signed (often) token format used to carry claims between parties."
+        },
+        {
+          "id": "sso",
+          "term": "Single Sign-On",
+          "abbrev": "SSO",
+          "meaning": "One login session used across multiple apps — often via OIDC/SAML."
+        },
+        {
+          "id": "saml",
+          "term": "Security Assertion Markup Language",
+          "abbrev": "SAML",
+          "meaning": "XML-based federated login protocol; older enterprise alternative/complement to OIDC."
+        },
+        {
+          "id": "web-authentication-webauthn",
+          "term": "Web Authentication (WebAuthn)",
+          "abbrev": "",
+          "meaning": "Browser API for phishing-resistant authenticators (security keys / passkeys)."
+        },
+        {
+          "id": "passkey",
+          "term": "Passkey",
+          "abbrev": "",
+          "meaning": "User-friendly WebAuthn credential (often synced or device-bound) for phishing-resistant sign-in."
+        },
+        {
+          "id": "identity-provider-idp",
+          "term": "Identity Provider (IdP)",
+          "abbrev": "",
+          "meaning": "Service that authenticates users and issues assertions/tokens to relying apps."
+        },
+        {
+          "id": "ztna",
+          "term": "Zero Trust Network Access",
+          "abbrev": "ZTNA",
+          "meaning": "App-scoped remote access that verifies identity (and often device context) instead of broad VPN LAN admission."
+        },
+        {
+          "id": "vpn",
+          "term": "Virtual Private Network",
+          "abbrev": "VPN",
+          "meaning": "Encrypted tunnel into a network; classical remote access often admits users to wide internal ranges."
+        },
+        {
+          "id": "device-certificate-posture",
+          "term": "Device certificate / posture",
+          "abbrev": "",
+          "meaning": "Cryptographic device identity or health signals used as extra access context (conceptually; not a full MDM course)."
+        }
+      ]
+    },
+    {
+      "title": "Email security & MailGuard domain",
+      "terms": [
+        {
+          "id": "dlp",
+          "term": "Data Loss Prevention",
+          "abbrev": "DLP",
+          "meaning": "Policies that detect/block sensitive data leaving approved channels (e.g. email or cloud shares)."
+        },
+        {
+          "id": "missend",
+          "term": "Missend",
+          "abbrev": "",
+          "meaning": "Accidental delivery to the wrong recipient (typo, wrong autocomplete, mixed internal/external)."
+        },
+        {
+          "id": "bec",
+          "term": "Business Email Compromise",
+          "abbrev": "BEC",
+          "meaning": "Fraud that hijacks or spoofs business email to trick victims (e.g. fake payment requests)."
+        },
+        {
+          "id": "smtp",
+          "term": "Simple Mail Transfer Protocol",
+          "abbrev": "SMTP",
+          "meaning": "Store-and-forward protocol that moves email between servers (and submission clients)."
+        },
+        {
+          "id": "spf",
+          "term": "Sender Policy Framework",
+          "abbrev": "SPF",
+          "meaning": "DNS-published authorization of which hosts may send mail for a domain."
+        },
+        {
+          "id": "dkim",
+          "term": "DomainKeys Identified Mail",
+          "abbrev": "DKIM",
+          "meaning": "Cryptographic signature on email with a public key published in DNS."
+        },
+        {
+          "id": "dmarc",
+          "term": "Domain-based Message Authentication, Reporting and Conformance",
+          "abbrev": "DMARC",
+          "meaning": "Policy + alignment of the visible From domain with SPF/DKIM results, plus reporting."
+        },
+        {
+          "id": "mx",
+          "term": "Mail Exchanger",
+          "abbrev": "MX",
+          "meaning": "DNS record type that names the hosts that accept mail for a domain."
+        },
+        {
+          "id": "hold-suspend",
+          "term": "Hold / suspend",
+          "abbrev": "",
+          "meaning": "Temporary quarantine of a message pending review or timeout — neither allow nor hard reject."
+        },
+        {
+          "id": "allow-reject-discard",
+          "term": "Allow / reject (discard)",
+          "abbrev": "",
+          "meaning": "Policy actions: pass through vs block (and often drop) the message."
+        },
+        {
+          "id": "first-match-wins",
+          "term": "First-match-wins",
+          "abbrev": "",
+          "meaning": "Evaluate ordered rules; stop at the first matching rule’s action."
+        },
+        {
+          "id": "secure-transfer",
+          "term": "Secure transfer",
+          "abbrev": "",
+          "meaning": "Controlled file sharing (upload, store, expiring link, audit) instead of raw email attachments."
+        },
+        {
+          "id": "cloud-share-dlp",
+          "term": "Cloud-share DLP",
+          "abbrev": "",
+          "meaning": "Governing file links (visibility, expiry, revoke, audit) beyond the email path."
+        },
+        {
+          "id": "software-as-a-service-saas",
+          "term": "Software as a Service (SaaS)",
+          "abbrev": "",
+          "meaning": "Vendor-hosted software delivered over the network; MailGuard is a *learning* SaaS shape, not a product clone."
+        }
+      ]
+    },
+    {
+      "title": "Cryptography (applied literacy)",
+      "terms": [
+        {
+          "id": "tls",
+          "term": "Transport Layer Security",
+          "abbrev": "TLS",
+          "meaning": "Protocol that encrypts and authenticates network connections (e.g. HTTPS, SMTP with TLS)."
+        },
+        {
+          "id": "x-509-certificate",
+          "term": "X.509 certificate",
+          "abbrev": "",
+          "meaning": "Signed binding of a public key to a name (and related fields), used in TLS trust chains."
+        },
+        {
+          "id": "aead",
+          "term": "Authenticated Encryption with Associated Data",
+          "abbrev": "AEAD",
+          "meaning": "Encryption that also detects tampering; associated data is authenticated but not encrypted."
+        },
+        {
+          "id": "hmac",
+          "term": "Hash-based Message Authentication Code",
+          "abbrev": "HMAC",
+          "meaning": "Keyed hash proving integrity/authenticity; also listed under Identity when used for OTP."
+        }
+      ]
+    },
+    {
+      "title": "APIs, apps & workers",
+      "terms": [
+        {
+          "id": "api",
+          "term": "Application Programming Interface",
+          "abbrev": "API",
+          "meaning": "Contract for how clients talk to a service (here, often HTTP/JSON)."
+        },
+        {
+          "id": "fastapi",
+          "term": "FastAPI",
+          "abbrev": "",
+          "meaning": "Modern Python web framework for building APIs with type hints and OpenAPI docs."
+        },
+        {
+          "id": "openapi",
+          "term": "OpenAPI",
+          "abbrev": "",
+          "meaning": "Standard description of an HTTP API (formerly Swagger); used for docs and client generation."
+        },
+        {
+          "id": "crud",
+          "term": "Create, Read, Update, Delete",
+          "abbrev": "CRUD",
+          "meaning": "Basic resource operations on stored entities."
+        },
+        {
+          "id": "spa",
+          "term": "Single-Page Application",
+          "abbrev": "SPA",
+          "meaning": "Frontend that updates in-browser (e.g. Vue admin) talking to an API."
+        },
+        {
+          "id": "e2e",
+          "term": "End-to-End",
+          "abbrev": "E2E",
+          "meaning": "Test that drives the full user path (UI → API → storage), not just one unit."
+        },
+        {
+          "id": "dlq",
+          "term": "Dead-Letter Queue",
+          "abbrev": "DLQ",
+          "meaning": "Side queue for messages that failed processing after retries."
+        }
+      ]
+    },
+    {
+      "title": "Cloud, CI & platform",
+      "terms": [
+        {
+          "id": "aws",
+          "term": "Amazon Web Services",
+          "abbrev": "AWS",
+          "meaning": "Major public cloud; used here for deploy/storage/queue practice."
+        },
+        {
+          "id": "infrastructure-as-code-iac",
+          "term": "Infrastructure as Code (IaC)",
+          "abbrev": "",
+          "meaning": "Declare infra in files (e.g. Terraform) and apply via tooling, not click-ops alone."
+        },
+        {
+          "id": "iam",
+          "term": "Identity and Access Management",
+          "abbrev": "IAM",
+          "meaning": "Cloud users/roles/policies controlling who can do what on which resources."
+        },
+        {
+          "id": "ci",
+          "term": "Continuous Integration",
+          "abbrev": "CI",
+          "meaning": "Automated build/test (and often lint) on each change, typically via GitHub Actions here."
+        },
+        {
+          "id": "sbom",
+          "term": "Software Bill of Materials",
+          "abbrev": "SBOM",
+          "meaning": "Inventory of components/dependencies in an artifact for supply-chain review."
+        },
+        {
+          "id": "kubernetes-k8s",
+          "term": "Kubernetes (K8s)",
+          "abbrev": "",
+          "meaning": "Container orchestration API; local practice via kind/minikube before managed clusters."
+        },
+        {
+          "id": "eks",
+          "term": "Elastic Kubernetes Service",
+          "abbrev": "EKS",
+          "meaning": "AWS-managed Kubernetes control plane (named as a *next step*, not required locally)."
+        },
+        {
+          "id": "opentelemetry-otel",
+          "term": "OpenTelemetry (OTel)",
+          "abbrev": "",
+          "meaning": "Vendor-neutral APIs/SDKs for traces, metrics, and logs."
+        },
+        {
+          "id": "sre",
+          "term": "Site Reliability Engineering",
+          "abbrev": "SRE",
+          "meaning": "Practice of running reliable systems with engineering + operations habits (SLIs/SLOs, postmortems)."
+        },
+        {
+          "id": "sli",
+          "term": "Service Level Indicator",
+          "abbrev": "SLI",
+          "meaning": "Quantitative measure of one aspect of service level (e.g. success ratio, latency)."
+        },
+        {
+          "id": "slo",
+          "term": "Service Level Objective",
+          "abbrev": "SLO",
+          "meaning": "Target value/range for an SLI over a window."
+        },
+        {
+          "id": "error-budget",
+          "term": "Error budget",
+          "abbrev": "",
+          "meaning": "Allowed unreliability implied by an SLO; guides reliability vs feature investment."
+        },
+        {
+          "id": "gitops",
+          "term": "GitOps",
+          "abbrev": "",
+          "meaning": "Desired cluster/app state lives in Git; a controller syncs the live system to match."
+        },
+        {
+          "id": "policy-as-code",
+          "term": "Policy-as-code",
+          "abbrev": "",
+          "meaning": "Express admission/security rules as code/config (e.g. Kyverno, Conftest) checked in CI or cluster."
+        }
+      ]
+    },
+    {
+      "title": "Quality & process",
+      "terms": [
+        {
+          "id": "dsl",
+          "term": "Domain-Specific Language",
+          "abbrev": "DSL",
+          "meaning": "Mini-language for one problem domain; Challenge Gym deliberately *avoids* inventing one."
+        },
+        {
+          "id": "rfc",
+          "term": "Request for Comments",
+          "abbrev": "RFC",
+          "meaning": "IETF (and similar) standards documents (e.g. RFC 6238 for TOTP)."
+        },
+        {
+          "id": "owasp",
+          "term": "Open Worldwide Application Security Project",
+          "abbrev": "OWASP",
+          "meaning": "Community publishing practical app-sec guidance (cheat sheets, Juice Shop, etc.)."
+        },
+        {
+          "id": "nist",
+          "term": "National Institute of Standards and Technology",
+          "abbrev": "NIST",
+          "meaning": "U.S. standards body; SP 800-63 covers digital identity; SP 800-207 covers zero trust architecture."
+        },
+        {
+          "id": "stride",
+          "term": "STRIDE",
+          "abbrev": "",
+          "meaning": "Threat-category mnemonic: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege."
+        },
+        {
+          "id": "samm",
+          "term": "Software Assurance Maturity Model",
+          "abbrev": "SAMM",
+          "meaning": "OWASP model for measuring secure-SDLC practices (awareness in this course — not a cert)."
+        },
+        {
+          "id": "sdlc",
+          "term": "Secure Software Development Life Cycle",
+          "abbrev": "SDLC",
+          "meaning": "Building security activities into requirements, design, build, test, and operate."
+        },
+        {
+          "id": "oss",
+          "term": "Open-source software",
+          "abbrev": "OSS",
+          "meaning": "Software with source available under an open license; contribution practice is an optional stretch here."
+        }
+      ]
+    }
+  ]
+}

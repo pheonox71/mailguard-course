@@ -13,6 +13,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Tooling',
     languageDetail: 'Cross-platform installs (Git, Python, later Node/Go/Docker/Terraform/K8s)',
+    objectives: [
+    'Install and version-check core course tools on your OS',
+    'Know which later modules need Node, Go, Docker, Terraform, and Kubernetes tools',
+    'Complete the setup checklist and required quiz before Module 01',
+  ],
   },
   {
     id: '01-challenge-gym',
@@ -24,6 +29,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Python',
     languageDetail: 'Python 3 + pytest for katas and tests',
+    objectives: [
+    'Implement concise Python katas against pytest contracts',
+    'Explain TOTP/OTP concepts without reinventing crypto',
+    'Apply hold-rule and recipient-risk thinking in small functions',
+  ],
   },
   {
     id: '02-mailguard-mfa',
@@ -34,6 +44,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Python',
     languageDetail: 'Python (FastAPI-style) for enroll/verify; worksheet is mostly literacy',
+    objectives: [
+    'Describe enroll/verify and recovery-code flows for MFA',
+    'Contrast TOTP with passkeys / WebAuthn at a literacy level',
+    'Document threats and mitigations for MFA secrets',
+  ],
   },
   {
     id: '03-oidc-access',
@@ -44,6 +59,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Conceptual',
     languageDetail: 'Tables and diagrams; optional Python only if you code a demo later',
+    objectives: [
+    'Sketch a happy-path OIDC login and protected resource',
+    'Compare OIDC and SAML at a conceptual level',
+    'Note logout/revocation and device-cert ideas without overclaiming',
+  ],
   },
   {
     id: '04-ztna-lite',
@@ -54,6 +74,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Conceptual',
     languageDetail: 'Diagrams and compare tables (no app language required)',
+    objectives: [
+    'Diagram VPN vs ZTNA access models',
+    'Explain identity-bound app access in plain language',
+    'Avoid claiming a commercial mesh deployment',
+  ],
   },
   {
     id: '05-email-auth',
@@ -64,6 +89,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Python',
     languageDetail: 'Python 3 + pytest for the dmarc_policy kata',
+    objectives: [
+    'Explain SPF, DKIM, and DMARC roles in email authentication',
+    'Implement a small DMARC policy helper with tests',
+    'Relate spoofing controls to MailGuard hold rules',
+  ],
   },
   {
     id: '06-threat-model',
@@ -74,6 +104,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Conceptual',
     languageDetail: 'Written threat-model tables (Markdown)',
+    objectives: [
+    'Produce a STRIDE-lite table for the hold/release path',
+    'Run a short secure-SDLC self-assessment',
+    'Note privacy risks for held message content',
+  ],
   },
   {
     id: '07-mailguard-api',
@@ -84,6 +119,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Python',
     languageDetail: 'Python 3 + FastAPI + pytest',
+    objectives: [
+    'Build a FastAPI-style rules API for hold/allow/reject',
+    'Cover core paths with automated tests and OpenAPI',
+    'Document architecture and production gaps',
+  ],
   },
   {
     id: '08-mailguard-admin',
@@ -94,6 +134,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Vue + TypeScript',
     languageDetail: 'Vue 3 + TypeScript for the admin SPA',
+    objectives: [
+    'Build a TypeScript/Vue admin for rules and held messages',
+    'Provide accessible forms for approve/release actions',
+    'Keep TypeScript strict with a few meaningful tests',
+  ],
   },
   {
     id: '09-mailguard-worker',
@@ -104,6 +149,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Go',
     languageDetail: 'Go worker / queue consumer',
+    objectives: [
+    'Implement a Go queue worker that applies hold rules',
+    'Document the shared contract with the Python API',
+    'Containerize the worker with a clear local demo',
+  ],
   },
   {
     id: '10-secure-drop',
@@ -114,6 +164,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Python',
     languageDetail: 'Python service for share links; worksheet literacy first',
+    objectives: [
+    'Design expiring share links with an audit trail',
+    'Relate cloud-share DLP controls to email attachments',
+    'Keep secrets and object storage credentials out of git',
+  ],
   },
   {
     id: '11-security-notes',
@@ -124,6 +179,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Conceptual',
     languageDetail: 'Written security notes (Markdown)',
+    objectives: [
+    'Map OWASP-minded findings to MailGuard mitigations',
+    'Write honest lab notes without attack tooling for real systems',
+    'Prioritize remediations you can demonstrate in-repo',
+  ],
   },
   {
     id: '12-ci-aws',
@@ -134,6 +194,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'CI + AWS',
     languageDetail: 'GitHub Actions YAML and AWS deploy notes',
+    objectives: [
+    'Add CI that runs tests on pull requests or pushes',
+    'Document a cloud deploy path without committing secrets',
+    'Explain least-privilege choices for the demo identity',
+  ],
   },
   {
     id: '13-infra',
@@ -144,6 +209,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Terraform + Compose',
     languageDetail: 'Terraform (AWS) and Docker Compose — not application JS',
+    objectives: [
+    'Express a thin Compose + Terraform footprint for the thread',
+    'Complete an IAM / misconfig posture worksheet for your resources',
+    'Keep state and credentials out of version control',
+  ],
   },
   {
     id: '14-k8s-local',
@@ -154,6 +224,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Kubernetes YAML',
     languageDetail: 'Kubernetes manifests (kind/minikube)',
+    objectives: [
+    'Deploy the app shape to kind or minikube',
+    'Add probes and resource requests to manifests',
+    'Document what you did not automate yet (GitOps, policy)',
+  ],
   },
   {
     id: '15-observability',
@@ -164,6 +239,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Ops / metrics',
     languageDetail: 'Metrics/logs/traces config and written SRE worksheets',
+    objectives: [
+    'Define golden signals for the hold pipeline',
+    'Draft SLI/SLO notes and a lightweight postmortem',
+    'Hook at least one metric or structured log in the story',
+  ],
   },
   {
     id: '16-gitops-policy',
@@ -174,6 +254,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'GitOps / policy',
     languageDetail: 'Kubernetes YAML + policy-as-code (e.g. Kyverno/Conftest)',
+    objectives: [
+    'Diagram a sync flow for manifests',
+    'Apply a policy-as-code check that rejects a bad manifest',
+    'Keep claims proportional to what you automated',
+  ],
   },
   {
     id: '17-phish-lite',
@@ -184,6 +269,11 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Svelte',
     languageDetail: 'Svelte / SvelteKit for the optional quiz UI',
+    objectives: [
+    'Build a small Svelte phishing-awareness quiz UI',
+    'Keep the project clearly labeled as a learning clone',
+    'Practice honest UX copy for warnings and results',
+  ],
   },
   {
     id: '18-oss-ux-stretch',
@@ -194,5 +284,26 @@ export const MODULE_META = [
     hours: 'est. 8-10h',
     language: 'Vue + TypeScript',
     languageDetail: 'Vue + TypeScript for UX mocks; writing for the OSS track',
+    objectives: [
+    'Practice upstream contribution hygiene',
+    'Critique or redesign a security warning UX',
+    'Write reflections suitable for a portfolio footnote',
+  ],
+  },
+  {
+    id: '19-capstone',
+    number: '19',
+    title: 'Capstone: mail filter',
+    phase: 'Capstone',
+    blurb:
+      'End-to-end outbound mail filter demo with tests and a self-grading rubric worksheet.',
+    hours: 'est. 8-10h',
+    language: 'Python',
+    languageDetail: 'Python 3 + pytest for the filter core; rubric worksheet in Markdown',
+    objectives: [
+    'Ship a small end-to-end mail filter demo with tests',
+    'Self-grade honestly against the capstone rubric',
+    'Package commands and evidence a stranger can follow',
+  ],
   },
 ]

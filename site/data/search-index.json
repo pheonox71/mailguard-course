@@ -1,0 +1,985 @@
+{
+  "generatedAt": "2026-11-13T10:51:32.922Z",
+  "entries": [
+    {
+      "kind": "module",
+      "id": "00-setup",
+      "title": "00 — Setup / getting ready",
+      "moduleId": "00-setup",
+      "moduleTitle": "Setup / getting ready",
+      "topicId": null,
+      "body": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux. Install and version-check core course tools on your OS Know which later modules need Node, Go, Docker, Terraform, and Kubernetes tools Complete the setup checklist and required quiz before Module 01 Tooling",
+      "snippet": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux."
+    },
+    {
+      "kind": "reading",
+      "id": "00-setup:course_setup",
+      "title": "course setup",
+      "moduleId": "00-setup",
+      "moduleTitle": "00 Setup / getting ready",
+      "topicId": "course_setup",
+      "body": "# Course setup — tools for the MailGuard path\n\nThis module prepares your machine for the full course: identity / MFA katas, email authentication, Python APIs, TypeScript/Vue admin, Go workers, AWS/CI, Terraform, and local Kubernetes. You do **not** need every tool on day one — install **core** tools now, and the **later** tools when the matching module arrives.\n\n**Authorship:** AI-generated. The student completes the worksheet and quiz.\n\nContinue with the worksheet after this reading: [`../worksheets/course_setup.md`](../worksheets/course_setup.md). The quiz is **required**.\n\n---\n\n## What the course uses (audit)\n\n| Area | Tools / libraries | First needed |\n|------|-------------------|--------------|\n| Editor + VCS | Code editor; **Git** | 00 / whole course |\n| Python path | **Python 3.11+**, `pip`, `venv`, **pytest**, **pyotp**, **cryptography**; later **FastAPI** | 01, 05, 07, 10 |\n| Frontend | **Node.js** + npm/pnpm; **TypeScript**; **Vue 3**; optional **Svelte / SvelteKit** | 08, 17 |\n| Go path | **Go** toolchain (`go test`, modules) | 09 |\n| Containers | **Docker** + **Docker Compose** | 13, 14 |\n| Cloud / CI | **GitHub** account; **GitHub Actions**; **AWS** account (free tier) or local stand-ins; **AWS CLI** (optional early) | 12+ |\n| IaC | **Terraform** | 13 |\n| Kubernetes | **kubectl**; **kind** or **minikube**; YAML / Helm or Kustomize later | 14–16 |\n| Course site | Modern browser; PDF reader for fillable quiz PDFs | 00 / whole course |\n| Sample data | Module fixtures and stubs in-repo (no separate dataset download) | per module |\n\nOfficial docs linked below. Prefer current stable releases unless a module README pins a version.\n\n---\n\n## Core installs (do these now)\n\n### 1. Git\n\n- Windows: [Git for Windows](https://git-scm.com/download/win)\n- macOS: [Git downloads](https://git-scm.com/download/mac) or `xcode-select --install`\n- Linux: distro packages — e.g. `sudo apt install git` (Debian/Ubuntu)\n\n**Check:** `git --version`\n\n### 2. Python 3.11+ (or current stable 3.x)\n\n- Windows / macOS / source: [python.org downloads](https://www.python.org/downloads/)\n- macOS (Homebrew): `brew install python`\n- Linux: distro `python3` / `python3-venv` / `python3-pip`\n\nOn Windows installer, enable **Add python.exe to PATH**.\n\n**Check:**\n\n```bash\npython3 --version   # or: python --version\npython3 -m pip --version\n```\n\n### 3. Virtualenv + Challenge Gym deps\n\nFrom the course repo:\n\n```bash\ncd 01-challenge-gym\npython3 -m venv .venv\n# Windows: .venv\\Scripts\\activate\nsource .venv/bin/activate\npip install -r requirements.txt\npytest -q\n```\n\n(Expect failing tests until you implement katas — the important part is that `pytest` runs.)\n\n**Check:** `pytest --version`\n\n### 4. Code editor\n\nAny editor is fine (VS Code, Cursor, Neovim, etc.). Install a Python extension if you use VS Code/Cursor.\n\n### 5. PDF reader for quizzes\n\nUse a reader that can fill AcroForm PDFs (many browsers work; Preview / Adobe Reader / Okular also fine). Save finished PDFs under `my-work/quizzes/`.\n\n---\n\n## Install when you reach that module\n\n### Node.js (Modules 08, 17)\n\n- [Node.js LTS downloads](https://nodejs.org/)\n\n**Check:** `node --version` · `npm --version`\n\n### Go (Module 09)\n\n- [Go install](https://go.dev/doc/install)\n\n**Check:** `go version`\n\n### Docker + Compose (Modules 13–14)\n\n- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/macOS) or [Docker Engine](https://docs.docker.com/engine/install/) (Linux)\n\n**Check:** `docker --version` · `docker compose version`\n\n### Terraform (Module 13)\n\n- [HashiCorp Terraform installs](https://developer.hashicorp.com/terraform/install)\n\n**Check:** `terraform version`\n\n### kubectl + kind or minikube (Modules 14–16)\n\n- [kubectl install](https://kubernetes.io/docs/tasks/tools/)\n- [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [minikube](https://minikube.sigs.k8s.io/docs/start/)\n\n**Check:** `kubectl version --client` · `kind version` or `minikube version`\n\n### GitHub + AWS (Modules 12+)\n\n- [GitHub signup](https://github.com/signup)\n- [AWS free tier](https://aws.amazon.com/free/) (or local stand-ins such as LocalStack/MinIO when a module allows)\n- Optional: [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) — `aws --version`\n\nNever commit cloud secrets. Module READMEs describe least-privilege demos.\n\n---\n\n## OS tips\n\n| OS | Notes |\n|----|--------|\n| **Windows** | Prefer PowerShell or Git Bash; WSL2 is excellent for Python/Docker/kind. |\n| **macOS** | Homebrew simplifies Git, Python, Go, Terraform, kubectl. |\n| **Linux** | Use your distro packages for Git/Python; follow upstream docs for Docker/Terraform/kind. |\n\n---\n\n## Final setup checklist\n\nTick these on the worksheet:\n\n1. `git --version` works  \n2. `python3 --version` shows 3.11+ (or current stable 3.x)  \n3. `python3 -m venv` works; Challenge Gym venv installs `requirements.txt`  \n4. `pytest --version` works inside that venv  \n5. Editor + Git configured; you can commit  \n6. Browser opens the course site; you can download a quiz PDF  \n7. You know *when* to add Node, Go, Docker, Terraform, kubectl/kind, GitHub, and AWS  \n\nThen complete the **required** quiz and start Module 01.\n",
+      "snippet": "# Course setup — tools for the MailGuard path This module prepares your machine for the full course: identity / MFA katas, email authentication, Python APIs, Ty"
+    },
+    {
+      "kind": "module",
+      "id": "01-challenge-gym",
+      "title": "01 — Challenge Gym",
+      "moduleId": "01-challenge-gym",
+      "moduleTitle": "Challenge Gym",
+      "topicId": null,
+      "body": "Short Python katas with pytest contracts — TOTP, hold rules, recipient risk, and crypto hygiene. Implement concise Python katas against pytest contracts Explain TOTP/OTP concepts without reinventing crypto Apply hold-rule and recipient-risk thinking in small functions Python",
+      "snippet": "Short Python katas with pytest contracts — TOTP, hold rules, recipient risk, and crypto hygiene."
+    },
+    {
+      "kind": "reading",
+      "id": "01-challenge-gym:crypto_hygiene",
+      "title": "crypto hygiene",
+      "moduleId": "01-challenge-gym",
+      "moduleTitle": "01 Challenge Gym",
+      "topicId": "crypto_hygiene",
+      "body": "# Reading — Crypto hygiene (`crypto_hygiene`)\n\n## Learning objectives\n\nBy the end of this kata’s reading + worksheet + implementation, you should be able to:\n\n1. Explain why a bare hash is the wrong tool for message **integrity** when an attacker can modify bytes — and why Hash-based Message Authentication Code (**HMAC**) binds a secret key to the hash.\n2. Describe Authenticated Encryption with Associated Data (**AEAD**) as “encrypt + authenticate in one construction,” and name Transport Layer Security (**TLS**) as the everyday place AEAD (and certificates) show up.\n3. State a short **key lifecycle** checklist (generate, store, rotate, revoke) and refuse to invent ciphers — use reviewed libraries instead.\n\n## Short intro\n\nTime-based One-Time Password (**TOTP**) already taught “don’t hand-roll HMAC.” This kata widens the lens: integrity tags for audit-style blobs, and AEAD for secrets at rest (or in transit below TLS). You will call Python’s `hmac` module and the `cryptography` library’s AES-GCM — not design modes yourself.\n\n![Comparison of bare hash, HMAC, and AEAD plus a generate-store-rotate-revoke key lifecycle](images/crypto-hygiene.svg)\n\n*Figure. A bare hash is not authenticity when an attacker can change bytes; **HMAC** binds a secret key; **AEAD** encrypts and authenticates together (TLS is the everyday place this shows up). Notice the key lifecycle strip — generate, store, rotate, revoke — and the rule to use reviewed libraries. Original course diagram (CC0).*\n\n**TLS** (Transport Layer Security) is the protocol that protects HTTP and SMTP connections: the server presents an X.509 **certificate** (a signed binding of public key ↔ name), the client verifies the chain to a trusted root, then both sides negotiate an AEAD cipher suite. You will not implement TLS here; you *will* practice the same misuse rules TLS libraries already enforce — never reuse a nonce with the same key, never skip authentication, never treat “encrypt with raw AES-ECB” as done.\n\n## Videos (verified)\n\n1. **[Public Key Cryptography - Computerphile](https://www.youtube.com/watch?v=GSIDS_lvRv4)** — Computerphile (feat. Dr Mike Pound)  \n   Why it helps: mental model for public/private keys before certificates feel magical.\n\n2. **[TLS Handshake Explained](https://www.youtube.com/watch?v=86cQJXauvZ0)** — ByteByteGo  \n   Why it helps: certificate check → key agreement → encrypted application data, without drowning in RFCs.\n\n3. **[AES Explained (Advanced Encryption Standard)](https://www.youtube.com/watch?v=O4xNJsjtN6E)** — Computerphile (feat. Dr Mike Pound)  \n   Why it helps: intuition for the block cipher under AES-GCM — then remember this kata uses **AEAD** (GCM), not raw ECB.\n\n## Read these (verified)\n\n### Specs & libraries\n\n1. [RFC 2104 — HMAC](https://datatracker.ietf.org/doc/html/rfc2104) — keyed hashing for integrity/authenticity.\n2. [Python `hmac` — cryptographic message authentication](https://docs.python.org/3/library/hmac.html) — `hmac.new`, `compare_digest`.\n3. [PyCA cryptography — AESGCM](https://cryptography.io/en/latest/hazmat/primitives/aead/#cryptography.hazmat.primitives.ciphers.aead.AESGCM) — AEAD seal/open API you will call.\n\n### Concepts & security literacy\n\n4. [OWASP Cryptographic Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html) — algorithms, key management, common failures.\n5. [MDN — Transport Layer Security (TLS)](https://developer.mozilla.org/en-US/docs/Web/Security/Transport_Layer_Security) — what browsers verify and why mixed content breaks the model.\n6. [Latacora — Cryptographic Right Answers](https://www.latacora.com/blog/2018/04/03/cryptographic-right-answers/) — opinionated “what to use” list (pair with current library docs).\n\n### Why this kata exists (career prep)\n\n7. Cloud security SaaS work expects engineers to *consume* crypto correctly (TLS termination, secret storage, HMAC webhooks) — not invent primitives.\n8. MailGuard’s audit and secure-transfer paths need integrity and confidentiality literacy even when the product story is DLP, not a crypto product.\n\n## Optional deepeners\n\n- [NIST SP 800-57 Part 1 Rev. 5 — Recommendation for Key Management](https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final) — lifecycle vocabulary (generate, distribute, store, rotate, destroy).\n- Skim certificate fields in a browser’s certificate viewer once after the kata is green.\n\n## Quiz (required)\nAfter this reading: [`../quizzes/crypto_hygiene.md`](../quizzes/crypto_hygiene.md).\n",
+      "snippet": "# Reading — Crypto hygiene (`crypto_hygiene`) ## Learning objectives By the end of this kata’s reading + worksheet + implementation, you should be able to: 1. E"
+    },
+    {
+      "kind": "reading",
+      "id": "01-challenge-gym:hold_rules",
+      "title": "hold rules",
+      "moduleId": "01-challenge-gym",
+      "moduleTitle": "01 Challenge Gym",
+      "topicId": "hold_rules",
+      "body": "# Reading — Hold rules (`hold_rules`)\n\n## Learning objectives\n\nBy the end of this kata’s reading + worksheet + implementation, you should be able to:\n\n1. Describe email Data Loss Prevention (DLP) as ordered policy: match conditions → action (allow / hold-suspend / reject-discard).\n2. Implement **first-match-wins** evaluation over a small rule list without inventing a Domain-Specific Language (DSL).\n3. Connect the toy engine to real product language (Microsoft Purview / Google Workspace DLP and similar SaaS email guards) so you can explain trade-offs in an interview.\n\n## Short intro\n\nEmail DLP products sit between sender and recipient and apply **policy**: allow, temporarily hold (suspend), or reject/discard. Admins express rules; engines evaluate messages in a defined order. This kata is a **tiny** version of that idea — domain and substring predicates, **first match wins**, no DSL. The point is clear specs and concise Python, not a production rule language.\n\n![Ordered hold rules evaluating a message with first-match-wins allow, hold, or reject outcomes](images/hold-rules-flow.svg)\n\n*Figure. Inspect the message, walk the ordered rule list, and stop at the **first match**. Notice the three actions — allow, hold/suspend, reject/discard — and that evaluation order is part of the policy, not an afterthought. Original course diagram (CC0).*\n\nReal email DLP products share this shape: rules that allow, suspend, or discard to prevent costly mis-sends of sensitive information. MailGuard later folders reuse the same allow / hold / reject vocabulary.\n\n## Videos (verified)\n\n1. **[What is Data Loss Prevention (DLP)?](https://www.youtube.com/watch?v=meWpZCmV0dg)** — Google Workspace  \n   Why it helps: short official intro to DLP as **rules** that scan content and enforce an action when a rule matches.\n\n2. **[Data Loss Prevention across endpoints, apps, & services | Microsoft Purview](https://www.youtube.com/watch?v=hvqq8L_0kgI)** — Microsoft Mechanics  \n   Why it helps: shows how one DLP policy idea spans email and other channels — same “inspect → match → act” loop as this kata, at product scale.\n\n3. **[Plan and design Data Loss Prevention (DLP) Policies | SC-401 | Episode 5](https://www.youtube.com/watch?v=Agp8I97XHlk)** — Microsoft Learn  \n   Why it helps: policy design (what to monitor, where, conditions, actions) maps cleanly onto ordered hold/allow/reject rules.\n\n## Read these (verified)\n\n### Product / domain context\n\n1. [What is Data Loss Prevention (DLP)? — Google Workspace](https://support.google.com/a/answer/9646351) — rules that scan content and enforce actions.\n2. [Microsoft Purview Data Loss Prevention](https://learn.microsoft.com/en-us/purview/dlp-learn-about-dlp) — protection, detection, and response framing for email and sharing.\n3. Challenge bar for this kata: short, elegant solutions — keep the engine interview-explainable.\n\n### Engineering craft for this kata\n\n4. [Python `dataclasses`](https://docs.python.org/3/library/dataclasses.html) — frozen message/rule records as used in the stub.\n5. [pytest — Get Started](https://docs.pytest.org/en/stable/getting-started.html) — tests are the contract; run them often.\n\n### Missend / privacy literacy (why “hold” exists)\n\n6. [NZ Privacy Commissioner — prevent privacy breaches through email](https://www.privacy.org.nz/resources-and-learning/knowledge-base/view/516/) — wrong recipient is a top reported breach; check recipients; delays/reminders help.\n7. [OVIC — tips to reduce data breaches when sending emails](https://ovic.vic.gov.au/privacy/resources-for-organisations/tips-to-reduce-data-breaches-when-sending-emails/) — human error, verify full addresses, delay-send patterns.\n\n## Keep in mind\n\nProduction DLP adds attachment inspection, admin UX, queues, and richer matching. Your kata stays dumb on purpose — interview-explainable order and predicates first. Later MailGuard folders (API, Go workers, Vue admin, AWS) extend this toy engine toward a fuller SaaS shape.\n\n## Quiz (required)\nAfter this reading: [`../quizzes/hold_rules.md`](../quizzes/hold_rules.md).\n",
+      "snippet": "# Reading — Hold rules (`hold_rules`) ## Learning objectives By the end of this kata’s reading + worksheet + implementation, you should be able to: 1. Describe "
+    },
+    {
+      "kind": "reading",
+      "id": "01-challenge-gym:recipient_risk",
+      "title": "recipient risk",
+      "moduleId": "01-challenge-gym",
+      "moduleTitle": "01 Challenge Gym",
+      "topicId": "recipient_risk",
+      "body": "# Reading — Recipient risk (`recipient_risk`)\n\n## Learning objectives\n\nBy the end of this kata’s reading + worksheet + implementation, you should be able to:\n\n1. Classify recipients as internal / external / invalid against an org domain after simple normalization.\n2. Explain why **mixed** or **invalid** recipient sets are a missend / data-loss signal that can feed a hold rule.\n3. Distinguish accidental missends from **Business Email Compromise (BEC)** / phishing — same “verify the recipient” habit, different attacker model.\n\n## Short intro\n\nA common missend pattern: a message meant for **internal** colleagues also includes an **external** address (or a typo’d / invalid address). Classifying recipients against an org domain and flagging **mixed** or **invalid** sets is the seed of a hold decision. This kata uses a **simple** `local@domain` normalizer — enough to practice specs and string discipline, not full RFC 5322 parsing.\n\n![Recipient classification into internal, external, or invalid, then a set outcome that can feed hold rules](images/recipient-risk.svg)\n\n*Figure. Normalize first, then classify each address against the org domain. Notice that **mixed** or **invalid** set outcomes are the missend signal — the same “verify the recipient” habit applies to accidents and to BEC pressure, with different attacker models. Original course diagram (CC0).*\n\nPair this with the hold-rules kata: risk signals often feed “should we hold?” policies in email Data Loss Prevention (DLP) products.\n\n## Videos (verified)\n\n1. **[FBI Warns of Business Email Compromise Scams](https://www.youtube.com/watch?v=cBcjTJmxgh4)** — FBI – Federal Bureau of Investigation  \n   Why it helps: official framing of BEC — lookalike addresses and payment requests; reinforces **verify the recipient** before trusting mail.\n\n2. **[PSA: Business E-Mail Compromise Scams](https://www.youtube.com/watch?v=u3nAeVNSV24)** — FBI – Federal Bureau of Investigation  \n   Why it helps: short dramatization of a rushed wire on a suspicious “boss” email — same urgency/missend pressure DLP holds interrupt.\n\n3. **[Recognize and Report Phishing](https://www.youtube.com/watch?v=9pTW-F6V2N0)** — CISA  \n   Why it helps: quick checklist for sender/address mismatch and odd urgency — literacy that pairs with programmatic recipient classification.\n\n## Read these (verified)\n\n### Email address handling\n\n1. [Open Worldwide Application Security Project (OWASP) Email Validation and Verification Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Email_Validation_and_Verification_Cheat_Sheet.html) — normalize before compare; don’t invent brittle regex empires; domain lowercasing.\n2. [RFC 5321 — SMTP](https://datatracker.ietf.org/doc/html/rfc5321) — skim address / mailbox concepts (optional depth after the kata is green).\n3. [RFC 5322 — Internet Message Format](https://datatracker.ietf.org/doc/html/rfc5322) — full address syntax is richer than this kata; know the gap.\n\n### Missend / DLP motivation\n\n4. [NZ Privacy Commissioner — prevent privacy breaches through email](https://www.privacy.org.nz/resources-and-learning/knowledge-base/view/516/) — wrong recipient as a leading breach type.\n5. [OVIC — tips to reduce data breaches when sending emails](https://ovic.vic.gov.au/privacy/resources-for-organisations/tips-to-reduce-data-breaches-when-sending-emails/) — verify full addresses; delay-send as a practical control.\n6. [Microsoft Purview Data Loss Prevention](https://learn.microsoft.com/en-us/purview/dlp-learn-about-dlp) — product framing for protection / detection / response on email and sharing.\n\n### Career prep (honest)\n\n7. DLP / secure-transfer engineering roles care about missend prevention and policy engines — portfolio work shows fluency; calendar years are separate.\n8. Challenge quality and stack familiarity matter in screening for cloud security SaaS roles.\n\n## Keep in mind\n\nReal mail needs proper parsers, display-name handling, and Unicode/IDN awareness (see OWASP). Document that production gap in your trade-offs; don’t pretend the kata is RFC-complete.\n\n## Quiz (required)\nAfter this reading: [`../quizzes/recipient_risk.md`](../quizzes/recipient_risk.md).\n",
+      "snippet": "# Reading — Recipient risk (`recipient_risk`) ## Learning objectives By the end of this kata’s reading + worksheet + implementation, you should be able to: 1. C"
+    },
+    {
+      "kind": "reading",
+      "id": "01-challenge-gym:totp_verify",
+      "title": "totp verify",
+      "moduleId": "01-challenge-gym",
+      "moduleTitle": "01 Challenge Gym",
+      "topicId": "totp_verify",
+      "body": "# Reading — TOTP verify (`totp_verify`)\n\n## Learning objectives\n\nBy the end of this kata’s reading + worksheet + implementation, you should be able to:\n\n1. Explain Time-based One-Time Password (TOTP) as HMAC-based One-Time Password (HOTP) with a time-derived counter (shared secret + time step → short code).\n2. State why a small verification **window** exists (clock skew) and what it does *not* replace (rate limits, replay controls).\n3. Verify codes with `pyotp` instead of hand-rolling Hash-based Message Authentication Code (HMAC) — and point to RFC 6238 / Open Worldwide Application Security Project (OWASP) Multi-Factor Authentication (MFA) literacy in an interview.\n\n## Short intro\n\nTOTP lets a server and an authenticator app compute the same short code from a **shared secret** and the **current time** (usually a 30-second step). You do **not** need to reimplement HMAC-SHA1 for a short challenge — understand the model, then use a well-regarded library (`pyotp`) to verify codes, including a small **window** for clock skew. Production MFA still needs replay protection, rate limits, and secret storage discipline; those belong later (`02-mailguard-mfa/`).\n\n![TOTP flow from shared secret and time counter through HMAC to a short code, with a server verification window](images/totp-flow.svg)\n\n*Figure. Shared secret **K** and time counter **T** feed HMAC; truncation yields the short code both the app and server compute. The verify **window** only covers clock skew — notice it does not replace rate limits or replay controls. Original course diagram (CC0).*\n\nChallenge-style hiring tasks often pair a short coding exercise with **MFA/One-Time Password (OTP) research**, and prefer elegant solutions over over-engineering. That is the bar this kata trains.\n\n## Videos (verified)\n\n1. **[2FA: Two Factor Authentication](https://www.youtube.com/watch?v=ZXFYT-BG2So)** — Computerphile (feat. Dr Mike Pound)  \n   Why it helps: crisp mental model of MFA factors (know / have / are) before you touch libraries.\n\n2. **[How HOTP and TOTP work](https://www.youtube.com/watch?v=46AKWNOJ3-Y)** — loops  \n   Why it helps: walks HMAC → truncation → counter vs Unix-time step, plus the validation **window** you’ll use in `verify`.\n\n3. **[A Tale of Two Factors: A Deep Dive into Two Factor Authentication](https://www.youtube.com/watch?v=4wZ9jM4coV4)** — Kelley Robinson @ PyGotham 2019  \n   Why it helps: compares SMS vs TOTP soft tokens and includes Python-oriented TOTP implementation notes aligned with this kata.\n\n## Read these (verified)\n\n### Specs & library\n\n1. [RFC 6238 — TOTP: Time-Based One-Time Password Algorithm](https://datatracker.ietf.org/doc/html/rfc6238) — the standard behind authenticator apps (period, digits, time counter).\n2. [RFC 4226 — HOTP](https://datatracker.ietf.org/doc/html/rfc4226) — TOTP builds on HOTP; skim security requirements / throttling ideas.\n3. [PyOTP documentation](https://pyauth.github.io/pyotp/) — `TOTP.verify(..., valid_window=...)`, provisioning URIs; prefer this over reinventing crypto.\n\n### Concepts & security literacy\n\n4. [MDN — One-time passwords (OTP)](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication/OTP) — email/SMS/TOTP comparison; why TOTP is preferred among OTP channels.\n5. [OWASP Multifactor Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html) — MFA factors, threats, practical controls.\n\n### Why this kata exists (career prep)\n\n6. Identity / access-control engineering roles expect MFA literacy and concise challenge solutions — not a crypto reimplementation.\n7. Cloud security SaaS products treat MFA as core product context (literacy for MailGuard’s identity path, not a clone of any vendor).\n\n## Optional deepeners\n\n- [National Institute of Standards and Technology (NIST) SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticator guidance at a high level (linked from PyOTP’s reading list).\n- Skim only: security considerations sections inside RFC 6238 / 4226 once the kata is green.\n\n## Quiz (required)\nAfter this reading: [`../quizzes/totp_verify.md`](../quizzes/totp_verify.md).\n",
+      "snippet": "# Reading — TOTP verify (`totp_verify`) ## Learning objectives By the end of this kata’s reading + worksheet + implementation, you should be able to: 1. Explain"
+    },
+    {
+      "kind": "module",
+      "id": "02-mailguard-mfa",
+      "title": "02 — MailGuard MFA",
+      "moduleId": "02-mailguard-mfa",
+      "moduleTitle": "MailGuard MFA",
+      "topicId": null,
+      "body": "TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy. Describe enroll/verify and recovery-code flows for MFA Contrast TOTP with passkeys / WebAuthn at a literacy level Document threats and mitigations for MFA secrets Python",
+      "snippet": "TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy."
+    },
+    {
+      "kind": "reading",
+      "id": "02-mailguard-mfa:passkeys_webauthn",
+      "title": "passkeys webauthn",
+      "moduleId": "02-mailguard-mfa",
+      "moduleTitle": "02 MailGuard MFA",
+      "topicId": "passkeys_webauthn",
+      "body": "# Reading — Passkeys / WebAuthn (beside TOTP MFA)\n\n## Learning objectives\n\n1. Explain **Web Authentication (WebAuthn)** as a browser API for public-key credentials bound to a relying-party origin.\n2. Contrast phishing risk of **TOTP** (user can type a code into a fake site) vs **passkeys** (origin-bound assertion).\n3. Place passkeys next to MailGuard’s TOTP path as a *next* factor — not a rewrite of Challenge Gym.\n\n## Short intro\n\nTOTP proves “something you have” via a shared secret — but a convincing phishing page can still harvest the live code. Passkeys use WebAuthn: the browser/OS authenticator signs a challenge for *this* origin, so a lookalike domain should not get a usable assertion.\n\n![TOTP code typed into a fake site versus a WebAuthn passkey bound to the relying-party origin](images/passkeys-vs-totp.svg)\n\n*Figure. On the left, a typed TOTP code can be harvested and replayed. On the right, the authenticator signs only for the real relying-party origin — notice a lookalike domain does not get a usable assertion. Original course diagram (CC0).*\n\n## Videos (verified)\n\n1. **[Understand passkeys in 4 minutes](https://www.youtube.com/watch?v=2xdV-xut7EQ)** — Google / passkeys overview  \n   Why it helps: phishing-resistant passkeys mental model in under five minutes.\n\n2. **[Passkeys: A simpler and more secure way to log in](https://www.youtube.com/watch?v=3BmYR--3z8M)** — Google  \n   Why it helps: how passkeys relate to platform authenticators without building an IdP.\n\nPrefer MDN + W3C links below if a video moves.\n\n## Read these (verified)\n\n1. [MDN — Web Authentication API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Authentication_API) — ceremonies and browser support.\n2. [W3C WebAuthn](https://www.w3.org/TR/webauthn-3/) — skim intro (Living Document / level may vary).\n3. [passkeys.dev](https://passkeys.dev/) — practitioner-oriented passkey guidance.\n4. [OWASP MFA Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html) — factors and phishing-resistant authenticators.\n5. [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticator assurance high-level.\n\n## Quiz (required)\n[`../quizzes/passkeys_webauthn.md`](../quizzes/passkeys_webauthn.md)\n",
+      "snippet": "# Reading — Passkeys / WebAuthn (beside TOTP MFA) ## Learning objectives 1. Explain **Web Authentication (WebAuthn)** as a browser API for public-key credential"
+    },
+    {
+      "kind": "module",
+      "id": "03-oidc-access",
+      "title": "03 — OIDC / access policy",
+      "moduleId": "03-oidc-access",
+      "moduleTitle": "OIDC / access policy",
+      "topicId": null,
+      "body": "Happy-path OIDC, SAML comparison, and identity-depth worksheet practice. Sketch a happy-path OIDC login and protected resource Compare OIDC and SAML at a conceptual level Note logout/revocation and device-cert ideas without overclaiming Conceptual",
+      "snippet": "Happy-path OIDC, SAML comparison, and identity-depth worksheet practice."
+    },
+    {
+      "kind": "reading",
+      "id": "03-oidc-access:identity_depth",
+      "title": "identity depth",
+      "moduleId": "03-oidc-access",
+      "moduleTitle": "03 OIDC / access policy",
+      "topicId": "identity_depth",
+      "body": "# Reading — Identity depth (SAML, device certs, password managers)\n\n## Learning objectives\n\n1. Compare **SAML** and **OIDC** for enterprise single sign-on (**SSO**) at a high level.\n2. Explain device certificates / posture as *additional signals*, not magic.\n3. Threat-model an enterprise password manager for apps that still use passwords (non-SSO).\n\n## Short intro\n\nThis module’s coding path is OIDC-shaped. Enterprises still run Security Assertion Markup Language (**SAML**) for many apps, issue device certificates for posture, and deploy password managers where SSO never arrived. This reading builds interview literacy without claiming you built a full Identity Provider (**IdP**).\n\n![Identity provider federating SSO to applications via OIDC JSON tokens or SAML XML assertions](images/oidc-vs-saml.svg)\n\n*Figure. One IdP, two common SSO wires: **OIDC** (identity layer on OAuth 2.0, JWT-shaped tokens) vs **SAML** (XML assertions). Notice the coding path here is OIDC-shaped, while enterprises still run both. Original course diagram (CC0).*\n\n## Videos (verified)\n\n1. **[OAuth 2.0 and OpenID Connect (in plain English)](https://www.youtube.com/watch?v=996OiexHze0)** — OktaDev  \n   Why it helps: OIDC as identity layer on OAuth — revisit before SAML compare.\n\n2. Prefer the OWASP SAML + OAuth cheat sheets below for the SAML vs OIDC compare (video IDs bitrot). Optional: search “SAML vs OIDC” from IdP vendor developer channels and cross-check against OWASP.\n\nPrefer written RFCs/docs below if videos move.\n\n## Read these (verified)\n\n1. [OWASP — SAML Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SAML_Security_Cheat_Sheet.html)\n2. [OWASP — OAuth 2.0 / OIDC related cheat sheets](https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html)\n3. [Oasis — SAML Wiki / overview](https://wiki.oasis-open.org/security/FrontPage) — skim what assertions are.\n4. [MDN — Client certificates (TLS)](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication) — adjacent posture ideas; pair with org device-management docs.\n5. [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticators & federation high-level.\n6. [OWASP — Credential Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Credential_Storage_Cheat_Sheet.html) — why vaults beat spreadsheets (for apps still on passwords).\n\n## Quiz (required)\n[`../quizzes/identity_depth.md`](../quizzes/identity_depth.md)\n",
+      "snippet": "# Reading — Identity depth (SAML, device certs, password managers) ## Learning objectives 1. Compare **SAML** and **OIDC** for enterprise single sign-on (**SSO*"
+    },
+    {
+      "kind": "module",
+      "id": "04-ztna-lite",
+      "title": "04 — ZTNA lite",
+      "moduleId": "04-ztna-lite",
+      "moduleTitle": "ZTNA lite",
+      "topicId": null,
+      "body": "VPN vs zero-trust access — diagrams and compare tables, no commercial mesh required. Diagram VPN vs ZTNA access models Explain identity-bound app access in plain language Avoid claiming a commercial mesh deployment Conceptual",
+      "snippet": "VPN vs zero-trust access — diagrams and compare tables, no commercial mesh required."
+    },
+    {
+      "kind": "reading",
+      "id": "04-ztna-lite:ztna_lite",
+      "title": "ztna lite",
+      "moduleId": "04-ztna-lite",
+      "moduleTitle": "04 ZTNA lite",
+      "topicId": "ztna_lite",
+      "body": "# Reading — ZTNA lite\n\n## Learning objectives\n\n1. Define **Zero Trust** as “never trust, always verify” with continuous evaluation — not a single product SKU.\n2. Contrast network-level **VPN** admission with application-level **ZTNA**.\n3. Name Policy Engine / Policy Enforcement Point ideas from National Institute of Standards and Technology (**NIST**) SP 800-207 at a high level.\n\n## Short intro\n\nClassical remote access: join a VPN, then reach wide internal ranges. If malware or a stolen laptop lands on that network, **lateral movement** is easier. Zero Trust Network Access (**ZTNA**) aims to grant access to *specific applications* after verifying user identity, often device posture, and context — ideally without parking the client on a flat corporate LAN.\n\n![Side-by-side contrast of VPN network admission versus ZTNA application-level access with policy engine](images/ztna-vs-vpn.svg)\n\n*Figure. VPN admits the client onto a broad LAN (lateral movement risk). ZTNA checks identity/posture/context, then a Policy Engine / Enforcement Point grants **per-app** access — notice “never trust, always verify,” not a single product SKU. Original course diagram (CC0).*\n\nMailGuard modules already practice app identity (TOTP, OIDC). ZTNA is the *network/access path* story that enterprises pair with identity providers.\n\n## Videos (verified)\n\n1. **[What Is Zero Trust Architecture (ZTA)? NIST 800-207 Explained](https://www.youtube.com/watch?v=5Kq64vOgE10)**  \n   Why it helps: policy engine vs enforcement point vocabulary.\n\n2. **[Zero Trust, Before The Cloud (Bsides-style talk)](https://www.youtube.com/watch?v=M0Pb8GNxWl8)** — Ben Lintern  \n   Why it helps: identity-aware networking vs “VPN then flat access,” with practical skepticism.\n\n## Read these (verified)\n\n1. [NIST SP 800-207 — Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final) — abstract + section on ZTA components.\n2. [NIST Zero Trust Architecture portal](https://www.nist.gov/publications/zero-trust-architecture) — publication landing.\n3. [NCSC (UK) — Zero trust architecture design principles](https://www.ncsc.gov.uk/collection/zero-trust-architecture) — pragmatic principles.\n4. [Cloudflare Learning — What is ZTNA?](https://www.cloudflare.com/learning/access-management/what-is-ztna/) — plain-language ZTNA vs VPN (vendor learning site; read for concepts).\n\n## Quiz (required)\n[`../quizzes/ztna_lite.md`](../quizzes/ztna_lite.md)\n",
+      "snippet": "# Reading — ZTNA lite ## Learning objectives 1. Define **Zero Trust** as “never trust, always verify” with continuous evaluation — not a single product SKU. 2. "
+    },
+    {
+      "kind": "module",
+      "id": "05-email-auth",
+      "title": "05 — Email authentication",
+      "moduleId": "05-email-auth",
+      "moduleTitle": "Email authentication",
+      "topicId": null,
+      "body": "SPF, DKIM, DMARC, and a dmarc_policy kata with tests. Explain SPF, DKIM, and DMARC roles in email authentication Implement a small DMARC policy helper with tests Relate spoofing controls to MailGuard hold rules Python",
+      "snippet": "SPF, DKIM, DMARC, and a dmarc_policy kata with tests."
+    },
+    {
+      "kind": "reading",
+      "id": "05-email-auth:email_auth",
+      "title": "email auth",
+      "moduleId": "05-email-auth",
+      "moduleTitle": "05 Email authentication",
+      "topicId": "email_auth",
+      "body": "# Reading — Email authentication & SMTP/TLS literacy\n\n## Learning objectives\n\n1. Explain Simple Mail Transfer Protocol (**SMTP**) as the store-and-forward *sending* protocol, and why Transport Layer Security (**TLS**) on SMTP (STARTTLS / implicit TLS) encrypts the hop but does **not** by itself prove the `From:` domain is legitimate.\n2. Distinguish Sender Policy Framework (**SPF**), DomainKeys Identified Mail (**DKIM**), and Domain-based Message Authentication, Reporting and Conformance (**DMARC**) — what each checks and how they combine.\n3. Read a DMARC DNS policy (`p=`, `rua=`) and say what hold/DLP rules **cannot** fix alone when attackers spoof lookalike mail.\n\n## Short intro\n\nMailGuard’s hold rules catch *outbound* mistakes (missend, policy). Attackers also **spoof inbound or lookalike domains**. SPF publishes which hosts may send for a domain (DNS TXT). DKIM adds a cryptographic signature over selected headers/body with a public key in DNS. DMARC tells receivers what to do when SPF/DKIM fail alignment with the visible `From:` domain, and where to send aggregate reports (`rua`).\n\n![SPF, DKIM, and DMARC checks from sending MTA through receiving MTA with DNS-published controls](images/spf-dkim-dmarc.svg)\n\n*Figure. SMTP+TLS protects the hop; **SPF** authorizes hosts, **DKIM** signs content, **DMARC** aligns results with the visible `From:` and sets `p=` policy. Notice hold/DLP and domain auth solve different problems (outbound mistakes vs inbound spoof). Original course diagram (CC0).*\n\n**SMTP + TLS** literacy: encrypting the pipe (TLS) stops casual eavesdropping on that hop; it does not replace SPF/DKIM/DMARC. Domain authentication is how receivers decide “did this domain authorize this message?”\n\n## Videos (verified)\n\n1. **[SPF, DKIM and DMARC Protocols Explained](https://www.youtube.com/watch?v=2eR6996cQvY)** — PowerDMARC  \n   Why it helps: end-to-end picture of the three DNS-published controls receivers combine.\n\n2. **[Email Trust and Antispoofing: DKIM, SPF, and DMARC](https://www.youtube.com/watch?v=vDxorQtmkhw)** — Salesforce Support  \n   Why it helps: operator-oriented setup narrative (`p=none` → stricter policies) without requiring their product.\n\n3. **[Set up email authentication](https://www.youtube.com/watch?v=YdWgHAcD91E)** — Google Workspace  \n   Why it helps: SPF/DKIM publish steps and where DMARC fits for modern receivers.\n\n## Read these (verified)\n\n1. [RFC 7208 — SPF](https://datatracker.ietf.org/doc/html/rfc7208) — skim abstract + mechanism overview.\n2. [RFC 6376 — DKIM](https://datatracker.ietf.org/doc/html/rfc6376) — signature + public key in DNS.\n3. [RFC 7489 — DMARC](https://datatracker.ietf.org/doc/html/rfc7489) — alignment, policies, reporting.\n4. [DMARC.org overview](https://dmarc.org/overview/) — plain-language diagram.\n5. [Cloudflare Learning — What are DMARC, DKIM, and SPF?](https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/) — concise comparison.\n6. [Google — Email sender guidelines](https://support.google.com/a/answer/81126) — modern receiver expectations (SPF/DKIM/DMARC).\n7. [Cloudflare Learning — What is SMTP?](https://www.cloudflare.com/learning/email-security/what-is-smtp/) — SMTP + why encryption ≠ authentication.\n\n### Aggregate reports (Domain Protection–shaped literacy, generic)\n\nReceivers email XML **aggregate reports** to `rua=` addresses summarizing pass/fail by source IP. Operators use them to find legitimate senders missing SPF/DKIM before flipping `p=reject`. This course does not require a live domain — parse policies in the kata and describe what a report would tell you on the worksheet.\n\n## Quiz (required)\nAfter this reading: [`../quizzes/email_auth.md`](../quizzes/email_auth.md).\n",
+      "snippet": "# Reading — Email authentication & SMTP/TLS literacy ## Learning objectives 1. Explain Simple Mail Transfer Protocol (**SMTP**) as the store-and-forward *sendin"
+    },
+    {
+      "kind": "module",
+      "id": "06-threat-model",
+      "title": "06 — Threat model / secure SDLC",
+      "moduleId": "06-threat-model",
+      "moduleTitle": "Threat model / secure SDLC",
+      "topicId": null,
+      "body": "STRIDE-lite on the hold path plus a lightweight SAMM checklist. Produce a STRIDE-lite table for the hold/release path Run a short secure-SDLC self-assessment Note privacy risks for held message content Conceptual",
+      "snippet": "STRIDE-lite on the hold path plus a lightweight SAMM checklist."
+    },
+    {
+      "kind": "reading",
+      "id": "06-threat-model:threat_model_sdlc",
+      "title": "threat model sdlc",
+      "moduleId": "06-threat-model",
+      "moduleTitle": "06 Threat model / secure SDLC",
+      "topicId": "threat_model_sdlc",
+      "body": "# Reading — Threat modeling & lightweight secure SDLC\n\n## Learning objectives\n\n1. Apply a **STRIDE**-lite pass to MailGuard’s hold/release path (who can spoof an operator? tamper with rules? deny the queue?).\n2. Relate findings to mitigations you already ship (MFA, audit logs, first-match rules, CI) and gaps you document honestly.\n3. Skim **OWASP SAMM** as a maturity *map*, not a certificate — pick one practice to improve next.\n\n## Short intro\n\nThreat modeling asks “what can go wrong?” before or while you build. Secure Software Development Life Cycle (**SDLC**) means security activities show up in requirements, design, implementation, test, and operate — not only in a final pen-test fantasy.\n\n**STRIDE** (Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege) is a Microsoft-origin checklist still useful as interview vocabulary. **LINDDUN** is a privacy-oriented sibling; for MailGuard, focus on disclosure of held message bodies and audit access.\n\n![STRIDE-lite checklist with example questions for a hold and release path](images/stride-lite.svg)\n\n*Figure. Six STRIDE categories as a lightweight checklist on the hold/release path. Notice each tile pairs a threat question with a mitigation you may already ship (MFA, audit logs, least privilege) — document gaps honestly. Original course diagram (CC0).*\n\n## Videos (verified)\n\n1. **[Threatmodcon keynote (segment)](https://www.youtube.com/watch?v=4ngYKVAs22c)** — Adam Shostack  \n   Why it helps: threat modeling as a practice; pairs with the four-question frame in writing.\n\n2. **[Keynote: Stop Trying to \"Manage Risk\"](https://www.youtube.com/watch?v=THSfJIlPGPk)** — Adam Shostack  \n   Why it helps: connects threat modeling judgment to delivery — not spreadsheet theater.\n\nAlso skim: [Shostack + Associates — threat modeling beginner guide](https://adam.shostack.org/resources/threat-modeling) (four questions).\n\n## Read these (verified)\n\n1. [OWASP Threat Modeling](https://owasp.org/www-community/Threat_Modeling) — community overview.\n2. [OWASP Threat Modeling Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html) — practical steps.\n3. [Microsoft — STRIDE](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats) — threat categories reference.\n4. [OWASP SAMM](https://owasp.org/www-project-samm/) — maturity model overview (Design / Implementation / Verification / Operations).\n5. [LINDDUN](https://www.linddun.org/) — privacy threat categories (skim).\n6. [Shostack four-question frame (GitHub)](https://github.com/adamshostack/4QuestionFrame) — one-pager.\n\n## Quiz (required)\n[`../quizzes/threat_model_sdlc.md`](../quizzes/threat_model_sdlc.md)\n",
+      "snippet": "# Reading — Threat modeling & lightweight secure SDLC ## Learning objectives 1. Apply a **STRIDE**-lite pass to MailGuard’s hold/release path (who can spoof an "
+    },
+    {
+      "kind": "module",
+      "id": "07-mailguard-api",
+      "title": "07 — MailGuard API",
+      "moduleId": "07-mailguard-api",
+      "moduleTitle": "MailGuard API",
+      "topicId": null,
+      "body": "FastAPI rules API for hold / allow / reject. Build a FastAPI-style rules API for hold/allow/reject Cover core paths with automated tests and OpenAPI Document architecture and production gaps Python",
+      "snippet": "FastAPI rules API for hold / allow / reject."
+    },
+    {
+      "kind": "module",
+      "id": "08-mailguard-admin",
+      "title": "08 — MailGuard Admin",
+      "moduleId": "08-mailguard-admin",
+      "moduleTitle": "MailGuard Admin",
+      "topicId": null,
+      "body": "TypeScript/Vue admin for rules and the hold queue. Build a TypeScript/Vue admin for rules and held messages Provide accessible forms for approve/release actions Keep TypeScript strict with a few meaningful tests Vue + TypeScript",
+      "snippet": "TypeScript/Vue admin for rules and the hold queue."
+    },
+    {
+      "kind": "module",
+      "id": "09-mailguard-worker",
+      "title": "09 — MailGuard Worker",
+      "moduleId": "09-mailguard-worker",
+      "moduleTitle": "MailGuard Worker",
+      "topicId": null,
+      "body": "Queue worker path for applying MailGuard decisions. Implement a Go queue worker that applies hold rules Document the shared contract with the Python API Containerize the worker with a clear local demo Go",
+      "snippet": "Queue worker path for applying MailGuard decisions."
+    },
+    {
+      "kind": "module",
+      "id": "10-secure-drop",
+      "title": "10 — Secure Drop",
+      "moduleId": "10-secure-drop",
+      "moduleTitle": "Secure Drop",
+      "topicId": null,
+      "body": "Expiring share links, audit, and cloud-share DLP literacy. Design expiring share links with an audit trail Relate cloud-share DLP controls to email attachments Keep secrets and object storage credentials out of git Python",
+      "snippet": "Expiring share links, audit, and cloud-share DLP literacy."
+    },
+    {
+      "kind": "reading",
+      "id": "10-secure-drop:cloud_share_dlp",
+      "title": "cloud share dlp",
+      "moduleId": "10-secure-drop",
+      "moduleTitle": "10 Secure Drop",
+      "topicId": "cloud_share_dlp",
+      "body": "# Reading — File / cloud-share DLP\n\n## Learning objectives\n\n1. Explain why **email hold** alone does not cover files shared via cloud links.\n2. List controls: link visibility (org / specific users / public), expiry, revoke, download audit.\n3. Relate Secure Drop’s expiring link to a minimal share-DLP story.\n\n## Short intro\n\nOutbound email DLP catches messages and attachments on the mail path. People also paste cloud-share URLs into chat or leave “anyone with the link” open. File / cloud-share DLP is about **governing those shares**: who can open them, for how long, and what the audit log shows when someone downloads.\n\n## Videos (verified)\n\nCredited DLP overview talks rotate often — prefer the written links below. Optional: search YouTube for “Data Loss Prevention explained” from IBM Technology / NIST-oriented channels and confirm the title matches before watching.\n\nPrefer written vendor-neutral docs below if a video ID drifts.\n\n## Read these (verified)\n\n1. [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) — upload risks adjacent to secure drop.\n2. [NIST SP 800-171 / access control concepts](https://csrc.nist.gov/pubs/sp/800/171/r3/final) — skim access-control family vocabulary (optional depth).\n3. [Google Workspace — shared drive / link sharing overview](https://support.google.com/a/answer/7587183) — real-world link visibility language (generic literacy).\n4. [Microsoft Learn — SharePoint / OneDrive sharing overview](https://learn.microsoft.com/en-us/sharepoint/external-sharing-overview) — external sharing concepts (read for patterns, not product lock-in).\n5. [AWS — Presigned URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) — mechanism behind many expiring links.\n\n## Quiz (required)\n[`../quizzes/cloud_share_dlp.md`](../quizzes/cloud_share_dlp.md)\n",
+      "snippet": "# Reading — File / cloud-share DLP ## Learning objectives 1. Explain why **email hold** alone does not cover files shared via cloud links. 2. List controls: lin"
+    },
+    {
+      "kind": "module",
+      "id": "11-security-notes",
+      "title": "11 — Security notes",
+      "moduleId": "11-security-notes",
+      "moduleTitle": "Security notes",
+      "topicId": null,
+      "body": "OWASP-mapped lab notes tied to MailGuard mitigations. Map OWASP-minded findings to MailGuard mitigations Write honest lab notes without attack tooling for real systems Prioritize remediations you can demonstrate in-repo Conceptual",
+      "snippet": "OWASP-mapped lab notes tied to MailGuard mitigations."
+    },
+    {
+      "kind": "module",
+      "id": "12-ci-aws",
+      "title": "12 — CI + AWS",
+      "moduleId": "12-ci-aws",
+      "moduleTitle": "CI + AWS",
+      "topicId": null,
+      "body": "PR CI and a documented cloud deploy — no secrets in git. Add CI that runs tests on pull requests or pushes Document a cloud deploy path without committing secrets Explain least-privilege choices for the demo identity CI + AWS",
+      "snippet": "PR CI and a documented cloud deploy — no secrets in git."
+    },
+    {
+      "kind": "module",
+      "id": "13-infra",
+      "title": "13 — Infra",
+      "moduleId": "13-infra",
+      "moduleTitle": "Infra",
+      "topicId": null,
+      "body": "Compose + Terraform story with IAM / misconfig posture worksheet. Express a thin Compose + Terraform footprint for the thread Complete an IAM / misconfig posture worksheet for your resources Keep state and credentials out of version control Terraform + Compose",
+      "snippet": "Compose + Terraform story with IAM / misconfig posture worksheet."
+    },
+    {
+      "kind": "reading",
+      "id": "13-infra:cloud_iam_posture",
+      "title": "cloud iam posture",
+      "moduleId": "13-infra",
+      "moduleTitle": "13 Infra",
+      "topicId": "cloud_iam_posture",
+      "body": "# Reading — Cloud IAM & misconfiguration posture\n\n## Learning objectives\n\n1. Explain Identity and Access Management (**IAM**) as identities + permissions + resources.\n2. Apply a least-privilege review to a MailGuard bucket/queue role.\n3. Describe shared responsibility at a high level (provider secures cloud; you secure *in* cloud).\n\n## Short intro\n\nBroken cloud IAM (public storage, wildcard `*` actions, root-like keys in CI) causes real incidents more often than exotic crypto bugs. This reading prepares a checklist you will run against module 08 infra — National Institute of Standards and Technology (**NIST**) vocabulary welcome; no cert wall.\n\n## Videos (verified)\n\n1. Prefer [AWS IAM User Guide — Introduction](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) first (authoritative). Optional video: search freeCodeCamp / AWS “IAM explained” and confirm the current title before watching.  \n   Why it helps: users/roles/policies mental model.\n\n2. Optional: search “cloud misconfiguration public S3” conference talks for incident stories — treat as case studies, not product ads.\n\nPrefer official IAM docs below if videos move.\n\n## Read these (verified)\n\n1. [AWS IAM — User guide (roles & policies)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) — core model.\n2. [AWS — Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)\n3. [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services) — awareness of common hardened baselines (download may require form; skim public summaries OK).\n4. [NIST CSF overview](https://www.nist.gov/cyberframework) — identify/protect framing without exam prep.\n5. [OWASP — Cloud Security](https://owasp.org/www-project-cloud-security/) — project landing / cheat-adjacent material.\n\n## Quiz (required)\n[`../quizzes/cloud_iam_posture.md`](../quizzes/cloud_iam_posture.md)\n",
+      "snippet": "# Reading — Cloud IAM & misconfiguration posture ## Learning objectives 1. Explain Identity and Access Management (**IAM**) as identities + permissions + resour"
+    },
+    {
+      "kind": "module",
+      "id": "14-k8s-local",
+      "title": "14 — K8s local",
+      "moduleId": "14-k8s-local",
+      "moduleTitle": "K8s local",
+      "topicId": null,
+      "body": "kind/minikube deploy with probes and resource requests. Deploy the app shape to kind or minikube Add probes and resource requests to manifests Document what you did not automate yet (GitOps, policy) Kubernetes YAML",
+      "snippet": "kind/minikube deploy with probes and resource requests."
+    },
+    {
+      "kind": "module",
+      "id": "15-observability",
+      "title": "15 — Observability",
+      "moduleId": "15-observability",
+      "moduleTitle": "Observability",
+      "topicId": null,
+      "body": "Golden signals plus SLI/SLO and a lightweight postmortem worksheet. Define golden signals for the hold pipeline Draft SLI/SLO notes and a lightweight postmortem Hook at least one metric or structured log in the story Ops / metrics",
+      "snippet": "Golden signals plus SLI/SLO and a lightweight postmortem worksheet."
+    },
+    {
+      "kind": "reading",
+      "id": "15-observability:sre_basics",
+      "title": "sre basics",
+      "moduleId": "15-observability",
+      "moduleTitle": "15 Observability",
+      "topicId": "sre_basics",
+      "body": "# Reading — SRE basics (SLI / SLO / error budgets / postmortem)\n\n## Learning objectives\n\n1. Define **SLI**, **SLO**, and **error budget** and relate them to MailGuard’s hold pipeline.\n2. Prefer user-visible indicators (e.g. successful release within N seconds) over vanity metrics.\n3. Write a short **blameless postmortem** from telemetry.\n\n## Short intro\n\nObservability without objectives becomes dashboard tourism. Site Reliability Engineering (**SRE**) popularized measuring reliability with Service Level Indicators (**SLI**s), targeting them with Service Level Objectives (**SLO**s), and spending **error budgets** when reality misses the target — then learning via postmortems.\n\n## Videos (verified)\n\n1. **[SRE Classroom — SLIs, SLOs, Error Budgets](https://www.youtube.com/watch?v=tEylFyxbDLE)** — Google Cloud Tech  \n   Why it helps: canonical vocabulary with examples.\n\n2. **[Risk and Error Budgets (class SRE implements DevOps)](https://www.youtube.com/watch?v=y2ILKr8kCJU)** — Google Cloud Tech  \n   Why it helps: how error budgets drive release vs reliability trade-offs; pair with written postmortem culture chapter.\n\nPrefer the Google SRE book chapters below if a video moves.\n\n## Read these (verified)\n\n1. [Google SRE Book — Service Level Objectives](https://sre.google/sre-book/service-level-objectives/) — SLI/SLO/error budgets.\n2. [Google SRE Book — Postmortem Culture](https://sre.google/sre-book/postmortem-culture/) — blameless learning.\n3. [OpenTelemetry docs — Concepts](https://opentelemetry.io/docs/concepts/) — signals you will emit in this module.\n4. [Google — CRE life lessons / SLOs](https://cloud.google.com/blog/products/gcp/sre-fundamentals-slis-slas-and-slos) — short companion.\n\n## Quiz (required)\n[`../quizzes/sre_basics.md`](../quizzes/sre_basics.md)\n",
+      "snippet": "# Reading — SRE basics (SLI / SLO / error budgets / postmortem) ## Learning objectives 1. Define **SLI**, **SLO**, and **error budget** and relate them to MailG"
+    },
+    {
+      "kind": "module",
+      "id": "16-gitops-policy",
+      "title": "16 — GitOps + policy",
+      "moduleId": "16-gitops-policy",
+      "moduleTitle": "GitOps + policy",
+      "topicId": null,
+      "body": "Sync flow and policy-as-code checks on manifests. Diagram a sync flow for manifests Apply a policy-as-code check that rejects a bad manifest Keep claims proportional to what you automated GitOps / policy",
+      "snippet": "Sync flow and policy-as-code checks on manifests."
+    },
+    {
+      "kind": "module",
+      "id": "17-phish-lite",
+      "title": "17 — Phish Lite",
+      "moduleId": "17-phish-lite",
+      "moduleTitle": "Phish Lite",
+      "topicId": null,
+      "body": "Optional phishing-awareness quiz UI for learning honesty practice. Build a small Svelte phishing-awareness quiz UI Keep the project clearly labeled as a learning clone Practice honest UX copy for warnings and results Svelte",
+      "snippet": "Optional phishing-awareness quiz UI for learning honesty practice."
+    },
+    {
+      "kind": "module",
+      "id": "18-oss-ux-stretch",
+      "title": "18 — OSS + security UX",
+      "moduleId": "18-oss-ux-stretch",
+      "moduleTitle": "OSS + security UX",
+      "topicId": null,
+      "body": "Upstream contribution hygiene and security-warning UX reflection. Practice upstream contribution hygiene Critique or redesign a security warning UX Write reflections suitable for a portfolio footnote Vue + TypeScript",
+      "snippet": "Upstream contribution hygiene and security-warning UX reflection."
+    },
+    {
+      "kind": "reading",
+      "id": "18-oss-ux-stretch:oss_and_security_ux",
+      "title": "oss and security ux",
+      "moduleId": "18-oss-ux-stretch",
+      "moduleTitle": "18 OSS + security UX",
+      "topicId": "oss_and_security_ux",
+      "body": "# Reading — OSS contribution & security UX\n\n## Learning objectives\n\n1. Describe a respectful OSS contribution loop (read contributing guide → issue → minimal PR → respond to review).\n2. List three qualities of a good **security warning** in an admin UI (clarity, action, no alarm fatigue).\n3. Explain why phishing *simulations* need consent/honesty framing when used for learning.\n\n## Short intro\n\nCareer-prep portfolios that show “I can collaborate beyond a solo repo” often include a small upstream contribution and evidence you care how humans meet security controls. MailGuard’s admin hold/release flow is a natural place to practice warning copy and confirmation UX.\n\n## Videos (verified)\n\n1. **[How to Contribute to Open Source](https://www.youtube.com/watch?v=gtejJ3RCdzE)** — freeCodeCamp.org  \n   Why it helps: issue/PR etiquette without gatekeeping myths.\n\n2. Prefer the written NN/g + Chromium enamel links below for warning UX (video landscape bitrots quickly).  \n   Optional: search YouTube for “usable security warnings” / “alarm fatigue security UX” from academic or browser-team talks.\n\nPrefer written links if a video moves.\n\n## Read these (verified)\n\n1. [GitHub — Open Source Guides: How to contribute](https://opensource.guide/how-to-contribute/) — practical contribution path.\n2. [First Contributions](https://github.com/firstcontributions/first-contributions) — friendly first-PR practice (optional sandbox).\n3. [NN/g — Warning Messages](https://www.nngroup.com/articles/indicators-validations-alerts/) — alert/validation patterns (general UX; apply to security carefully).\n4. [Chromium — Permission UX / quiet UI notes](https://www.chromium.org/Home/chromium-security/enamel/) — browser-team thinking on interruptions (skim).\n5. [OWASP — Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html) — only for “don’t train users into unsafe clicks” mindset when designing phishing *education* UIs.\n\n## Quiz (required)\n[`../quizzes/oss_and_security_ux.md`](../quizzes/oss_and_security_ux.md)\n",
+      "snippet": "# Reading — OSS contribution & security UX ## Learning objectives 1. Describe a respectful OSS contribution loop (read contributing guide → issue → minimal PR →"
+    },
+    {
+      "kind": "module",
+      "id": "19-capstone",
+      "title": "19 — Capstone: mail filter",
+      "moduleId": "19-capstone",
+      "moduleTitle": "Capstone: mail filter",
+      "topicId": null,
+      "body": "End-to-end outbound mail filter demo with tests and a self-grading rubric worksheet. Ship a small end-to-end mail filter demo with tests Self-grade honestly against the capstone rubric Package commands and evidence a stranger can follow Python",
+      "snippet": "End-to-end outbound mail filter demo with tests and a self-grading rubric worksheet."
+    },
+    {
+      "kind": "reading",
+      "id": "19-capstone:capstone_mail_filter",
+      "title": "capstone mail filter",
+      "moduleId": "19-capstone",
+      "moduleTitle": "19 Capstone: mail filter",
+      "topicId": "capstone_mail_filter",
+      "body": "# Capstone — small mail filter end-to-end\n\nThis module closes the course: ship a **coherent demo** of outbound message filtering (hold / allow / reject), prove it with tests, and self-grade against [`../../CAPSTONE-RUBRIC.md`](../../CAPSTONE-RUBRIC.md).\n\n**Authorship:** AI-generated. The student implements the filter and fills the worksheet.\n\nContinue with the worksheet: [`../worksheets/capstone_self_grade.md`](../worksheets/capstone_self_grade.md). The quiz is **required**.\n\n---\n\n## What “done” looks like\n\nA stranger can:\n\n1. Read your short demo notes  \n2. Run documented commands  \n3. See a sample message held, allowed, or rejected by rules you wrote  \n4. See tests pass on your implementation  \n\nYou are **not** claiming a production mail gateway.\n\n---\n\n## Suggested shape (keep it small)\n\n| Piece | Role |\n|-------|------|\n| Rule list | Ordered rules; first-match-wins (or document another order) |\n| Actions | `hold`, `allow`, `reject` |\n| Sample messages | 3–5 fixtures covering internal/external, risky recipients, subject keywords |\n| Tests | Table-driven cases that fail on empty stubs |\n| Operator path | Print held queue *or* a tiny approve/release function |\n\nReuse ideas from Challenge Gym hold rules, MailGuard API, and threat-model notes — do not paste vendor product claims.\n\n---\n\n## Evidence for the rubric\n\nMap each Must row in `CAPSTONE-RUBRIC.md` to a file path or command in your worksheet. Stretch rows are optional ceiling; pick at least two if you want “portfolio-ready” as defined there.\n\n---\n\n## Quiz (required)\n\nDownload the quiz PDF from the course site, complete it, then check the separate answer key.\n",
+      "snippet": "# Capstone — small mail filter end-to-end This module closes the course: ship a **coherent demo** of outbound message filtering (hold / allow / reject), prove i"
+    },
+    {
+      "kind": "glossary",
+      "id": "mfa",
+      "title": "MFA — Multi-Factor Authentication",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Require more than one independent factor (e.g. password + device code) to authenticate.",
+      "snippet": "Require more than one independent factor (e.g. password + device code) to authenticate."
+    },
+    {
+      "kind": "glossary",
+      "id": "otp",
+      "title": "OTP — One-Time Password",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Short-lived code used once (or within a short window) as a second factor.",
+      "snippet": "Short-lived code used once (or within a short window) as a second factor."
+    },
+    {
+      "kind": "glossary",
+      "id": "hotp",
+      "title": "HOTP — HMAC-based One-Time Password",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "OTP from a shared secret and an incrementing counter (RFC 4226).",
+      "snippet": "OTP from a shared secret and an incrementing counter (RFC 4226)."
+    },
+    {
+      "kind": "glossary",
+      "id": "hmac",
+      "title": "HMAC — Hash-based Message Authentication Code",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Keyed hash proving integrity/authenticity of a message; building block for HOTP/TOTP.",
+      "snippet": "Keyed hash proving integrity/authenticity of a message; building block for HOTP/TOTP."
+    },
+    {
+      "kind": "glossary",
+      "id": "totp",
+      "title": "TOTP — Time-based One-Time Password",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "HOTP where the counter is derived from Unix time ÷ time step (often 30s; RFC 6238).",
+      "snippet": "HOTP where the counter is derived from Unix time ÷ time step (often 30s; RFC 6238)."
+    },
+    {
+      "kind": "glossary",
+      "id": "oidc",
+      "title": "OIDC — OpenID Connect",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Identity layer on OAuth 2.0: login + ID token so apps can know *who* signed in.",
+      "snippet": "Identity layer on OAuth 2.0: login + ID token so apps can know *who* signed in."
+    },
+    {
+      "kind": "glossary",
+      "id": "oauth-2-0",
+      "title": "OAuth 2.0",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Authorization framework for delegated access (tokens), not a full login protocol by itself.",
+      "snippet": "Authorization framework for delegated access (tokens), not a full login protocol by itself."
+    },
+    {
+      "kind": "glossary",
+      "id": "jwt",
+      "title": "JWT — JSON Web Token",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Compact signed (often) token format used to carry claims between parties.",
+      "snippet": "Compact signed (often) token format used to carry claims between parties."
+    },
+    {
+      "kind": "glossary",
+      "id": "sso",
+      "title": "SSO — Single Sign-On",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "One login session used across multiple apps — often via OIDC/SAML.",
+      "snippet": "One login session used across multiple apps — often via OIDC/SAML."
+    },
+    {
+      "kind": "glossary",
+      "id": "saml",
+      "title": "SAML — Security Assertion Markup Language",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "XML-based federated login protocol; older enterprise alternative/complement to OIDC.",
+      "snippet": "XML-based federated login protocol; older enterprise alternative/complement to OIDC."
+    },
+    {
+      "kind": "glossary",
+      "id": "web-authentication-webauthn",
+      "title": "Web Authentication (WebAuthn)",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Browser API for phishing-resistant authenticators (security keys / passkeys).",
+      "snippet": "Browser API for phishing-resistant authenticators (security keys / passkeys)."
+    },
+    {
+      "kind": "glossary",
+      "id": "passkey",
+      "title": "Passkey",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "User-friendly WebAuthn credential (often synced or device-bound) for phishing-resistant sign-in.",
+      "snippet": "User-friendly WebAuthn credential (often synced or device-bound) for phishing-resistant sign-in."
+    },
+    {
+      "kind": "glossary",
+      "id": "identity-provider-idp",
+      "title": "Identity Provider (IdP)",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Service that authenticates users and issues assertions/tokens to relying apps.",
+      "snippet": "Service that authenticates users and issues assertions/tokens to relying apps."
+    },
+    {
+      "kind": "glossary",
+      "id": "ztna",
+      "title": "ZTNA — Zero Trust Network Access",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "App-scoped remote access that verifies identity (and often device context) instead of broad VPN LAN admission.",
+      "snippet": "App-scoped remote access that verifies identity (and often device context) instead of broad VPN LAN admission."
+    },
+    {
+      "kind": "glossary",
+      "id": "vpn",
+      "title": "VPN — Virtual Private Network",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Encrypted tunnel into a network; classical remote access often admits users to wide internal ranges.",
+      "snippet": "Encrypted tunnel into a network; classical remote access often admits users to wide internal ranges."
+    },
+    {
+      "kind": "glossary",
+      "id": "device-certificate-posture",
+      "title": "Device certificate / posture",
+      "moduleId": null,
+      "moduleTitle": "Identity & authentication",
+      "topicId": null,
+      "body": "Cryptographic device identity or health signals used as extra access context (conceptually; not a full MDM course).",
+      "snippet": "Cryptographic device identity or health signals used as extra access context (conceptually; not a full MDM course)."
+    },
+    {
+      "kind": "glossary",
+      "id": "dlp",
+      "title": "DLP — Data Loss Prevention",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Policies that detect/block sensitive data leaving approved channels (e.g. email or cloud shares).",
+      "snippet": "Policies that detect/block sensitive data leaving approved channels (e.g. email or cloud shares)."
+    },
+    {
+      "kind": "glossary",
+      "id": "missend",
+      "title": "Missend",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Accidental delivery to the wrong recipient (typo, wrong autocomplete, mixed internal/external).",
+      "snippet": "Accidental delivery to the wrong recipient (typo, wrong autocomplete, mixed internal/external)."
+    },
+    {
+      "kind": "glossary",
+      "id": "bec",
+      "title": "BEC — Business Email Compromise",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Fraud that hijacks or spoofs business email to trick victims (e.g. fake payment requests).",
+      "snippet": "Fraud that hijacks or spoofs business email to trick victims (e.g. fake payment requests)."
+    },
+    {
+      "kind": "glossary",
+      "id": "smtp",
+      "title": "SMTP — Simple Mail Transfer Protocol",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Store-and-forward protocol that moves email between servers (and submission clients).",
+      "snippet": "Store-and-forward protocol that moves email between servers (and submission clients)."
+    },
+    {
+      "kind": "glossary",
+      "id": "spf",
+      "title": "SPF — Sender Policy Framework",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "DNS-published authorization of which hosts may send mail for a domain.",
+      "snippet": "DNS-published authorization of which hosts may send mail for a domain."
+    },
+    {
+      "kind": "glossary",
+      "id": "dkim",
+      "title": "DKIM — DomainKeys Identified Mail",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Cryptographic signature on email with a public key published in DNS.",
+      "snippet": "Cryptographic signature on email with a public key published in DNS."
+    },
+    {
+      "kind": "glossary",
+      "id": "dmarc",
+      "title": "DMARC — Domain-based Message Authentication, Reporting and Conformance",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Policy + alignment of the visible From domain with SPF/DKIM results, plus reporting.",
+      "snippet": "Policy + alignment of the visible From domain with SPF/DKIM results, plus reporting."
+    },
+    {
+      "kind": "glossary",
+      "id": "mx",
+      "title": "MX — Mail Exchanger",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "DNS record type that names the hosts that accept mail for a domain.",
+      "snippet": "DNS record type that names the hosts that accept mail for a domain."
+    },
+    {
+      "kind": "glossary",
+      "id": "hold-suspend",
+      "title": "Hold / suspend",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Temporary quarantine of a message pending review or timeout — neither allow nor hard reject.",
+      "snippet": "Temporary quarantine of a message pending review or timeout — neither allow nor hard reject."
+    },
+    {
+      "kind": "glossary",
+      "id": "allow-reject-discard",
+      "title": "Allow / reject (discard)",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Policy actions: pass through vs block (and often drop) the message.",
+      "snippet": "Policy actions: pass through vs block (and often drop) the message."
+    },
+    {
+      "kind": "glossary",
+      "id": "first-match-wins",
+      "title": "First-match-wins",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Evaluate ordered rules; stop at the first matching rule’s action.",
+      "snippet": "Evaluate ordered rules; stop at the first matching rule’s action."
+    },
+    {
+      "kind": "glossary",
+      "id": "secure-transfer",
+      "title": "Secure transfer",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Controlled file sharing (upload, store, expiring link, audit) instead of raw email attachments.",
+      "snippet": "Controlled file sharing (upload, store, expiring link, audit) instead of raw email attachments."
+    },
+    {
+      "kind": "glossary",
+      "id": "cloud-share-dlp",
+      "title": "Cloud-share DLP",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Governing file links (visibility, expiry, revoke, audit) beyond the email path.",
+      "snippet": "Governing file links (visibility, expiry, revoke, audit) beyond the email path."
+    },
+    {
+      "kind": "glossary",
+      "id": "software-as-a-service-saas",
+      "title": "Software as a Service (SaaS)",
+      "moduleId": null,
+      "moduleTitle": "Email security & MailGuard domain",
+      "topicId": null,
+      "body": "Vendor-hosted software delivered over the network; MailGuard is a *learning* SaaS shape, not a product clone.",
+      "snippet": "Vendor-hosted software delivered over the network; MailGuard is a *learning* SaaS shape, not a product clone."
+    },
+    {
+      "kind": "glossary",
+      "id": "tls",
+      "title": "TLS — Transport Layer Security",
+      "moduleId": null,
+      "moduleTitle": "Cryptography (applied literacy)",
+      "topicId": null,
+      "body": "Protocol that encrypts and authenticates network connections (e.g. HTTPS, SMTP with TLS).",
+      "snippet": "Protocol that encrypts and authenticates network connections (e.g. HTTPS, SMTP with TLS)."
+    },
+    {
+      "kind": "glossary",
+      "id": "x-509-certificate",
+      "title": "X.509 certificate",
+      "moduleId": null,
+      "moduleTitle": "Cryptography (applied literacy)",
+      "topicId": null,
+      "body": "Signed binding of a public key to a name (and related fields), used in TLS trust chains.",
+      "snippet": "Signed binding of a public key to a name (and related fields), used in TLS trust chains."
+    },
+    {
+      "kind": "glossary",
+      "id": "aead",
+      "title": "AEAD — Authenticated Encryption with Associated Data",
+      "moduleId": null,
+      "moduleTitle": "Cryptography (applied literacy)",
+      "topicId": null,
+      "body": "Encryption that also detects tampering; associated data is authenticated but not encrypted.",
+      "snippet": "Encryption that also detects tampering; associated data is authenticated but not encrypted."
+    },
+    {
+      "kind": "glossary",
+      "id": "hmac",
+      "title": "HMAC — Hash-based Message Authentication Code",
+      "moduleId": null,
+      "moduleTitle": "Cryptography (applied literacy)",
+      "topicId": null,
+      "body": "Keyed hash proving integrity/authenticity; also listed under Identity when used for OTP.",
+      "snippet": "Keyed hash proving integrity/authenticity; also listed under Identity when used for OTP."
+    },
+    {
+      "kind": "glossary",
+      "id": "api",
+      "title": "API — Application Programming Interface",
+      "moduleId": null,
+      "moduleTitle": "APIs, apps & workers",
+      "topicId": null,
+      "body": "Contract for how clients talk to a service (here, often HTTP/JSON).",
+      "snippet": "Contract for how clients talk to a service (here, often HTTP/JSON)."
+    },
+    {
+      "kind": "glossary",
+      "id": "fastapi",
+      "title": "FastAPI",
+      "moduleId": null,
+      "moduleTitle": "APIs, apps & workers",
+      "topicId": null,
+      "body": "Modern Python web framework for building APIs with type hints and OpenAPI docs.",
+      "snippet": "Modern Python web framework for building APIs with type hints and OpenAPI docs."
+    },
+    {
+      "kind": "glossary",
+      "id": "openapi",
+      "title": "OpenAPI",
+      "moduleId": null,
+      "moduleTitle": "APIs, apps & workers",
+      "topicId": null,
+      "body": "Standard description of an HTTP API (formerly Swagger); used for docs and client generation.",
+      "snippet": "Standard description of an HTTP API (formerly Swagger); used for docs and client generation."
+    },
+    {
+      "kind": "glossary",
+      "id": "crud",
+      "title": "CRUD — Create, Read, Update, Delete",
+      "moduleId": null,
+      "moduleTitle": "APIs, apps & workers",
+      "topicId": null,
+      "body": "Basic resource operations on stored entities.",
+      "snippet": "Basic resource operations on stored entities."
+    },
+    {
+      "kind": "glossary",
+      "id": "spa",
+      "title": "SPA — Single-Page Application",
+      "moduleId": null,
+      "moduleTitle": "APIs, apps & workers",
+      "topicId": null,
+      "body": "Frontend that updates in-browser (e.g. Vue admin) talking to an API.",
+      "snippet": "Frontend that updates in-browser (e.g. Vue admin) talking to an API."
+    },
+    {
+      "kind": "glossary",
+      "id": "e2e",
+      "title": "E2E — End-to-End",
+      "moduleId": null,
+      "moduleTitle": "APIs, apps & workers",
+      "topicId": null,
+      "body": "Test that drives the full user path (UI → API → storage), not just one unit.",
+      "snippet": "Test that drives the full user path (UI → API → storage), not just one unit."
+    },
+    {
+      "kind": "glossary",
+      "id": "dlq",
+      "title": "DLQ — Dead-Letter Queue",
+      "moduleId": null,
+      "moduleTitle": "APIs, apps & workers",
+      "topicId": null,
+      "body": "Side queue for messages that failed processing after retries.",
+      "snippet": "Side queue for messages that failed processing after retries."
+    },
+    {
+      "kind": "glossary",
+      "id": "aws",
+      "title": "AWS — Amazon Web Services",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Major public cloud; used here for deploy/storage/queue practice.",
+      "snippet": "Major public cloud; used here for deploy/storage/queue practice."
+    },
+    {
+      "kind": "glossary",
+      "id": "infrastructure-as-code-iac",
+      "title": "Infrastructure as Code (IaC)",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Declare infra in files (e.g. Terraform) and apply via tooling, not click-ops alone.",
+      "snippet": "Declare infra in files (e.g. Terraform) and apply via tooling, not click-ops alone."
+    },
+    {
+      "kind": "glossary",
+      "id": "iam",
+      "title": "IAM — Identity and Access Management",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Cloud users/roles/policies controlling who can do what on which resources.",
+      "snippet": "Cloud users/roles/policies controlling who can do what on which resources."
+    },
+    {
+      "kind": "glossary",
+      "id": "ci",
+      "title": "CI — Continuous Integration",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Automated build/test (and often lint) on each change, typically via GitHub Actions here.",
+      "snippet": "Automated build/test (and often lint) on each change, typically via GitHub Actions here."
+    },
+    {
+      "kind": "glossary",
+      "id": "sbom",
+      "title": "SBOM — Software Bill of Materials",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Inventory of components/dependencies in an artifact for supply-chain review.",
+      "snippet": "Inventory of components/dependencies in an artifact for supply-chain review."
+    },
+    {
+      "kind": "glossary",
+      "id": "kubernetes-k8s",
+      "title": "Kubernetes (K8s)",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Container orchestration API; local practice via kind/minikube before managed clusters.",
+      "snippet": "Container orchestration API; local practice via kind/minikube before managed clusters."
+    },
+    {
+      "kind": "glossary",
+      "id": "eks",
+      "title": "EKS — Elastic Kubernetes Service",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "AWS-managed Kubernetes control plane (named as a *next step*, not required locally).",
+      "snippet": "AWS-managed Kubernetes control plane (named as a *next step*, not required locally)."
+    },
+    {
+      "kind": "glossary",
+      "id": "opentelemetry-otel",
+      "title": "OpenTelemetry (OTel)",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Vendor-neutral APIs/SDKs for traces, metrics, and logs.",
+      "snippet": "Vendor-neutral APIs/SDKs for traces, metrics, and logs."
+    },
+    {
+      "kind": "glossary",
+      "id": "sre",
+      "title": "SRE — Site Reliability Engineering",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Practice of running reliable systems with engineering + operations habits (SLIs/SLOs, postmortems).",
+      "snippet": "Practice of running reliable systems with engineering + operations habits (SLIs/SLOs, postmortems)."
+    },
+    {
+      "kind": "glossary",
+      "id": "sli",
+      "title": "SLI — Service Level Indicator",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Quantitative measure of one aspect of service level (e.g. success ratio, latency).",
+      "snippet": "Quantitative measure of one aspect of service level (e.g. success ratio, latency)."
+    },
+    {
+      "kind": "glossary",
+      "id": "slo",
+      "title": "SLO — Service Level Objective",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Target value/range for an SLI over a window.",
+      "snippet": "Target value/range for an SLI over a window."
+    },
+    {
+      "kind": "glossary",
+      "id": "error-budget",
+      "title": "Error budget",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Allowed unreliability implied by an SLO; guides reliability vs feature investment.",
+      "snippet": "Allowed unreliability implied by an SLO; guides reliability vs feature investment."
+    },
+    {
+      "kind": "glossary",
+      "id": "gitops",
+      "title": "GitOps",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Desired cluster/app state lives in Git; a controller syncs the live system to match.",
+      "snippet": "Desired cluster/app state lives in Git; a controller syncs the live system to match."
+    },
+    {
+      "kind": "glossary",
+      "id": "policy-as-code",
+      "title": "Policy-as-code",
+      "moduleId": null,
+      "moduleTitle": "Cloud, CI & platform",
+      "topicId": null,
+      "body": "Express admission/security rules as code/config (e.g. Kyverno, Conftest) checked in CI or cluster.",
+      "snippet": "Express admission/security rules as code/config (e.g. Kyverno, Conftest) checked in CI or cluster."
+    },
+    {
+      "kind": "glossary",
+      "id": "dsl",
+      "title": "DSL — Domain-Specific Language",
+      "moduleId": null,
+      "moduleTitle": "Quality & process",
+      "topicId": null,
+      "body": "Mini-language for one problem domain; Challenge Gym deliberately *avoids* inventing one.",
+      "snippet": "Mini-language for one problem domain; Challenge Gym deliberately *avoids* inventing one."
+    },
+    {
+      "kind": "glossary",
+      "id": "rfc",
+      "title": "RFC — Request for Comments",
+      "moduleId": null,
+      "moduleTitle": "Quality & process",
+      "topicId": null,
+      "body": "IETF (and similar) standards documents (e.g. RFC 6238 for TOTP).",
+      "snippet": "IETF (and similar) standards documents (e.g. RFC 6238 for TOTP)."
+    },
+    {
+      "kind": "glossary",
+      "id": "owasp",
+      "title": "OWASP — Open Worldwide Application Security Project",
+      "moduleId": null,
+      "moduleTitle": "Quality & process",
+      "topicId": null,
+      "body": "Community publishing practical app-sec guidance (cheat sheets, Juice Shop, etc.).",
+      "snippet": "Community publishing practical app-sec guidance (cheat sheets, Juice Shop, etc.)."
+    },
+    {
+      "kind": "glossary",
+      "id": "nist",
+      "title": "NIST — National Institute of Standards and Technology",
+      "moduleId": null,
+      "moduleTitle": "Quality & process",
+      "topicId": null,
+      "body": "U.S. standards body; SP 800-63 covers digital identity; SP 800-207 covers zero trust architecture.",
+      "snippet": "U.S. standards body; SP 800-63 covers digital identity; SP 800-207 covers zero trust architecture."
+    },
+    {
+      "kind": "glossary",
+      "id": "stride",
+      "title": "STRIDE",
+      "moduleId": null,
+      "moduleTitle": "Quality & process",
+      "topicId": null,
+      "body": "Threat-category mnemonic: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege.",
+      "snippet": "Threat-category mnemonic: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege."
+    },
+    {
+      "kind": "glossary",
+      "id": "samm",
+      "title": "SAMM — Software Assurance Maturity Model",
+      "moduleId": null,
+      "moduleTitle": "Quality & process",
+      "topicId": null,
+      "body": "OWASP model for measuring secure-SDLC practices (awareness in this course — not a cert).",
+      "snippet": "OWASP model for measuring secure-SDLC practices (awareness in this course — not a cert)."
+    },
+    {
+      "kind": "glossary",
+      "id": "sdlc",
+      "title": "SDLC — Secure Software Development Life Cycle",
+      "moduleId": null,
+      "moduleTitle": "Quality & process",
+      "topicId": null,
+      "body": "Building security activities into requirements, design, build, test, and operate.",
+      "snippet": "Building security activities into requirements, design, build, test, and operate."
+    },
+    {
+      "kind": "glossary",
+      "id": "oss",
+      "title": "OSS — Open-source software",
+      "moduleId": null,
+      "moduleTitle": "Quality & process",
+      "topicId": null,
+      "body": "Software with source available under an open license; contribution practice is an optional stretch here.",
+      "snippet": "Software with source available under an open license; contribution practice is an optional stretch here."
+    }
+  ]
+}
