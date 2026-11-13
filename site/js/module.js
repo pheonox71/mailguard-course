@@ -260,7 +260,7 @@ async function main() {
     crumb.textContent = 'Not found'
     root.innerHTML = `
       <h1>Module not found</h1>
-      <p class="muted">That module id is not in the syllabus. <a href="index.html#syllabus">Back to syllabus</a>.</p>
+      <p class="muted">That module id is not in the course catalog. <a href="index.html">Back to home</a>.</p>
     `
     return
   }
