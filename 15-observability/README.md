@@ -15,3 +15,10 @@ Metrics / logs / traces for MailGuard API + worker, extended with Site Reliabili
 3. Wire local metrics/logs/traces; narrate one failure
 
 **Done when:** telemetry shows golden signals; SLI/SLO worksheet done; one failure diagnosed via telemetry; alert *idea* documented.
+
+## Coding lab
+
+```bash
+cd 15-observability && python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt && pytest -q
+```

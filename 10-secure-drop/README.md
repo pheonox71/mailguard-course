@@ -15,3 +15,12 @@ Secure file transfer lite: upload → object storage → time-limited link + aud
 3. Build upload → store → expiring link + audit (MinIO/LocalStack OK)
 
 **Done when:** demo of expiring link + audit; cloud-share worksheet done; secrets out of git.
+
+## Coding lab
+
+```bash
+cd 10-secure-drop
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+pytest -q
+```

@@ -19,12 +19,22 @@ The student saves finished worksheets and filled quiz PDFs under [`../my-work/`]
 | `readings/` | MFA + passkeys intros + credited videos |
 | `quizzes/` | Required quizzes (answer keys under `quizzes/answer-keys/`) |
 | `worksheets/` | Guided questions before implementation |
+| `katas/` | TOTP enroll/verify + recovery stubs |
+| `tests/` | pytest contract |
+| `solutions/` | Reference — peek only if stuck |
 
 ## Start here
 
 1. [`readings/passkeys_webauthn.md`](./readings/passkeys_webauthn.md) (can run in parallel with API work)
 2. Quiz → worksheet
-3. When coding: enroll/verify TOTP against the API; store secrets outside git
+3. Implement `katas/mfa_enroll.py` until `pytest -q` is green; store secrets outside git
+
+```bash
+cd 02-mailguard-mfa
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+pytest -q
+```
 
 **Done when:** enroll/verify TOTP works; recovery codes one-time; passkeys worksheet completed; no secrets in git.
 

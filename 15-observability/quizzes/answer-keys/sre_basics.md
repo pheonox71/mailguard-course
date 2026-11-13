@@ -6,3 +6,7 @@ Use only after attempting the quiz questions.
 2. Quantifies allowed unreliability; guides when to invest in reliability vs features.
 3. e.g. “lines of Go written” or raw request count without success criteria.
 4. Focus on systems/process fixes, not punishing individuals.
+
+5. Pause risky feature launches; prioritize reliability work until budget recovers.
+
+6. Alert noise / fatigue; use SLO burn alerts over windows instead of one-off failures.

@@ -17,3 +17,7 @@ Compose + Terraform for the MailGuard story, extended with Identity and Access M
 3. Infra as code for storage/IAM/queue
 
 **Done when:** compose demo + Terraform plan documented; IAM worksheet checklist completed for *your* resources.
+
+## Starter
+
+See `starter/docker-compose.yml` and `starter/main.tf.example`. Run `pytest -q` after implementing `katas/compose_checks.py`.

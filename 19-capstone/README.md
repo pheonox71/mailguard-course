@@ -22,7 +22,7 @@ Bring the MailGuard thread together: a small outbound **mail filter** the studen
 
 1. Read [`readings/capstone_mail_filter.md`](./readings/capstone_mail_filter.md) on the site
 2. Worksheet — self-grade + demo checklist
-3. Implement stubs under `katas/` until tests pass (when present)
+3. Implement `katas/mail_filter.py` until `pytest -q` passes
 4. Required quiz PDF, then separate answer key
 
 ## Done when
@@ -30,3 +30,12 @@ Bring the MailGuard thread together: a small outbound **mail filter** the studen
 - Demo path documented and runnable from a clean checkout of *your* work
 - Worksheet self-grade shows all Must rows honest **yes** (or explicitly deferred with reasons)
 - Required quiz completed under `my-work/quizzes/`
+
+## How to run
+
+```bash
+cd 19-capstone
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+pytest -q
+```
