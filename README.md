@@ -82,4 +82,12 @@ Published from `site/` on pushes to `main` (GitHub Actions). Project URL:
 
 **https://pheonox71.github.io/mailguard-course/**
 
-If the site 404s after the first workflow run, enable Pages in the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+### First-time owner setup (required once)
+
+The Cursor GitHub App cannot enable Pages. Repo owner must:
+
+1. Open **https://github.com/pheonox71/mailguard-course/settings/pages**
+2. Under **Build and deployment → Source**, choose **GitHub Actions**
+3. Re-run the failed **Deploy course site to GitHub Pages** workflow under the Actions tab (or push any commit to `main`)
+
+Until that switch is set, deploy jobs fail with HTTP 404 when creating the Pages deployment. The workflow still builds `site/` only and never publishes `my-work/`.
