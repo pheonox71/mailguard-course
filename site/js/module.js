@@ -12,6 +12,7 @@ import {
   resumeLabel,
   resetProgress,
 } from './progress.js'
+import { initGlossaryTooltips } from './glossary-tooltip.js'
 
 initTheme()
 
@@ -131,7 +132,10 @@ function linkGlossaryTerms(html) {
       const a = document.createElement('a')
       a.href = withBase(`glossary.html#${t.id}`)
       a.className = 'glossary-ref'
-      a.title = t.term
+      a.setAttribute('data-glossary-id', t.id)
+      a.setAttribute('data-glossary-term', t.term || '')
+      a.setAttribute('data-glossary-abbrev', t.abbrev || '')
+      a.setAttribute('data-glossary-meaning', t.meaning || '')
       a.textContent = m[1]
       span.appendChild(a)
       span.appendChild(document.createTextNode(text.slice(m.index + m[0].length)))
@@ -328,6 +332,15 @@ async function main() {
       ? await loadReadingHtml(reading)
       : `<p class="muted">No on-site reading for this topic yet.</p>`
     const topicDone = isTopicComplete(state, mod.id, topicId)
+    const topicHint = buttons.length
+      ? 'Read on this page, then download the worksheet, required quiz, and tests. Use the answer key only after you attempt the quiz.'
+      : 'Read on this page, then mark the topic complete when you finish.'
+    const downloadsBlock = buttons.length
+      ? `<div class="topic-downloads">
+          <h3>Downloads</h3>
+          <div class="download-actions">${buttons.join('')}</div>
+        </div>`
+      : ''
 
     topicSections.push(`
       <article class="topic-block" id="topic-${escapeHtml(topicId)}" data-topic="${escapeHtml(topicId)}">
@@ -339,18 +352,10 @@ async function main() {
               Topic complete
             </label>
           </div>
-          <p class="muted">Read on this page, then download the worksheet, required quiz, and tests. Use the answer key only after you attempt the quiz.</p>
+          <p class="muted">${topicHint}</p>
         </header>
         <div class="reading-body">${readingHtml}</div>
-        <div class="topic-downloads">
-          <h3>Downloads</h3>
-          <div class="download-actions">
-            ${
-              buttons.join('') ||
-              '<span class="muted">No worksheet or quiz pack for this topic yet.</span>'
-            }
-          </div>
-        </div>
+        ${downloadsBlock}
       </article>
     `)
   }
@@ -382,19 +387,20 @@ async function main() {
       Mark module complete
     </label>
 
-    <section class="download-panel" aria-label="Module download packs">
+    ${
+      packEmpty
+        ? readingsEmpty
+          ? `<p class="empty-note">This module is a build / stretch step. Readings and downloads appear here when those assets exist.</p>`
+          : ''
+        : `<section class="download-panel" aria-label="Module download packs">
       <h2>Module download packs</h2>
       <p>Required path: read on-site → worksheet → tests (when present) → <strong>required quiz</strong>. Quiz PDFs are fillable questions only; answer keys are separate downloads. Save finished work under <code>my-work/</code>.</p>
       <div class="download-actions">
         ${worksheetButtons.join('') || '<span class="muted">No worksheet pack for this module yet.</span>'}
         ${quizButtons.join('')}
       </div>
-      ${
-        packEmpty && readingsEmpty
-          ? `<p class="empty-note">This module is a build / stretch step. Readings and downloads appear here when those assets exist.</p>`
-          : ''
-      }
-    </section>
+    </section>`
+    }
 
     <section class="topics" aria-label="Topics">
       <h2 class="topics-heading">Topics</h2>
@@ -404,6 +410,8 @@ async function main() {
       }
     </section>
   `
+
+  initGlossaryTooltips(root)
 
   root.querySelector('#module-complete')?.addEventListener('change', (e) => {
     setModuleComplete(mod.id, e.target.checked)

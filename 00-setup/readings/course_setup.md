@@ -2,9 +2,7 @@
 
 This module prepares your machine for the full course: identity / MFA katas, email authentication, Python APIs, TypeScript/Vue admin, Go workers, AWS/CI, Terraform, and local Kubernetes. You do **not** need every tool on day one — install **core** tools now, and the **later** tools when the matching module arrives.
 
-**Authorship:** AI-generated. The student completes the worksheet and quiz.
-
-Continue with the worksheet from the downloads on this page. The quiz is **required**.
+**Authorship:** AI-generated. Work through the installs below, then mark Module 00 complete on the site. This module has no worksheet, quiz, or download pack.
 
 ---
 
@@ -20,7 +18,7 @@ Continue with the worksheet from the downloads on this page. The quiz is **requi
 | Cloud / CI | **GitHub** account; **GitHub Actions**; **AWS** account (free tier) or local stand-ins; **AWS CLI** (optional early) | 12+ |
 | IaC | **Terraform** | 13 |
 | Kubernetes | **kubectl**; **kind** or **minikube**; YAML / Helm or Kustomize; **Argo CD** for GitOps in 16 | 14–16 |
-| Course site | Modern browser; PDF reader for fillable quiz PDFs; Node.js to run `site/` locally | 00 / whole course |
+| Course site | Modern browser; Node.js to preview the site locally (`cd site && npm start`); later modules use fillable quiz PDFs | 00 / whole course |
 | Sample data | Module fixtures and stubs in-repo (no separate dataset download) | per module |
 
 Official docs linked below. Prefer current stable releases unless a module README pins a version.
@@ -139,14 +137,14 @@ Never commit cloud secrets. Module READMEs describe least-privilege demos.
 
 ## Final setup checklist
 
-Tick these on the worksheet:
+Confirm each item before marking Module 00 complete:
 
 1. `git --version` works  
 2. `python3 --version` (Windows: `py -3 --version`) shows 3.11+ (or current stable 3.x)  
 3. `python3 -m venv` (Windows: `py -3 -m venv`) works; Challenge Gym venv installs `requirements.txt`  
 4. `pytest --version` works inside that venv  
 5. Editor + Git configured; you can commit  
-6. Browser opens the course site; you can download a quiz PDF  
+6. Browser opens the course site  
 7. You know *when* to add Node, Go, Docker, Terraform, kubectl/kind, GitHub, and AWS  
 
-Then complete the **required** quiz and start Module 01.
+Then mark Module 00 complete in the site progress UI and start Module 01.

@@ -1,6 +1,6 @@
 # 00 — Setup / getting ready
 
-Install the tools this course uses before Challenge Gym. Work through the on-site reading, worksheet checklist, and required quiz.
+Install the tools this course uses before Challenge Gym. Work through the on-site reading, then mark the module complete.
 
 **Language / tooling:** cross-platform installs (Windows, macOS, Linux) — not an application language module.
 
@@ -13,21 +13,19 @@ Install the tools this course uses before Challenge Gym. Work through the on-sit
 ## Workflow
 
 1. **Reading** — `readings/course_setup.md` (also on the course site)
-2. **Worksheet** — `worksheets/course_setup.md` — tick installs as you go; save finished copy under `my-work/worksheets/`
-3. **Quiz (required)** — download the fillable quiz PDF from the site; check the separate answer key after
-4. Mark Module 00 complete in the site progress UI, then continue to Module 01
+2. Install and version-check the **core** tools listed there
+3. Mark Module 00 complete in the site progress UI, then continue to Module 01
+
+This module has **no** worksheets, quizzes, tests, or download packs.
 
 ## Layout
 
 | Path | Role |
 |------|------|
 | `readings/` | Full setup guide with official download links |
-| `worksheets/` | Install checklist the student fills in |
-| `quizzes/` | Required quiz (questions only) |
-| `quizzes/answer-keys/` | Separate answer key |
 
 ## Done when
 
 - Core tools for Modules 01–05 install and version-check cleanly (Python, pip/venv, Git, editor, pytest deps)
 - You know when Node, Go, Docker, Terraform, kubectl/kind, and cloud accounts are needed later
-- Worksheet checklist + quiz completed under `my-work/`
+- Module 00 is marked complete in the site progress UI

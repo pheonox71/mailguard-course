@@ -34,7 +34,7 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 ### Foundations
 
 - [ ] **00 — Setup / getting ready** · est. 8-10h · [`00-setup/`](./00-setup/)  
-  **Done when:** Core tools install and version-check; worksheet checklist + required quiz completed under `my-work/`.
+  **Done when:** Core tools install and version-check; Module 00 marked complete on the site (no worksheet or quiz for this module).
 
 - [ ] **01 — Challenge Gym** · est. 8-10h · [`01-challenge-gym/`](./01-challenge-gym/)  
   **Done when:** All Challenge Gym tests green from *your* `katas/` (incl. crypto hygiene); ≤1 page trade-offs; required quizzes completed after each reading (answer keys checked afterward).

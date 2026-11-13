@@ -24,8 +24,18 @@ function allQuizzesComplete(state, modules) {
       required.push(`${mod.id}::${qid}`)
     }
   }
-  if (!required.length) return false
+  // Modules with no quizzes (e.g. Module 00) do not block on quiz topics.
+  if (!required.length) return true
   return required.every((k) => state.completedTopics[k])
+}
+
+function allModulesComplete(state, modules) {
+  if (!modules.length) return false
+  return modules.every((m) => isModuleComplete(state, m.id))
+}
+
+function certificateReady(state, modules) {
+  return allModulesComplete(state, modules) && allQuizzesComplete(state, modules)
 }
 
 async function main() {
@@ -61,7 +71,7 @@ async function main() {
 
   function render() {
     const s = loadProgress()
-    const ready = allQuizzesComplete(s, catalog.modules)
+    const ready = certificateReady(s, catalog.modules)
     const doneMods = catalog.modules.filter((m) => isModuleComplete(s, m.id)).length
     const quizNeed = catalog.modules.reduce((n, m) => n + quizTopics(m).length, 0)
     const quizDone = catalog.modules.reduce(
@@ -72,7 +82,7 @@ async function main() {
     const student = (s.certificateName || '').trim() || 'Student'
     root.innerHTML = `
       <p class="muted">Modules marked complete: <strong>${doneMods}</strong> / ${catalog.modules.length}.
-      Quiz topics marked complete: <strong>${quizDone}</strong> / ${quizNeed}.</p>
+      Quiz topics marked complete: <strong>${quizDone}</strong> / ${quizNeed} (modules without quizzes, such as Setup, skip this count).</p>
       ${
         ready
           ? `<div class="certificate-card" id="certificate-card">
@@ -80,11 +90,11 @@ async function main() {
               <h2>Certificate of completion</h2>
               <p>This certifies that</p>
               <p class="cert-name">${student}</p>
-              <p>completed the required quizzes for all MailGuard Course modules in this browser’s progress record.</p>
+              <p>completed every MailGuard Course module in this browser’s progress record (including all required quizzes where a module has them).</p>
               <p class="muted">Generated locally — not a university or employer credential.</p>
               <button type="button" class="btn btn-primary" id="print-cert">Print / save PDF</button>
             </div>`
-          : `<p class="empty-note">Mark each module’s quiz topics complete on the module pages (topic checkboxes) to unlock the certificate. Enter your name above — it stays in this browser only.</p>`
+          : `<p class="empty-note">Mark <strong>every module</strong> complete, and mark each module’s quiz topics complete where quizzes exist, to unlock the certificate. Module 00 has no quiz — use its module checkbox only. Enter your name above — it stays in this browser only.</p>`
       }
     `
     document.getElementById('print-cert')?.addEventListener('click', () => window.print())

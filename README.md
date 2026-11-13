@@ -36,7 +36,7 @@ Every module is listed as **est. 8-10h**.
 - Download buttons for worksheets, tests, quiz PDFs (questions only), and separate answer keys
 - Next / previous module navigation; resume CTA + reset progress (localStorage)
 - Glossary page with terms linked from readings; client-side search
-- Completion certificate when all quiz topics are marked complete (name stored locally)
+- Completion certificate when every module is marked complete and all quiz topics (where a module has quizzes) are marked complete (name stored locally)
 - Light/dark theme toggle (persisted) and print-friendly reading / certificate styles
 - Language / tooling chip per module (stack languages only)
 - `my-work/` is never linked or served by the site

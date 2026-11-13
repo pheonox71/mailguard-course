@@ -16,7 +16,7 @@ export const MODULE_META = [
     objectives: [
     'Install and version-check core course tools on your OS',
     'Know which later modules need Node, Go, Docker, Terraform, and Kubernetes tools',
-    'Complete the setup checklist and required quiz before Module 01',
+    'Finish the setup checklist and mark Module 00 complete before Module 01',
   ],
   },
   {
