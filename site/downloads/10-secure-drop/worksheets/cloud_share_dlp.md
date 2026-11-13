@@ -8,7 +8,7 @@ Fields for a mock `ShareLink` (bullets OK): id, owner, visibility enum, expires_
 
 ## Short questions
 
-1. What happens when an operator **revokes** a link that was already copied to chat?
+1. What happens when an operator **revokes** a link that was already copied to chat? (Hint: a raw S3 presigned URL cannot be revoked alone — app-level indirection vs bearer-link expiry.)
 2. Why is “passworded ZIP in email” a weak substitute for expiring authenticated links?
 3. Map two audit events you would store (upload, download, revoke, expiry).
 4. How does this differ from MailGuard’s email **hold** state?

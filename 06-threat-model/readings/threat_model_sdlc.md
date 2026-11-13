@@ -31,7 +31,7 @@ Also skim: [Shostack + Associates — threat modeling beginner guide](https://ad
 1. [OWASP Threat Modeling](https://owasp.org/www-community/Threat_Modeling) — community overview.
 2. [OWASP Threat Modeling Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html) — practical steps.
 3. [Microsoft — STRIDE](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats) — threat categories reference.
-4. [OWASP SAMM](https://owasp.org/www-project-samm/) — maturity model overview (Design / Implementation / Verification / Operations).
+4. [OWASP SAMM](https://owasp.org/www-project-samm/) — five business functions: **Governance**, Design, Implementation, Verification, Operations (15 practices).
 5. [LINDDUN](https://www.linddun.org/) — privacy threat categories (skim).
 6. [Shostack four-question frame (GitHub)](https://github.com/adamshostack/4QuestionFrame) — one-pager.
 

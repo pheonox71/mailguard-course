@@ -3,7 +3,7 @@
 ## Learning objectives
 
 1. Explain why **email hold** alone does not cover files shared via cloud links.
-2. List controls: link visibility (org / specific users / public), expiry, revoke, download audit.
+2. List controls: link visibility (org / specific users / public), expiry, app-level revoke, download audit. Note: a raw S3 **presigned URL** cannot be revoked individually — it stays valid until expiry (or until signing credentials / object policy are revoked). Real share-DLP revoke needs app-level indirection.
 3. Relate Secure Drop’s expiring link to a minimal share-DLP story.
 
 ## Short intro
@@ -20,9 +20,9 @@ Prefer written vendor-neutral docs below if a video ID drifts.
 
 1. [OWASP — File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html) — upload risks adjacent to secure drop.
 2. [NIST SP 800-171 / access control concepts](https://csrc.nist.gov/pubs/sp/800/171/r3/final) — skim access-control family vocabulary (optional depth).
-3. [Google Workspace — shared drive / link sharing overview](https://support.google.com/a/answer/7587183) — real-world link visibility language (generic literacy).
+3. [Google Workspace — Manage external sharing for your organization](https://support.google.com/a/answer/60781) — org-level Drive/Docs link sharing controls (generic literacy).
 4. [Microsoft Learn — SharePoint / OneDrive sharing overview](https://learn.microsoft.com/en-us/sharepoint/external-sharing-overview) — external sharing concepts (read for patterns, not product lock-in).
-5. [AWS — Presigned URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) — mechanism behind many expiring links.
+5. [AWS — Presigned URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html) — mechanism behind many expiring links (bearer URLs; max lifetime and revoke limits).
 
 ## Quiz (required)
 [`../quizzes/cloud_share_dlp.md`](../quizzes/cloud_share_dlp.md)

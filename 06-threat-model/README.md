@@ -7,7 +7,7 @@ name threats on the MailGuard hold path, tie them to mitigations you already bui
 ## What this teaches
 
 - **STRIDE**-lite (Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege) on a concrete feature
-- Optional privacy lens (**LINDDUN**-lite awareness — Linkability, Identifiability, Non-repudiation, Detectability, Disclosure, Unawareness, Non-compliance)
+- Optional privacy lens (**LINDDUN**-lite awareness — Linking, Identifying, Non-repudiation, Detecting, Data disclosure, Unawareness & unintervenability, Non-compliance)
 - Lightweight secure SDLC / Open Worldwide Application Security Project (**OWASP**) Software Assurance Maturity Model (**SAMM**) *awareness* — not a certification wall
 
 ## Workflow

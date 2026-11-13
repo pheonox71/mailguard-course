@@ -10,21 +10,21 @@ By the end of this kata’s reading + worksheet + implementation, you should be 
 
 ## Short intro
 
-Time-based One-Time Password (**TOTP**) already taught “don’t hand-roll HMAC.” This kata widens the lens: integrity tags for audit-style blobs, and AEAD for secrets at rest (or in transit below TLS). You will call Python’s `hmac` module and the `cryptography` library’s AES-GCM — not design modes yourself.
+Time-based One-Time Password (**TOTP**) already taught “don’t hand-roll HMAC.” This kata widens the lens: integrity tags for audit-style blobs, and AEAD for secrets at rest and for app-level envelopes. You will call Python’s `hmac` module and the `cryptography` library’s AES-GCM — not design modes yourself.
 
 ![Comparison of bare hash, HMAC, and AEAD plus a generate-store-rotate-revoke key lifecycle](images/crypto-hygiene.svg)
 
 *Figure. A bare hash is not authenticity when an attacker can change bytes; **HMAC** binds a secret key; **AEAD** encrypts and authenticates together (TLS is the everyday place this shows up). Notice the key lifecycle strip — generate, store, rotate, revoke — and the rule to use reviewed libraries. Original course diagram (CC0).*
 
-**TLS** (Transport Layer Security) is the protocol that protects HTTP and SMTP connections: the server presents an X.509 **certificate** (a signed binding of public key ↔ name), the client verifies the chain to a trusted root, then both sides negotiate an AEAD cipher suite. You will not implement TLS here; you *will* practice the same misuse rules TLS libraries already enforce — never reuse a nonce with the same key, never skip authentication, never treat “encrypt with raw AES-ECB” as done.
+**TLS** (Transport Layer Security) is the protocol that protects HTTP and SMTP connections: the server presents an X.509 **certificate** (a signed binding of public key ↔ name), the client verifies the chain to a trusted root, then the peers agree on a cipher suite. TLS 1.3 uses only AEAD suites (AES-GCM, ChaCha20-Poly1305); TLS 1.2 also allowed non-AEAD CBC suites. You will not implement TLS here; you *will* practice the same misuse rules TLS libraries already enforce — never reuse a nonce with the same key, never skip authentication, never treat “encrypt with raw AES-ECB” as done.
 
 ## Videos (verified)
 
 1. **[Public Key Cryptography - Computerphile](https://www.youtube.com/watch?v=GSIDS_lvRv4)** — Computerphile (feat. Dr Mike Pound)  
    Why it helps: mental model for public/private keys before certificates feel magical.
 
-2. **[TLS Handshake Explained](https://www.youtube.com/watch?v=86cQJXauvZ0)** — ByteByteGo  
-   Why it helps: certificate check → key agreement → encrypted application data, without drowning in RFCs.
+2. **[TLS Handshake Explained](https://www.youtube.com/watch?v=86cQJ0MMses)** — Computerphile (feat. Dr Mike Pound)  
+   Why it helps: certificate check → key agreement → encrypted application data, without drowning in RFCs. Written companion: [Cloudflare Learning — What happens in a TLS handshake?](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/).
 
 3. **[AES Explained (Advanced Encryption Standard)](https://www.youtube.com/watch?v=O4xNJsjtN6E)** — Computerphile (feat. Dr Mike Pound)  
    Why it helps: intuition for the block cipher under AES-GCM — then remember this kata uses **AEAD** (GCM), not raw ECB.

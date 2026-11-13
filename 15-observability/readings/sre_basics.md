@@ -12,7 +12,7 @@ Observability without objectives becomes dashboard tourism. Site Reliability Eng
 
 ## Videos (verified)
 
-1. **[SRE Classroom — SLIs, SLOs, Error Budgets](https://www.youtube.com/watch?v=tEylFyxbDLE)** — Google Cloud Tech  
+1. **[SLIs, SLOs, SLAs, oh my! (class SRE implements DevOps)](https://www.youtube.com/watch?v=tEylFyxbDLE)** — Google Cloud Tech  
    Why it helps: canonical vocabulary with examples.
 
 2. **[Risk and Error Budgets (class SRE implements DevOps)](https://www.youtube.com/watch?v=y2ILKr8kCJU)** — Google Cloud Tech  

@@ -27,10 +27,10 @@ Prefer written RFCs/docs below if videos move.
 
 1. [OWASP — SAML Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SAML_Security_Cheat_Sheet.html)
 2. [OWASP — OAuth 2.0 / OIDC related cheat sheets](https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html)
-3. [Oasis — SAML Wiki / overview](https://wiki.oasis-open.org/security/FrontPage) — skim what assertions are.
-4. [MDN — Client certificates (TLS)](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication) — adjacent posture ideas; pair with org device-management docs.
-5. [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticators & federation high-level.
-6. [OWASP — Credential Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Credential_Storage_Cheat_Sheet.html) — why vaults beat spreadsheets (for apps still on passwords).
+3. [OASIS — SAML 2.0 Technical Overview](https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html) — assertions, bindings, and SSO flows.
+4. [MDN — Authentication overview](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication) — browser auth landscape; for mTLS see [Cloudflare Learning — What is mutual TLS?](https://www.cloudflare.com/learning/access-management/what-is-mutual-tls/).
+5. [NIST SP 800-63B-4](https://csrc.nist.gov/pubs/sp/800/63/b/4/final) (final, 31 Jul 2025; incorporates syncable authenticators / passkeys) — authenticators & federation high-level. Companion HTML: [pages.nist.gov/800-63-4](https://pages.nist.gov/800-63-4/sp800-63b.html).
+6. [OWASP — Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) — why vaults beat spreadsheets (for apps still on passwords). For server-side password hashing see [Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html).
 
 ## Quiz (required)
 [`../quizzes/identity_depth.md`](../quizzes/identity_depth.md)

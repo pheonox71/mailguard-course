@@ -22,6 +22,8 @@ SMTP/TLS literacy plus domain authentication — what outbound hold/DLP cannot s
 ```bash
 cd 05-email-auth
 python3 -m venv .venv && source .venv/bin/activate
+# Windows PowerShell: py -3 -m venv .venv ; .venv\Scripts\Activate.ps1
+# Windows cmd.exe: .venv\Scripts\activate.bat
 pip install -r requirements.txt
 pytest -q
 ```

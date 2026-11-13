@@ -49,7 +49,7 @@ Challenge-style hiring tasks often pair a short coding exercise with **MFA/One-T
 
 ## Optional deepeners
 
-- [National Institute of Standards and Technology (NIST) SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticator guidance at a high level (linked from PyOTP’s reading list).
+- [National Institute of Standards and Technology (NIST) SP 800-63B-4](https://csrc.nist.gov/pubs/sp/800/63/b/4/final) (final, 31 Jul 2025; incorporates syncable authenticators / passkeys) — authenticator guidance at a high level. Companion HTML: [pages.nist.gov/800-63-4](https://pages.nist.gov/800-63-4/sp800-63b.html).
 - Skim only: security considerations sections inside RFC 6238 / 4226 once the kata is green.
 
 ## Next step

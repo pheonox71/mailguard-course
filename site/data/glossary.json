@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T13:01:47.797Z",
+  "generatedAt": "2026-11-13T13:20:55.533Z",
   "sections": [
     {
       "title": "Identity & authentication",
@@ -44,7 +44,7 @@
           "id": "oauth-2-0",
           "term": "OAuth 2.0",
           "abbrev": "",
-          "meaning": "Authorization framework for delegated access (tokens), not a full login protocol by itself."
+          "meaning": "Authorization framework for delegated access (tokens), not a full login protocol by itself. Prefer Authorization Code + **PKCE** for public clients; see **RFC 9700** (OAuth 2.0 Security BCP, Jan 2025)."
         },
         {
           "id": "jwt",
@@ -62,7 +62,7 @@
           "id": "saml",
           "term": "Security Assertion Markup Language",
           "abbrev": "SAML",
-          "meaning": "XML-based federated login protocol; older enterprise alternative/complement to OIDC."
+          "meaning": "SAML 2.0 (OASIS, 2005): XML-signed assertions, mostly browser POST/Redirect bindings. Still a dominant enterprise SaaS SSO protocol; often runs alongside OIDC."
         },
         {
           "id": "web-authentication-webauthn",
@@ -133,7 +133,7 @@
           "id": "spf",
           "term": "Sender Policy Framework",
           "abbrev": "SPF",
-          "meaning": "DNS-published authorization of which hosts may send mail for a domain."
+          "meaning": "DNS list of hosts allowed to send for the **envelope sender (MAIL FROM / Return-Path) or HELO domain**. It does not check the header `From:`; DMARC adds the alignment check that ties SPF or DKIM to the visible `From:`. SPF usually breaks on forwarding; DKIM often survives it."
         },
         {
           "id": "dkim",

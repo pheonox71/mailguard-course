@@ -14,13 +14,13 @@ Continue with the worksheet from the downloads on this page. The quiz is **requi
 |------|-------------------|--------------|
 | Editor + VCS | Code editor; **Git** | 00 / whole course |
 | Python path | **Python 3.11+**, `pip`, `venv`, **pytest**, **pyotp**, **cryptography**; later **FastAPI** | 01, 05, 07, 10 |
-| Frontend | **Node.js** + npm/pnpm; **TypeScript**; **Vue 3**; optional **Svelte / SvelteKit** | 08, 17 |
+| Frontend | **Node.js** + npm/pnpm; **TypeScript**; **Vue 3**; optional **Svelte / SvelteKit** | 08, 17 (also to preview the course site: `cd site && npm start`) |
 | Go path | **Go** toolchain (`go test`, modules) | 09 |
-| Containers | **Docker** + **Docker Compose** | 13, 14 |
+| Containers | **Docker** + **Docker Compose** | 12 (image CI step), 13, 14 |
 | Cloud / CI | **GitHub** account; **GitHub Actions**; **AWS** account (free tier) or local stand-ins; **AWS CLI** (optional early) | 12+ |
 | IaC | **Terraform** | 13 |
-| Kubernetes | **kubectl**; **kind** or **minikube**; YAML / Helm or Kustomize later | 14–16 |
-| Course site | Modern browser; PDF reader for fillable quiz PDFs | 00 / whole course |
+| Kubernetes | **kubectl**; **kind** or **minikube**; YAML / Helm or Kustomize; **Argo CD** for GitOps in 16 | 14–16 |
+| Course site | Modern browser; PDF reader for fillable quiz PDFs; Node.js to run `site/` locally | 00 / whole course |
 | Sample data | Module fixtures and stubs in-repo (no separate dataset download) | per module |
 
 Official docs linked below. Prefer current stable releases unless a module README pins a version.
@@ -48,9 +48,11 @@ On Windows installer, enable **Add python.exe to PATH**.
 **Check:**
 
 ```bash
-python3 --version   # or: python --version
+python3 --version   # Windows: py -3 --version  (or python --version)
 python3 -m pip --version
 ```
+
+On Windows use `py -3` (or `python`) instead of `python3`; `python3` may open the Microsoft Store alias.
 
 ### 3. Virtualenv + Challenge Gym deps
 
@@ -59,7 +61,10 @@ From the course repo:
 ```bash
 cd 01-challenge-gym
 python3 -m venv .venv
-# Windows: .venv\Scripts\activate
+# Windows PowerShell: py -3 -m venv .venv
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+#   If activation is blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+# Windows cmd.exe: .venv\Scripts\activate.bat
 source .venv/bin/activate
 pip install -r requirements.txt
 pytest -q
@@ -137,8 +142,8 @@ Never commit cloud secrets. Module READMEs describe least-privilege demos.
 Tick these on the worksheet:
 
 1. `git --version` works  
-2. `python3 --version` shows 3.11+ (or current stable 3.x)  
-3. `python3 -m venv` works; Challenge Gym venv installs `requirements.txt`  
+2. `python3 --version` (Windows: `py -3 --version`) shows 3.11+ (or current stable 3.x)  
+3. `python3 -m venv` (Windows: `py -3 -m venv`) works; Challenge Gym venv installs `requirements.txt`  
 4. `pytest --version` works inside that venv  
 5. Editor + Git configured; you can commit  
 6. Browser opens the course site; you can download a quiz PDF  

@@ -6,10 +6,10 @@
 
 ## Concepts
 
-- **SMTP** moves mail hop-by-hop; **TLS** on a hop encrypts that connection only.
-- **SPF** = which IPs/hosts may send for a domain (DNS).
+- **SMTP** moves mail hop-by-hop; **TLS** on a hop encrypts that connection only (STARTTLS between MTAs is opportunistic unless MTA-STS/DANE enforce it).
+- **SPF**: DNS list of hosts allowed to send for the **envelope sender (MAIL FROM / Return-Path) or HELO domain**. It does not check the header `From:`. DMARC adds the **alignment** check that ties SPF or DKIM to the visible `From:`. SPF also usually breaks on forwarding, while DKIM survives it.
 - **DKIM** = cryptographic signature; public key in DNS.
-- **DMARC** = policy + alignment of the visible `From:` domain with SPF/DKIM results + reporting (`rua`).
+- **DMARC** = policy + alignment of the visible `From:` domain with SPF/DKIM results + reporting (`rua`). Passes if **at least one** of SPF or DKIM passes **and** aligns.
 
 ## Short questions
 
@@ -29,6 +29,7 @@ Parse policies in `katas/dmarc_policy.py` (see tests). Optional stretch: look up
 
 ```bash
 cd 05-email-auth && python3 -m venv .venv && source .venv/bin/activate
+# Windows PowerShell: py -3 -m venv .venv ; .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 pytest -q
 ```

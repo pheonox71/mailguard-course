@@ -8,7 +8,7 @@
 
 ## Short intro
 
-Broken cloud IAM (public storage, wildcard `*` actions, root-like keys in CI) causes real incidents more often than exotic crypto bugs. This reading prepares a checklist you will run against module 08 infra — National Institute of Standards and Technology (**NIST**) vocabulary welcome; no cert wall.
+Broken cloud IAM (public storage, wildcard `*` actions, root-like keys in CI) causes real incidents more often than exotic crypto bugs. This reading prepares a checklist you will run against your Module 13 Terraform/Compose (and the Module 12 CI deploy identity) — National Institute of Standards and Technology (**NIST**) vocabulary welcome; no cert wall.
 
 ## Videos (verified)
 
@@ -25,7 +25,7 @@ Prefer official IAM docs below if videos move.
 2. [AWS — Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 3. [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services) — awareness of common hardened baselines (download may require form; skim public summaries OK).
 4. [NIST CSF overview](https://www.nist.gov/cyberframework) — identify/protect framing without exam prep.
-5. [OWASP — Cloud Security](https://owasp.org/www-project-cloud-security/) — project landing / cheat-adjacent material.
+5. [OWASP — Cloud Native Application Security Top 10](https://owasp.org/projects/cloud-native-application-security-top-10) — cloud-native risks adjacent to IAM/misconfig posture (also see [CI/CD Security Top 10](https://owasp.org/www-project-top-10-ci-cd-security-risks/)).
 
 ## Quiz (required)
 [`../quizzes/cloud_iam_posture.md`](../quizzes/cloud_iam_posture.md)

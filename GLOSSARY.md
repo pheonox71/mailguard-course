@@ -16,10 +16,10 @@ Shared terms for **mailguard-course**. Acronyms appear as **full name (ABBREV)**
 | **Hash-based Message Authentication Code (HMAC)** | Keyed hash proving integrity/authenticity of a message; building block for HOTP/TOTP. |
 | **Time-based One-Time Password (TOTP)** | HOTP where the counter is derived from Unix time ÷ time step (often 30s; RFC 6238). |
 | **OpenID Connect (OIDC)** | Identity layer on OAuth 2.0: login + ID token so apps can know *who* signed in. |
-| **OAuth 2.0** | Authorization framework for delegated access (tokens), not a full login protocol by itself. |
+| **OAuth 2.0** | Authorization framework for delegated access (tokens), not a full login protocol by itself. Prefer Authorization Code + **PKCE** for public clients; see **RFC 9700** (OAuth 2.0 Security BCP, Jan 2025). |
 | **JSON Web Token (JWT)** | Compact signed (often) token format used to carry claims between parties. |
 | **Single Sign-On (SSO)** | One login session used across multiple apps — often via OIDC/SAML. |
-| **Security Assertion Markup Language (SAML)** | XML-based federated login protocol; older enterprise alternative/complement to OIDC. |
+| **Security Assertion Markup Language (SAML)** | SAML 2.0 (OASIS, 2005): XML-signed assertions, mostly browser POST/Redirect bindings. Still a dominant enterprise SaaS SSO protocol; often runs alongside OIDC. |
 | **Web Authentication (WebAuthn)** | Browser API for phishing-resistant authenticators (security keys / passkeys). |
 | **Passkey** | User-friendly WebAuthn credential (often synced or device-bound) for phishing-resistant sign-in. |
 | **Identity Provider (IdP)** | Service that authenticates users and issues assertions/tokens to relying apps. |
@@ -35,7 +35,7 @@ Shared terms for **mailguard-course**. Acronyms appear as **full name (ABBREV)**
 | **Missend** | Accidental delivery to the wrong recipient (typo, wrong autocomplete, mixed internal/external). |
 | **Business Email Compromise (BEC)** | Fraud that hijacks or spoofs business email to trick victims (e.g. fake payment requests). |
 | **Simple Mail Transfer Protocol (SMTP)** | Store-and-forward protocol that moves email between servers (and submission clients). |
-| **Sender Policy Framework (SPF)** | DNS-published authorization of which hosts may send mail for a domain. |
+| **Sender Policy Framework (SPF)** | DNS list of hosts allowed to send for the **envelope sender (MAIL FROM / Return-Path) or HELO domain**. It does not check the header `From:`; DMARC adds the alignment check that ties SPF or DKIM to the visible `From:`. SPF usually breaks on forwarding; DKIM often survives it. |
 | **DomainKeys Identified Mail (DKIM)** | Cryptographic signature on email with a public key published in DNS. |
 | **Domain-based Message Authentication, Reporting and Conformance (DMARC)** | Policy + alignment of the visible From domain with SPF/DKIM results, plus reporting. |
 | **Mail Exchanger (MX)** | DNS record type that names the hosts that accept mail for a domain. |

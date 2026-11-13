@@ -71,7 +71,10 @@ After the three MailGuard-preview katas, add **crypto_hygiene** (HMAC + AEAD mis
 ```bash
 cd 01-challenge-gym
 python3 -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+source .venv/bin/activate
+# Windows PowerShell: py -3 -m venv .venv ; .venv\Scripts\Activate.ps1
+#   If blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+# Windows cmd.exe: .venv\Scripts\activate.bat
 pip install -r requirements.txt
 pytest -q
 ```
