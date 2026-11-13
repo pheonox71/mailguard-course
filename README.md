@@ -21,11 +21,12 @@ Students with CS fundamentals and comfort in Python who want a survey path acros
 ## Course flow
 
 1. **Module 00 — Setup** — install and version-check tools (Windows / macOS / Linux).
-2. **Modules 01–18** — each topic: **read on-site** → **assignment** → **tests** (when present) → **required quiz PDF** → separate **quiz answer key**.
-3. Mark topics/modules complete in the browser (progress stored locally; resume CTA in the nav).
-4. Save finished assignments and filled quizzes under `my-work/` in the repo (not on the site).
+2. **Language / tool primers** (read-only, Module 00 style) appear immediately **before** the first module that uses that stack (Bash, Python, SQL, TypeScript/Vue, Go, Docker, GitHub Actions, Terraform, Kubernetes YAML, Svelte). No assignments, quizzes, or downloads — progress checkbox only.
+3. **Modules 01–18** — each topic: **read on-site** → **assignment** → **tests** (when present) → **required quiz PDF** → separate **quiz answer key**.
+4. Mark topics/modules complete in the browser (progress stored locally; resume CTA in the nav).
+5. Save finished assignments and filled quizzes under `my-work/` in the repo (not on the site).
 
-Every module is listed as **est. 8-10h**.
+Every module (including primers) is listed as **est. 8-10h**.
 
 ---
 
@@ -70,7 +71,7 @@ The static server is rooted at `site/` only — parent folders such as `my-work/
 
 | Path | Role |
 |------|------|
-| [`00-setup/`](./00-setup/) … [`18-oss-ux-stretch/`](./18-oss-ux-stretch/) | Modules in learning order |
+| [`00-setup/`](./00-setup/) … [`18-oss-ux-stretch/`](./18-oss-ux-stretch/) | Modules in learning order (includes `*a`/`*b` language/tool primers) |
 | [`site/`](./site/) | Student website (readings UI + downloads) |
 | [`my-work/`](./my-work/) | Student’s completed assignments & quiz PDFs (not on the site) |
 | [`SYLLABUS.md`](./SYLLABUS.md) · [`PREREQUISITES.md`](./PREREQUISITES.md) · [`GLOSSARY.md`](./GLOSSARY.md) · [`CAPSTONE-RUBRIC.md`](./CAPSTONE-RUBRIC.md) | Module 0 orientation |

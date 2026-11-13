@@ -147,4 +147,4 @@ Confirm each item before marking Module 00 complete:
 6. Browser opens the course site  
 7. You know *when* to add Node, Go, Docker, Terraform, kubectl/kind, GitHub, and AWS  
 
-Then mark Module 00 complete in the site progress UI and start Module 01.
+Then mark Module 00 complete in the site progress UI. Next are short **language/tool primers** (Bash, then Python) before Module 01 — read-only like this setup module. Later primers appear immediately before the first module that uses that tool (SQL, TypeScript/Vue, Go, Docker, GitHub Actions, Terraform, Kubernetes YAML, Svelte).

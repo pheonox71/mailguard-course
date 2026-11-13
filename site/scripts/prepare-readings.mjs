@@ -97,25 +97,34 @@ export function prepareReadings({ preserveDownloads = true } = {}) {
   const modules = MODULE_META.map((meta) => {
     const { readings, hasModuleDir } = copyReadingsForModule(meta)
     const prev = byId.get(meta.id) || {}
+    const readOnly = Boolean(meta.readOnly)
     return {
       ...meta,
+      readOnly,
       hasModuleDir,
-      assignments: preserveDownloads
-        ? prev.assignments || prev.worksheets || []
-        : [],
-      assignmentsZip: preserveDownloads
-        ? prev.assignmentsZip ?? prev.worksheetsZip ?? null
-        : null,
-      assignmentSingle: preserveDownloads
-        ? prev.assignmentSingle ?? prev.worksheetSingle ?? null
-        : null,
-      tests: preserveDownloads ? prev.tests || [] : [],
-      testsZip: preserveDownloads ? prev.testsZip ?? null : null,
-      quizzes: preserveDownloads ? prev.quizzes || [] : [],
-      quizzesZip: preserveDownloads ? prev.quizzesZip ?? null : null,
-      quizzesPdfZip: preserveDownloads ? prev.quizzesPdfZip ?? null : null,
-      quizSingle: preserveDownloads ? prev.quizSingle ?? null : null,
-      answerKeysZip: preserveDownloads ? prev.answerKeysZip ?? null : null,
+      assignments:
+        readOnly || !preserveDownloads
+          ? []
+          : prev.assignments || prev.worksheets || [],
+      assignmentsZip:
+        readOnly || !preserveDownloads
+          ? null
+          : prev.assignmentsZip ?? prev.worksheetsZip ?? null,
+      assignmentSingle:
+        readOnly || !preserveDownloads
+          ? null
+          : prev.assignmentSingle ?? prev.worksheetSingle ?? null,
+      tests: readOnly || !preserveDownloads ? [] : prev.tests || [],
+      testsZip: readOnly || !preserveDownloads ? null : prev.testsZip ?? null,
+      quizzes: readOnly || !preserveDownloads ? [] : prev.quizzes || [],
+      quizzesZip:
+        readOnly || !preserveDownloads ? null : prev.quizzesZip ?? null,
+      quizzesPdfZip:
+        readOnly || !preserveDownloads ? null : prev.quizzesPdfZip ?? null,
+      quizSingle:
+        readOnly || !preserveDownloads ? null : prev.quizSingle ?? null,
+      answerKeysZip:
+        readOnly || !preserveDownloads ? null : prev.answerKeysZip ?? null,
       readings,
     }
   })

@@ -14,7 +14,7 @@ Install the tools this course uses before Challenge Gym. Work through the on-sit
 
 1. **Reading** — `readings/course_setup.md` (also on the course site)
 2. Install and version-check the **core** tools listed there
-3. Mark Module 00 complete in the site progress UI, then continue to Module 01
+3. Mark Module 00 complete in the site progress UI, then continue to the Bash and Python primers (`00a`, `00b`) before Module 01
 
 This module has **no** assignments, quizzes, tests, or download packs.
 

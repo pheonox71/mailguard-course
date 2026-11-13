@@ -86,6 +86,27 @@ for (const meta of MODULE_META) {
   const moduleOut = join(OUT_DIR, meta.id)
   ensureDir(moduleOut)
 
+  // Read-only primers / setup: never emit download packs.
+  if (meta.readOnly) {
+    modules.push({
+      ...meta,
+      readOnly: true,
+      hasModuleDir: existsSync(moduleDir),
+      assignments: [],
+      assignmentsZip: null,
+      assignmentSingle: null,
+      tests: [],
+      testsZip: null,
+      quizzes: [],
+      quizzesZip: null,
+      quizzesPdfZip: null,
+      quizSingle: null,
+      answerKeysZip: null,
+      readings: [],
+    })
+    continue
+  }
+
   const assignmentsSrc = listFiles(join(moduleDir, 'assignments'), (n) => n.endsWith('.md'))
   const testsSrc = listFiles(
     join(moduleDir, 'tests'),
@@ -224,6 +245,7 @@ for (const meta of MODULE_META) {
 
   modules.push({
     ...meta,
+    readOnly: false,
     hasModuleDir: existsSync(moduleDir),
     assignments,
     assignmentsZip:

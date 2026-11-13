@@ -369,8 +369,9 @@ async function main() {
   const readingsEmpty = !mod.readings.length
   const moduleDone = isModuleComplete(state, mod.id)
 
+  const isReadOnly = Boolean(mod.readOnly) || mod.id === '00-setup'
   const aiNotice =
-    mod.id === '00-setup'
+    isReadOnly
       ? `<aside class="ai-notice" role="note" aria-label="AI assistance notice">
           <strong>AI assistance notice.</strong>
           This course's content was researched and compiled with AI assistance. It has been reviewed for accuracy, but verify anything important against the linked primary sources (RFCs, official docs).
@@ -401,10 +402,12 @@ async function main() {
     </label>
 
     ${
-      packEmpty
+      isReadOnly || packEmpty
         ? readingsEmpty
           ? `<p class="empty-note">This module is a build / stretch step. Readings and downloads appear here when those assets exist.</p>`
-          : ''
+          : isReadOnly
+            ? `<p class="empty-note">Read-only module — no assignments, quizzes, or download packs. Mark complete when you finish the reading.</p>`
+            : ''
         : `<section class="download-panel" aria-label="Module download packs">
       <h2>Module download packs</h2>
       <p>Required path: read on-site → assignment → tests (when present) → <strong>required quiz</strong>. Quiz PDFs are fillable questions only; answer keys are separate downloads. Save finished work under <code>my-work/</code>.</p>

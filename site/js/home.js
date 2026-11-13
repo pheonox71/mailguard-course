@@ -18,17 +18,18 @@ const resetBtn = document.getElementById('reset-progress')
 
 function assetsHint(mod) {
   const bits = []
+  if (mod.readOnly) bits.push('Read-only')
   if ((mod.readings || []).length) {
     bits.push(`${mod.readings.length} reading${mod.readings.length > 1 ? 's' : ''}`)
   }
-  if (mod.assignments.length) {
+  if (!mod.readOnly && mod.assignments.length) {
     bits.push(`${mod.assignments.length} assignment${mod.assignments.length > 1 ? 's' : ''}`)
   }
-  if (mod.tests.length) {
+  if (!mod.readOnly && mod.tests.length) {
     bits.push(`${mod.tests.length} test file${mod.tests.length > 1 ? 's' : ''}`)
   }
   const pdfCount = (mod.quizzes || []).filter((q) => q.pdfHref).length
-  if (pdfCount) {
+  if (!mod.readOnly && pdfCount) {
     bits.push(`${pdfCount} quiz PDF${pdfCount > 1 ? 's' : ''}`)
   }
   if (mod.language) bits.push(mod.language)

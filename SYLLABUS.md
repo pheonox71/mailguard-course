@@ -11,7 +11,7 @@ Assignment answers, filled quiz PDFs, and kata implementations are filled in by 
 ## How to use this syllabus
 
 1. Confirm [prerequisites](./PREREQUISITES.md), skim the [glossary](./GLOSSARY.md).
-2. Start with Module **00** (setup). For each later module: open its README → on-site reading → assignment → implement → tests / demo → **required quiz** (questions PDF) → separate answer key.
+2. Start with Module **00** (setup), then any **primer** that sits before the next language/tool. Primers are read-only (no assignment/quiz/downloads). For each later build module: open its README → on-site reading → assignment → implement → tests / demo → **required quiz** (questions PDF) → separate answer key.
 3. Tick the checkbox when that module’s **Done when** is met from *your* work (not by copying `solutions/`).
 4. Capstone readiness is judged by [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md), not by finishing every stretch folder.
 
@@ -23,9 +23,11 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 
 | Phase | Modules | Est. hours (sum) |
 |-------|---------|------------------|
-| **A — Core path** | `00`–`13` | est. 8-10h each |
-| **B — Stretch** | `14`–`16`, optional `17`–`18` | est. 8-10h each |
+| **A — Core path** | `00`–`13` (+ language/tool primers) | est. 8-10h each |
+| **B — Stretch** | `14`–`16`, optional `17`–`18` (+ primers) | est. 8-10h each |
 | **Capstone polish** | Cross-cutting demo + rubric | ~8–12 h |
+
+**Primers** (read-only, Module 00 style — no assignments/quizzes/downloads) sit immediately **before** the first module that uses that language or tool.
 
 ---
 
@@ -35,6 +37,12 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 
 - [ ] **00 — Setup / getting ready** · est. 8-10h · [`00-setup/`](./00-setup/)  
   **Done when:** Core tools install and version-check; Module 00 marked complete on the site (no assignment or quiz for this module).
+
+- [ ] **00a — Bash / shell primer** · est. 8-10h · [`00a-bash-primer/`](./00a-bash-primer/)  
+  **Done when:** Shell literacy reading done; primer marked complete (read-only).
+
+- [ ] **00b — Python primer** · est. 8-10h · [`00b-python-primer/`](./00b-python-primer/)  
+  **Done when:** Python/venv/pytest primer done; primer marked complete (read-only).
 
 - [ ] **01 — Challenge Gym** · est. 8-10h · [`01-challenge-gym/`](./01-challenge-gym/)  
   **Done when:** All Challenge Gym tests green from *your* `katas/` (incl. crypto hygiene); ≤1 page trade-offs; required quizzes completed after each reading (answer keys checked afterward).
@@ -60,11 +68,20 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 
 ### Product build (MailGuard)
 
+- [ ] **06a — SQL primer** · est. 8-10h · [`06a-sql-primer/`](./06a-sql-primer/)  
+  **Done when:** SQL literacy reading done; primer marked complete (read-only).
+
 - [ ] **07 — MailGuard API** · est. 8-10h · [`07-mailguard-api/`](./07-mailguard-api/)  
   **Done when:** CRUD + hold/release; rules unit-tested; architecture notes in the module README.
 
+- [ ] **07a — TypeScript / Vue primer** · est. 8-10h · [`07a-typescript-vue-primer/`](./07a-typescript-vue-primer/)  
+  **Done when:** Node/TS/Vue primer done; primer marked complete (read-only).
+
 - [ ] **08 — MailGuard Admin** · est. 8-10h · [`08-mailguard-admin/`](./08-mailguard-admin/)  
   **Done when:** Rules + hold queue usable end-to-end against the API; TypeScript strict; a few component/e2e tests.
+
+- [ ] **08a — Go primer** · est. 8-10h · [`08a-go-primer/`](./08a-go-primer/)  
+  **Done when:** Go toolchain primer done; primer marked complete (read-only).
 
 - [ ] **09 — MailGuard Worker** · est. 8-10h · [`09-mailguard-worker/`](./09-mailguard-worker/)  
   **Done when:** Local queue demo behind an interface; short Python-vs-Go contract note.
@@ -77,13 +94,25 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 
 ### Cloud & platform
 
+- [ ] **11a — Docker primer** · est. 8-10h · [`11a-docker-primer/`](./11a-docker-primer/)  
+  **Done when:** Docker/Compose primer done; primer marked complete (read-only).
+
+- [ ] **11b — GitHub Actions primer** · est. 8-10h · [`11b-github-actions-primer/`](./11b-github-actions-primer/)  
+  **Done when:** Workflow YAML primer done; primer marked complete (read-only).
+
 - [ ] **12 — CI + AWS** · est. 8-10h · [`12-ci-aws/`](./12-ci-aws/)  
   **Done when:** PR CI green (lint/test/image as applicable); one documented cloud deploy; no secrets in git.
+
+- [ ] **12a — Terraform / HCL primer** · est. 8-10h · [`12a-terraform-primer/`](./12a-terraform-primer/)  
+  **Done when:** Terraform/HCL primer done; primer marked complete (read-only).
 
 - [ ] **13 — Infra** · est. 8-10h · [`13-infra/`](./13-infra/)  
   **Done when:** `compose up` demos the MailGuard story; Terraform `plan` documented; IAM / misconfig checklist completed for *your* resources.
 
 ### Phase B (stretch)
+
+- [ ] **13a — Kubernetes YAML primer** · est. 8-10h · [`13a-kubernetes-primer/`](./13a-kubernetes-primer/)  
+  **Done when:** K8s YAML primer done; primer marked complete (read-only).
 
 - [ ] **14 — K8s local** · est. 8-10h · [`14-k8s-local/`](./14-k8s-local/)  
   **Done when:** App healthy on kind/minikube; probes + resource requests; README names managed K8s / GitOps as next steps.
@@ -93,6 +122,9 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 
 - [ ] **16 — GitOps + policy** · est. 8-10h · [`16-gitops-policy/`](./16-gitops-policy/)  
   **Done when:** CI fails on a deliberate bad manifest; sync flow explained with a short diagram.
+
+- [ ] **16a — Svelte primer** *(optional track)* · est. 8-10h · [`16a-svelte-primer/`](./16a-svelte-primer/)  
+  **Done when:** Svelte primer done; primer marked complete (read-only).
 
 - [ ] **17 — Phish Lite** *(optional)* · est. 8-10h · [`17-phish-lite/`](./17-phish-lite/)  
   **Done when:** Quiz → results chart; README states learning-purpose honesty.
@@ -119,14 +151,18 @@ Capstone polish sits **after Phase A (00–13)** and **before Phase B stretch (1
 
 ```text
 Module 0 (this file + prereqs + glossary)
+  → 00 Setup → 00a Bash primer → 00b Python primer
   → 01 Challenge Gym
   → 02 MFA (+ passkeys) → 03 OIDC / identity depth → 04 ZTNA lite
   → 05 Email auth → 06 Threat model
-  → 07 API → 08 Admin → 09 Worker → 10 Secure Drop → 11 Security notes
-  → 12 CI/AWS → 13 Infra
+  → 06a SQL primer → 07 API
+  → 07a TypeScript/Vue primer → 08 Admin
+  → 08a Go primer → 09 Worker → 10 Secure Drop → 11 Security notes
+  → 11a Docker primer → 11b GitHub Actions primer → 12 CI/AWS
+  → 12a Terraform primer → 13 Infra
   → Capstone polish (19 — rubric / mail filter)
-  → Phase B stretch: 14 K8s → 15 Observability → 16 GitOps
-  → optional 17 Phish Lite; optional 18 OSS / security UX
+  → Phase B stretch: 13a K8s primer → 14 K8s → 15 Observability → 16 GitOps
+  → optional 16a Svelte primer → 17 Phish Lite; optional 18 OSS / security UX
   → 20 SCIM → 21 Global privacy/collab → 22 Git/code review
 ```
 

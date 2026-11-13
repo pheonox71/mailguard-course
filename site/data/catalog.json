@@ -1,7 +1,7 @@
 {
   "brand": "MailGuard Course",
   "tagline": "Cloud-security learning for students building identity, email DLP, and secure SaaS skills.",
-  "generatedAt": "2026-11-13T14:31:05.720Z",
+  "generatedAt": "2026-11-13T14:42:46.671Z",
   "modules": [
     {
       "id": "00-setup",
@@ -17,6 +17,7 @@
         "Know which later modules need Node, Go, Docker, Terraform, and Kubernetes tools",
         "Finish the setup checklist and mark Module 00 complete before Module 01"
       ],
+      "readOnly": true,
       "hasModuleDir": true,
       "assignments": [],
       "assignmentsZip": null,
@@ -38,6 +39,76 @@
       ]
     },
     {
+      "id": "00a-bash-primer",
+      "number": "00a",
+      "title": "Bash / shell primer",
+      "phase": "Foundations",
+      "blurb": "Short shell literacy before Challenge Gym — cd, pipes, env vars, and why labs use a terminal.",
+      "hours": "est. 8-10h",
+      "language": "Bash",
+      "languageDetail": "POSIX-ish shell / Git Bash / PowerShell notes for course labs",
+      "objectives": [
+        "Run common course commands (cd, env, pipes) with intent",
+        "Explain why labs prefer a shell over clicking through GUIs",
+        "Know where Bash vs PowerShell/WSL tips live for your OS"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "bash_primer",
+          "label": "bash primer",
+          "path": "00a-bash-primer/readings/bash_primer.md",
+          "href": "content/00a-bash-primer/readings/bash_primer.md"
+        }
+      ]
+    },
+    {
+      "id": "00b-python-primer",
+      "number": "00b",
+      "title": "Python primer",
+      "phase": "Foundations",
+      "blurb": "Refresh Python 3, venv, and pytest habits used from Challenge Gym through the MailGuard API.",
+      "hours": "est. 8-10h",
+      "language": "Python",
+      "languageDetail": "Python 3.11+ · venv · pip · pytest",
+      "objectives": [
+        "Create a venv, install deps, and run pytest",
+        "Read a small function + test as a contract",
+        "Explain why the course standardizes on Python for identity and API labs"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "python_primer",
+          "label": "python primer",
+          "path": "00b-python-primer/readings/python_primer.md",
+          "href": "content/00b-python-primer/readings/python_primer.md"
+        }
+      ]
+    },
+    {
       "id": "01-challenge-gym",
       "number": "01",
       "title": "Challenge Gym",
@@ -51,6 +122,7 @@
         "Build a Basic-auth JSON client pattern with skew checks",
         "Apply hold-rule and recipient-risk thinking in small functions"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -244,6 +316,7 @@
         "Contrast TOTP with passkeys / WebAuthn at a literacy level",
         "Document threats and mitigations for MFA secrets"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -315,6 +388,7 @@
         "Compare OIDC and SAML at a conceptual level",
         "Note logout/revocation and device-cert ideas without overclaiming"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -406,6 +480,7 @@
         "Explain mTLS/device-cert checks and revocation pain",
         "Reference NIST SP 1800-35 without claiming a commercial mesh deploy"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -485,6 +560,7 @@
         "Implement a small DMARC policy helper with tests",
         "Relate spoofing controls to MailGuard hold rules"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -582,6 +658,7 @@
         "Run a short secure-SDLC self-assessment",
         "Note privacy risks for held message content"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -633,6 +710,41 @@
       ]
     },
     {
+      "id": "06a-sql-primer",
+      "number": "06a",
+      "title": "SQL primer",
+      "phase": "Product build",
+      "blurb": "Relational basics before the MailGuard API — tables, keys, and why holds need durable state.",
+      "hours": "est. 8-10h",
+      "language": "SQL",
+      "languageDetail": "SQL literacy for rules/holds persistence (Postgres-shaped)",
+      "objectives": [
+        "Sketch a small table for held messages with primary keys",
+        "Explain SELECT/INSERT/UPDATE at a literacy level",
+        "Relate durable state to hold/release audit needs"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "sql_primer",
+          "label": "sql primer",
+          "path": "06a-sql-primer/readings/sql_primer.md",
+          "href": "content/06a-sql-primer/readings/sql_primer.md"
+        }
+      ]
+    },
+    {
       "id": "07-mailguard-api",
       "number": "07",
       "title": "MailGuard API",
@@ -646,6 +758,7 @@
         "Cover core paths with automated tests and OpenAPI",
         "Document architecture and production gaps"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -724,6 +837,41 @@
       ]
     },
     {
+      "id": "07a-typescript-vue-primer",
+      "number": "07a",
+      "title": "TypeScript / Vue primer",
+      "phase": "Product build",
+      "blurb": "Node, TypeScript, and Vue 3 basics before the MailGuard admin UI.",
+      "hours": "est. 8-10h",
+      "language": "Vue + TypeScript",
+      "languageDetail": "Node.js LTS · TypeScript strict · Vue 3",
+      "objectives": [
+        "Install Node and run a tiny TypeScript check",
+        "Explain why typed UI helpers catch hold-queue mistakes early",
+        "Know the Vue 3 mental model enough to follow Module 08"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "typescript_vue_primer",
+          "label": "typescript vue primer",
+          "path": "07a-typescript-vue-primer/readings/typescript_vue_primer.md",
+          "href": "content/07a-typescript-vue-primer/readings/typescript_vue_primer.md"
+        }
+      ]
+    },
+    {
       "id": "08-mailguard-admin",
       "number": "08",
       "title": "MailGuard Admin",
@@ -737,6 +885,7 @@
         "Provide accessible forms for approve/release actions",
         "Keep TypeScript strict with a few meaningful tests"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -788,6 +937,41 @@
       ]
     },
     {
+      "id": "08a-go-primer",
+      "number": "08a",
+      "title": "Go primer",
+      "phase": "Product build",
+      "blurb": "Go toolchain, packages, and go test before the MailGuard worker.",
+      "hours": "est. 8-10h",
+      "language": "Go",
+      "languageDetail": "Go modules · packages · go test",
+      "objectives": [
+        "Install Go and run go version / go test",
+        "Explain why workers often use Go for small queue consumers",
+        "Read a tiny function + test in Go style"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "go_primer",
+          "label": "go primer",
+          "path": "08a-go-primer/readings/go_primer.md",
+          "href": "content/08a-go-primer/readings/go_primer.md"
+        }
+      ]
+    },
+    {
       "id": "09-mailguard-worker",
       "number": "09",
       "title": "MailGuard Worker",
@@ -801,6 +985,7 @@
         "Document the shared contract with the Python API",
         "Containerize the worker with a clear local demo"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -873,6 +1058,7 @@
         "Relate cloud-share DLP controls to email attachments",
         "Keep secrets and object storage credentials out of git"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -952,6 +1138,7 @@
         "Write honest lab notes without attack tooling for real systems",
         "Prioritize remediations you can demonstrate in-repo"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1024,6 +1211,76 @@
       ]
     },
     {
+      "id": "11a-docker-primer",
+      "number": "11a",
+      "title": "Docker primer",
+      "phase": "Cloud & platform",
+      "blurb": "Images, containers, and Compose before CI image steps and the infra module.",
+      "hours": "est. 8-10h",
+      "language": "Docker",
+      "languageDetail": "Docker Engine/Desktop · images · Compose",
+      "objectives": [
+        "Explain image vs container and why demos prefer Compose",
+        "Install Docker and run a hello-world style check",
+        "Relate containers to repeatable MailGuard local demos"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "docker_primer",
+          "label": "docker primer",
+          "path": "11a-docker-primer/readings/docker_primer.md",
+          "href": "content/11a-docker-primer/readings/docker_primer.md"
+        }
+      ]
+    },
+    {
+      "id": "11b-github-actions-primer",
+      "number": "11b",
+      "title": "GitHub Actions primer",
+      "phase": "Cloud & platform",
+      "blurb": "Workflow YAML, jobs, and secrets hygiene before the CI + AWS module.",
+      "hours": "est. 8-10h",
+      "language": "GitHub Actions",
+      "languageDetail": "Workflow YAML · jobs/steps · OIDC-minded deploy notes",
+      "objectives": [
+        "Read a minimal workflow (on/push → job → steps)",
+        "Explain why CI runs tests before merge and keeps secrets out of git",
+        "Know where Module 12 builds on this primer"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "github_actions_primer",
+          "label": "github actions primer",
+          "path": "11b-github-actions-primer/readings/github_actions_primer.md",
+          "href": "content/11b-github-actions-primer/readings/github_actions_primer.md"
+        }
+      ]
+    },
+    {
       "id": "12-ci-aws",
       "number": "12",
       "title": "CI + AWS",
@@ -1037,6 +1294,7 @@
         "Document a cloud deploy path without committing secrets",
         "Explain least-privilege choices for the demo identity"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1109,6 +1367,41 @@
       ]
     },
     {
+      "id": "12a-terraform-primer",
+      "number": "12a",
+      "title": "Terraform / HCL primer",
+      "phase": "Cloud & platform",
+      "blurb": "HCL, plan/apply, and state basics before the infra module.",
+      "hours": "est. 8-10h",
+      "language": "Terraform / HCL",
+      "languageDetail": "HashiCorp Configuration Language · terraform plan",
+      "objectives": [
+        "Install Terraform and run terraform version",
+        "Explain plan vs apply and why state must stay out of git",
+        "Recognize a tiny resource block before Module 13"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "terraform_primer",
+          "label": "terraform primer",
+          "path": "12a-terraform-primer/readings/terraform_primer.md",
+          "href": "content/12a-terraform-primer/readings/terraform_primer.md"
+        }
+      ]
+    },
+    {
       "id": "13-infra",
       "number": "13",
       "title": "Infra",
@@ -1122,6 +1415,7 @@
         "Complete an IAM / misconfig posture assignment for your resources",
         "Keep state and credentials out of version control"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1180,6 +1474,41 @@
       ]
     },
     {
+      "id": "13a-kubernetes-primer",
+      "number": "13a",
+      "title": "Kubernetes YAML primer",
+      "phase": "Stretch",
+      "blurb": "Pods, Deployments, Services, and kubectl before the local cluster module.",
+      "hours": "est. 8-10h",
+      "language": "Kubernetes YAML",
+      "languageDetail": "kubectl · kind/minikube · Deployment/Service manifests",
+      "objectives": [
+        "Explain Pod vs Deployment vs Service at a literacy level",
+        "Install kubectl (and know kind/minikube comes in Module 14)",
+        "Read a tiny Deployment snippet before applying anything"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "kubernetes_primer",
+          "label": "kubernetes primer",
+          "path": "13a-kubernetes-primer/readings/kubernetes_primer.md",
+          "href": "content/13a-kubernetes-primer/readings/kubernetes_primer.md"
+        }
+      ]
+    },
+    {
       "id": "14-k8s-local",
       "number": "14",
       "title": "K8s local",
@@ -1193,6 +1522,7 @@
         "Add probes and resource requests to manifests",
         "Document what you did not automate yet (GitOps, policy)"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1276,6 +1606,7 @@
         "Draft SLI/SLO notes and a lightweight postmortem",
         "Hook at least one metric or structured log in the story"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1361,6 +1692,7 @@
         "Apply a policy-as-code check that rejects a bad manifest",
         "Keep claims proportional to what you automated"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1433,6 +1765,41 @@
       ]
     },
     {
+      "id": "16a-svelte-primer",
+      "number": "16a",
+      "title": "Svelte primer",
+      "phase": "Optional",
+      "blurb": "Svelte / SvelteKit basics before the optional Phish Lite UI.",
+      "hours": "est. 8-10h",
+      "language": "Svelte",
+      "languageDetail": "Svelte · SvelteKit · Node.js",
+      "objectives": [
+        "Explain how Svelte differs from Vue at a high level",
+        "Know Node is required and where official tutorials live",
+        "Stay clear that Phish Lite is learning-only (no real credential capture)"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "svelte_primer",
+          "label": "svelte primer",
+          "path": "16a-svelte-primer/readings/svelte_primer.md",
+          "href": "content/16a-svelte-primer/readings/svelte_primer.md"
+        }
+      ]
+    },
+    {
       "id": "17-phish-lite",
       "number": "17",
       "title": "Phish Lite",
@@ -1446,6 +1813,7 @@
         "Keep the project clearly labeled as a learning clone",
         "Practice honest UX copy for warnings and results"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1518,6 +1886,7 @@
         "Critique or redesign a security warning UX",
         "Write reflections suitable for a portfolio footnote"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1582,6 +1951,7 @@
         "Self-grade honestly against the capstone rubric",
         "Package commands and evidence a stranger can follow"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1653,6 +2023,7 @@
         "Contrast JIT vs SCIM vs directory sync",
         "Map Entra / Google Workspace examples without vendor lock-in copy"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1730,6 +2101,7 @@
         "Compare major privacy regimes at a literacy level",
         "Connect privacy duties to hold/release queues"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
@@ -1801,6 +2173,7 @@
         "Review for secrets, authz, and input validation",
         "Use conventional commits and CODEOWNERS effectively"
       ],
+      "readOnly": false,
       "hasModuleDir": true,
       "assignments": [
         {
