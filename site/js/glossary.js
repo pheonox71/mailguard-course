@@ -49,11 +49,16 @@ async function main() {
             <dl>
               ${terms
                 .map(
-                  (t) => `
+                  (t) => {
+                    const label = t.abbrev
+                      ? `<abbr title="${t.term}">${t.abbrev}</abbr> — ${t.term}`
+                      : t.term
+                    return `
                 <div class="glossary-item" id="${t.id}">
-                  <dt><abbr title="${t.term}">${t.abbrev || t.term}</abbr> — ${t.term}</dt>
+                  <dt>${label}</dt>
                   <dd>${t.meaning}</dd>
-                </div>`,
+                </div>`
+                  },
                 )
                 .join('')}
             </dl>

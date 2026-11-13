@@ -91,41 +91,81 @@ function linkGlossaryTerms(html) {
   if (!glossaryTerms.length) return html
   const wrap = document.createElement('div')
   wrap.innerHTML = html
-  const skip = new Set(['A', 'CODE', 'PRE', 'ABBR', 'SCRIPT', 'STYLE'])
-  const terms = [...glossaryTerms].sort((a, b) => b.abbrev.length - a.abbrev.length)
+  const skip = new Set([
+    'A',
+    'CODE',
+    'PRE',
+    'ABBR',
+    'SCRIPT',
+    'STYLE',
+    'H1',
+    'H2',
+    'H3',
+    'H4',
+    'H5',
+    'H6',
+    'FIGCAPTION',
+    'KBD',
+    'SAMP',
+  ])
+  const terms = [...glossaryTerms]
+    .filter((t) => t.abbrev && t.abbrev.length >= 2)
+    .sort((a, b) => b.abbrev.length - a.abbrev.length)
+  const linked = new Set()
   const walk = (node) => {
-    if (node.nodeType === Node.ELEMENT_NODE && skip.has(node.tagName)) return
-    if (node.nodeType === Node.TEXT_NODE) {
-      let text = node.nodeValue
-      let changed = false
-      for (const t of terms) {
-        if (!t.abbrev || t.abbrev.length < 2) continue
-        const re = new RegExp(`\\b(${t.abbrev.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'g')
-        if (!re.test(text)) continue
-        re.lastIndex = 0
-        const span = document.createElement('span')
-        let last = 0
-        let m
-        const src = text
-        while ((m = re.exec(src))) {
-          span.appendChild(document.createTextNode(src.slice(last, m.index)))
-          const a = document.createElement('a')
-          a.href = withBase(`glossary.html#${t.id}`)
-          a.className = 'glossary-ref'
-          a.textContent = m[1]
-          span.appendChild(a)
-          last = m.index + m[0].length
-          changed = true
-        }
-        span.appendChild(document.createTextNode(src.slice(last)))
-        node.replaceWith(span)
-        return
-      }
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      if (skip.has(node.tagName)) return
+      ;[...node.childNodes].forEach(walk)
       return
     }
-    ;[...node.childNodes].forEach(walk)
+    if (node.nodeType !== Node.TEXT_NODE) return
+    const text = node.nodeValue
+    if (!text || !/\S/.test(text)) return
+    for (const t of terms) {
+      if (linked.has(t.id)) continue
+      const re = new RegExp(`\\b(${t.abbrev.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`)
+      const m = re.exec(text)
+      if (!m) continue
+      const span = document.createElement('span')
+      span.appendChild(document.createTextNode(text.slice(0, m.index)))
+      const a = document.createElement('a')
+      a.href = withBase(`glossary.html#${t.id}`)
+      a.className = 'glossary-ref'
+      a.title = t.term
+      a.textContent = m[1]
+      span.appendChild(a)
+      span.appendChild(document.createTextNode(text.slice(m.index + m[0].length)))
+      node.replaceWith(span)
+      linked.add(t.id)
+      ;[...span.childNodes].forEach(walk)
+      return
+    }
   }
   walk(wrap)
+  return wrap.innerHTML
+}
+
+/** Drop raw repo-relative quiz/worksheet footer lines; strip (`id`) from titles. */
+function polishReadingHtml(html) {
+  const wrap = document.createElement('div')
+  wrap.innerHTML = html
+  wrap.querySelectorAll('a[href]').forEach((a) => {
+    const href = a.getAttribute('href') || ''
+    if (!/\/(quizzes|worksheets)\//.test(href) && !/\.\.\/(quizzes|worksheets)\//.test(href)) return
+    const p = a.closest('p')
+    if (!p) return
+    const text = p.textContent || ''
+    if (/after this reading|continue with the worksheet/i.test(text) || /quizzes\/|worksheets\//.test(text)) {
+      const heading = p.previousElementSibling
+      if (heading && /^H[1-6]$/.test(heading.tagName) && /quiz|next step/i.test(heading.textContent || '')) {
+        heading.remove()
+      }
+      p.remove()
+    }
+  })
+  wrap.querySelectorAll('h1, h2, h3').forEach((h) => {
+    h.textContent = h.textContent.replace(/\s*\(`[^`]+`\)\s*/g, '').replace(/\s+/g, ' ').trim()
+  })
   return wrap.innerHTML
 }
 
@@ -138,7 +178,8 @@ async function loadReadingHtml(reading) {
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const md = await res.text()
     const raw = marked.parse(md, { async: false })
-    return linkGlossaryTerms(enhanceFigures(raw, readingBase(reading.href)))
+    const enhanced = enhanceFigures(raw, readingBase(reading.href))
+    return linkGlossaryTerms(polishReadingHtml(enhanced))
   } catch {
     return `<p class="empty-note">Could not load <code>${escapeHtml(reading.href)}</code>. Run <code>npm run prepare-readings</code>.</p>`
   }
@@ -325,7 +366,7 @@ async function main() {
     <p class="module-blurb">${escapeHtml(mod.blurb)}</p>
     <p class="language-chip"><span>Language / tooling</span> ${escapeHtml(mod.language || 'See module README')}${
       mod.languageDetail
-        ? ` — <span class="muted">${escapeHtml(mod.languageDetail)}</span>`
+        ? ` — <span class="language-detail">${escapeHtml(mod.languageDetail)}</span>`
         : ''
     }</p>
     ${

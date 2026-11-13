@@ -4,7 +4,7 @@ This module closes the course: ship a **coherent demo** of outbound message filt
 
 **Authorship:** AI-generated. The student implements the filter and fills the worksheet.
 
-Continue with the worksheet: [`../worksheets/capstone_self_grade.md`](../worksheets/capstone_self_grade.md). The quiz is **required**.
+Continue with the worksheet from the downloads on this page. The quiz is **required**.
 
 ---
 

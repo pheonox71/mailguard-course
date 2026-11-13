@@ -41,5 +41,6 @@ MailGuard’s hold rules catch *outbound* mistakes (missend, policy). Attackers 
 
 Receivers email XML **aggregate reports** to `rua=` addresses summarizing pass/fail by source IP. Operators use them to find legitimate senders missing SPF/DKIM before flipping `p=reject`. This course does not require a live domain — parse policies in the kata and describe what a report would tell you on the worksheet.
 
-## Quiz (required)
-After this reading: [`../quizzes/email_auth.md`](../quizzes/email_auth.md).
+## Next step
+
+Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.

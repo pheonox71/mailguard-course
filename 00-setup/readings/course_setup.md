@@ -4,7 +4,7 @@ This module prepares your machine for the full course: identity / MFA katas, ema
 
 **Authorship:** AI-generated. The student completes the worksheet and quiz.
 
-Continue with the worksheet after this reading: [`../worksheets/course_setup.md`](../worksheets/course_setup.md). The quiz is **required**.
+Continue with the worksheet from the downloads on this page. The quiz is **required**.
 
 ---
 

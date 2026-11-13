@@ -1,4 +1,4 @@
-# Reading — TOTP verify (`totp_verify`)
+# Reading — TOTP verify
 
 ## Learning objectives
 
@@ -52,5 +52,6 @@ Challenge-style hiring tasks often pair a short coding exercise with **MFA/One-T
 - [National Institute of Standards and Technology (NIST) SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticator guidance at a high level (linked from PyOTP’s reading list).
 - Skim only: security considerations sections inside RFC 6238 / 4226 once the kata is green.
 
-## Quiz (required)
-After this reading: [`../quizzes/totp_verify.md`](../quizzes/totp_verify.md).
+## Next step
+
+Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.

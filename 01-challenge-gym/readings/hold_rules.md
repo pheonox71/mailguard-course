@@ -1,4 +1,4 @@
-# Reading — Hold rules (`hold_rules`)
+# Reading — Hold rules
 
 ## Learning objectives
 
@@ -51,5 +51,6 @@ Real email DLP products share this shape: rules that allow, suspend, or discard 
 
 Production DLP adds attachment inspection, admin UX, queues, and richer matching. Your kata stays dumb on purpose — interview-explainable order and predicates first. Later MailGuard folders (API, Go workers, Vue admin, AWS) extend this toy engine toward a fuller SaaS shape.
 
-## Quiz (required)
-After this reading: [`../quizzes/hold_rules.md`](../quizzes/hold_rules.md).
+## Next step
+
+Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.
