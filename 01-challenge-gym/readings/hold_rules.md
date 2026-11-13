@@ -12,6 +12,10 @@ By the end of this kata’s reading + worksheet + implementation, you should be 
 
 Email DLP products sit between sender and recipient and apply **policy**: allow, temporarily hold (suspend), or reject/discard. Admins express rules; engines evaluate messages in a defined order. This kata is a **tiny** version of that idea — domain and substring predicates, **first match wins**, no DSL. The point is clear specs and concise Python, not a production rule language.
 
+![Ordered hold rules evaluating a message with first-match-wins allow, hold, or reject outcomes](images/hold-rules-flow.svg)
+
+*Figure. Inspect the message, walk the ordered rule list, and stop at the **first match**. Notice the three actions — allow, hold/suspend, reject/discard — and that evaluation order is part of the policy, not an afterthought. Original course diagram (CC0).*
+
 Real email DLP products share this shape: rules that allow, suspend, or discard to prevent costly mis-sends of sensitive information. MailGuard later folders reuse the same allow / hold / reject vocabulary.
 
 ## Videos (verified)

@@ -12,6 +12,10 @@ By the end of this kata’s reading + worksheet + implementation, you should be 
 
 A common missend pattern: a message meant for **internal** colleagues also includes an **external** address (or a typo’d / invalid address). Classifying recipients against an org domain and flagging **mixed** or **invalid** sets is the seed of a hold decision. This kata uses a **simple** `local@domain` normalizer — enough to practice specs and string discipline, not full RFC 5322 parsing.
 
+![Recipient classification into internal, external, or invalid, then a set outcome that can feed hold rules](images/recipient-risk.svg)
+
+*Figure. Normalize first, then classify each address against the org domain. Notice that **mixed** or **invalid** set outcomes are the missend signal — the same “verify the recipient” habit applies to accidents and to BEC pressure, with different attacker models. Original course diagram (CC0).*
+
 Pair this with the hold-rules kata: risk signals often feed “should we hold?” policies in email Data Loss Prevention (DLP) products.
 
 ## Videos (verified)

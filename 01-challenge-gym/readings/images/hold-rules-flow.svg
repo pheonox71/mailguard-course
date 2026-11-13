@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" role="img" aria-labelledby="title desc">
+  <title id="title">Hold rules first-match evaluation</title>
+  <desc id="desc">An outbound message is evaluated against ordered DLP rules; the first matching rule decides allow, hold, or reject.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1.5 L8 5 L0 8.5 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .box { fill:#f8fafc; stroke:#334155; stroke-width:1.5; }
+      .box-msg { fill:#eff6ff; stroke:#1d4ed8; stroke-width:1.5; }
+      .box-allow { fill:#ecfdf5; stroke:#047857; stroke-width:1.5; }
+      .box-hold { fill:#fefce8; stroke:#a16207; stroke-width:1.5; }
+      .box-rej { fill:#fff7ed; stroke:#c2410c; stroke-width:1.5; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size:13px; fill:#0f172a; }
+      .small { font-family: ui-sans-serif, system-ui, sans-serif; font-size:11px; fill:#475569; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size:15px; font-weight:700; fill:#0f172a; }
+    </style>
+  </defs>
+  <rect width="780" height="380" fill="#ffffff"/>
+  <text x="24" y="28" class="title">Email DLP hold rules: first match wins</text>
+
+  <rect x="24" y="56" width="160" height="72" rx="8" class="box-msg"/>
+  <text x="104" y="86" text-anchor="middle" class="label">Outbound</text>
+  <text x="104" y="106" text-anchor="middle" class="label">message</text>
+
+  <line x1="184" y1="92" x2="240" y2="92" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="242" y="48" width="280" height="200" rx="10" class="box"/>
+  <text x="382" y="76" text-anchor="middle" class="label">Ordered rule list</text>
+  <text x="382" y="94" text-anchor="middle" class="small">evaluate top → bottom</text>
+
+  <rect x="262" y="110" width="240" height="32" rx="6" class="box"/>
+  <text x="382" y="130" text-anchor="middle" class="small">1. if invalid recipient → reject</text>
+  <rect x="262" y="150" width="240" height="32" rx="6" class="box-hold"/>
+  <text x="382" y="170" text-anchor="middle" class="small">2. if mixed recipients → hold</text>
+  <rect x="262" y="190" width="240" height="32" rx="6" class="box"/>
+  <text x="382" y="210" text-anchor="middle" class="small">3. if subject has “payroll” → hold</text>
+
+  <line x1="522" y1="126" x2="580" y2="126" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="522" y1="166" x2="580" y2="166" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="522" y1="206" x2="580" y2="286" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="582" y="56" width="174" height="48" rx="8" class="box-rej"/>
+  <text x="669" y="84" text-anchor="middle" class="label">reject / discard</text>
+  <rect x="582" y="142" width="174" height="48" rx="8" class="box-hold"/>
+  <text x="669" y="170" text-anchor="middle" class="label">hold / suspend</text>
+  <rect x="582" y="262" width="174" height="48" rx="8" class="box-allow"/>
+  <text x="669" y="290" text-anchor="middle" class="label">allow (default)</text>
+
+  <rect x="24" y="280" width="498" height="72" rx="8" class="box"/>
+  <text x="44" y="310" class="label">Inspect → match conditions → act</text>
+  <text x="44" y="330" class="small">Stop at the first matching rule. No DSL required — clear order and predicates first.</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" role="img" aria-labelledby="title desc">
+  <title id="title">OIDC and SAML enterprise SSO comparison</title>
+  <desc id="desc">OIDC is an identity layer on OAuth 2.0 using JSON tokens; SAML uses XML assertions. Both federate SSO through an identity provider to applications.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1.5 L8 5 L0 8.5 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .box { fill:#f8fafc; stroke:#334155; stroke-width:1.5; }
+      .box-idp { fill:#eff6ff; stroke:#1d4ed8; stroke-width:1.5; }
+      .box-oidc { fill:#ecfdf5; stroke:#047857; stroke-width:1.5; }
+      .box-saml { fill:#fefce8; stroke:#a16207; stroke-width:1.5; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size:13px; fill:#0f172a; }
+      .small { font-family: ui-sans-serif, system-ui, sans-serif; font-size:11px; fill:#475569; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size:15px; font-weight:700; fill:#0f172a; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; fill:#0f172a; }
+    </style>
+  </defs>
+  <rect width="780" height="380" fill="#ffffff"/>
+  <text x="24" y="28" class="title">Enterprise SSO: OIDC vs SAML (high level)</text>
+
+  <rect x="280" y="52" width="220" height="72" rx="10" class="box-idp"/>
+  <text x="390" y="82" text-anchor="middle" class="label">Identity Provider (IdP)</text>
+  <text x="390" y="102" text-anchor="middle" class="small">authenticates the user</text>
+
+  <line x1="320" y1="124" x2="200" y2="168" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="460" y1="124" x2="580" y2="168" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="172" width="300" height="140" rx="10" class="box-oidc"/>
+  <text x="190" y="204" text-anchor="middle" class="label">OpenID Connect (OIDC)</text>
+  <text x="190" y="228" text-anchor="middle" class="small">Identity layer on OAuth 2.0</text>
+  <text x="190" y="248" text-anchor="middle" class="mono">ID Token (JWT) + UserInfo</text>
+  <text x="190" y="276" text-anchor="middle" class="small">Common for modern web / APIs</text>
+  <text x="190" y="294" text-anchor="middle" class="small">This module’s coding path</text>
+
+  <rect x="440" y="172" width="300" height="140" rx="10" class="box-saml"/>
+  <text x="590" y="204" text-anchor="middle" class="label">SAML 2.0</text>
+  <text x="590" y="228" text-anchor="middle" class="small">XML assertions to the SP</text>
+  <text x="590" y="248" text-anchor="middle" class="mono">Assertion / ACS endpoints</text>
+  <text x="590" y="276" text-anchor="middle" class="small">Still widespread in enterprises</text>
+  <text x="590" y="294" text-anchor="middle" class="small">Same SSO idea, different wire</text>
+
+  <rect x="40" y="334" width="700" height="28" rx="6" class="box"/>
+  <text x="390" y="353" text-anchor="middle" class="small">Device certs / posture are extra signals — not a replacement for federation literacy.</text>
+</svg>

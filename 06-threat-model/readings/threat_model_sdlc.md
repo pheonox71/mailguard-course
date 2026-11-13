@@ -12,6 +12,10 @@ Threat modeling asks “what can go wrong?” before or while you build. Secure 
 
 **STRIDE** (Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege) is a Microsoft-origin checklist still useful as interview vocabulary. **LINDDUN** is a privacy-oriented sibling; for MailGuard, focus on disclosure of held message bodies and audit access.
 
+![STRIDE-lite checklist with example questions for a hold and release path](images/stride-lite.svg)
+
+*Figure. Six STRIDE categories as a lightweight checklist on the hold/release path. Notice each tile pairs a threat question with a mitigation you may already ship (MFA, audit logs, least privilege) — document gaps honestly. Original course diagram (CC0).*
+
 ## Videos (verified)
 
 1. **[Threatmodcon keynote (segment)](https://www.youtube.com/watch?v=4ngYKVAs22c)** — Adam Shostack  

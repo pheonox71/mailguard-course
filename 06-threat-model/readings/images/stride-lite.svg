@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-labelledby="title desc">
+  <title id="title">STRIDE-lite threat categories</title>
+  <desc id="desc">Six STRIDE categories—spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege—used as a lightweight checklist for a hold and release path.</desc>
+  <defs>
+    <style>
+      .box { fill:#f8fafc; stroke:#334155; stroke-width:1.5; }
+      .cell { fill:#eff6ff; stroke:#1d4ed8; stroke-width:1.25; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size:13px; fill:#0f172a; }
+      .small { font-family: ui-sans-serif, system-ui, sans-serif; font-size:11px; fill:#475569; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size:15px; font-weight:700; fill:#0f172a; }
+      .letter { font-family: ui-sans-serif, system-ui, sans-serif; font-size:18px; font-weight:700; fill:#1d4ed8; }
+    </style>
+  </defs>
+  <rect width="780" height="360" fill="#ffffff"/>
+  <text x="24" y="28" class="title">STRIDE-lite checklist (hold / release path)</text>
+
+  <rect x="24" y="52" width="236" height="88" rx="10" class="cell"/>
+  <text x="44" y="82" class="letter">S</text>
+  <text x="72" y="82" class="label">Spoofing</text>
+  <text x="44" y="108" class="small">Fake operator / forged identity?</text>
+  <text x="44" y="126" class="small">Mitigate: MFA, strong auth</text>
+
+  <rect x="272" y="52" width="236" height="88" rx="10" class="cell"/>
+  <text x="292" y="82" class="letter">T</text>
+  <text x="320" y="82" class="label">Tampering</text>
+  <text x="292" y="108" class="small">Altered rules or held bodies?</text>
+  <text x="292" y="126" class="small">Mitigate: integrity, access control</text>
+
+  <rect x="520" y="52" width="236" height="88" rx="10" class="cell"/>
+  <text x="540" y="82" class="letter">R</text>
+  <text x="568" y="82" class="label">Repudiation</text>
+  <text x="540" y="108" class="small">Deny a release action?</text>
+  <text x="540" y="126" class="small">Mitigate: audit logs</text>
+
+  <rect x="24" y="156" width="236" height="88" rx="10" class="cell"/>
+  <text x="44" y="186" class="letter">I</text>
+  <text x="72" y="186" class="label">Info disclosure</text>
+  <text x="44" y="212" class="small">Who can read held mail?</text>
+  <text x="44" y="230" class="small">Mitigate: least privilege</text>
+
+  <rect x="272" y="156" width="236" height="88" rx="10" class="cell"/>
+  <text x="292" y="186" class="letter">D</text>
+  <text x="320" y="186" class="label">Denial of service</text>
+  <text x="292" y="212" class="small">Queue / hold flooded?</text>
+  <text x="292" y="230" class="small">Mitigate: limits, capacity</text>
+
+  <rect x="520" y="156" width="236" height="88" rx="10" class="cell"/>
+  <text x="540" y="186" class="letter">E</text>
+  <text x="568" y="186" class="label">Elevation</text>
+  <text x="540" y="212" class="small">Operator → admin powers?</text>
+  <text x="540" y="230" class="small">Mitigate: role separation</text>
+
+  <rect x="24" y="268" width="732" height="68" rx="10" class="box"/>
+  <text x="44" y="298" class="label">Ask “what can go wrong?” then map findings to mitigations you already ship — and gaps you document honestly.</text>
+  <text x="44" y="318" class="small">STRIDE is interview vocabulary and a checklist, not a certificate. Pair with OWASP SAMM as a maturity map.</text>
+</svg>

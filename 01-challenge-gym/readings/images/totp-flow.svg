@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" role="img" aria-labelledby="title desc">
+  <title id="title">TOTP verification flow</title>
+  <desc id="desc">Shared secret and time step feed HMAC, then truncation yields a short code that the server verifies within a small clock-skew window.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1.5 L8 5 L0 8.5 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .box { fill:#f8fafc; stroke:#334155; stroke-width:1.5; }
+      .box-accent { fill:#eff6ff; stroke:#1d4ed8; stroke-width:1.5; }
+      .box-ok { fill:#ecfdf5; stroke:#047857; stroke-width:1.5; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size:13px; fill:#0f172a; }
+      .small { font-family: ui-sans-serif, system-ui, sans-serif; font-size:11px; fill:#475569; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size:15px; font-weight:700; fill:#0f172a; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; fill:#0f172a; }
+    </style>
+  </defs>
+  <rect width="780" height="340" fill="#ffffff"/>
+  <text x="24" y="28" class="title">TOTP: shared secret + time → short code</text>
+
+  <rect x="24" y="52" width="150" height="56" rx="8" class="box"/>
+  <text x="99" y="76" text-anchor="middle" class="label">Shared secret K</text>
+  <text x="99" y="94" text-anchor="middle" class="small">provisioned once</text>
+
+  <rect x="24" y="132" width="150" height="56" rx="8" class="box"/>
+  <text x="99" y="156" text-anchor="middle" class="label">Time counter T</text>
+  <text x="99" y="174" text-anchor="middle" class="small">Unix time ÷ step (30s)</text>
+
+  <line x1="174" y1="80" x2="230" y2="148" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="174" y1="160" x2="230" y2="160" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="232" y="120" width="150" height="80" rx="8" class="box-accent"/>
+  <text x="307" y="150" text-anchor="middle" class="label">HMAC-SHA1</text>
+  <text x="307" y="170" text-anchor="middle" class="small">HOTP(K, T)</text>
+  <text x="307" y="186" text-anchor="middle" class="small">(RFC 6238)</text>
+
+  <line x1="382" y1="160" x2="430" y2="160" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="432" y="120" width="130" height="80" rx="8" class="box"/>
+  <text x="497" y="150" text-anchor="middle" class="label">Truncate</text>
+  <text x="497" y="170" text-anchor="middle" class="small">dynamic offset</text>
+  <text x="497" y="186" text-anchor="middle" class="mono">→ 6 digits</text>
+
+  <line x1="562" y1="160" x2="610" y2="160" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="612" y="120" width="144" height="80" rx="8" class="box-ok"/>
+  <text x="684" y="150" text-anchor="middle" class="label">OTP code</text>
+  <text x="684" y="172" text-anchor="middle" class="mono">482913</text>
+  <text x="684" y="188" text-anchor="middle" class="small">app &amp; server</text>
+
+  <rect x="232" y="240" width="524" height="72" rx="8" class="box"/>
+  <text x="252" y="268" class="label">Server verify: accept code for T−w … T … T+w</text>
+  <text x="252" y="290" class="small">Window covers clock skew only — still add rate limits and replay controls in production MFA.</text>
+</svg>

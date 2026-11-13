@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 400" role="img" aria-labelledby="title desc">
+  <title id="title">VPN admission versus ZTNA application access</title>
+  <desc id="desc">A VPN places the client on a broad internal network; ZTNA grants access to specific applications after identity and context checks via a policy engine and enforcement point.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1.5 L8 5 L0 8.5 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .box { fill:#f8fafc; stroke:#334155; stroke-width:1.5; }
+      .box-bad { fill:#fff7ed; stroke:#c2410c; stroke-width:1.5; }
+      .box-ok { fill:#ecfdf5; stroke:#047857; stroke-width:1.5; }
+      .box-accent { fill:#eff6ff; stroke:#1d4ed8; stroke-width:1.5; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size:13px; fill:#0f172a; }
+      .small { font-family: ui-sans-serif, system-ui, sans-serif; font-size:11px; fill:#475569; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size:15px; font-weight:700; fill:#0f172a; }
+    </style>
+  </defs>
+  <rect width="780" height="400" fill="#ffffff"/>
+  <text x="24" y="28" class="title">VPN (network admission) vs ZTNA (app access)</text>
+
+  <!-- VPN panel -->
+  <rect x="24" y="48" width="360" height="240" rx="12" class="box-bad"/>
+  <text x="204" y="78" text-anchor="middle" class="label">Classical VPN</text>
+  <rect x="48" y="98" width="100" height="48" rx="8" class="box"/>
+  <text x="98" y="126" text-anchor="middle" class="small">Client</text>
+  <line x1="148" y1="122" x2="190" y2="122" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="192" y="98" width="160" height="48" rx="8" class="box"/>
+  <text x="272" y="126" text-anchor="middle" class="small">Join corporate LAN</text>
+  <rect x="48" y="168" width="304" height="96" rx="8" class="box"/>
+  <text x="200" y="198" text-anchor="middle" class="label">Wide internal ranges</text>
+  <text x="200" y="220" text-anchor="middle" class="small">App A · App B · file shares · …</text>
+  <text x="200" y="242" text-anchor="middle" class="small">Lateral movement easier if compromised</text>
+
+  <!-- ZTNA panel -->
+  <rect x="396" y="48" width="360" height="240" rx="12" class="box-ok"/>
+  <text x="576" y="78" text-anchor="middle" class="label">ZTNA</text>
+  <rect x="420" y="98" width="100" height="48" rx="8" class="box"/>
+  <text x="470" y="126" text-anchor="middle" class="small">Client</text>
+  <line x1="520" y1="122" x2="560" y2="122" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="562" y="90" width="170" height="64" rx="8" class="box-accent"/>
+  <text x="647" y="116" text-anchor="middle" class="small">Identity + posture</text>
+  <text x="647" y="134" text-anchor="middle" class="small">+ context check</text>
+  <rect x="420" y="176" width="148" height="88" rx="8" class="box-accent"/>
+  <text x="494" y="208" text-anchor="middle" class="small">Policy Engine</text>
+  <text x="494" y="228" text-anchor="middle" class="small">(NIST SP 800-207)</text>
+  <rect x="588" y="176" width="144" height="88" rx="8" class="box"/>
+  <text x="660" y="208" text-anchor="middle" class="small">Enforcement</text>
+  <text x="660" y="228" text-anchor="middle" class="small">→ App A only</text>
+
+  <rect x="24" y="312" width="732" height="64" rx="10" class="box"/>
+  <text x="44" y="340" class="label">Never trust, always verify — continuous evaluation, not a single product SKU.</text>
+  <text x="44" y="358" class="small">ZTNA pairs with IdP signals (OIDC/MFA) so access is per application, not “on the LAN.”</text>
+</svg>

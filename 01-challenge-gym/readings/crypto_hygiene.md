@@ -12,6 +12,10 @@ By the end of this kata’s reading + worksheet + implementation, you should be 
 
 Time-based One-Time Password (**TOTP**) already taught “don’t hand-roll HMAC.” This kata widens the lens: integrity tags for audit-style blobs, and AEAD for secrets at rest (or in transit below TLS). You will call Python’s `hmac` module and the `cryptography` library’s AES-GCM — not design modes yourself.
 
+![Comparison of bare hash, HMAC, and AEAD plus a generate-store-rotate-revoke key lifecycle](images/crypto-hygiene.svg)
+
+*Figure. A bare hash is not authenticity when an attacker can change bytes; **HMAC** binds a secret key; **AEAD** encrypts and authenticates together (TLS is the everyday place this shows up). Notice the key lifecycle strip — generate, store, rotate, revoke — and the rule to use reviewed libraries. Original course diagram (CC0).*
+
 **TLS** (Transport Layer Security) is the protocol that protects HTTP and SMTP connections: the server presents an X.509 **certificate** (a signed binding of public key ↔ name), the client verifies the chain to a trusted root, then both sides negotiate an AEAD cipher suite. You will not implement TLS here; you *will* practice the same misuse rules TLS libraries already enforce — never reuse a nonce with the same key, never skip authentication, never treat “encrypt with raw AES-ECB” as done.
 
 ## Videos (verified)

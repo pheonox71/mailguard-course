@@ -10,6 +10,10 @@
 
 This module’s coding path is OIDC-shaped. Enterprises still run Security Assertion Markup Language (**SAML**) for many apps, issue device certificates for posture, and deploy password managers where SSO never arrived. This reading builds interview literacy without claiming you built a full Identity Provider (**IdP**).
 
+![Identity provider federating SSO to applications via OIDC JSON tokens or SAML XML assertions](images/oidc-vs-saml.svg)
+
+*Figure. One IdP, two common SSO wires: **OIDC** (identity layer on OAuth 2.0, JWT-shaped tokens) vs **SAML** (XML assertions). Notice the coding path here is OIDC-shaped, while enterprises still run both. Original course diagram (CC0).*
+
 ## Videos (verified)
 
 1. **[OAuth 2.0 and OpenID Connect (in plain English)](https://www.youtube.com/watch?v=996OiexHze0)** — OktaDev  

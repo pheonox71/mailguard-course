@@ -10,6 +10,10 @@
 
 MailGuard’s hold rules catch *outbound* mistakes (missend, policy). Attackers also **spoof inbound or lookalike domains**. SPF publishes which hosts may send for a domain (DNS TXT). DKIM adds a cryptographic signature over selected headers/body with a public key in DNS. DMARC tells receivers what to do when SPF/DKIM fail alignment with the visible `From:` domain, and where to send aggregate reports (`rua`).
 
+![SPF, DKIM, and DMARC checks from sending MTA through receiving MTA with DNS-published controls](images/spf-dkim-dmarc.svg)
+
+*Figure. SMTP+TLS protects the hop; **SPF** authorizes hosts, **DKIM** signs content, **DMARC** aligns results with the visible `From:` and sets `p=` policy. Notice hold/DLP and domain auth solve different problems (outbound mistakes vs inbound spoof). Original course diagram (CC0).*
+
 **SMTP + TLS** literacy: encrypting the pipe (TLS) stops casual eavesdropping on that hop; it does not replace SPF/DKIM/DMARC. Domain authentication is how receivers decide “did this domain authorize this message?”
 
 ## Videos (verified)

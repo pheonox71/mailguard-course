@@ -10,6 +10,10 @@
 
 Classical remote access: join a VPN, then reach wide internal ranges. If malware or a stolen laptop lands on that network, **lateral movement** is easier. Zero Trust Network Access (**ZTNA**) aims to grant access to *specific applications* after verifying user identity, often device posture, and context — ideally without parking the client on a flat corporate LAN.
 
+![Side-by-side contrast of VPN network admission versus ZTNA application-level access with policy engine](images/ztna-vs-vpn.svg)
+
+*Figure. VPN admits the client onto a broad LAN (lateral movement risk). ZTNA checks identity/posture/context, then a Policy Engine / Enforcement Point grants **per-app** access — notice “never trust, always verify,” not a single product SKU. Original course diagram (CC0).*
+
 MailGuard modules already practice app identity (TOTP, OIDC). ZTNA is the *network/access path* story that enterprises pair with identity providers.
 
 ## Videos (verified)

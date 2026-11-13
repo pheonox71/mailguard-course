@@ -12,6 +12,10 @@ By the end of this kata’s reading + worksheet + implementation, you should be 
 
 TOTP lets a server and an authenticator app compute the same short code from a **shared secret** and the **current time** (usually a 30-second step). You do **not** need to reimplement HMAC-SHA1 for a short challenge — understand the model, then use a well-regarded library (`pyotp`) to verify codes, including a small **window** for clock skew. Production MFA still needs replay protection, rate limits, and secret storage discipline; those belong later (`02-mailguard-mfa/`).
 
+![TOTP flow from shared secret and time counter through HMAC to a short code, with a server verification window](images/totp-flow.svg)
+
+*Figure. Shared secret **K** and time counter **T** feed HMAC; truncation yields the short code both the app and server compute. The verify **window** only covers clock skew — notice it does not replace rate limits or replay controls. Original course diagram (CC0).*
+
 Challenge-style hiring tasks often pair a short coding exercise with **MFA/One-Time Password (OTP) research**, and prefer elegant solutions over over-engineering. That is the bar this kata trains.
 
 ## Videos (verified)

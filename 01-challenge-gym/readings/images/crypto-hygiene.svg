@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 400" role="img" aria-labelledby="title desc">
+  <title id="title">Crypto hygiene: hash, HMAC, and AEAD</title>
+  <desc id="desc">A bare hash does not stop an attacker who can change bytes; HMAC binds a secret key; AEAD encrypts and authenticates together. Key lifecycle: generate, store, rotate, revoke.</desc>
+  <defs>
+    <style>
+      .box { fill:#f8fafc; stroke:#334155; stroke-width:1.5; }
+      .box-bad { fill:#fff7ed; stroke:#c2410c; stroke-width:1.5; }
+      .box-ok { fill:#ecfdf5; stroke:#047857; stroke-width:1.5; }
+      .box-accent { fill:#eff6ff; stroke:#1d4ed8; stroke-width:1.5; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size:13px; fill:#0f172a; }
+      .small { font-family: ui-sans-serif, system-ui, sans-serif; font-size:11px; fill:#475569; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size:15px; font-weight:700; fill:#0f172a; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; fill:#0f172a; }
+    </style>
+  </defs>
+  <rect width="780" height="400" fill="#ffffff"/>
+  <text x="24" y="28" class="title">Integrity &amp; secrecy tools (use libraries)</text>
+
+  <rect x="24" y="52" width="232" height="150" rx="10" class="box-bad"/>
+  <text x="140" y="82" text-anchor="middle" class="label">Bare hash</text>
+  <text x="140" y="108" text-anchor="middle" class="mono">H(message)</text>
+  <text x="140" y="136" text-anchor="middle" class="small">Anyone can recompute</text>
+  <text x="140" y="154" text-anchor="middle" class="small">after changing bytes.</text>
+  <text x="140" y="178" text-anchor="middle" class="small">Not authenticity.</text>
+
+  <rect x="274" y="52" width="232" height="150" rx="10" class="box-ok"/>
+  <text x="390" y="82" text-anchor="middle" class="label">HMAC</text>
+  <text x="390" y="108" text-anchor="middle" class="mono">HMAC(K, message)</text>
+  <text x="390" y="136" text-anchor="middle" class="small">Secret key binds the tag.</text>
+  <text x="390" y="154" text-anchor="middle" class="small">Integrity + authenticity</text>
+  <text x="390" y="178" text-anchor="middle" class="small">for audit-style blobs.</text>
+
+  <rect x="524" y="52" width="232" height="150" rx="10" class="box-accent"/>
+  <text x="640" y="82" text-anchor="middle" class="label">AEAD (e.g. AES-GCM)</text>
+  <text x="640" y="108" text-anchor="middle" class="mono">seal / open</text>
+  <text x="640" y="136" text-anchor="middle" class="small">Encrypt + authenticate</text>
+  <text x="640" y="154" text-anchor="middle" class="small">in one construction.</text>
+  <text x="640" y="178" text-anchor="middle" class="small">Everyday place: TLS.</text>
+
+  <rect x="24" y="230" width="732" height="140" rx="10" class="box"/>
+  <text x="44" y="262" class="label">Key lifecycle checklist</text>
+  <rect x="44" y="282" width="150" height="56" rx="8" class="box-accent"/>
+  <text x="119" y="314" text-anchor="middle" class="label">generate</text>
+  <rect x="214" y="282" width="150" height="56" rx="8" class="box-accent"/>
+  <text x="289" y="314" text-anchor="middle" class="label">store</text>
+  <rect x="384" y="282" width="150" height="56" rx="8" class="box-accent"/>
+  <text x="459" y="314" text-anchor="middle" class="label">rotate</text>
+  <rect x="554" y="282" width="150" height="56" rx="8" class="box-accent"/>
+  <text x="629" y="314" text-anchor="middle" class="label">revoke</text>
+  <text x="44" y="354" class="small">Never invent ciphers · never reuse a nonce with the same key · prefer reviewed libraries (hmac, cryptography).</text>
+</svg>

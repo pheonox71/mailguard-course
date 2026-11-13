@@ -10,6 +10,10 @@
 
 TOTP proves “something you have” via a shared secret — but a convincing phishing page can still harvest the live code. Passkeys use WebAuthn: the browser/OS authenticator signs a challenge for *this* origin, so a lookalike domain should not get a usable assertion.
 
+![TOTP code typed into a fake site versus a WebAuthn passkey bound to the relying-party origin](images/passkeys-vs-totp.svg)
+
+*Figure. On the left, a typed TOTP code can be harvested and replayed. On the right, the authenticator signs only for the real relying-party origin — notice a lookalike domain does not get a usable assertion. Original course diagram (CC0).*
+
 ## Videos (verified)
 
 1. **[Understand passkeys in 4 minutes](https://www.youtube.com/watch?v=2xdV-xut7EQ)** — Google / passkeys overview  

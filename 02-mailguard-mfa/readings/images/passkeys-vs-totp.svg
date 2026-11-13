@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 400" role="img" aria-labelledby="title desc">
+  <title id="title">TOTP phishing risk versus origin-bound passkeys</title>
+  <desc id="desc">A phishing site can harvest a typed TOTP code; WebAuthn passkeys bind the assertion to the relying-party origin so a lookalike domain should not get a usable credential response.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1.5 L8 5 L0 8.5 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .box { fill:#f8fafc; stroke:#334155; stroke-width:1.5; }
+      .box-bad { fill:#fff7ed; stroke:#c2410c; stroke-width:1.5; }
+      .box-ok { fill:#ecfdf5; stroke:#047857; stroke-width:1.5; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size:13px; fill:#0f172a; }
+      .small { font-family: ui-sans-serif, system-ui, sans-serif; font-size:11px; fill:#475569; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size:15px; font-weight:700; fill:#0f172a; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; fill:#0f172a; }
+    </style>
+  </defs>
+  <rect width="780" height="400" fill="#ffffff"/>
+  <text x="24" y="28" class="title">TOTP can be phished; passkeys are origin-bound</text>
+
+  <rect x="24" y="52" width="360" height="250" rx="12" class="box-bad"/>
+  <text x="204" y="82" text-anchor="middle" class="label">TOTP soft token</text>
+  <rect x="48" y="100" width="140" height="56" rx="8" class="box"/>
+  <text x="118" y="124" text-anchor="middle" class="small">User types code</text>
+  <text x="118" y="142" text-anchor="middle" class="mono">482913</text>
+  <line x1="188" y1="128" x2="230" y2="128" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="232" y="100" width="128" height="56" rx="8" class="box-bad"/>
+  <text x="296" y="124" text-anchor="middle" class="small">Fake login</text>
+  <text x="296" y="142" text-anchor="middle" class="mono">evil.example</text>
+  <line x1="296" y1="156" x2="296" y2="196" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="48" y="200" width="312" height="72" rx="8" class="box"/>
+  <text x="204" y="230" text-anchor="middle" class="small">Attacker replays live code</text>
+  <text x="204" y="250" text-anchor="middle" class="small">to the real site within the window</text>
+
+  <rect x="396" y="52" width="360" height="250" rx="12" class="box-ok"/>
+  <text x="576" y="82" text-anchor="middle" class="label">Passkey / WebAuthn</text>
+  <rect x="420" y="100" width="140" height="56" rx="8" class="box"/>
+  <text x="490" y="124" text-anchor="middle" class="small">Authenticator</text>
+  <text x="490" y="142" text-anchor="middle" class="small">signs challenge</text>
+  <line x1="560" y1="128" x2="602" y2="128" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="604" y="100" width="128" height="56" rx="8" class="box-ok"/>
+  <text x="668" y="124" text-anchor="middle" class="small">RP origin</text>
+  <text x="668" y="142" text-anchor="middle" class="mono">bank.example</text>
+  <rect x="420" y="200" width="312" height="72" rx="8" class="box"/>
+  <text x="576" y="230" text-anchor="middle" class="small">Lookalike domain ≠ RP ID</text>
+  <text x="576" y="250" text-anchor="middle" class="small">no usable assertion for the phish</text>
+
+  <rect x="24" y="324" width="732" height="52" rx="10" class="box"/>
+  <text x="44" y="346" class="label">Place passkeys next to TOTP as a phishing-resistant next factor — not a rewrite of Challenge Gym.</text>
+  <text x="44" y="364" class="small">WebAuthn = browser API for public-key credentials bound to the relying-party origin.</text>
+</svg>

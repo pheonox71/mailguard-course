@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" role="img" aria-labelledby="title desc">
+  <title id="title">Recipient risk classification</title>
+  <desc id="desc">Normalize addresses, classify each as internal, external, or invalid against the org domain, then flag mixed or invalid sets as a missend signal.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1.5 L8 5 L0 8.5 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .box { fill:#f8fafc; stroke:#334155; stroke-width:1.5; }
+      .box-in { fill:#ecfdf5; stroke:#047857; stroke-width:1.5; }
+      .box-ex { fill:#eff6ff; stroke:#1d4ed8; stroke-width:1.5; }
+      .box-bad { fill:#fff7ed; stroke:#c2410c; stroke-width:1.5; }
+      .box-warn { fill:#fefce8; stroke:#a16207; stroke-width:1.5; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size:13px; fill:#0f172a; }
+      .small { font-family: ui-sans-serif, system-ui, sans-serif; font-size:11px; fill:#475569; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size:15px; font-weight:700; fill:#0f172a; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; fill:#0f172a; }
+    </style>
+  </defs>
+  <rect width="780" height="360" fill="#ffffff"/>
+  <text x="24" y="28" class="title">Recipient risk: classify, then decide</text>
+
+  <rect x="24" y="52" width="200" height="88" rx="8" class="box"/>
+  <text x="124" y="82" text-anchor="middle" class="label">To / Cc recipients</text>
+  <text x="124" y="102" text-anchor="middle" class="mono">alex@acme.example</text>
+  <text x="124" y="118" text-anchor="middle" class="mono">vendor@other.com</text>
+
+  <line x1="224" y1="96" x2="280" y2="96" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="282" y="52" width="180" height="88" rx="8" class="box"/>
+  <text x="372" y="86" text-anchor="middle" class="label">Normalize</text>
+  <text x="372" y="108" text-anchor="middle" class="small">lower domain · trim</text>
+  <text x="372" y="124" text-anchor="middle" class="small">local@domain shape</text>
+
+  <line x1="462" y1="96" x2="518" y2="96" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="620" y="44" text-anchor="middle" class="small">org = acme.example</text>
+  <rect x="520" y="52" width="112" height="40" rx="6" class="box-in"/>
+  <text x="576" y="76" text-anchor="middle" class="label">internal</text>
+  <rect x="644" y="52" width="112" height="40" rx="6" class="box-ex"/>
+  <text x="700" y="76" text-anchor="middle" class="label">external</text>
+  <rect x="582" y="102" width="112" height="40" rx="6" class="box-bad"/>
+  <text x="638" y="126" text-anchor="middle" class="label">invalid</text>
+
+  <line x1="372" y1="140" x2="372" y2="188" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="120" y="192" width="540" height="64" rx="8" class="box-warn"/>
+  <text x="390" y="220" text-anchor="middle" class="label">Set outcome: all-internal · mixed · has-invalid</text>
+  <text x="390" y="240" text-anchor="middle" class="small">Mixed or invalid sets are a missend / data-loss signal for hold rules.</text>
+
+  <rect x="120" y="276" width="540" height="60" rx="8" class="box"/>
+  <text x="390" y="302" text-anchor="middle" class="label">Same habit, different attacker: accidental missend ≠ BEC / phishing</text>
+  <text x="390" y="320" text-anchor="middle" class="small">Classification catches both “wrong To:” mistakes and lookalike pressure to verify.</text>
+</svg>

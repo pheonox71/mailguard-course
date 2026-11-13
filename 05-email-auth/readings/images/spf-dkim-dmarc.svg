@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 420" role="img" aria-labelledby="title desc">
+  <title id="title">SPF, DKIM, and DMARC email authentication</title>
+  <desc id="desc">SPF authorizes sending hosts via DNS, DKIM signs selected headers and body, and DMARC aligns results with the visible From domain and sets a receiver policy.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 1.5 L8 5 L0 8.5 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .box { fill:#f8fafc; stroke:#334155; stroke-width:1.5; }
+      .box-spf { fill:#eff6ff; stroke:#1d4ed8; stroke-width:1.5; }
+      .box-dkim { fill:#ecfdf5; stroke:#047857; stroke-width:1.5; }
+      .box-dmarc { fill:#fefce8; stroke:#a16207; stroke-width:1.5; }
+      .box-msg { fill:#f1f5f9; stroke:#334155; stroke-width:1.5; }
+      .label { font-family: ui-sans-serif, system-ui, sans-serif; font-size:13px; fill:#0f172a; }
+      .small { font-family: ui-sans-serif, system-ui, sans-serif; font-size:11px; fill:#475569; }
+      .title { font-family: ui-sans-serif, system-ui, sans-serif; font-size:15px; font-weight:700; fill:#0f172a; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; fill:#0f172a; }
+    </style>
+  </defs>
+  <rect width="780" height="420" fill="#ffffff"/>
+  <text x="24" y="28" class="title">Email auth stack: SPF + DKIM → DMARC</text>
+
+  <rect x="24" y="52" width="170" height="72" rx="8" class="box-msg"/>
+  <text x="109" y="82" text-anchor="middle" class="label">Sending MTA</text>
+  <text x="109" y="102" text-anchor="middle" class="small">SMTP hop (+ TLS)</text>
+
+  <line x1="194" y1="88" x2="250" y2="88" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="252" y="48" width="220" height="80" rx="8" class="box"/>
+  <text x="362" y="78" text-anchor="middle" class="label">Message</text>
+  <text x="362" y="98" text-anchor="middle" class="mono">From: boss@acme.example</text>
+  <text x="362" y="114" text-anchor="middle" class="small">TLS encrypts the hop — not From:</text>
+
+  <line x1="472" y1="88" x2="528" y2="88" stroke="#334155" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="530" y="52" width="226" height="72" rx="8" class="box-msg"/>
+  <text x="643" y="82" text-anchor="middle" class="label">Receiving MTA</text>
+  <text x="643" y="102" text-anchor="middle" class="small">checks DNS + signature</text>
+
+  <rect x="24" y="168" width="232" height="120" rx="10" class="box-spf"/>
+  <text x="140" y="198" text-anchor="middle" class="label">SPF</text>
+  <text x="140" y="222" text-anchor="middle" class="small">DNS TXT: which hosts</text>
+  <text x="140" y="240" text-anchor="middle" class="small">may send for the domain?</text>
+  <text x="140" y="266" text-anchor="middle" class="mono">v=spf1 ip4:… -all</text>
+
+  <rect x="274" y="168" width="232" height="120" rx="10" class="box-dkim"/>
+  <text x="390" y="198" text-anchor="middle" class="label">DKIM</text>
+  <text x="390" y="222" text-anchor="middle" class="small">Cryptographic signature</text>
+  <text x="390" y="240" text-anchor="middle" class="small">over selected headers/body</text>
+  <text x="390" y="266" text-anchor="middle" class="mono">public key in DNS</text>
+
+  <rect x="524" y="168" width="232" height="120" rx="10" class="box-dmarc"/>
+  <text x="640" y="198" text-anchor="middle" class="label">DMARC</text>
+  <text x="640" y="222" text-anchor="middle" class="small">Align SPF/DKIM with</text>
+  <text x="640" y="240" text-anchor="middle" class="small">visible From: domain</text>
+  <text x="640" y="266" text-anchor="middle" class="mono">p=none|quarantine|reject</text>
+
+  <rect x="24" y="316" width="732" height="76" rx="10" class="box"/>
+  <text x="44" y="346" class="label">Hold/DLP rules catch outbound mistakes; SPF/DKIM/DMARC address inbound spoof / lookalike trust.</text>
+  <text x="44" y="368" class="small">rua= aggregate reports help operators find legitimate senders before flipping to p=reject.</text>
+</svg>
