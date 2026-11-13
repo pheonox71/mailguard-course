@@ -28,7 +28,7 @@ Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{"token":"eyJhbGciOiJIUzI1NiJ9...","expires_in":3600}
+{"token":"lab-session-token-example","expires_in":3600}
 ```
 
 If the body were `{"access":"..."}` without `token`, a fail-closed parser rejects it instead of treating a missing key as success.
