@@ -78,16 +78,8 @@ The static server is rooted at `site/` only — parent folders such as `my-work/
 
 ## GitHub Pages
 
-Published from `site/` on pushes to `main` (GitHub Actions). Project URL:
+The course site is published from `site/` on pushes to `main` (GitHub Actions). It lives at:
 
 **https://pheonox71.github.io/mailguard-course/**
 
-### First-time owner setup (required once)
-
-The Cursor GitHub App cannot enable Pages. Repo owner must:
-
-1. Open **https://github.com/pheonox71/mailguard-course/settings/pages**
-2. Under **Build and deployment → Source**, choose **GitHub Actions**
-3. Re-run the failed **Deploy course site to GitHub Pages** workflow under the Actions tab (or push any commit to `main`)
-
-Until that switch is set, deploy jobs fail with HTTP 404 when creating the Pages deployment. The workflow still builds `site/` only and never publishes `my-work/`.
+Only `site/` is published. The workflow never links to or serves `my-work/`.
