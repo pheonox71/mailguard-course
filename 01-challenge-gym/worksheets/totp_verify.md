@@ -29,7 +29,7 @@ python
 
 ```python
 import pyotp
-secret = "JBSWY3DPEHPK3PXP"  # test-only secret
+secret = "JBSWY3DPEHPK3PXP"  # TEST FIXTURE ONLY — public pyotp demo key; not a live credential
 totp = pyotp.TOTP(secret)
 code = totp.at(1_700_000_000)
 print(code)

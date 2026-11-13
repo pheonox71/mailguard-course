@@ -1,0 +1,17 @@
+# Gitleaks config for MailGuard Course.
+# Extends defaults; only allowlists known educational test fixtures (not live secrets).
+
+title = "mailguard-course"
+
+[extend]
+useDefault = true
+
+# Narrow path allowlist for intentional non-secret fixtures used in lessons.
+# Do not broaden these paths; remove an entry if a real credential appears there.
+[allowlist]
+description = "Known educational test fixtures (TOTP demo key + local compose password)"
+paths = [
+  '''(^|/)01-challenge-gym/tests/test_totp_verify\.py$''',
+  '''(^|/)01-challenge-gym/worksheets/totp_verify\.md$''',
+  '''(^|/)13-infra/starter/docker-compose\.yml$''',
+]

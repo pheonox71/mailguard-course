@@ -1,3 +1,4 @@
+# Local demo compose only. Values below are TEST FIXTURES, not production secrets.
 services:
   api:
     image: mailguard-api:local
@@ -5,5 +6,6 @@ services:
   db:
     image: postgres:16
     environment:
+      # TEST FIXTURE ONLY — local compose password; never reuse in real deploys.
       POSTGRES_PASSWORD: local-only-not-for-prod
     ports: ["5432:5432"]

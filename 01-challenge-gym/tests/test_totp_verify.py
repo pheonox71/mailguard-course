@@ -6,7 +6,8 @@ import pytest
 
 from katas.totp_verify import current_code, verify_totp
 
-# Well-known test secret (base32); not used anywhere real.
+# TEST FIXTURE ONLY — well-known public pyotp/RFC demo base32 key.
+# Not a live credential. Do not use outside unit tests. (gitleaks allowlisted)
 SECRET = "JBSWY3DPEHPK3PXP"
 FIXED_TIME = 1_700_000_000.0
 

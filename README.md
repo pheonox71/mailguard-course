@@ -78,6 +78,12 @@ The static server is rooted at `site/` only — parent folders such as `my-work/
 
 ---
 
+## Secrets hygiene
+
+- Do not commit live credentials. Copy [`.env.example`](./.env.example) to `.env` for local config (gitignored).
+- Optional local hook: `pip install pre-commit && pre-commit install` — runs **gitleaks** before each commit (see [CONTRIBUTING.md](./CONTRIBUTING.md)).
+- CI runs gitleaks on every push. Known lesson **test fixtures** (TOTP demo key, local compose password) are allowlisted in [`.gitleaks.toml`](./.gitleaks.toml) and marked in-code as non-secrets.
+
 ## GitHub Pages
 
 The course site is published from `site/` on pushes to `main` (GitHub Actions). It lives at:

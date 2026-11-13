@@ -15,6 +15,21 @@ htmlcov/
 venv/
 .env
 .env.*
+!.env.example
+
+# Credentials / keys (never commit live secrets)
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+credentials.json
+credentials.*.json
+service-account*.json
 
 # Node
 node_modules/
