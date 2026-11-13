@@ -1,0 +1,8 @@
+# Example only — do not apply with real accounts from the course repo.
+# GitHub OIDC provider + IAM role trust + ECS Fargate service sketch.
+
+variable "github_repo" { type = string } # e.g. acme/mailguard
+
+# aws_iam_openid_connect_provider for token.actions.githubusercontent.com
+# aws_iam_role with condition StringLike sub = "repo:${var.github_repo}:ref:refs/heads/*"
+# aws_ecs_cluster / aws_ecs_service (Fargate) consuming the built image
