@@ -247,14 +247,15 @@ a:hover {
 }
 
 .btn-download {
-  background: rgba(226, 163, 106, 0.14);
-  border-color: rgba(226, 163, 106, 0.45);
-  color: #f3d2ad;
+  background: rgba(226, 163, 106, 0.18);
+  border-color: rgba(226, 163, 106, 0.55);
+  color: #f6d9b8;
 }
 
 .btn-download:hover {
-  color: #ffe7cb;
-  border-color: rgba(226, 163, 106, 0.75);
+  color: #fff0dc;
+  border-color: rgba(226, 163, 106, 0.85);
+  background: rgba(226, 163, 106, 0.28);
 }
 
 .btn:disabled,
@@ -631,9 +632,11 @@ a:hover {
 .topic-block {
   margin: 0 0 2rem;
   padding: 1.35rem 1.4rem 1.5rem;
-  border: 1px solid rgba(125, 255, 210, 0.12);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(8, 20, 28, 0.55);
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: var(--shadow);
 }
 
 .topic-block-header h2 {
@@ -676,7 +679,7 @@ a:hover {
 
 .reading-body p,
 .reading-body li {
-  color: #d7e4dc;
+  color: var(--text);
 }
 
 .reading-body a {
@@ -687,15 +690,17 @@ a:hover {
   font-size: 0.92em;
   padding: 0.1em 0.35em;
   border-radius: 6px;
-  background: rgba(125, 255, 210, 0.08);
+  background: color-mix(in srgb, var(--brand) 14%, transparent);
+  color: var(--text);
 }
 
 .reading-body pre {
   overflow-x: auto;
   padding: 0.9rem 1rem;
   border-radius: 12px;
-  background: rgba(2, 10, 14, 0.75);
-  border: 1px solid rgba(125, 255, 210, 0.1);
+  background: color-mix(in srgb, var(--ink) 88%, black);
+  border: 1px solid var(--line);
+  color: var(--text);
 }
 
 .reading-body pre code {
@@ -707,8 +712,8 @@ a:hover {
   margin: 1.25rem 0;
   padding: 0.85rem;
   border-radius: 14px;
-  background: rgba(2, 10, 14, 0.55);
-  border: 1px solid rgba(125, 255, 210, 0.12);
+  background: color-mix(in srgb, var(--ink) 70%, transparent);
+  border: 1px solid var(--line);
 }
 
 .reading-figure img {
@@ -794,9 +799,15 @@ a:hover {
   align-items: center;
 }
 .btn-key {
-  background: rgba(159, 217, 177, 0.1);
-  border-color: rgba(159, 217, 177, 0.4);
+  background: rgba(159, 217, 177, 0.14);
+  border-color: rgba(159, 217, 177, 0.45);
   color: #c8f0d4;
+}
+
+.btn-key:hover {
+  color: #e4fbea;
+  border-color: rgba(159, 217, 177, 0.7);
+  background: rgba(159, 217, 177, 0.22);
 }
 .reading-body {
   max-width: 42rem;
@@ -881,6 +892,117 @@ html[data-theme='light'] .download-panel > p {
 html[data-theme='light'] .download-panel code {
   color: #14241e;
   background: rgba(20, 70, 55, 0.08);
+}
+
+/* Download / answer-key pills: dark ink on tinted fills (WCAG AA) */
+html[data-theme='light'] .btn-download {
+  background: #f3dfc8;
+  border-color: #9a5b24;
+  color: #5c320c;
+}
+
+html[data-theme='light'] .btn-download:hover {
+  background: #edd2b2;
+  border-color: #7a4514;
+  color: #3f2106;
+}
+
+html[data-theme='light'] .btn-key {
+  background: #d5efe0;
+  border-color: #1f6b52;
+  color: #0c3d30;
+}
+
+html[data-theme='light'] .btn-key:hover {
+  background: #c4e6d4;
+  border-color: #0f4a39;
+  color: #062820;
+}
+
+html[data-theme='light'] .btn-ghost {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(20, 70, 55, 0.28);
+  color: #14241e;
+}
+
+html[data-theme='light'] .btn-ghost:hover {
+  border-color: rgba(20, 70, 55, 0.5);
+  color: #0a1814;
+}
+
+/* Topic reading cards: solid light panel, no dark-theme bleed */
+html[data-theme='light'] .topic-block {
+  background: #ffffff;
+  border-color: rgba(20, 70, 55, 0.16);
+  box-shadow: 0 12px 28px rgba(20, 36, 30, 0.07);
+  color: #14241e;
+}
+
+html[data-theme='light'] .topic-block-header h2,
+html[data-theme='light'] .reading-body h1,
+html[data-theme='light'] .reading-body h2,
+html[data-theme='light'] .reading-body h3 {
+  color: #102019;
+}
+
+html[data-theme='light'] .reading-body p,
+html[data-theme='light'] .reading-body li {
+  color: #24362e;
+}
+
+html[data-theme='light'] .reading-body a,
+html[data-theme='light'] .glossary-ref {
+  color: #0f4a39;
+  border-bottom-color: rgba(15, 74, 57, 0.45);
+}
+
+html[data-theme='light'] .reading-body a:hover,
+html[data-theme='light'] .glossary-ref:hover {
+  color: #083328;
+  border-bottom-color: #083328;
+}
+
+html[data-theme='light'] .reading-body code {
+  background: rgba(15, 74, 57, 0.1);
+  color: #102019;
+}
+
+html[data-theme='light'] .reading-body pre {
+  background: #eef4f0;
+  border-color: rgba(20, 70, 55, 0.14);
+  color: #14241e;
+}
+
+html[data-theme='light'] .reading-figure {
+  background: #f3f7f4;
+  border-color: rgba(20, 70, 55, 0.14);
+}
+
+html[data-theme='light'] .topic-downloads {
+  border-top-color: rgba(20, 70, 55, 0.12);
+}
+
+html[data-theme='light'] .progress-toggle {
+  color: #3a5248;
+}
+
+html[data-theme='light'] .module-row.is-complete {
+  background: rgba(31, 107, 82, 0.08);
+  border-color: rgba(31, 107, 82, 0.35);
+}
+
+html[data-theme='light'] .how {
+  background: rgba(255, 255, 255, 0.55);
+  border-block-color: rgba(20, 70, 55, 0.1);
+}
+
+html[data-theme='light'] .nav-cta {
+  border-color: rgba(31, 107, 82, 0.4);
+  color: #0f4a39 !important;
+}
+
+html[data-theme='light'] a:hover {
+  color: #083328;
 }
 
 .objectives {
