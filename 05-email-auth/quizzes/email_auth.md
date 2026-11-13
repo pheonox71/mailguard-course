@@ -5,3 +5,5 @@
 3. What does `rua=` collect?
 4. Why is outbound DLP/hold complementary to DMARC rather than a substitute?
 5. **Scenario:** Marketing starts using a new ESP. DMARC aggregate shows SPF fail from new IPs. What should happen before `p=reject`?
+
+6. **Spot the bug:** A DMARC record places `p=reject` before `v=DMARC1`. What happens?

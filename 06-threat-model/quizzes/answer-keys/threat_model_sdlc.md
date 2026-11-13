@@ -7,3 +7,5 @@ Use only after attempting the quiz questions.
 3. **Software Assurance Maturity Model** — no; this is literacy/self-assessment only.
 4. e.g. unauthorized read of held message bodies or overly verbose logs.
 5. Spoofing (fake operator) and Elevation of privilege (release powers without strong auth); maybe Repudiation if no audit.
+
+6. Distinct STRIDE categories tied to concrete elements/data flows — not a generic catch-all.

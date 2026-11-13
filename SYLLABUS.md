@@ -104,6 +104,8 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 
 ## Suggested order
 
+Capstone polish sits **after Phase A (00–13)** and **before Phase B stretch (14–18)**. Module folder `19-capstone/` keeps that number so Phase B folders stay stable — treat 19 as “after 13 in the learning path,” not “after 18.”
+
 ```text
 Module 0 (this file + prereqs + glossary)
   → 01 Challenge Gym
@@ -111,8 +113,8 @@ Module 0 (this file + prereqs + glossary)
   → 05 Email auth → 06 Threat model
   → 07 API → 08 Admin → 09 Worker → 10 Secure Drop → 11 Security notes
   → 12 CI/AWS → 13 Infra
-  → Capstone polish (rubric)
-  → 14 K8s → 15 Observability → 16 GitOps
+  → Capstone polish (19 — rubric / mail filter)
+  → Phase B stretch: 14 K8s → 15 Observability → 16 GitOps
   → optional 17 Phish Lite; optional 18 OSS / security UX
 ```
 
