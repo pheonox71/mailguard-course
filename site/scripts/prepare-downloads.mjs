@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Copy course worksheets / tests / quizzes / answer keys into site/downloads and
+ * Copy course assignments / tests / quizzes / answer keys into site/downloads and
  * emit data/catalog.json for the student-facing UI.
  *
  * Quiz PDFs are questions only. Answer keys are separate downloads.
@@ -86,7 +86,7 @@ for (const meta of MODULE_META) {
   const moduleOut = join(OUT_DIR, meta.id)
   ensureDir(moduleOut)
 
-  const worksheetsSrc = listFiles(join(moduleDir, 'worksheets'), (n) => n.endsWith('.md'))
+  const assignmentsSrc = listFiles(join(moduleDir, 'assignments'), (n) => n.endsWith('.md'))
   const testsSrc = listFiles(
     join(moduleDir, 'tests'),
     (n) => n.startsWith('test_') && n.endsWith('.py'),
@@ -100,25 +100,25 @@ for (const meta of MODULE_META) {
     (n) => n.endsWith('.md'),
   )
 
-  const worksheets = []
-  if (worksheetsSrc.length) {
-    const wDir = join(moduleOut, 'worksheets')
+  const assignments = []
+  if (assignmentsSrc.length) {
+    const wDir = join(moduleOut, 'assignments')
     ensureDir(wDir)
-    for (const src of worksheetsSrc) {
+    for (const src of assignmentsSrc) {
       const name = basename(src)
       copyFileSync(src, join(wDir, name))
-      worksheets.push({
+      assignments.push({
         id: basename(name, '.md'),
         label: topicLabel(name),
-        href: `downloads/${meta.id}/worksheets/${name}`,
+        href: `downloads/${meta.id}/assignments/${name}`,
         filename: name,
       })
     }
-    if (worksheetsSrc.length > 1) {
-      const zipPath = join(moduleOut, 'worksheets.zip')
+    if (assignmentsSrc.length > 1) {
+      const zipPath = join(moduleOut, 'assignments.zip')
       zipFiles(
         wDir,
-        worksheetsSrc.map((s) => join(wDir, basename(s))),
+        assignmentsSrc.map((s) => join(wDir, basename(s))),
         zipPath,
       )
     }
@@ -225,10 +225,10 @@ for (const meta of MODULE_META) {
   modules.push({
     ...meta,
     hasModuleDir: existsSync(moduleDir),
-    worksheets,
-    worksheetsZip:
-      worksheets.length > 1 ? `downloads/${meta.id}/worksheets.zip` : null,
-    worksheetSingle: worksheets.length === 1 ? worksheets[0] : null,
+    assignments,
+    assignmentsZip:
+      assignments.length > 1 ? `downloads/${meta.id}/assignments.zip` : null,
+    assignmentSingle: assignments.length === 1 ? assignments[0] : null,
     tests,
     testsZip: tests.length ? `downloads/${meta.id}/tests.zip` : null,
     quizzes,
@@ -254,7 +254,7 @@ const catalog = {
 
 writeFileSync(join(DATA_DIR, 'catalog.json'), JSON.stringify(catalog, null, 2) + '\n')
 
-const withWorksheets = modules.filter((m) => m.worksheets.length).length
+const withAssignments = modules.filter((m) => m.assignments.length).length
 const withTests = modules.filter((m) => m.tests.length).length
 const withQuizPdfs = modules.reduce(
   (n, m) => n + m.quizzes.filter((q) => q.pdfHref).length,
@@ -265,7 +265,7 @@ const withKeys = modules.reduce(
   0,
 )
 console.log(
-  `Prepared downloads for ${modules.length} modules (${withWorksheets} worksheets, ${withTests} tests, ${withQuizPdfs} quiz PDFs, ${withKeys} answer keys) → downloads/`,
+  `Prepared downloads for ${modules.length} modules (${withAssignments} assignments, ${withTests} tests, ${withQuizPdfs} quiz PDFs, ${withKeys} answer keys) → downloads/`,
 )
 
 prepareReadings({ preserveDownloads: true })

@@ -5,5 +5,5 @@
 ## Done when
 
 - `scim_filter` + `joiner_mover_leaver` katas green from your `katas/`
-- Worksheet on deprovisioning latency completed
+- Assignment on deprovisioning latency completed
 - Required quiz done

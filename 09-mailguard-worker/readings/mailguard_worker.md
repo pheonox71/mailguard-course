@@ -18,4 +18,4 @@ API services accept operator input; **workers** apply decisions asynchronously â
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page.
+Continue with the assignment from the downloads on this page.

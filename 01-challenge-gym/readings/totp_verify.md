@@ -2,7 +2,7 @@
 
 ## Learning objectives
 
-By the end of this kata’s reading + worksheet + implementation, you should be able to:
+By the end of this kata’s reading + assignment + implementation, you should be able to:
 
 1. Explain Time-based One-Time Password (TOTP) as HMAC-based One-Time Password (HOTP) with a time-derived counter (shared secret + time step → short code).
 2. State why a small verification **window** exists (clock skew) and what it does *not* replace (rate limits, replay controls).
@@ -54,4 +54,4 @@ Challenge-style hiring tasks often pair a short coding exercise with **MFA/One-T
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.
+Continue with the assignment from the downloads on this page. The quiz is required after you attempt the assignment and tests.

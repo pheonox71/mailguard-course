@@ -14,4 +14,4 @@
 
 ## Next step
 
-Extend `score.js` metrics → worksheet → quiz. Optional: scaffold a local SvelteKit app outside `my-work` patterns you already use.
+Extend `score.js` metrics → assignment → quiz. Optional: scaffold a local SvelteKit app outside `my-work` patterns you already use.

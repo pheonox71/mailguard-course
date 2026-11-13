@@ -7,7 +7,7 @@ Deploy the MailGuard app shape to kind/minikube with probes and resource request
 ## Workflow
 
 1. [`readings/k8s_local.md`](./readings/k8s_local.md)
-2. Worksheet → validate manifests with the kata
+2. Assignment → validate manifests with the kata
 3. Apply to kind/minikube
 4. Required quiz
 

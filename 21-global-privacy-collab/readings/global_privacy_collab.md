@@ -19,4 +19,4 @@ No language-learning drills. No employer-specific culture decks. Focus on profes
 
 ## Next step
 
-Worksheets → kata → quiz.
+Assignments → kata → quiz.

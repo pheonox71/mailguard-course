@@ -18,4 +18,4 @@ Private CA → client cert → require certificate on the admin vhost; document 
 
 ## Next step
 
-`mtls_checks` kata → worksheet → quiz.
+`mtls_checks` kata → assignment → quiz.

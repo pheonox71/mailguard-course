@@ -3,7 +3,7 @@
 Challenge-shaped string work: normalize emails, spot external recipients,
 and flag likely missends (internal + external mixed on one send).
 
-Implement the stubs. Read worksheets/recipient_risk.md and
+Implement the stubs. Read assignments/recipient_risk.md and
 tests/test_recipient_risk.py before coding. Peek at
 solutions/recipient_risk.py only if stuck.
 """
@@ -35,7 +35,7 @@ def normalize_email(raw: str) -> str | None:
     Valid for this kata: exactly one `@`, non-empty local, non-empty domain
     that contains a `.`.
     """
-    raise NotImplementedError("implement normalize_email — see worksheets/recipient_risk.md")
+    raise NotImplementedError("implement normalize_email — see assignments/recipient_risk.md")
 
 
 def classify(recipients: list[str], *, internal_domain: str) -> RiskReport:
@@ -46,4 +46,4 @@ def classify(recipients: list[str], *, internal_domain: str) -> RiskReport:
     - Deduplicate normalized addresses (first wins).
     - Raise ValueError if `internal_domain` is empty/whitespace.
     """
-    raise NotImplementedError("implement classify — see worksheets/recipient_risk.md")
+    raise NotImplementedError("implement classify — see assignments/recipient_risk.md")

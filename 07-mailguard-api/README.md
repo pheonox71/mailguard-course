@@ -13,7 +13,7 @@ Build a small rules API for outbound message decisions: create/list rules, evalu
 ## Workflow
 
 1. [`readings/mailguard_api.md`](./readings/mailguard_api.md)
-2. Worksheet → implement `katas/` until tests pass
+2. Assignment → implement `katas/` until tests pass
 3. Required quiz PDF, then separate answer key
 
 ## Layout
@@ -21,7 +21,7 @@ Build a small rules API for outbound message decisions: create/list rules, evalu
 | Path | Role |
 |------|------|
 | `readings/` | API design intro + verified links |
-| `worksheets/` | Guided questions before coding |
+| `assignments/` | Guided questions before coding |
 | `katas/` | Stubs you implement |
 | `tests/` | pytest contract |
 | `solutions/` | Reference — peek only if stuck |

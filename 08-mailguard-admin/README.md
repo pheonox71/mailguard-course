@@ -2,7 +2,7 @@
 
 **Language:** Vue 3 + TypeScript. Est. 8-10h.
 
-Operator UI for rules and the hold queue. This module ships a TypeScript rule-form helper with tests, plus a reading/worksheet track for building a Vue admin against the Module 07 API.
+Operator UI for rules and the hold queue. This module ships a TypeScript rule-form helper with tests, plus a reading/assignment track for building a Vue admin against the Module 07 API.
 
 ## What this teaches
 
@@ -13,7 +13,7 @@ Operator UI for rules and the hold queue. This module ships a TypeScript rule-fo
 ## Workflow
 
 1. [`readings/mailguard_admin.md`](./readings/mailguard_admin.md)
-2. Worksheet → implement `katas/` (TypeScript) until tests pass
+2. Assignment → implement `katas/` (TypeScript) until tests pass
 3. Optional: scaffold a Vue SPA that calls the Module 07 API
 4. Required quiz PDF, then separate answer key
 

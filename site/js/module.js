@@ -149,7 +149,7 @@ function linkGlossaryTerms(html) {
   return wrap.innerHTML
 }
 
-/** Drop authorship bylines, raw quiz/worksheet footer lines; strip (`id`) from titles. */
+/** Drop authorship bylines, raw quiz/assignment footer lines; strip (`id`) from titles. */
 function polishReadingHtml(html) {
   const wrap = document.createElement('div')
   wrap.innerHTML = html
@@ -159,11 +159,11 @@ function polishReadingHtml(html) {
   })
   wrap.querySelectorAll('a[href]').forEach((a) => {
     const href = a.getAttribute('href') || ''
-    if (!/\/(quizzes|worksheets)\//.test(href) && !/\.\.\/(quizzes|worksheets)\//.test(href)) return
+    if (!/\/(quizzes|assignments)\//.test(href) && !/\.\.\/(quizzes|assignments)\//.test(href)) return
     const p = a.closest('p')
     if (!p) return
     const text = p.textContent || ''
-    if (/after this reading|continue with the worksheet/i.test(text) || /quizzes\/|worksheets\//.test(text)) {
+    if (/after this reading|continue with the assignment/i.test(text) || /quizzes\/|assignments\//.test(text)) {
       const heading = p.previousElementSibling
       if (heading && /^H[1-6]$/.test(heading.tagName) && /quiz|next step/i.test(heading.textContent || '')) {
         heading.remove()
@@ -194,13 +194,13 @@ async function loadReadingHtml(reading) {
 }
 
 function downloadButtonsForTopic(mod, topicId) {
-  const worksheet = mod.worksheets.find((w) => w.id === topicId)
+  const assignment = mod.assignments.find((w) => w.id === topicId)
   const test = mod.tests.find((t) => t.id === topicId)
   const quiz = mod.quizzes.find((q) => q.id === topicId)
   const buttons = []
-  if (worksheet) {
+  if (assignment) {
     buttons.push(
-      `<a class="btn btn-download" download href="${withBase(worksheet.href)}">Download worksheet</a>`,
+      `<a class="btn btn-download" download href="${withBase(assignment.href)}">Download assignment</a>`,
     )
   }
   if (quiz?.pdfHref) {
@@ -269,19 +269,19 @@ async function main() {
   document.title = `${mod.number} — ${mod.title} · MailGuard Course`
   crumb.textContent = `${mod.number} ${mod.title}`
 
-  const worksheetButtons = []
-  if (mod.worksheetsZip) {
-    worksheetButtons.push(
-      `<a class="btn btn-download" download href="${withBase(mod.worksheetsZip)}">Download worksheets (zip)</a>`,
+  const assignmentButtons = []
+  if (mod.assignmentsZip) {
+    assignmentButtons.push(
+      `<a class="btn btn-download" download href="${withBase(mod.assignmentsZip)}">Download assignments (zip)</a>`,
     )
-  } else if (mod.worksheetSingle) {
-    worksheetButtons.push(
-      `<a class="btn btn-download" download href="${withBase(mod.worksheetSingle.href)}">Download worksheet</a>`,
+  } else if (mod.assignmentSingle) {
+    assignmentButtons.push(
+      `<a class="btn btn-download" download href="${withBase(mod.assignmentSingle.href)}">Download assignment</a>`,
     )
   }
 
   if (mod.testsZip) {
-    worksheetButtons.push(
+    assignmentButtons.push(
       `<a class="btn btn-download" download href="${withBase(mod.testsZip)}">Download tests (zip)</a>`,
     )
   }
@@ -315,7 +315,7 @@ async function main() {
   const topicIds = [
     ...new Set([
       ...mod.readings.map((r) => r.id),
-      ...mod.worksheets.map((w) => w.id),
+      ...mod.assignments.map((w) => w.id),
       ...mod.quizzes.map((q) => q.id),
       ...mod.tests.map((t) => t.id),
     ]),
@@ -327,7 +327,7 @@ async function main() {
     const reading = mod.readings.find((r) => r.id === topicId)
     const label =
       reading?.label ||
-      mod.worksheets.find((w) => w.id === topicId)?.label ||
+      mod.assignments.find((w) => w.id === topicId)?.label ||
       mod.quizzes.find((q) => q.id === topicId)?.label ||
       mod.tests.find((t) => t.id === topicId)?.label ||
       topicId
@@ -337,7 +337,7 @@ async function main() {
       : `<p class="muted">No on-site reading for this topic yet.</p>`
     const topicDone = isTopicComplete(state, mod.id, topicId)
     const topicHint = buttons.length
-      ? 'Read on this page, then download the worksheet, required quiz, and tests. Use the answer key only after you attempt the quiz.'
+      ? 'Read on this page, then download the assignment, required quiz, and tests. Use the answer key only after you attempt the quiz.'
       : 'Read on this page, then mark the topic complete when you finish.'
     const downloadsBlock = buttons.length
       ? `<div class="topic-downloads">
@@ -365,7 +365,7 @@ async function main() {
   }
 
   const packEmpty =
-    !mod.worksheets.length && !mod.tests.length && !mod.quizzes.some((q) => q.pdfHref || q.href)
+    !mod.assignments.length && !mod.tests.length && !mod.quizzes.some((q) => q.pdfHref || q.href)
   const readingsEmpty = !mod.readings.length
   const moduleDone = isModuleComplete(state, mod.id)
 
@@ -407,9 +407,9 @@ async function main() {
           : ''
         : `<section class="download-panel" aria-label="Module download packs">
       <h2>Module download packs</h2>
-      <p>Required path: read on-site → worksheet → tests (when present) → <strong>required quiz</strong>. Quiz PDFs are fillable questions only; answer keys are separate downloads. Save finished work under <code>my-work/</code>.</p>
+      <p>Required path: read on-site → assignment → tests (when present) → <strong>required quiz</strong>. Quiz PDFs are fillable questions only; answer keys are separate downloads. Save finished work under <code>my-work/</code>.</p>
       <div class="download-actions">
-        ${worksheetButtons.join('') || '<span class="muted">No worksheet pack for this module yet.</span>'}
+        ${assignmentButtons.join('') || '<span class="muted">No assignment pack for this module yet.</span>'}
         ${quizButtons.join('')}
       </div>
     </section>`

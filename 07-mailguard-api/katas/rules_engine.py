@@ -1,7 +1,7 @@
 """MailGuard API — rules engine kata.
 
 Implement first-match-wins evaluation for hold/allow/reject rules.
-Read worksheets/mailguard_api.md and tests before coding.
+Read assignments/mailguard_api.md and tests before coding.
 """
 
 from __future__ import annotations

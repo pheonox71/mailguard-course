@@ -7,7 +7,7 @@ Queue consumer that applies hold/allow/reject decisions. Local interface first; 
 ## Workflow
 
 1. [`readings/mailguard_worker.md`](./readings/mailguard_worker.md)
-2. Worksheet → implement Go stubs until `go test` passes
+2. Assignment → implement Go stubs until `go test` passes
 3. Required quiz
 
 ```bash
@@ -15,7 +15,7 @@ cd 09-mailguard-worker
 go test ./...
 ```
 
-**Done when:** local queue demo behind an interface; short Python-vs-Go contract note in the worksheet.
+**Done when:** local queue demo behind an interface; short Python-vs-Go contract note in the assignment.
 
 ## Trade-offs / harden next
 

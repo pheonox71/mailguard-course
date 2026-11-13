@@ -19,4 +19,4 @@ GitOps treats git as the desired state; a sync agent applies it. Policy-as-code 
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page.
+Continue with the assignment from the downloads on this page.

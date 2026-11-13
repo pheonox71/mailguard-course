@@ -19,4 +19,4 @@ Minimal FastAPI SCIM `/Users` endpoint passing a subset of filters; optionally v
 
 ## Next step
 
-Worksheets → katas → quiz.
+Assignments → katas → quiz.

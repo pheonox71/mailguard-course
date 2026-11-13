@@ -14,6 +14,6 @@ Stretch after OpenID Connect (**OIDC**) in module 03: why flat Virtual Private N
 ## Workflow
 
 1. [`readings/ztna_lite.md`](./readings/ztna_lite.md)
-2. Quiz → worksheet (one diagram + short compare table)
+2. Quiz → assignment (one diagram + short compare table)
 
 **Done when:** you can explain VPN vs ZTNA in five minutes with your own diagram; no vendor lock-in claims.

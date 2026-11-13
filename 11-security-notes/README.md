@@ -7,7 +7,7 @@ Map OWASP-minded findings to MailGuard mitigations. No attacks on real systems �
 ## Workflow
 
 1. [`readings/security_notes.md`](./readings/security_notes.md)
-2. Worksheet (write ≥5 notes)
+2. Assignment (write ≥5 notes)
 3. Optional: run the small mapping kata tests
 4. Required quiz
 

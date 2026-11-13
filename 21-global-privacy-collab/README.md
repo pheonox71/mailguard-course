@@ -4,7 +4,7 @@
 
 ## Done when
 
-- Timezone/collaboration worksheet done
-- Privacy comparison worksheet done
+- Timezone/collaboration assignment done
+- Privacy comparison assignment done
 - `privacy_tags` kata tests green
 - Required quiz done

@@ -4,7 +4,7 @@
  * refresh catalog.json reading entries — no quiz PDF generation.
  *
  * Use this for site preview. Run prepare-downloads when you need
- * worksheet / test / quiz PDF packs.
+ * assignment / test / quiz PDF packs.
  */
 import {
   mkdirSync,
@@ -100,9 +100,15 @@ export function prepareReadings({ preserveDownloads = true } = {}) {
     return {
       ...meta,
       hasModuleDir,
-      worksheets: preserveDownloads ? prev.worksheets || [] : [],
-      worksheetsZip: preserveDownloads ? prev.worksheetsZip ?? null : null,
-      worksheetSingle: preserveDownloads ? prev.worksheetSingle ?? null : null,
+      assignments: preserveDownloads
+        ? prev.assignments || prev.worksheets || []
+        : [],
+      assignmentsZip: preserveDownloads
+        ? prev.assignmentsZip ?? prev.worksheetsZip ?? null
+        : null,
+      assignmentSingle: preserveDownloads
+        ? prev.assignmentSingle ?? prev.worksheetSingle ?? null
+        : null,
       tests: preserveDownloads ? prev.tests || [] : [],
       testsZip: preserveDownloads ? prev.testsZip ?? null : null,
       quizzes: preserveDownloads ? prev.quizzes || [] : [],

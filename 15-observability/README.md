@@ -11,10 +11,10 @@ Metrics / logs / traces for MailGuard API + worker, extended with Site Reliabili
 ## Start here
 
 1. [`readings/sre_basics.md`](./readings/sre_basics.md)
-2. Quiz → worksheet (SLIs + postmortem template)
+2. Quiz → assignment (SLIs + postmortem template)
 3. Wire local metrics/logs/traces; narrate one failure
 
-**Done when:** telemetry shows golden signals; SLI/SLO worksheet done; one failure diagnosed via telemetry; alert *idea* documented.
+**Done when:** telemetry shows golden signals; SLI/SLO assignment done; one failure diagnosed via telemetry; alert *idea* documented.
 
 ## Coding lab
 

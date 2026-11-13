@@ -3,7 +3,7 @@
 MailGuard preview: given a message and ordered rules, return the first
 matching decision. Concise over clever — no plugin system, no DSL parser.
 
-Implement the stubs. Read worksheets/hold_rules.md and tests/test_hold_rules.py
+Implement the stubs. Read assignments/hold_rules.md and tests/test_hold_rules.py
 before coding. Peek at solutions/hold_rules.py only if stuck.
 """
 
@@ -42,9 +42,9 @@ def matches(rule: Rule, msg: Message) -> bool:
       (case-insensitive).
     - A rule with no predicates never matches (avoid accidental catch-alls).
     """
-    raise NotImplementedError("implement matches — see worksheets/hold_rules.md")
+    raise NotImplementedError("implement matches — see assignments/hold_rules.md")
 
 
 def evaluate(msg: Message, rules: Iterable[Rule], *, default: Decision = "allow") -> Decision:
     """First matching rule wins; otherwise `default`."""
-    raise NotImplementedError("implement evaluate — see worksheets/hold_rules.md")
+    raise NotImplementedError("implement evaluate — see assignments/hold_rules.md")

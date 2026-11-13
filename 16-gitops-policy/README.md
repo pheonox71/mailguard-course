@@ -7,7 +7,7 @@ Sync flow for manifests; CI fails on a deliberate bad manifest.
 ## Workflow
 
 1. [`readings/gitops_policy.md`](./readings/gitops_policy.md)
-2. Worksheet + kata (policy check)
+2. Assignment + kata (policy check)
 3. Required quiz
 
 **Done when:** CI fails on a bad manifest; sync flow explained with a short diagram.

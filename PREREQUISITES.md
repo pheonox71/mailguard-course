@@ -2,7 +2,7 @@
 
 What you should already have (or be willing to pick up quickly) before Module `01`. Start with Module [`00-setup/`](./00-setup/) for installs and version checks (est. 8-10h). This course surveys backend, frontend, and platform/infra; it does **not** teach programming from zero.
 
-Student fills worksheets and implements stubs. Course content uses AI assistance — verify important facts against linked primary sources.
+Student fills assignments and implements stubs. Course content uses AI assistance — verify important facts against linked primary sources.
 
 ---
 
@@ -12,7 +12,7 @@ Student fills worksheets and implements stubs. Course content uses AI assistance
 |------|-----|
 | **CS fundamentals** | Comfortable with variables, functions, data structures, basic algorithms, and reading error messages. |
 | **Python 3** | Write small modules, use a virtualenv, run scripts from a terminal. Strongest language assumed. |
-| **Git** | Clone/commit; read a diff; keep finished worksheets and quiz PDFs under `my-work/`. |
+| **Git** | Clone/commit; read a diff; keep finished assignments and quiz PDFs under `my-work/`. |
 | **Command line** | `cd`, env vars, pipes, install packages with `pip`. |
 | **English technical reading** | RFCs, OWASP cheat sheets, library docs (linked from readings). |
 

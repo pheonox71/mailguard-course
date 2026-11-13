@@ -5,5 +5,5 @@
 ## Done when
 
 - `pr_hygiene` kata green
-- Review checklist worksheet done
+- Review checklist assignment done
 - Required quiz done

@@ -30,7 +30,7 @@ Production APIs add authn/z, persistence, pagination, and audit logs. Your kata 
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.
+Continue with the assignment from the downloads on this page. The quiz is required after you attempt the assignment and tests.
 
 ## Phase 3 deepen
 

@@ -2,7 +2,7 @@
 
 ## Learning objectives
 
-By the end of this kata’s reading + worksheet + implementation, you should be able to:
+By the end of this kata’s reading + assignment + implementation, you should be able to:
 
 1. Explain why a bare hash is the wrong tool for message **integrity** when an attacker can modify bytes — and why Hash-based Message Authentication Code (**HMAC**) binds a secret key to the hash.
 2. Describe Authenticated Encryption with Associated Data (**AEAD**) as “encrypt + authenticate in one construction,” and name Transport Layer Security (**TLS**) as the everyday place AEAD (and certificates) show up.
@@ -55,4 +55,4 @@ Time-based One-Time Password (**TOTP**) already taught “don’t hand-roll HMAC
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.
+Continue with the assignment from the downloads on this page. The quiz is required after you attempt the assignment and tests.

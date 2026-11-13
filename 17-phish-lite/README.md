@@ -7,7 +7,7 @@ Optional phishing-awareness quiz UI for **learning honesty** practice. Clearly l
 ## Workflow
 
 1. [`readings/phish_lite.md`](./readings/phish_lite.md)
-2. Worksheet → implement scoring kata
+2. Assignment → implement scoring kata
 3. Optional SvelteKit UI
 4. Required quiz
 

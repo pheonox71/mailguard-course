@@ -11,9 +11,9 @@ Lightweight portfolio signals: practice contributing upstream, and practice eng�
 ## Workflow
 
 1. [`readings/oss_and_security_ux.md`](./readings/oss_and_security_ux.md)
-2. Quiz → worksheet (pick **one** OSS track *or* UX critique; stretch: both)
+2. Quiz → assignment (pick **one** OSS track *or* UX critique; stretch: both)
 
-**Done when:** worksheet has either (a) link/notes for an issue or PR you opened upstream, or (b) a redesigned warning + critique rubric filled — honesty about what shipped.
+**Done when:** assignment has either (a) link/notes for an issue or PR you opened upstream, or (b) a redesigned warning + critique rubric filled — honesty about what shipped.
 
 ## Trade-offs
 

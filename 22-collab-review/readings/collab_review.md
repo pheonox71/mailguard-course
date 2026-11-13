@@ -15,4 +15,4 @@
 
 ## Next step
 
-Worksheet → kata → quiz. Practice repo optional.
+Assignment → kata → quiz. Practice repo optional.

@@ -4,7 +4,7 @@ Completed implementations for each kata. **Do not import these from tests or fro
 
 Peek only after you have:
 
-1. Read the worksheet and answered the questions in writing
+1. Read the assignment and answered the questions in writing
 2. Read the tests
 3. Attempted the stub yourself
 4. Gotten stuck for a meaningful stretch

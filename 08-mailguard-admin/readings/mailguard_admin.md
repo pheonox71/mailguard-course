@@ -19,4 +19,4 @@ The admin is the human control surface for MailGuard: list rules, inspect held m
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.
+Continue with the assignment from the downloads on this page. The quiz is required after you attempt the assignment and tests.

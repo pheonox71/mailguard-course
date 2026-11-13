@@ -20,4 +20,4 @@ Persistence (Postgres + SQLAlchemy/Alembic) belongs in your stretch lab — the 
 
 ## Next step
 
-Worksheet → `hold_state` + `rule_actions` katas → quiz.
+Assignment → `hold_state` + `rule_actions` katas → quiz.

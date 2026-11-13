@@ -18,4 +18,4 @@ Phishing awareness tools train people to spot risky messages. Keep ethics first:
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page.
+Continue with the assignment from the downloads on this page.

@@ -11,10 +11,10 @@ Secure file transfer lite: upload → object storage → time-limited link + aud
 ## Start here
 
 1. [`readings/cloud_share_dlp.md`](./readings/cloud_share_dlp.md)
-2. Quiz → worksheet
+2. Quiz → assignment
 3. Build upload → store → expiring link + audit (MinIO/LocalStack OK)
 
-**Done when:** demo of expiring link + audit; cloud-share worksheet done; secrets out of git.
+**Done when:** demo of expiring link + audit; cloud-share assignment done; secrets out of git.
 
 ## Coding lab
 

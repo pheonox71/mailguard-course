@@ -2,7 +2,7 @@
 
 Challenge-style muscle: short, elegant Python with tests; MFA/OTP concepts without overbuilding.
 
-**Learn-by-building:** stubs in `katas/`, behavior defined by `tests/`, guided by `worksheets/` + `readings/`. Reference code lives in `solutions/` — peek only if stuck.
+**Learn-by-building:** stubs in `katas/`, behavior defined by `tests/`, guided by `assignments/` + `readings/`. Reference code lives in `solutions/` — peek only if stuck.
 
 ## What this teaches
 
@@ -27,7 +27,7 @@ Related reading: [OWASP MFA Cheat Sheet](https://cheatsheetseries.owasp.org/chea
 For **each** kata, in order:
 
 1. **Readings** — `readings/<kata>.md` (also rendered on the course site): short intro + verified external links
-2. **Worksheet** — `worksheets/<kata>.md`: concepts, short written questions, REPL warm-up
+2. **Assignment** — `assignments/<kata>.md`: concepts, short written questions, REPL warm-up
 3. **Read tests** — `tests/test_<kata>.py` defines correct behavior
 4. **Implement stubs** — fill `katas/<kata>.py` (`NotImplementedError` → real code)
 5. **pytest green** — run that file’s tests, then the full suite when ready
@@ -49,23 +49,23 @@ Index of quizzes: [`quizzes/README-01-challenge-gym-quizzes.md`](./quizzes/READM
 |------|------|
 | `readings/` | Short intros + verified external links per kata |
 | `quizzes/` | Required quizzes after each reading (answer keys separate) (pattern for later modules) |
-| `worksheets/` | Guided learning before/while implementing |
+| `assignments/` | Guided learning before/while implementing |
 | `katas/` | Stubs you implement (`raise NotImplementedError`) |
 | `tests/` | Thorough pytest contract — do not weaken these |
 | `solutions/` | Reference implementations — peek only if stuck |
 
 ## Katas
 
-| Kata | Readings | Quiz | Worksheet | Stub | Tests |
+| Kata | Readings | Quiz | Assignment | Stub | Tests |
 |------|----------|------|-----------|------|-------|
-| TOTP verify | [`readings/totp_verify.md`](./readings/totp_verify.md) | [`quizzes/totp_verify.md`](./quizzes/totp_verify.md) | `worksheets/totp_verify.md` | `katas/totp_verify.py` | `tests/test_totp_verify.py` |
-| Hold rules | [`readings/hold_rules.md`](./readings/hold_rules.md) | [`quizzes/hold_rules.md`](./quizzes/hold_rules.md) | `worksheets/hold_rules.md` | `katas/hold_rules.py` | `tests/test_hold_rules.py` |
-| Recipient risk | [`readings/recipient_risk.md`](./readings/recipient_risk.md) | [`quizzes/recipient_risk.md`](./quizzes/recipient_risk.md) | `worksheets/recipient_risk.md` | `katas/recipient_risk.py` | `tests/test_recipient_risk.py` |
-| Crypto hygiene | [`readings/crypto_hygiene.md`](./readings/crypto_hygiene.md) | [`quizzes/crypto_hygiene.md`](./quizzes/crypto_hygiene.md) | `worksheets/crypto_hygiene.md` | `katas/crypto_hygiene.py` | `tests/test_crypto_hygiene.py` |
-| TOTP RFC 6238 | [`readings/totp_rfc6238.md`](./readings/totp_rfc6238.md) | [`quizzes/totp_rfc6238.md`](./quizzes/totp_rfc6238.md) | `worksheets/totp_rfc6238.md` | `katas/totp_rfc6238.py` (+ optional `go-totp/`) | `tests/test_totp_rfc6238.py` |
-| Basic auth client | [`readings/basic_auth_client.md`](./readings/basic_auth_client.md) | [`quizzes/basic_auth_client.md`](./quizzes/basic_auth_client.md) | `worksheets/basic_auth_client.md` | `katas/basic_auth_client.py` | `tests/test_basic_auth_client.py` |
+| TOTP verify | [`readings/totp_verify.md`](./readings/totp_verify.md) | [`quizzes/totp_verify.md`](./quizzes/totp_verify.md) | `assignments/totp_verify.md` | `katas/totp_verify.py` | `tests/test_totp_verify.py` |
+| Hold rules | [`readings/hold_rules.md`](./readings/hold_rules.md) | [`quizzes/hold_rules.md`](./quizzes/hold_rules.md) | `assignments/hold_rules.md` | `katas/hold_rules.py` | `tests/test_hold_rules.py` |
+| Recipient risk | [`readings/recipient_risk.md`](./readings/recipient_risk.md) | [`quizzes/recipient_risk.md`](./quizzes/recipient_risk.md) | `assignments/recipient_risk.md` | `katas/recipient_risk.py` | `tests/test_recipient_risk.py` |
+| Crypto hygiene | [`readings/crypto_hygiene.md`](./readings/crypto_hygiene.md) | [`quizzes/crypto_hygiene.md`](./quizzes/crypto_hygiene.md) | `assignments/crypto_hygiene.md` | `katas/crypto_hygiene.py` | `tests/test_crypto_hygiene.py` |
+| TOTP RFC 6238 | [`readings/totp_rfc6238.md`](./readings/totp_rfc6238.md) | [`quizzes/totp_rfc6238.md`](./quizzes/totp_rfc6238.md) | `assignments/totp_rfc6238.md` | `katas/totp_rfc6238.py` (+ optional `go-totp/`) | `tests/test_totp_rfc6238.py` |
+| Basic auth client | [`readings/basic_auth_client.md`](./readings/basic_auth_client.md) | [`quizzes/basic_auth_client.md`](./quizzes/basic_auth_client.md) | `assignments/basic_auth_client.md` | `katas/basic_auth_client.py` | `tests/test_basic_auth_client.py` |
 
-Start with **totp_verify**: open [`readings/totp_verify.md`](./readings/totp_verify.md), then its worksheet.
+Start with **totp_verify**: open [`readings/totp_verify.md`](./readings/totp_verify.md), then its assignment.
 
 After the three MailGuard-preview katas, add **crypto_hygiene** (HMAC + AEAD misuse literacy).
 

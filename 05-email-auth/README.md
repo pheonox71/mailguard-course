@@ -4,7 +4,7 @@
 
 SMTP/TLS literacy plus domain authentication — what outbound hold/DLP cannot solve alone when attackers spoof lookalike mail.
 
-**Learn-by-building:** stub in `katas/`, contract in `tests/`, guided by `readings/` + `worksheets/`. Reference in `solutions/`.
+**Learn-by-building:** stub in `katas/`, contract in `tests/`, guided by `readings/` + `assignments/`. Reference in `solutions/`.
 
 ## What this teaches
 
@@ -15,8 +15,8 @@ SMTP/TLS literacy plus domain authentication — what outbound hold/DLP cannot s
 
 ## Workflow
 
-1. [`readings/email_auth.md`](./readings/email_auth.md) → quiz → [`worksheets/email_auth.md`](./worksheets/email_auth.md)
-2. [`worksheets/dmarc_policy.md`](./worksheets/dmarc_policy.md) → read tests → implement `katas/dmarc_policy.py`
+1. [`readings/email_auth.md`](./readings/email_auth.md) → quiz → [`assignments/email_auth.md`](./assignments/email_auth.md)
+2. [`assignments/dmarc_policy.md`](./assignments/dmarc_policy.md) → read tests → implement `katas/dmarc_policy.py`
 3. `pytest -q`
 
 ```bash
@@ -28,7 +28,7 @@ pip install -r requirements.txt
 pytest -q
 ```
 
-**Done when:** tests green from *your* kata; worksheet answers saved under `my-work/worksheets/`; you can explain SPF/DKIM/DMARC and `p=none→reject` in an interview without notes.
+**Done when:** tests green from *your* kata; assignment answers saved under `my-work/assignments/`; you can explain SPF/DKIM/DMARC and `p=none→reject` in an interview without notes.
 
 ## Trade-offs / harden next
 

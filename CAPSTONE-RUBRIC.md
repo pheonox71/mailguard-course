@@ -17,7 +17,7 @@ You meet the capstone when **all Must** rows are honest **yes**, and at least **
 | # | Criterion | Evidence |
 |---|-----------|----------|
 | M1 | **Thread is clear** | Root README states MailGuard as outbound message & file guard; folder table matches shipped modules. |
-| M2 | **Authorship is clear** | README / site AI-assistance notice is visible; student-filled worksheets/katas are distinct. |
+| M2 | **Authorship is clear** | README / site AI-assistance notice is visible; student-filled assignments/katas are distinct. |
 | M3 | **Runnable demo path** | Documented commands bring up enough of API (+ admin or curl) to show hold/allow/reject on a sample message. |
 | M4 | **Tests are real** | Core Python (and other shipped code) has automated tests that fail on stubs and pass on your implementations. |
 | M5 | **Secrets hygiene** | No live secrets in git; `.env.example` or docs explain required config. |
@@ -41,13 +41,13 @@ You meet the capstone when **all Must** rows are honest **yes**, and at least **
 | S1 | **Infra as code** | Terraform (or equivalent) for at least storage/IAM/queue; `plan` documented. |
 | S2 | **Cloud deploy** | One real or carefully faked-local cloud deploy path documented (`12`). |
 | S3 | **Local K8s** | Manifests run on kind/minikube with probes/requests (`14`). |
-| S4 | **Observability + SRE** | Metrics/logs/traces enough to narrate one failed hold pipeline; SLI/SLO or postmortem worksheet (`15`). |
+| S4 | **Observability + SRE** | Metrics/logs/traces enough to narrate one failed hold pipeline; SLI/SLO or postmortem assignment (`15`). |
 | S5 | **OIDC lite** | Happy-path federated login on admin or API + revocation notes (`03`). |
 | S6 | **GitOps / policy** | CI rejects a bad manifest; sync story diagrammed (`16`). |
 | S7 | **Security notes mapped** | Lab notes explicitly tied to mitigations you implemented (`11`). |
-| S8 | **Email auth literacy** | SPF/DKIM/DMARC worksheet or `05` kata green; spoofing vs hold-rules gap explained. |
+| S8 | **Email auth literacy** | SPF/DKIM/DMARC assignment or `05` kata green; spoofing vs hold-rules gap explained. |
 | S9 | **Threat model** | STRIDE-lite table for hold/release (`06`) attached or linked. |
-| S10 | **Identity / access depth** | Passkeys *or* SAML/ZTNA worksheet evidence (`02` / `03` / `04`) without inflated claims. |
+| S10 | **Identity / access depth** | Passkeys *or* SAML/ZTNA assignment evidence (`02` / `03` / `04`) without inflated claims. |
 | S11 | **OSS or security UX** *(optional)* | Upstream issue/PR note or warning-UX redesign (`18`). |
 
 ---
@@ -84,6 +84,6 @@ Mark yourself honestly:
 - Cloning a commercial DLP/email product’s UI or branding  
 - Certificate walls without linked modules  
 - Office-hours / “ask the author” FAQ for other students — this course is self-serve  
-- Editing answers into the blank module `worksheets/` / quiz sources instead of saving finished work under `my-work/`
+- Editing answers into the blank module `assignments/` / quiz sources instead of saving finished work under `my-work/`
 
 When in doubt, prefer a smaller green demo over a larger unfinished monorepo.

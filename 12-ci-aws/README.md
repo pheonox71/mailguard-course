@@ -7,7 +7,7 @@ PR/push CI for tests/lint/image, plus a documented cloud deploy path with **no s
 ## Workflow
 
 1. [`readings/ci_aws.md`](./readings/ci_aws.md)
-2. Worksheet → fill `katas/workflow_checks.py` tests
+2. Assignment → fill `katas/workflow_checks.py` tests
 3. Optional: add a real workflow under `.github/workflows/` for a service you own
 4. Required quiz
 

@@ -19,4 +19,4 @@ Continuous Integration catches broken rules engines before merge. Cloud deploy s
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page.
+Continue with the assignment from the downloads on this page.

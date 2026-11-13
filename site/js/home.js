@@ -21,8 +21,8 @@ function assetsHint(mod) {
   if ((mod.readings || []).length) {
     bits.push(`${mod.readings.length} reading${mod.readings.length > 1 ? 's' : ''}`)
   }
-  if (mod.worksheets.length) {
-    bits.push(`${mod.worksheets.length} worksheet${mod.worksheets.length > 1 ? 's' : ''}`)
+  if (mod.assignments.length) {
+    bits.push(`${mod.assignments.length} assignment${mod.assignments.length > 1 ? 's' : ''}`)
   }
   if (mod.tests.length) {
     bits.push(`${mod.tests.length} test file${mod.tests.length > 1 ? 's' : ''}`)

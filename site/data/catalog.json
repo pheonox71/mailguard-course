@@ -1,7 +1,7 @@
 {
   "brand": "MailGuard Course",
   "tagline": "Cloud-security learning for students building identity, email DLP, and secure SaaS skills.",
-  "generatedAt": "2026-11-13T14:03:05.021Z",
+  "generatedAt": "2026-11-13T14:31:05.720Z",
   "modules": [
     {
       "id": "00-setup",
@@ -18,45 +18,15 @@
         "Finish the setup checklist and mark Module 00 complete before Module 01"
       ],
       "hasModuleDir": true,
-      "worksheets": [
-        {
-          "id": "course_setup",
-          "label": "course setup",
-          "href": "downloads/00-setup/worksheets/course_setup.md",
-          "filename": "course_setup.md"
-        }
-      ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
-        "id": "course_setup",
-        "label": "course setup",
-        "href": "downloads/00-setup/worksheets/course_setup.md",
-        "filename": "course_setup.md"
-      },
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
       "tests": [],
       "testsZip": null,
-      "quizzes": [
-        {
-          "id": "course_setup",
-          "label": "course setup",
-          "href": "downloads/00-setup/quizzes/course_setup.md",
-          "filename": "course_setup.md",
-          "pdfHref": "downloads/00-setup/quizzes/course_setup.pdf",
-          "pdfFilename": "course_setup.pdf",
-          "answerKeyHref": "downloads/00-setup/answer-keys/course_setup.md"
-        }
-      ],
+      "quizzes": [],
       "quizzesZip": null,
       "quizzesPdfZip": null,
-      "quizSingle": {
-        "id": "course_setup",
-        "label": "course setup",
-        "href": "downloads/00-setup/quizzes/course_setup.md",
-        "filename": "course_setup.md",
-        "pdfHref": "downloads/00-setup/quizzes/course_setup.pdf",
-        "pdfFilename": "course_setup.pdf",
-        "answerKeyHref": "downloads/00-setup/answer-keys/course_setup.md"
-      },
+      "quizSingle": null,
       "answerKeysZip": null,
       "readings": [
         {
@@ -82,35 +52,53 @@
         "Apply hold-rule and recipient-risk thinking in small functions"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
+        {
+          "id": "basic_auth_client",
+          "label": "basic auth client",
+          "href": "downloads/01-challenge-gym/assignments/basic_auth_client.md",
+          "filename": "basic_auth_client.md"
+        },
         {
           "id": "crypto_hygiene",
           "label": "crypto hygiene",
-          "href": "downloads/01-challenge-gym/worksheets/crypto_hygiene.md",
+          "href": "downloads/01-challenge-gym/assignments/crypto_hygiene.md",
           "filename": "crypto_hygiene.md"
         },
         {
           "id": "hold_rules",
           "label": "hold rules",
-          "href": "downloads/01-challenge-gym/worksheets/hold_rules.md",
+          "href": "downloads/01-challenge-gym/assignments/hold_rules.md",
           "filename": "hold_rules.md"
         },
         {
           "id": "recipient_risk",
           "label": "recipient risk",
-          "href": "downloads/01-challenge-gym/worksheets/recipient_risk.md",
+          "href": "downloads/01-challenge-gym/assignments/recipient_risk.md",
           "filename": "recipient_risk.md"
+        },
+        {
+          "id": "totp_rfc6238",
+          "label": "totp rfc6238",
+          "href": "downloads/01-challenge-gym/assignments/totp_rfc6238.md",
+          "filename": "totp_rfc6238.md"
         },
         {
           "id": "totp_verify",
           "label": "totp verify",
-          "href": "downloads/01-challenge-gym/worksheets/totp_verify.md",
+          "href": "downloads/01-challenge-gym/assignments/totp_verify.md",
           "filename": "totp_verify.md"
         }
       ],
-      "worksheetsZip": "downloads/01-challenge-gym/worksheets.zip",
-      "worksheetSingle": null,
+      "assignmentsZip": "downloads/01-challenge-gym/assignments.zip",
+      "assignmentSingle": null,
       "tests": [
+        {
+          "id": "basic_auth_client",
+          "label": "basic auth client",
+          "href": "downloads/01-challenge-gym/tests/test_basic_auth_client.py",
+          "filename": "test_basic_auth_client.py"
+        },
         {
           "id": "crypto_hygiene",
           "label": "crypto hygiene",
@@ -130,6 +118,12 @@
           "filename": "test_recipient_risk.py"
         },
         {
+          "id": "totp_rfc6238",
+          "label": "totp rfc6238",
+          "href": "downloads/01-challenge-gym/tests/test_totp_rfc6238.py",
+          "filename": "test_totp_rfc6238.py"
+        },
+        {
           "id": "totp_verify",
           "label": "totp verify",
           "href": "downloads/01-challenge-gym/tests/test_totp_verify.py",
@@ -138,6 +132,15 @@
       ],
       "testsZip": "downloads/01-challenge-gym/tests.zip",
       "quizzes": [
+        {
+          "id": "basic_auth_client",
+          "label": "basic auth client",
+          "href": "downloads/01-challenge-gym/quizzes/basic_auth_client.md",
+          "filename": "basic_auth_client.md",
+          "pdfHref": "downloads/01-challenge-gym/quizzes/basic_auth_client.pdf",
+          "pdfFilename": "basic_auth_client.pdf",
+          "answerKeyHref": "downloads/01-challenge-gym/answer-keys/basic_auth_client.md"
+        },
         {
           "id": "crypto_hygiene",
           "label": "crypto hygiene",
@@ -164,6 +167,15 @@
           "pdfHref": "downloads/01-challenge-gym/quizzes/recipient_risk.pdf",
           "pdfFilename": "recipient_risk.pdf",
           "answerKeyHref": "downloads/01-challenge-gym/answer-keys/recipient_risk.md"
+        },
+        {
+          "id": "totp_rfc6238",
+          "label": "totp rfc6238",
+          "href": "downloads/01-challenge-gym/quizzes/totp_rfc6238.md",
+          "filename": "totp_rfc6238.md",
+          "pdfHref": "downloads/01-challenge-gym/quizzes/totp_rfc6238.pdf",
+          "pdfFilename": "totp_rfc6238.pdf",
+          "answerKeyHref": "downloads/01-challenge-gym/answer-keys/totp_rfc6238.md"
         },
         {
           "id": "totp_verify",
@@ -226,30 +238,37 @@
       "blurb": "TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy.",
       "hours": "est. 8-10h",
       "language": "Python",
-      "languageDetail": "Python (FastAPI-style) for enroll/verify; worksheet is mostly literacy",
+      "languageDetail": "Python (FastAPI-style) for enroll/verify; assignment is mostly literacy",
       "objectives": [
         "Describe enroll/verify and recovery-code flows for MFA",
         "Contrast TOTP with passkeys / WebAuthn at a literacy level",
         "Document threats and mitigations for MFA secrets"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
         {
           "id": "passkeys_webauthn",
           "label": "passkeys webauthn",
-          "href": "downloads/02-mailguard-mfa/worksheets/passkeys_webauthn.md",
+          "href": "downloads/02-mailguard-mfa/assignments/passkeys_webauthn.md",
           "filename": "passkeys_webauthn.md"
         }
       ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
+      "assignmentsZip": null,
+      "assignmentSingle": {
         "id": "passkeys_webauthn",
         "label": "passkeys webauthn",
-        "href": "downloads/02-mailguard-mfa/worksheets/passkeys_webauthn.md",
+        "href": "downloads/02-mailguard-mfa/assignments/passkeys_webauthn.md",
         "filename": "passkeys_webauthn.md"
       },
-      "tests": [],
-      "testsZip": null,
+      "tests": [
+        {
+          "id": "mfa_enroll",
+          "label": "mfa enroll",
+          "href": "downloads/02-mailguard-mfa/tests/test_mfa_enroll.py",
+          "filename": "test_mfa_enroll.py"
+        }
+      ],
+      "testsZip": "downloads/02-mailguard-mfa/tests.zip",
       "quizzes": [
         {
           "id": "passkeys_webauthn",
@@ -297,23 +316,43 @@
         "Note logout/revocation and device-cert ideas without overclaiming"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
         {
           "id": "identity_depth",
           "label": "identity depth",
-          "href": "downloads/03-oidc-access/worksheets/identity_depth.md",
+          "href": "downloads/03-oidc-access/assignments/identity_depth.md",
           "filename": "identity_depth.md"
+        },
+        {
+          "id": "saml_oidc_lab",
+          "label": "saml oidc lab",
+          "href": "downloads/03-oidc-access/assignments/saml_oidc_lab.md",
+          "filename": "saml_oidc_lab.md"
         }
       ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
-        "id": "identity_depth",
-        "label": "identity depth",
-        "href": "downloads/03-oidc-access/worksheets/identity_depth.md",
-        "filename": "identity_depth.md"
-      },
-      "tests": [],
-      "testsZip": null,
+      "assignmentsZip": "downloads/03-oidc-access/assignments.zip",
+      "assignmentSingle": null,
+      "tests": [
+        {
+          "id": "oidc_checks",
+          "label": "oidc checks",
+          "href": "downloads/03-oidc-access/tests/test_oidc_checks.py",
+          "filename": "test_oidc_checks.py"
+        },
+        {
+          "id": "pkce",
+          "label": "pkce",
+          "href": "downloads/03-oidc-access/tests/test_pkce.py",
+          "filename": "test_pkce.py"
+        },
+        {
+          "id": "saml_checks",
+          "label": "saml checks",
+          "href": "downloads/03-oidc-access/tests/test_saml_checks.py",
+          "filename": "test_saml_checks.py"
+        }
+      ],
+      "testsZip": "downloads/03-oidc-access/tests.zip",
       "quizzes": [
         {
           "id": "identity_depth",
@@ -323,20 +362,21 @@
           "pdfHref": "downloads/03-oidc-access/quizzes/identity_depth.pdf",
           "pdfFilename": "identity_depth.pdf",
           "answerKeyHref": "downloads/03-oidc-access/answer-keys/identity_depth.md"
+        },
+        {
+          "id": "saml_oidc_lab",
+          "label": "saml oidc lab",
+          "href": "downloads/03-oidc-access/quizzes/saml_oidc_lab.md",
+          "filename": "saml_oidc_lab.md",
+          "pdfHref": "downloads/03-oidc-access/quizzes/saml_oidc_lab.pdf",
+          "pdfFilename": "saml_oidc_lab.pdf",
+          "answerKeyHref": "downloads/03-oidc-access/answer-keys/saml_oidc_lab.md"
         }
       ],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
-      "quizSingle": {
-        "id": "identity_depth",
-        "label": "identity depth",
-        "href": "downloads/03-oidc-access/quizzes/identity_depth.md",
-        "filename": "identity_depth.md",
-        "pdfHref": "downloads/03-oidc-access/quizzes/identity_depth.pdf",
-        "pdfFilename": "identity_depth.pdf",
-        "answerKeyHref": "downloads/03-oidc-access/answer-keys/identity_depth.md"
-      },
-      "answerKeysZip": null,
+      "quizzesZip": "downloads/03-oidc-access/quizzes.zip",
+      "quizzesPdfZip": "downloads/03-oidc-access/quizzes-pdf.zip",
+      "quizSingle": null,
+      "answerKeysZip": "downloads/03-oidc-access/answer-keys.zip",
       "readings": [
         {
           "id": "identity_depth",
@@ -367,24 +407,41 @@
         "Reference NIST SP 1800-35 without claiming a commercial mesh deploy"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
+        {
+          "id": "mtls_ztna",
+          "label": "mtls ztna",
+          "href": "downloads/04-ztna-lite/assignments/mtls_ztna.md",
+          "filename": "mtls_ztna.md"
+        },
         {
           "id": "ztna_lite",
           "label": "ztna lite",
-          "href": "downloads/04-ztna-lite/worksheets/ztna_lite.md",
+          "href": "downloads/04-ztna-lite/assignments/ztna_lite.md",
           "filename": "ztna_lite.md"
         }
       ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
-        "id": "ztna_lite",
-        "label": "ztna lite",
-        "href": "downloads/04-ztna-lite/worksheets/ztna_lite.md",
-        "filename": "ztna_lite.md"
-      },
-      "tests": [],
-      "testsZip": null,
+      "assignmentsZip": "downloads/04-ztna-lite/assignments.zip",
+      "assignmentSingle": null,
+      "tests": [
+        {
+          "id": "mtls_checks",
+          "label": "mtls checks",
+          "href": "downloads/04-ztna-lite/tests/test_mtls_checks.py",
+          "filename": "test_mtls_checks.py"
+        }
+      ],
+      "testsZip": "downloads/04-ztna-lite/tests.zip",
       "quizzes": [
+        {
+          "id": "mtls_ztna",
+          "label": "mtls ztna",
+          "href": "downloads/04-ztna-lite/quizzes/mtls_ztna.md",
+          "filename": "mtls_ztna.md",
+          "pdfHref": "downloads/04-ztna-lite/quizzes/mtls_ztna.pdf",
+          "pdfFilename": "mtls_ztna.pdf",
+          "answerKeyHref": "downloads/04-ztna-lite/answer-keys/mtls_ztna.md"
+        },
         {
           "id": "ztna_lite",
           "label": "ztna lite",
@@ -395,18 +452,10 @@
           "answerKeyHref": "downloads/04-ztna-lite/answer-keys/ztna_lite.md"
         }
       ],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
-      "quizSingle": {
-        "id": "ztna_lite",
-        "label": "ztna lite",
-        "href": "downloads/04-ztna-lite/quizzes/ztna_lite.md",
-        "filename": "ztna_lite.md",
-        "pdfHref": "downloads/04-ztna-lite/quizzes/ztna_lite.pdf",
-        "pdfFilename": "ztna_lite.pdf",
-        "answerKeyHref": "downloads/04-ztna-lite/answer-keys/ztna_lite.md"
-      },
-      "answerKeysZip": null,
+      "quizzesZip": "downloads/04-ztna-lite/quizzes.zip",
+      "quizzesPdfZip": "downloads/04-ztna-lite/quizzes-pdf.zip",
+      "quizSingle": null,
+      "answerKeysZip": "downloads/04-ztna-lite/answer-keys.zip",
       "readings": [
         {
           "id": "mtls_ztna",
@@ -437,28 +486,46 @@
         "Relate spoofing controls to MailGuard hold rules"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
         {
           "id": "dmarc_policy",
           "label": "dmarc policy",
-          "href": "downloads/05-email-auth/worksheets/dmarc_policy.md",
+          "href": "downloads/05-email-auth/assignments/dmarc_policy.md",
           "filename": "dmarc_policy.md"
         },
         {
           "id": "email_auth",
           "label": "email auth",
-          "href": "downloads/05-email-auth/worksheets/email_auth.md",
+          "href": "downloads/05-email-auth/assignments/email_auth.md",
           "filename": "email_auth.md"
+        },
+        {
+          "id": "mail_flow_dmarc_analytics",
+          "label": "mail flow dmarc analytics",
+          "href": "downloads/05-email-auth/assignments/mail_flow_dmarc_analytics.md",
+          "filename": "mail_flow_dmarc_analytics.md"
         }
       ],
-      "worksheetsZip": "downloads/05-email-auth/worksheets.zip",
-      "worksheetSingle": null,
+      "assignmentsZip": "downloads/05-email-auth/assignments.zip",
+      "assignmentSingle": null,
       "tests": [
+        {
+          "id": "dmarc_aggregate",
+          "label": "dmarc aggregate",
+          "href": "downloads/05-email-auth/tests/test_dmarc_aggregate.py",
+          "filename": "test_dmarc_aggregate.py"
+        },
         {
           "id": "dmarc_policy",
           "label": "dmarc policy",
           "href": "downloads/05-email-auth/tests/test_dmarc_policy.py",
           "filename": "test_dmarc_policy.py"
+        },
+        {
+          "id": "mail_flow",
+          "label": "mail flow",
+          "href": "downloads/05-email-auth/tests/test_mail_flow.py",
+          "filename": "test_mail_flow.py"
         }
       ],
       "testsZip": "downloads/05-email-auth/tests.zip",
@@ -471,20 +538,21 @@
           "pdfHref": "downloads/05-email-auth/quizzes/email_auth.pdf",
           "pdfFilename": "email_auth.pdf",
           "answerKeyHref": "downloads/05-email-auth/answer-keys/email_auth.md"
+        },
+        {
+          "id": "mail_flow_dmarc_analytics",
+          "label": "mail flow dmarc analytics",
+          "href": "downloads/05-email-auth/quizzes/mail_flow_dmarc_analytics.md",
+          "filename": "mail_flow_dmarc_analytics.md",
+          "pdfHref": "downloads/05-email-auth/quizzes/mail_flow_dmarc_analytics.pdf",
+          "pdfFilename": "mail_flow_dmarc_analytics.pdf",
+          "answerKeyHref": "downloads/05-email-auth/answer-keys/mail_flow_dmarc_analytics.md"
         }
       ],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
-      "quizSingle": {
-        "id": "email_auth",
-        "label": "email auth",
-        "href": "downloads/05-email-auth/quizzes/email_auth.md",
-        "filename": "email_auth.md",
-        "pdfHref": "downloads/05-email-auth/quizzes/email_auth.pdf",
-        "pdfFilename": "email_auth.pdf",
-        "answerKeyHref": "downloads/05-email-auth/answer-keys/email_auth.md"
-      },
-      "answerKeysZip": null,
+      "quizzesZip": "downloads/05-email-auth/quizzes.zip",
+      "quizzesPdfZip": "downloads/05-email-auth/quizzes-pdf.zip",
+      "quizSingle": null,
+      "answerKeysZip": "downloads/05-email-auth/answer-keys.zip",
       "readings": [
         {
           "id": "email_auth",
@@ -515,19 +583,19 @@
         "Note privacy risks for held message content"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
         {
           "id": "threat_model_sdlc",
           "label": "threat model sdlc",
-          "href": "downloads/06-threat-model/worksheets/threat_model_sdlc.md",
+          "href": "downloads/06-threat-model/assignments/threat_model_sdlc.md",
           "filename": "threat_model_sdlc.md"
         }
       ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
+      "assignmentsZip": null,
+      "assignmentSingle": {
         "id": "threat_model_sdlc",
         "label": "threat model sdlc",
-        "href": "downloads/06-threat-model/worksheets/threat_model_sdlc.md",
+        "href": "downloads/06-threat-model/assignments/threat_model_sdlc.md",
         "filename": "threat_model_sdlc.md"
       },
       "tests": [],
@@ -579,16 +647,67 @@
         "Document architecture and production gaps"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
-      "tests": [],
-      "testsZip": null,
-      "quizzes": [],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
+      "assignments": [
+        {
+          "id": "hold_state",
+          "label": "hold state",
+          "href": "downloads/07-mailguard-api/assignments/hold_state.md",
+          "filename": "hold_state.md"
+        },
+        {
+          "id": "mailguard_api",
+          "label": "mailguard api",
+          "href": "downloads/07-mailguard-api/assignments/mailguard_api.md",
+          "filename": "mailguard_api.md"
+        }
+      ],
+      "assignmentsZip": "downloads/07-mailguard-api/assignments.zip",
+      "assignmentSingle": null,
+      "tests": [
+        {
+          "id": "hold_state",
+          "label": "hold state",
+          "href": "downloads/07-mailguard-api/tests/test_hold_state.py",
+          "filename": "test_hold_state.py"
+        },
+        {
+          "id": "rule_actions",
+          "label": "rule actions",
+          "href": "downloads/07-mailguard-api/tests/test_rule_actions.py",
+          "filename": "test_rule_actions.py"
+        },
+        {
+          "id": "rules_engine",
+          "label": "rules engine",
+          "href": "downloads/07-mailguard-api/tests/test_rules_engine.py",
+          "filename": "test_rules_engine.py"
+        }
+      ],
+      "testsZip": "downloads/07-mailguard-api/tests.zip",
+      "quizzes": [
+        {
+          "id": "hold_state",
+          "label": "hold state",
+          "href": "downloads/07-mailguard-api/quizzes/hold_state.md",
+          "filename": "hold_state.md",
+          "pdfHref": "downloads/07-mailguard-api/quizzes/hold_state.pdf",
+          "pdfFilename": "hold_state.pdf",
+          "answerKeyHref": "downloads/07-mailguard-api/answer-keys/hold_state.md"
+        },
+        {
+          "id": "mailguard_api",
+          "label": "mailguard api",
+          "href": "downloads/07-mailguard-api/quizzes/mailguard_api.md",
+          "filename": "mailguard_api.md",
+          "pdfHref": "downloads/07-mailguard-api/quizzes/mailguard_api.pdf",
+          "pdfFilename": "mailguard_api.pdf",
+          "answerKeyHref": "downloads/07-mailguard-api/answer-keys/mailguard_api.md"
+        }
+      ],
+      "quizzesZip": "downloads/07-mailguard-api/quizzes.zip",
+      "quizzesPdfZip": "downloads/07-mailguard-api/quizzes-pdf.zip",
       "quizSingle": null,
-      "answerKeysZip": null,
+      "answerKeysZip": "downloads/07-mailguard-api/answer-keys.zip",
       "readings": [
         {
           "id": "hold_state",
@@ -619,15 +738,45 @@
         "Keep TypeScript strict with a few meaningful tests"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
+      "assignments": [
+        {
+          "id": "mailguard_admin",
+          "label": "mailguard admin",
+          "href": "downloads/08-mailguard-admin/assignments/mailguard_admin.md",
+          "filename": "mailguard_admin.md"
+        }
+      ],
+      "assignmentsZip": null,
+      "assignmentSingle": {
+        "id": "mailguard_admin",
+        "label": "mailguard admin",
+        "href": "downloads/08-mailguard-admin/assignments/mailguard_admin.md",
+        "filename": "mailguard_admin.md"
+      },
       "tests": [],
       "testsZip": null,
-      "quizzes": [],
+      "quizzes": [
+        {
+          "id": "mailguard_admin",
+          "label": "mailguard admin",
+          "href": "downloads/08-mailguard-admin/quizzes/mailguard_admin.md",
+          "filename": "mailguard_admin.md",
+          "pdfHref": "downloads/08-mailguard-admin/quizzes/mailguard_admin.pdf",
+          "pdfFilename": "mailguard_admin.pdf",
+          "answerKeyHref": "downloads/08-mailguard-admin/answer-keys/mailguard_admin.md"
+        }
+      ],
       "quizzesZip": null,
       "quizzesPdfZip": null,
-      "quizSingle": null,
+      "quizSingle": {
+        "id": "mailguard_admin",
+        "label": "mailguard admin",
+        "href": "downloads/08-mailguard-admin/quizzes/mailguard_admin.md",
+        "filename": "mailguard_admin.md",
+        "pdfHref": "downloads/08-mailguard-admin/quizzes/mailguard_admin.pdf",
+        "pdfFilename": "mailguard_admin.pdf",
+        "answerKeyHref": "downloads/08-mailguard-admin/answer-keys/mailguard_admin.md"
+      },
       "answerKeysZip": null,
       "readings": [
         {
@@ -653,16 +802,48 @@
         "Containerize the worker with a clear local demo"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
+      "assignments": [
+        {
+          "id": "mailguard_worker",
+          "label": "mailguard worker",
+          "href": "downloads/09-mailguard-worker/assignments/mailguard_worker.md",
+          "filename": "mailguard_worker.md"
+        },
+        {
+          "id": "sqs_dlq",
+          "label": "sqs dlq",
+          "href": "downloads/09-mailguard-worker/assignments/sqs_dlq.md",
+          "filename": "sqs_dlq.md"
+        }
+      ],
+      "assignmentsZip": "downloads/09-mailguard-worker/assignments.zip",
+      "assignmentSingle": null,
       "tests": [],
       "testsZip": null,
-      "quizzes": [],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
+      "quizzes": [
+        {
+          "id": "mailguard_worker",
+          "label": "mailguard worker",
+          "href": "downloads/09-mailguard-worker/quizzes/mailguard_worker.md",
+          "filename": "mailguard_worker.md",
+          "pdfHref": "downloads/09-mailguard-worker/quizzes/mailguard_worker.pdf",
+          "pdfFilename": "mailguard_worker.pdf",
+          "answerKeyHref": "downloads/09-mailguard-worker/answer-keys/mailguard_worker.md"
+        },
+        {
+          "id": "sqs_dlq",
+          "label": "sqs dlq",
+          "href": "downloads/09-mailguard-worker/quizzes/sqs_dlq.md",
+          "filename": "sqs_dlq.md",
+          "pdfHref": "downloads/09-mailguard-worker/quizzes/sqs_dlq.pdf",
+          "pdfFilename": "sqs_dlq.pdf",
+          "answerKeyHref": "downloads/09-mailguard-worker/answer-keys/sqs_dlq.md"
+        }
+      ],
+      "quizzesZip": "downloads/09-mailguard-worker/quizzes.zip",
+      "quizzesPdfZip": "downloads/09-mailguard-worker/quizzes-pdf.zip",
       "quizSingle": null,
-      "answerKeysZip": null,
+      "answerKeysZip": "downloads/09-mailguard-worker/answer-keys.zip",
       "readings": [
         {
           "id": "mailguard_worker",
@@ -686,30 +867,38 @@
       "blurb": "Expiring share links, audit, and cloud-share DLP literacy.",
       "hours": "est. 8-10h",
       "language": "Python",
-      "languageDetail": "Python service for share links; worksheet literacy first",
+      "languageDetail": "Python service for share links; assignment literacy first",
       "objectives": [
         "Design expiring share links with an audit trail",
         "Relate cloud-share DLP controls to email attachments",
         "Keep secrets and object storage credentials out of git"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
         {
           "id": "cloud_share_dlp",
           "label": "cloud share dlp",
-          "href": "downloads/10-secure-drop/worksheets/cloud_share_dlp.md",
+          "href": "downloads/10-secure-drop/assignments/cloud_share_dlp.md",
           "filename": "cloud_share_dlp.md"
+        },
+        {
+          "id": "ppap_secure_transfer",
+          "label": "ppap secure transfer",
+          "href": "downloads/10-secure-drop/assignments/ppap_secure_transfer.md",
+          "filename": "ppap_secure_transfer.md"
         }
       ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
-        "id": "cloud_share_dlp",
-        "label": "cloud share dlp",
-        "href": "downloads/10-secure-drop/worksheets/cloud_share_dlp.md",
-        "filename": "cloud_share_dlp.md"
-      },
-      "tests": [],
-      "testsZip": null,
+      "assignmentsZip": "downloads/10-secure-drop/assignments.zip",
+      "assignmentSingle": null,
+      "tests": [
+        {
+          "id": "secure_drop",
+          "label": "secure drop",
+          "href": "downloads/10-secure-drop/tests/test_secure_drop.py",
+          "filename": "test_secure_drop.py"
+        }
+      ],
+      "testsZip": "downloads/10-secure-drop/tests.zip",
       "quizzes": [
         {
           "id": "cloud_share_dlp",
@@ -719,20 +908,21 @@
           "pdfHref": "downloads/10-secure-drop/quizzes/cloud_share_dlp.pdf",
           "pdfFilename": "cloud_share_dlp.pdf",
           "answerKeyHref": "downloads/10-secure-drop/answer-keys/cloud_share_dlp.md"
+        },
+        {
+          "id": "ppap_secure_transfer",
+          "label": "ppap secure transfer",
+          "href": "downloads/10-secure-drop/quizzes/ppap_secure_transfer.md",
+          "filename": "ppap_secure_transfer.md",
+          "pdfHref": "downloads/10-secure-drop/quizzes/ppap_secure_transfer.pdf",
+          "pdfFilename": "ppap_secure_transfer.pdf",
+          "answerKeyHref": "downloads/10-secure-drop/answer-keys/ppap_secure_transfer.md"
         }
       ],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
-      "quizSingle": {
-        "id": "cloud_share_dlp",
-        "label": "cloud share dlp",
-        "href": "downloads/10-secure-drop/quizzes/cloud_share_dlp.md",
-        "filename": "cloud_share_dlp.md",
-        "pdfHref": "downloads/10-secure-drop/quizzes/cloud_share_dlp.pdf",
-        "pdfFilename": "cloud_share_dlp.pdf",
-        "answerKeyHref": "downloads/10-secure-drop/answer-keys/cloud_share_dlp.md"
-      },
-      "answerKeysZip": null,
+      "quizzesZip": "downloads/10-secure-drop/quizzes.zip",
+      "quizzesPdfZip": "downloads/10-secure-drop/quizzes-pdf.zip",
+      "quizSingle": null,
+      "answerKeysZip": "downloads/10-secure-drop/answer-keys.zip",
       "readings": [
         {
           "id": "cloud_share_dlp",
@@ -763,16 +953,61 @@
         "Prioritize remediations you can demonstrate in-repo"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
-      "tests": [],
-      "testsZip": null,
-      "quizzes": [],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
+      "assignments": [
+        {
+          "id": "owasp_lab",
+          "label": "owasp lab",
+          "href": "downloads/11-security-notes/assignments/owasp_lab.md",
+          "filename": "owasp_lab.md"
+        },
+        {
+          "id": "security_notes",
+          "label": "security notes",
+          "href": "downloads/11-security-notes/assignments/security_notes.md",
+          "filename": "security_notes.md"
+        }
+      ],
+      "assignmentsZip": "downloads/11-security-notes/assignments.zip",
+      "assignmentSingle": null,
+      "tests": [
+        {
+          "id": "finding_map",
+          "label": "finding map",
+          "href": "downloads/11-security-notes/tests/test_finding_map.py",
+          "filename": "test_finding_map.py"
+        },
+        {
+          "id": "owasp_map",
+          "label": "owasp map",
+          "href": "downloads/11-security-notes/tests/test_owasp_map.py",
+          "filename": "test_owasp_map.py"
+        }
+      ],
+      "testsZip": "downloads/11-security-notes/tests.zip",
+      "quizzes": [
+        {
+          "id": "owasp_lab",
+          "label": "owasp lab",
+          "href": "downloads/11-security-notes/quizzes/owasp_lab.md",
+          "filename": "owasp_lab.md",
+          "pdfHref": "downloads/11-security-notes/quizzes/owasp_lab.pdf",
+          "pdfFilename": "owasp_lab.pdf",
+          "answerKeyHref": "downloads/11-security-notes/answer-keys/owasp_lab.md"
+        },
+        {
+          "id": "security_notes",
+          "label": "security notes",
+          "href": "downloads/11-security-notes/quizzes/security_notes.md",
+          "filename": "security_notes.md",
+          "pdfHref": "downloads/11-security-notes/quizzes/security_notes.pdf",
+          "pdfFilename": "security_notes.pdf",
+          "answerKeyHref": "downloads/11-security-notes/answer-keys/security_notes.md"
+        }
+      ],
+      "quizzesZip": "downloads/11-security-notes/quizzes.zip",
+      "quizzesPdfZip": "downloads/11-security-notes/quizzes-pdf.zip",
       "quizSingle": null,
-      "answerKeysZip": null,
+      "answerKeysZip": "downloads/11-security-notes/answer-keys.zip",
       "readings": [
         {
           "id": "owasp_lab",
@@ -803,16 +1038,61 @@
         "Explain least-privilege choices for the demo identity"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
-      "tests": [],
-      "testsZip": null,
-      "quizzes": [],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
+      "assignments": [
+        {
+          "id": "ci_aws",
+          "label": "ci aws",
+          "href": "downloads/12-ci-aws/assignments/ci_aws.md",
+          "filename": "ci_aws.md"
+        },
+        {
+          "id": "oidc_aws",
+          "label": "oidc aws",
+          "href": "downloads/12-ci-aws/assignments/oidc_aws.md",
+          "filename": "oidc_aws.md"
+        }
+      ],
+      "assignmentsZip": "downloads/12-ci-aws/assignments.zip",
+      "assignmentSingle": null,
+      "tests": [
+        {
+          "id": "oidc_aws",
+          "label": "oidc aws",
+          "href": "downloads/12-ci-aws/tests/test_oidc_aws.py",
+          "filename": "test_oidc_aws.py"
+        },
+        {
+          "id": "workflow_checks",
+          "label": "workflow checks",
+          "href": "downloads/12-ci-aws/tests/test_workflow_checks.py",
+          "filename": "test_workflow_checks.py"
+        }
+      ],
+      "testsZip": "downloads/12-ci-aws/tests.zip",
+      "quizzes": [
+        {
+          "id": "ci_aws",
+          "label": "ci aws",
+          "href": "downloads/12-ci-aws/quizzes/ci_aws.md",
+          "filename": "ci_aws.md",
+          "pdfHref": "downloads/12-ci-aws/quizzes/ci_aws.pdf",
+          "pdfFilename": "ci_aws.pdf",
+          "answerKeyHref": "downloads/12-ci-aws/answer-keys/ci_aws.md"
+        },
+        {
+          "id": "oidc_aws",
+          "label": "oidc aws",
+          "href": "downloads/12-ci-aws/quizzes/oidc_aws.md",
+          "filename": "oidc_aws.md",
+          "pdfHref": "downloads/12-ci-aws/quizzes/oidc_aws.pdf",
+          "pdfFilename": "oidc_aws.pdf",
+          "answerKeyHref": "downloads/12-ci-aws/answer-keys/oidc_aws.md"
+        }
+      ],
+      "quizzesZip": "downloads/12-ci-aws/quizzes.zip",
+      "quizzesPdfZip": "downloads/12-ci-aws/quizzes-pdf.zip",
       "quizSingle": null,
-      "answerKeysZip": null,
+      "answerKeysZip": "downloads/12-ci-aws/answer-keys.zip",
       "readings": [
         {
           "id": "ci_aws",
@@ -833,33 +1113,40 @@
       "number": "13",
       "title": "Infra",
       "phase": "Cloud & platform",
-      "blurb": "Compose + Terraform story with IAM / misconfig posture worksheet.",
+      "blurb": "Compose + Terraform story with IAM / misconfig posture assignment.",
       "hours": "est. 8-10h",
       "language": "Terraform + Compose",
       "languageDetail": "Terraform (AWS) and Docker Compose — not application JS",
       "objectives": [
         "Express a thin Compose + Terraform footprint for the thread",
-        "Complete an IAM / misconfig posture worksheet for your resources",
+        "Complete an IAM / misconfig posture assignment for your resources",
         "Keep state and credentials out of version control"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
         {
           "id": "cloud_iam_posture",
           "label": "cloud iam posture",
-          "href": "downloads/13-infra/worksheets/cloud_iam_posture.md",
+          "href": "downloads/13-infra/assignments/cloud_iam_posture.md",
           "filename": "cloud_iam_posture.md"
         }
       ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
+      "assignmentsZip": null,
+      "assignmentSingle": {
         "id": "cloud_iam_posture",
         "label": "cloud iam posture",
-        "href": "downloads/13-infra/worksheets/cloud_iam_posture.md",
+        "href": "downloads/13-infra/assignments/cloud_iam_posture.md",
         "filename": "cloud_iam_posture.md"
       },
-      "tests": [],
-      "testsZip": null,
+      "tests": [
+        {
+          "id": "compose_checks",
+          "label": "compose checks",
+          "href": "downloads/13-infra/tests/test_compose_checks.py",
+          "filename": "test_compose_checks.py"
+        }
+      ],
+      "testsZip": "downloads/13-infra/tests.zip",
       "quizzes": [
         {
           "id": "cloud_iam_posture",
@@ -907,15 +1194,58 @@
         "Document what you did not automate yet (GitOps, policy)"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
-      "tests": [],
-      "testsZip": null,
-      "quizzes": [],
+      "assignments": [
+        {
+          "id": "k8s_local",
+          "label": "k8s local",
+          "href": "downloads/14-k8s-local/assignments/k8s_local.md",
+          "filename": "k8s_local.md"
+        }
+      ],
+      "assignmentsZip": null,
+      "assignmentSingle": {
+        "id": "k8s_local",
+        "label": "k8s local",
+        "href": "downloads/14-k8s-local/assignments/k8s_local.md",
+        "filename": "k8s_local.md"
+      },
+      "tests": [
+        {
+          "id": "helm_values_check",
+          "label": "helm values check",
+          "href": "downloads/14-k8s-local/tests/test_helm_values_check.py",
+          "filename": "test_helm_values_check.py"
+        },
+        {
+          "id": "manifest_checks",
+          "label": "manifest checks",
+          "href": "downloads/14-k8s-local/tests/test_manifest_checks.py",
+          "filename": "test_manifest_checks.py"
+        }
+      ],
+      "testsZip": "downloads/14-k8s-local/tests.zip",
+      "quizzes": [
+        {
+          "id": "k8s_local",
+          "label": "k8s local",
+          "href": "downloads/14-k8s-local/quizzes/k8s_local.md",
+          "filename": "k8s_local.md",
+          "pdfHref": "downloads/14-k8s-local/quizzes/k8s_local.pdf",
+          "pdfFilename": "k8s_local.pdf",
+          "answerKeyHref": "downloads/14-k8s-local/answer-keys/k8s_local.md"
+        }
+      ],
       "quizzesZip": null,
       "quizzesPdfZip": null,
-      "quizSingle": null,
+      "quizSingle": {
+        "id": "k8s_local",
+        "label": "k8s local",
+        "href": "downloads/14-k8s-local/quizzes/k8s_local.md",
+        "filename": "k8s_local.md",
+        "pdfHref": "downloads/14-k8s-local/quizzes/k8s_local.pdf",
+        "pdfFilename": "k8s_local.pdf",
+        "answerKeyHref": "downloads/14-k8s-local/answer-keys/k8s_local.md"
+      },
       "answerKeysZip": null,
       "readings": [
         {
@@ -937,34 +1267,57 @@
       "number": "15",
       "title": "Observability",
       "phase": "Stretch",
-      "blurb": "Golden signals plus SLI/SLO and a lightweight postmortem worksheet.",
+      "blurb": "Golden signals plus SLI/SLO and a lightweight postmortem assignment.",
       "hours": "est. 8-10h",
       "language": "Ops / metrics",
-      "languageDetail": "Metrics/logs/traces config and written SRE worksheets",
+      "languageDetail": "Metrics/logs/traces config and written SRE assignments",
       "objectives": [
         "Define golden signals for the hold pipeline",
         "Draft SLI/SLO notes and a lightweight postmortem",
         "Hook at least one metric or structured log in the story"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
+        {
+          "id": "ir_detection",
+          "label": "ir detection",
+          "href": "downloads/15-observability/assignments/ir_detection.md",
+          "filename": "ir_detection.md"
+        },
         {
           "id": "sre_basics",
           "label": "sre basics",
-          "href": "downloads/15-observability/worksheets/sre_basics.md",
+          "href": "downloads/15-observability/assignments/sre_basics.md",
           "filename": "sre_basics.md"
         }
       ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
-        "id": "sre_basics",
-        "label": "sre basics",
-        "href": "downloads/15-observability/worksheets/sre_basics.md",
-        "filename": "sre_basics.md"
-      },
-      "tests": [],
-      "testsZip": null,
+      "assignmentsZip": "downloads/15-observability/assignments.zip",
+      "assignmentSingle": null,
+      "tests": [
+        {
+          "id": "ir_triage",
+          "label": "ir triage",
+          "href": "downloads/15-observability/tests/test_ir_triage.py",
+          "filename": "test_ir_triage.py"
+        },
+        {
+          "id": "sli_math",
+          "label": "sli math",
+          "href": "downloads/15-observability/tests/test_sli_math.py",
+          "filename": "test_sli_math.py"
+        }
+      ],
+      "testsZip": "downloads/15-observability/tests.zip",
       "quizzes": [
+        {
+          "id": "ir_detection",
+          "label": "ir detection",
+          "href": "downloads/15-observability/quizzes/ir_detection.md",
+          "filename": "ir_detection.md",
+          "pdfHref": "downloads/15-observability/quizzes/ir_detection.pdf",
+          "pdfFilename": "ir_detection.pdf",
+          "answerKeyHref": "downloads/15-observability/answer-keys/ir_detection.md"
+        },
         {
           "id": "sre_basics",
           "label": "sre basics",
@@ -975,18 +1328,10 @@
           "answerKeyHref": "downloads/15-observability/answer-keys/sre_basics.md"
         }
       ],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
-      "quizSingle": {
-        "id": "sre_basics",
-        "label": "sre basics",
-        "href": "downloads/15-observability/quizzes/sre_basics.md",
-        "filename": "sre_basics.md",
-        "pdfHref": "downloads/15-observability/quizzes/sre_basics.pdf",
-        "pdfFilename": "sre_basics.pdf",
-        "answerKeyHref": "downloads/15-observability/answer-keys/sre_basics.md"
-      },
-      "answerKeysZip": null,
+      "quizzesZip": "downloads/15-observability/quizzes.zip",
+      "quizzesPdfZip": "downloads/15-observability/quizzes-pdf.zip",
+      "quizSingle": null,
+      "answerKeysZip": "downloads/15-observability/answer-keys.zip",
       "readings": [
         {
           "id": "ir_detection",
@@ -1017,16 +1362,61 @@
         "Keep claims proportional to what you automated"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
-      "tests": [],
-      "testsZip": null,
-      "quizzes": [],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
+      "assignments": [
+        {
+          "id": "argo_crossplane",
+          "label": "argo crossplane",
+          "href": "downloads/16-gitops-policy/assignments/argo_crossplane.md",
+          "filename": "argo_crossplane.md"
+        },
+        {
+          "id": "gitops_policy",
+          "label": "gitops policy",
+          "href": "downloads/16-gitops-policy/assignments/gitops_policy.md",
+          "filename": "gitops_policy.md"
+        }
+      ],
+      "assignmentsZip": "downloads/16-gitops-policy/assignments.zip",
+      "assignmentSingle": null,
+      "tests": [
+        {
+          "id": "gitops_mode",
+          "label": "gitops mode",
+          "href": "downloads/16-gitops-policy/tests/test_gitops_mode.py",
+          "filename": "test_gitops_mode.py"
+        },
+        {
+          "id": "policy_check",
+          "label": "policy check",
+          "href": "downloads/16-gitops-policy/tests/test_policy_check.py",
+          "filename": "test_policy_check.py"
+        }
+      ],
+      "testsZip": "downloads/16-gitops-policy/tests.zip",
+      "quizzes": [
+        {
+          "id": "argo_crossplane",
+          "label": "argo crossplane",
+          "href": "downloads/16-gitops-policy/quizzes/argo_crossplane.md",
+          "filename": "argo_crossplane.md",
+          "pdfHref": "downloads/16-gitops-policy/quizzes/argo_crossplane.pdf",
+          "pdfFilename": "argo_crossplane.pdf",
+          "answerKeyHref": "downloads/16-gitops-policy/answer-keys/argo_crossplane.md"
+        },
+        {
+          "id": "gitops_policy",
+          "label": "gitops policy",
+          "href": "downloads/16-gitops-policy/quizzes/gitops_policy.md",
+          "filename": "gitops_policy.md",
+          "pdfHref": "downloads/16-gitops-policy/quizzes/gitops_policy.pdf",
+          "pdfFilename": "gitops_policy.pdf",
+          "answerKeyHref": "downloads/16-gitops-policy/answer-keys/gitops_policy.md"
+        }
+      ],
+      "quizzesZip": "downloads/16-gitops-policy/quizzes.zip",
+      "quizzesPdfZip": "downloads/16-gitops-policy/quizzes-pdf.zip",
       "quizSingle": null,
-      "answerKeysZip": null,
+      "answerKeysZip": "downloads/16-gitops-policy/answer-keys.zip",
       "readings": [
         {
           "id": "argo_crossplane",
@@ -1057,16 +1447,48 @@
         "Practice honest UX copy for warnings and results"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
+      "assignments": [
+        {
+          "id": "phish_lite",
+          "label": "phish lite",
+          "href": "downloads/17-phish-lite/assignments/phish_lite.md",
+          "filename": "phish_lite.md"
+        },
+        {
+          "id": "phish_lite_svelte",
+          "label": "phish lite svelte",
+          "href": "downloads/17-phish-lite/assignments/phish_lite_svelte.md",
+          "filename": "phish_lite_svelte.md"
+        }
+      ],
+      "assignmentsZip": "downloads/17-phish-lite/assignments.zip",
+      "assignmentSingle": null,
       "tests": [],
       "testsZip": null,
-      "quizzes": [],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
+      "quizzes": [
+        {
+          "id": "phish_lite",
+          "label": "phish lite",
+          "href": "downloads/17-phish-lite/quizzes/phish_lite.md",
+          "filename": "phish_lite.md",
+          "pdfHref": "downloads/17-phish-lite/quizzes/phish_lite.pdf",
+          "pdfFilename": "phish_lite.pdf",
+          "answerKeyHref": "downloads/17-phish-lite/answer-keys/phish_lite.md"
+        },
+        {
+          "id": "phish_lite_svelte",
+          "label": "phish lite svelte",
+          "href": "downloads/17-phish-lite/quizzes/phish_lite_svelte.md",
+          "filename": "phish_lite_svelte.md",
+          "pdfHref": "downloads/17-phish-lite/quizzes/phish_lite_svelte.pdf",
+          "pdfFilename": "phish_lite_svelte.pdf",
+          "answerKeyHref": "downloads/17-phish-lite/answer-keys/phish_lite_svelte.md"
+        }
+      ],
+      "quizzesZip": "downloads/17-phish-lite/quizzes.zip",
+      "quizzesPdfZip": "downloads/17-phish-lite/quizzes-pdf.zip",
       "quizSingle": null,
-      "answerKeysZip": null,
+      "answerKeysZip": "downloads/17-phish-lite/answer-keys.zip",
       "readings": [
         {
           "id": "phish_lite",
@@ -1097,19 +1519,19 @@
         "Write reflections suitable for a portfolio footnote"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
         {
           "id": "oss_and_security_ux",
           "label": "oss and security ux",
-          "href": "downloads/18-oss-ux-stretch/worksheets/oss_and_security_ux.md",
+          "href": "downloads/18-oss-ux-stretch/assignments/oss_and_security_ux.md",
           "filename": "oss_and_security_ux.md"
         }
       ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
+      "assignmentsZip": null,
+      "assignmentSingle": {
         "id": "oss_and_security_ux",
         "label": "oss and security ux",
-        "href": "downloads/18-oss-ux-stretch/worksheets/oss_and_security_ux.md",
+        "href": "downloads/18-oss-ux-stretch/assignments/oss_and_security_ux.md",
         "filename": "oss_and_security_ux.md"
       },
       "tests": [],
@@ -1151,33 +1573,40 @@
       "number": "19",
       "title": "Capstone: mail filter",
       "phase": "Capstone",
-      "blurb": "End-to-end outbound mail filter demo with tests and a self-grading rubric worksheet.",
+      "blurb": "End-to-end outbound mail filter demo with tests and a self-grading rubric assignment.",
       "hours": "est. 8-10h",
       "language": "Python",
-      "languageDetail": "Python 3 + pytest for the filter core; rubric worksheet in Markdown",
+      "languageDetail": "Python 3 + pytest for the filter core; rubric assignment in Markdown",
       "objectives": [
         "Ship a small end-to-end mail filter demo with tests",
         "Self-grade honestly against the capstone rubric",
         "Package commands and evidence a stranger can follow"
       ],
       "hasModuleDir": true,
-      "worksheets": [
+      "assignments": [
         {
           "id": "capstone_self_grade",
           "label": "capstone self grade",
-          "href": "downloads/19-capstone/worksheets/capstone_self_grade.md",
+          "href": "downloads/19-capstone/assignments/capstone_self_grade.md",
           "filename": "capstone_self_grade.md"
         }
       ],
-      "worksheetsZip": null,
-      "worksheetSingle": {
+      "assignmentsZip": null,
+      "assignmentSingle": {
         "id": "capstone_self_grade",
         "label": "capstone self grade",
-        "href": "downloads/19-capstone/worksheets/capstone_self_grade.md",
+        "href": "downloads/19-capstone/assignments/capstone_self_grade.md",
         "filename": "capstone_self_grade.md"
       },
-      "tests": [],
-      "testsZip": null,
+      "tests": [
+        {
+          "id": "mail_filter",
+          "label": "mail filter",
+          "href": "downloads/19-capstone/tests/test_mail_filter.py",
+          "filename": "test_mail_filter.py"
+        }
+      ],
+      "testsZip": "downloads/19-capstone/tests.zip",
       "quizzes": [
         {
           "id": "capstone_mail_filter",
@@ -1225,15 +1654,58 @@
         "Map Entra / Google Workspace examples without vendor lock-in copy"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
-      "tests": [],
-      "testsZip": null,
-      "quizzes": [],
+      "assignments": [
+        {
+          "id": "scim_provisioning",
+          "label": "scim provisioning",
+          "href": "downloads/20-scim-provisioning/assignments/scim_provisioning.md",
+          "filename": "scim_provisioning.md"
+        }
+      ],
+      "assignmentsZip": null,
+      "assignmentSingle": {
+        "id": "scim_provisioning",
+        "label": "scim provisioning",
+        "href": "downloads/20-scim-provisioning/assignments/scim_provisioning.md",
+        "filename": "scim_provisioning.md"
+      },
+      "tests": [
+        {
+          "id": "joiner_mover_leaver",
+          "label": "joiner mover leaver",
+          "href": "downloads/20-scim-provisioning/tests/test_joiner_mover_leaver.py",
+          "filename": "test_joiner_mover_leaver.py"
+        },
+        {
+          "id": "scim_filter",
+          "label": "scim filter",
+          "href": "downloads/20-scim-provisioning/tests/test_scim_filter.py",
+          "filename": "test_scim_filter.py"
+        }
+      ],
+      "testsZip": "downloads/20-scim-provisioning/tests.zip",
+      "quizzes": [
+        {
+          "id": "scim_provisioning",
+          "label": "scim provisioning",
+          "href": "downloads/20-scim-provisioning/quizzes/scim_provisioning.md",
+          "filename": "scim_provisioning.md",
+          "pdfHref": "downloads/20-scim-provisioning/quizzes/scim_provisioning.pdf",
+          "pdfFilename": "scim_provisioning.pdf",
+          "answerKeyHref": "downloads/20-scim-provisioning/answer-keys/scim_provisioning.md"
+        }
+      ],
       "quizzesZip": null,
       "quizzesPdfZip": null,
-      "quizSingle": null,
+      "quizSingle": {
+        "id": "scim_provisioning",
+        "label": "scim provisioning",
+        "href": "downloads/20-scim-provisioning/quizzes/scim_provisioning.md",
+        "filename": "scim_provisioning.md",
+        "pdfHref": "downloads/20-scim-provisioning/quizzes/scim_provisioning.pdf",
+        "pdfFilename": "scim_provisioning.pdf",
+        "answerKeyHref": "downloads/20-scim-provisioning/answer-keys/scim_provisioning.md"
+      },
       "answerKeysZip": null,
       "readings": [
         {
@@ -1259,15 +1731,52 @@
         "Connect privacy duties to hold/release queues"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
-      "tests": [],
-      "testsZip": null,
-      "quizzes": [],
+      "assignments": [
+        {
+          "id": "global_privacy_collab",
+          "label": "global privacy collab",
+          "href": "downloads/21-global-privacy-collab/assignments/global_privacy_collab.md",
+          "filename": "global_privacy_collab.md"
+        }
+      ],
+      "assignmentsZip": null,
+      "assignmentSingle": {
+        "id": "global_privacy_collab",
+        "label": "global privacy collab",
+        "href": "downloads/21-global-privacy-collab/assignments/global_privacy_collab.md",
+        "filename": "global_privacy_collab.md"
+      },
+      "tests": [
+        {
+          "id": "privacy_tags",
+          "label": "privacy tags",
+          "href": "downloads/21-global-privacy-collab/tests/test_privacy_tags.py",
+          "filename": "test_privacy_tags.py"
+        }
+      ],
+      "testsZip": "downloads/21-global-privacy-collab/tests.zip",
+      "quizzes": [
+        {
+          "id": "global_privacy_collab",
+          "label": "global privacy collab",
+          "href": "downloads/21-global-privacy-collab/quizzes/global_privacy_collab.md",
+          "filename": "global_privacy_collab.md",
+          "pdfHref": "downloads/21-global-privacy-collab/quizzes/global_privacy_collab.pdf",
+          "pdfFilename": "global_privacy_collab.pdf",
+          "answerKeyHref": "downloads/21-global-privacy-collab/answer-keys/global_privacy_collab.md"
+        }
+      ],
       "quizzesZip": null,
       "quizzesPdfZip": null,
-      "quizSingle": null,
+      "quizSingle": {
+        "id": "global_privacy_collab",
+        "label": "global privacy collab",
+        "href": "downloads/21-global-privacy-collab/quizzes/global_privacy_collab.md",
+        "filename": "global_privacy_collab.md",
+        "pdfHref": "downloads/21-global-privacy-collab/quizzes/global_privacy_collab.pdf",
+        "pdfFilename": "global_privacy_collab.pdf",
+        "answerKeyHref": "downloads/21-global-privacy-collab/answer-keys/global_privacy_collab.md"
+      },
       "answerKeysZip": null,
       "readings": [
         {
@@ -1293,15 +1802,52 @@
         "Use conventional commits and CODEOWNERS effectively"
       ],
       "hasModuleDir": true,
-      "worksheets": [],
-      "worksheetsZip": null,
-      "worksheetSingle": null,
-      "tests": [],
-      "testsZip": null,
-      "quizzes": [],
+      "assignments": [
+        {
+          "id": "collab_review",
+          "label": "collab review",
+          "href": "downloads/22-collab-review/assignments/collab_review.md",
+          "filename": "collab_review.md"
+        }
+      ],
+      "assignmentsZip": null,
+      "assignmentSingle": {
+        "id": "collab_review",
+        "label": "collab review",
+        "href": "downloads/22-collab-review/assignments/collab_review.md",
+        "filename": "collab_review.md"
+      },
+      "tests": [
+        {
+          "id": "pr_hygiene",
+          "label": "pr hygiene",
+          "href": "downloads/22-collab-review/tests/test_pr_hygiene.py",
+          "filename": "test_pr_hygiene.py"
+        }
+      ],
+      "testsZip": "downloads/22-collab-review/tests.zip",
+      "quizzes": [
+        {
+          "id": "collab_review",
+          "label": "collab review",
+          "href": "downloads/22-collab-review/quizzes/collab_review.md",
+          "filename": "collab_review.md",
+          "pdfHref": "downloads/22-collab-review/quizzes/collab_review.pdf",
+          "pdfFilename": "collab_review.pdf",
+          "answerKeyHref": "downloads/22-collab-review/answer-keys/collab_review.md"
+        }
+      ],
       "quizzesZip": null,
       "quizzesPdfZip": null,
-      "quizSingle": null,
+      "quizSingle": {
+        "id": "collab_review",
+        "label": "collab review",
+        "href": "downloads/22-collab-review/quizzes/collab_review.md",
+        "filename": "collab_review.md",
+        "pdfHref": "downloads/22-collab-review/quizzes/collab_review.pdf",
+        "pdfFilename": "collab_review.pdf",
+        "answerKeyHref": "downloads/22-collab-review/answer-keys/collab_review.md"
+      },
       "answerKeysZip": null,
       "readings": [
         {

@@ -2,7 +2,7 @@
 
 ## Learning objectives
 
-By the end of this kata’s reading + worksheet + implementation, you should be able to:
+By the end of this kata’s reading + assignment + implementation, you should be able to:
 
 1. Classify recipients as internal / external / invalid against an org domain after simple normalization.
 2. Explain why **mixed** or **invalid** recipient sets are a missend / data-loss signal that can feed a hold rule.
@@ -54,4 +54,4 @@ Real mail needs proper parsers, display-name handling, and Unicode/IDN awareness
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.
+Continue with the assignment from the downloads on this page. The quiz is required after you attempt the assignment and tests.

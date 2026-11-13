@@ -3,7 +3,7 @@
 Uses pyotp (RFC 6238). Challenge-style: validate a code against a shared
 secret with a small time-step window; reject malformed input early.
 
-Implement the stubs. Read worksheets/totp_verify.md and tests/test_totp_verify.py
+Implement the stubs. Read assignments/totp_verify.md and tests/test_totp_verify.py
 before coding. Peek at solutions/totp_verify.py only if stuck.
 """
 
@@ -29,9 +29,9 @@ def verify_totp(
     Raise ValueError if `window` is negative.
     Return False for empty secret or malformed code (not exactly six digits).
     """
-    raise NotImplementedError("implement verify_totp — see worksheets/totp_verify.md")
+    raise NotImplementedError("implement verify_totp — see assignments/totp_verify.md")
 
 
 def current_code(secret: str, *, for_time: float | None = None) -> str:
     """Generate the current TOTP for demos and tests (not a production API)."""
-    raise NotImplementedError("implement current_code — see worksheets/totp_verify.md")
+    raise NotImplementedError("implement current_code — see assignments/totp_verify.md")

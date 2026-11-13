@@ -18,7 +18,7 @@
 
 ## Keep in mind
 
-Certificate rollover, clock skew, RelayState, and single logout are operational details — document them in the worksheet even when the kata uses fixtures.
+Certificate rollover, clock skew, RelayState, and single logout are operational details — document them in the assignment even when the kata uses fixtures.
 
 ## Next step
 

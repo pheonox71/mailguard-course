@@ -19,4 +19,4 @@ Security notes turn vague “we should be careful” into **named risks + concre
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page.
+Continue with the assignment from the downloads on this page.

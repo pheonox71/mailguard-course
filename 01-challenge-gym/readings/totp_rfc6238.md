@@ -26,4 +26,4 @@ Never paste employer challenge text into public repos. Publish only your own gen
 
 ## Next step
 
-Worksheet → implement `katas/totp_rfc6238.py` → optional `go-totp/` → quiz.
+Assignment → implement `katas/totp_rfc6238.py` → optional `go-totp/` → quiz.

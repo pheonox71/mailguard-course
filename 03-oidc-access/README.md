@@ -11,10 +11,10 @@ Happy-path OpenID Connect (**OIDC**) login + protected routes, extended with **S
 
 ## Start here
 
-1. [`readings/identity_depth.md`](./readings/identity_depth.md) → quiz → worksheet
+1. [`readings/identity_depth.md`](./readings/identity_depth.md) → quiz → assignment
 2. Pair with `02` passkeys reading and `04` ZTNA
 
-**Done when:** OIDC demo + identity-depth worksheet; honest claims only.
+**Done when:** OIDC demo + identity-depth assignment; honest claims only.
 
 ## Coding lab
 

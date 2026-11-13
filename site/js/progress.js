@@ -9,7 +9,6 @@ export function loadProgress() {
         completedTopics: {},
         lastModuleId: null,
         lastTopicId: null,
-        certificateName: '',
       }
     }
     const parsed = JSON.parse(raw)
@@ -18,7 +17,6 @@ export function loadProgress() {
       completedTopics: parsed.completedTopics || {},
       lastModuleId: parsed.lastModuleId || null,
       lastTopicId: parsed.lastTopicId || null,
-      certificateName: parsed.certificateName || '',
     }
   } catch {
     return {
@@ -26,7 +24,6 @@ export function loadProgress() {
       completedTopics: {},
       lastModuleId: null,
       lastTopicId: null,
-      certificateName: '',
     }
   }
 }

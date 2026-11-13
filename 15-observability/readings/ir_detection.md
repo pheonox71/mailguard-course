@@ -18,4 +18,4 @@ EDR/MDR are concepts here — stay vendor-neutral. Detection content is English-
 
 ## Next step
 
-`ir_triage` kata → worksheet → quiz.
+`ir_triage` kata → assignment → quiz.

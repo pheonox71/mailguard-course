@@ -18,4 +18,4 @@ Never attack systems you do not own. Local containers only.
 
 ## Next step
 
-`owasp_map` kata → worksheet → quiz.
+`owasp_map` kata → assignment → quiz.

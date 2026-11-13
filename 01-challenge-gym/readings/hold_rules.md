@@ -2,7 +2,7 @@
 
 ## Learning objectives
 
-By the end of this kata’s reading + worksheet + implementation, you should be able to:
+By the end of this kata’s reading + assignment + implementation, you should be able to:
 
 1. Describe email Data Loss Prevention (DLP) as ordered policy: match conditions → action (allow / hold-suspend / reject-discard).
 2. Implement **first-match-wins** evaluation over a small rule list without inventing a Domain-Specific Language (DSL).
@@ -53,4 +53,4 @@ Production DLP adds attachment inspection, admin UX, queues, and richer matching
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.
+Continue with the assignment from the downloads on this page. The quiz is required after you attempt the assignment and tests.

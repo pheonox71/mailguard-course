@@ -2,7 +2,7 @@
 
 Orientation for **mailguard-course**: ordered modules, rough hours, progress checkboxes, and **done when** criteria. Work top → bottom through Phase A. Phase B can overlap once the MailGuard API, admin, CI, and infra exist.
 
-Worksheet answers, filled quiz PDFs, and kata implementations are filled in by the student under [`my-work/`](./my-work/) (see root README). Course content uses AI assistance — see the notice on the site and README.
+Assignment answers, filled quiz PDFs, and kata implementations are filled in by the student under [`my-work/`](./my-work/) (see root README). Course content uses AI assistance — see the notice on the site and README.
 
 **Related:** [PREREQUISITES.md](./PREREQUISITES.md) · [GLOSSARY.md](./GLOSSARY.md) · [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md)
 
@@ -11,11 +11,11 @@ Worksheet answers, filled quiz PDFs, and kata implementations are filled in by t
 ## How to use this syllabus
 
 1. Confirm [prerequisites](./PREREQUISITES.md), skim the [glossary](./GLOSSARY.md).
-2. Start with Module **00** (setup). For each later module: open its README → on-site reading → worksheet → implement → tests / demo → **required quiz** (questions PDF) → separate answer key.
+2. Start with Module **00** (setup). For each later module: open its README → on-site reading → assignment → implement → tests / demo → **required quiz** (questions PDF) → separate answer key.
 3. Tick the checkbox when that module’s **Done when** is met from *your* work (not by copying `solutions/`).
 4. Capstone readiness is judged by [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md), not by finishing every stretch folder.
 
-Hours are **solo student estimates** (CS background, Python-strong). They include reading + worksheets + implementation + a short writeup — not calendar deadlines.
+Hours are **solo student estimates** (CS background, Python-strong). They include reading + assignments + implementation + a short writeup — not calendar deadlines.
 
 ---
 
@@ -34,7 +34,7 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 ### Foundations
 
 - [ ] **00 — Setup / getting ready** · est. 8-10h · [`00-setup/`](./00-setup/)  
-  **Done when:** Core tools install and version-check; Module 00 marked complete on the site (no worksheet or quiz for this module).
+  **Done when:** Core tools install and version-check; Module 00 marked complete on the site (no assignment or quiz for this module).
 
 - [ ] **01 — Challenge Gym** · est. 8-10h · [`01-challenge-gym/`](./01-challenge-gym/)  
   **Done when:** All Challenge Gym tests green from *your* `katas/` (incl. crypto hygiene); ≤1 page trade-offs; required quizzes completed after each reading (answer keys checked afterward).
@@ -42,10 +42,10 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 ### Identity & access
 
 - [ ] **02 — MailGuard MFA** · est. 8-10h · [`02-mailguard-mfa/`](./02-mailguard-mfa/)  
-  **Done when:** Enroll/verify TOTP; one-time recovery codes; no secrets in git; passkeys / WebAuthn worksheet + quiz done.
+  **Done when:** Enroll/verify TOTP; one-time recovery codes; no secrets in git; passkeys / WebAuthn assignment + quiz done.
 
 - [ ] **03 — OIDC / access policy** · est. 8-10h · [`03-oidc-access/`](./03-oidc-access/)  
-  **Done when:** OIDC + PKCE helpers green; SAML assertion-check kata green; Keycloak lab notes; SAML vs OIDC worksheet; logout/revocation notes; no inflated SSO claims.
+  **Done when:** OIDC + PKCE helpers green; SAML assertion-check kata green; Keycloak lab notes; SAML vs OIDC assignment; logout/revocation notes; no inflated SSO claims.
 
 - [ ] **04 — ZTNA lite** · est. 8-10h · [`04-ztna-lite/`](./04-ztna-lite/)  
   **Done when:** VPN vs ZTNA diagram + compare table; mTLS checks kata green; NIST SP 1800-35 reading noted; no commercial mesh required.
@@ -70,7 +70,7 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
   **Done when:** Local queue demo behind an interface; short Python-vs-Go contract note.
 
 - [ ] **10 — Secure Drop** · est. 8-10h · [`10-secure-drop/`](./10-secure-drop/)  
-  **Done when:** Upload → expiring link + recipient OTP + revoke-after-missend; PPAP-as-global-anti-pattern worksheet done.
+  **Done when:** Upload → expiring link + recipient OTP + revoke-after-missend; PPAP-as-global-anti-pattern assignment done.
 
 - [ ] **11 — Security notes** · est. 8-10h · [`11-security-notes/`](./11-security-notes/)  
   **Done when:** ≥5 lab notes mapped to MailGuard mitigations; no attacks on real systems.
@@ -89,7 +89,7 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
   **Done when:** App healthy on kind/minikube; probes + resource requests; README names managed K8s / GitOps as next steps.
 
 - [ ] **15 — Observability** · est. 8-10h · [`15-observability/`](./15-observability/)  
-  **Done when:** Local stack shows golden signals; SLI/SLO/error budget worksheet + one blameless postmortem from telemetry; alert *idea* documented.
+  **Done when:** Local stack shows golden signals; SLI/SLO/error budget assignment + one blameless postmortem from telemetry; alert *idea* documented.
 
 - [ ] **16 — GitOps + policy** · est. 8-10h · [`16-gitops-policy/`](./16-gitops-policy/)  
   **Done when:** CI fails on a deliberate bad manifest; sync flow explained with a short diagram.
@@ -103,13 +103,13 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 ---
 
 - [ ] **20 — SCIM / JIT provisioning** · est. 8-10h · [`20-scim-provisioning/`](./20-scim-provisioning/)  
-  **Done when:** SCIM filter + joiner-mover-leaver katas green; deprovisioning worksheet + quiz done.
+  **Done when:** SCIM filter + joiner-mover-leaver katas green; deprovisioning assignment + quiz done.
 
 - [ ] **21 — Global collaboration & privacy** · est. 8-10h · [`21-global-privacy-collab/`](./21-global-privacy-collab/)  
-  **Done when:** Timezone/collaboration + privacy-regime worksheets done; `privacy_tags` green; quiz done. English only — no language-learning track.
+  **Done when:** Timezone/collaboration + privacy-regime assignments done; `privacy_tags` green; quiz done. English only — no language-learning track.
 
 - [ ] **22 — Git & code review** · est. 8-10h · [`22-collab-review/`](./22-collab-review/)  
-  **Done when:** `pr_hygiene` green; security review checklist worksheet + quiz done (practice repo optional).
+  **Done when:** `pr_hygiene` green; security review checklist assignment + quiz done (practice repo optional).
 
 
 
@@ -135,4 +135,4 @@ Quizzes follow the Challenge Gym pattern — see [`01-challenge-gym/quizzes/READ
 ### Capstone
 
 - [ ] **19 — Capstone: mail filter** · est. 8-10h · [`19-capstone/`](./19-capstone/)  
-  **Done when:** Runnable mail-filter demo with tests; self-grade worksheet completed; required quiz done.
+  **Done when:** Runnable mail-filter demo with tests; self-grade assignment completed; required quiz done.

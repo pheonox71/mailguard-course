@@ -3,7 +3,7 @@ and Conformance (DMARC) DNS TXT record into structured fields.
 
 Literacy drill: understand p=, rua=, ruf=, adkim=, aspf=, plus RFC 9989 tags
 t=, np=, psd= (and legacy pct=). Do not talk to live DNS from tests. Implement
-the stubs. Read worksheets/dmarc_policy.md and tests/test_dmarc_policy.py
+the stubs. Read assignments/dmarc_policy.md and tests/test_dmarc_policy.py
 before coding. Peek at solutions/ only if stuck.
 """
 
@@ -49,7 +49,7 @@ def parse_dmarc_record(txt: str) -> DmarcPolicy:
     - Ignore unknown tags.
     - Raise ValueError on missing v/p, bad enums, bad pct/t/psd, or empty input.
     """
-    raise NotImplementedError("implement parse_dmarc_record — see worksheets/dmarc_policy.md")
+    raise NotImplementedError("implement parse_dmarc_record — see assignments/dmarc_policy.md")
 
 
 def explains_spoofing_gap(policy: DmarcPolicy) -> str:
@@ -61,4 +61,4 @@ def explains_spoofing_gap(policy: DmarcPolicy) -> str:
     - If test_mode (t=y): mention modern partial-rollout / next-weaker policy.
     - Else if legacy pct < 100: mention partial rollout via pct.
     """
-    raise NotImplementedError("implement explains_spoofing_gap — see worksheets/dmarc_policy.md")
+    raise NotImplementedError("implement explains_spoofing_gap — see assignments/dmarc_policy.md")

@@ -14,4 +14,4 @@
 
 ## Next step
 
-Worksheet → `katas/basic_auth_client.py` → quiz.
+Assignment → `katas/basic_auth_client.py` → quiz.

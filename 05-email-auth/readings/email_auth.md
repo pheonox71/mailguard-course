@@ -40,8 +40,8 @@ MailGuard’s hold rules catch *outbound* mistakes (missend, policy). Attackers 
 
 ### Aggregate reports (DMARC report literacy)
 
-Receivers email XML **aggregate reports** to `rua=` addresses summarizing pass/fail by source IP. Operators use them to find legitimate senders missing SPF/DKIM (or alignment) before flipping `p=reject`. This course does not require a live domain — parse policies in the kata and describe what a report would tell you on the worksheet.
+Receivers email XML **aggregate reports** to `rua=` addresses summarizing pass/fail by source IP. Operators use them to find legitimate senders missing SPF/DKIM (or alignment) before flipping `p=reject`. This course does not require a live domain — parse policies in the kata and describe what a report would tell you on the assignment.
 
 ## Next step
 
-Continue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.
+Continue with the assignment from the downloads on this page. The quiz is required after you attempt the assignment and tests.

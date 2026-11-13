@@ -1179,21 +1179,6 @@ html[data-theme='light'] .glossary-tooltip-def {
 .glossary-item dt { font-weight: 700; }
 .glossary-item dd { margin: 0.25rem 0 0; color: var(--muted); }
 
-.certificate-card {
-  margin-top: 1.5rem;
-  padding: 2rem;
-  border: 2px solid rgba(159, 217, 177, 0.35);
-  border-radius: 18px;
-  background: var(--panel);
-  text-align: center;
-  max-width: 40rem;
-}
-.cert-name {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  margin: 0.4rem 0 1rem;
-}
-
 @media print {
   .atmosphere, .topbar, .site-footer, .download-panel, .topic-downloads,
   .module-adjacent, .progress-toggle, .nav-reset, .cta-row { display: none !important; }
@@ -1201,7 +1186,7 @@ html[data-theme='light'] .glossary-tooltip-def {
     background: #fff !important;
     color: #111 !important;
   }
-  .reading-body, .certificate-card, .module-page {
+  .reading-body, .module-page {
     max-width: 100%;
     box-shadow: none;
   }

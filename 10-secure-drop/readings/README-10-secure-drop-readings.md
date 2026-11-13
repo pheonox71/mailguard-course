@@ -1,5 +1,5 @@
 # Readings — Module 10
 
-| Topic | Reading | Worksheet |
+| Topic | Reading | Assignment |
 |-------|---------|-----------|
-| Cloud-share DLP | [cloud_share_dlp.md](./cloud_share_dlp.md) | [../worksheets/cloud_share_dlp.md](../worksheets/cloud_share_dlp.md) |
+| Cloud-share DLP | [cloud_share_dlp.md](./cloud_share_dlp.md) | [../assignments/cloud_share_dlp.md](../assignments/cloud_share_dlp.md) |

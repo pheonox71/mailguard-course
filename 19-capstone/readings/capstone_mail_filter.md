@@ -2,9 +2,9 @@
 
 This module closes the course: ship a **coherent demo** of outbound message filtering (hold / allow / reject), prove it with tests, and self-grade against [`../../CAPSTONE-RUBRIC.md`](../../CAPSTONE-RUBRIC.md).
 
-The student implements the filter and fills the worksheet.
+The student implements the filter and fills the assignment.
 
-Continue with the worksheet from the downloads on this page. The quiz is **required**.
+Continue with the assignment from the downloads on this page. The quiz is **required**.
 
 ---
 
@@ -37,7 +37,7 @@ Reuse ideas from Challenge Gym hold rules, MailGuard API, and threat-model notes
 
 ## Evidence for the rubric
 
-Map each Must row in `CAPSTONE-RUBRIC.md` to a file path or command in your worksheet. Stretch rows are optional ceiling; pick at least two if you want “portfolio-ready” as defined there.
+Map each Must row in `CAPSTONE-RUBRIC.md` to a file path or command in your assignment. Stretch rows are optional ceiling; pick at least two if you want “portfolio-ready” as defined there.
 
 ---
 

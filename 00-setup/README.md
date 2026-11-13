@@ -16,7 +16,7 @@ Install the tools this course uses before Challenge Gym. Work through the on-sit
 2. Install and version-check the **core** tools listed there
 3. Mark Module 00 complete in the site progress UI, then continue to Module 01
 
-This module has **no** worksheets, quizzes, tests, or download packs.
+This module has **no** assignments, quizzes, tests, or download packs.
 
 ## Layout
 
