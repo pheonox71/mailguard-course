@@ -24,6 +24,5 @@ Prefer written vendor-neutral docs below if a video ID drifts.
 4. [Microsoft Learn — SharePoint / OneDrive sharing overview](https://learn.microsoft.com/en-us/sharepoint/external-sharing-overview) — external sharing concepts (read for patterns, not product lock-in).
 5. [AWS — Presigned URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html) — mechanism behind many expiring links.
 
-## Self-check
-
+## Quiz (required)
 [`../quizzes/cloud_share_dlp.md`](../quizzes/cloud_share_dlp.md)

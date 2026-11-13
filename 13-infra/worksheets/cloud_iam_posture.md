@@ -1,5 +1,7 @@
 # Worksheet — IAM / misconfig posture
 
+**Language / tooling:** **Terraform** (AWS) and **Docker Compose** for infra plans — not application JavaScript. Checklist answers are written Markdown.
+
 ## Checklist (mark yes/no/n/a on *your* plan)
 
 | Control | Y/N/NA | Evidence |

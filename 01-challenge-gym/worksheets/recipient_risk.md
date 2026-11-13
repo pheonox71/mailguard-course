@@ -1,5 +1,7 @@
 # Worksheet — `recipient_risk`
 
+**Language:** Python 3 + pytest (implement `katas/recipient_risk.py`).
+
 **Order:** skim [readings/recipient_risk.md](../readings/recipient_risk.md) → answer below in writing → read `tests/test_recipient_risk.py` → implement `katas/recipient_risk.py` → `pytest tests/test_recipient_risk.py -q`
 
 Peek at `solutions/recipient_risk.py` only after a real attempt.

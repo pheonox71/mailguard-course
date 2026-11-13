@@ -1,6 +1,6 @@
-# Self-check — Crypto hygiene
+# Quiz — Crypto hygiene
 
-Complete after [`../readings/crypto_hygiene.md`](../readings/crypto_hygiene.md). Attempt before opening the answer key.
+Complete after [`../readings/crypto_hygiene.md`](../readings/crypto_hygiene.md). Complete the quiz, then check the separate answer key.
 
 1. Expand **HMAC** and say what secret it needs that a bare hash does not.
 2. Expand **AEAD**. What does the “A” (associated data) typically protect?

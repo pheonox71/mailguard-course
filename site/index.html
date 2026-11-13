@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/styles.css" />
@@ -28,7 +28,8 @@
       <nav class="topnav" aria-label="Primary">
         <a href="#syllabus">Syllabus</a>
         <a href="#how">How it works</a>
-        <a class="nav-cta" href="module.html?id=01-challenge-gym">Start Module 01</a>
+        <a class="nav-cta" id="resume-cta" href="module.html?id=00-setup">Start Module 00</a>
+        <button type="button" class="nav-reset" id="reset-progress">Reset progress</button>
       </nav>
     </header>
 
@@ -38,34 +39,35 @@
           <p class="brand-hero">MailGuard Course</p>
           <h1>Cloud-security skills, built module by module.</h1>
           <p class="lede">
-            A student path through identity, email authentication, DLP-minded product work, and
-            cloud platform practice — with worksheets and tests you can download as you go.
+            A student path through setup, identity, email authentication, DLP-minded product work, and
+            cloud platform practice — read each topic on the site, then download worksheets, tests, and required quizzes.
           </p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#syllabus">Browse syllabus</a>
-            <a class="btn btn-ghost" href="module.html?id=01-challenge-gym">Open Challenge Gym</a>
+            <a class="btn btn-ghost" id="hero-resume" href="module.html?id=00-setup">Start Module 00</a>
           </div>
+          <p class="progress-summary muted" id="progress-summary" aria-live="polite"></p>
         </div>
         <div class="hero-visual" aria-hidden="true">
           <svg class="hero-art" viewBox="0 0 640 520" role="img">
             <defs>
               <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#163a3a" />
-                <stop offset="100%" stop-color="#0b1c24" />
+                <stop offset="0%" stop-color="#1a3d36" />
+                <stop offset="100%" stop-color="#0c1f1c" />
               </linearGradient>
               <linearGradient id="signal" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#7dffd2" stop-opacity="0.1" />
-                <stop offset="50%" stop-color="#7dffd2" stop-opacity="0.85" />
-                <stop offset="100%" stop-color="#7dffd2" stop-opacity="0.1" />
+                <stop offset="0%" stop-color="#9fd9b1" stop-opacity="0.1" />
+                <stop offset="50%" stop-color="#9fd9b1" stop-opacity="0.9" />
+                <stop offset="100%" stop-color="#9fd9b1" stop-opacity="0.1" />
               </linearGradient>
             </defs>
-            <rect x="48" y="56" width="420" height="280" rx="28" fill="url(#panel)" stroke="#2f6b66" stroke-width="2" />
-            <path d="M88 118h250M88 158h190M88 198h220" stroke="#7dffd2" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round" />
-            <circle cx="470" cy="300" r="96" fill="#102831" stroke="#e2a36a" stroke-width="3" />
-            <path d="M430 300h80M470 260v80" stroke="#e2a36a" stroke-width="8" stroke-linecap="round" />
-            <rect x="180" y="300" width="220" height="140" rx="22" fill="#12262f" stroke="#3d8f86" stroke-width="2" />
+            <rect x="48" y="56" width="420" height="280" rx="28" fill="url(#panel)" stroke="#3d6f62" stroke-width="2" />
+            <path d="M88 118h250M88 158h190M88 198h220" stroke="#9fd9b1" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round" />
+            <circle cx="470" cy="300" r="96" fill="#132822" stroke="#d4a574" stroke-width="3" />
+            <path d="M430 300h80M470 260v80" stroke="#d4a574" stroke-width="8" stroke-linecap="round" />
+            <rect x="180" y="300" width="220" height="140" rx="22" fill="#152e28" stroke="#4a8a78" stroke-width="2" />
             <path d="M210 360h160" stroke="url(#signal)" stroke-width="10" stroke-linecap="round" class="pulse-line" />
-            <path d="M210 400h110" stroke="#7dffd2" stroke-opacity="0.35" stroke-width="8" stroke-linecap="round" />
+            <path d="M210 400h110" stroke="#9fd9b1" stroke-opacity="0.35" stroke-width="8" stroke-linecap="round" />
           </svg>
         </div>
       </section>
@@ -73,20 +75,23 @@
       <section class="band how" id="how">
         <h2>How students move through a module</h2>
         <p class="section-lede">
-          Read the topic, work the worksheet, implement against the tests. Download fillable quiz PDFs
-          when you want a self-check — save finished work under <code>my-work/</code> in the course repo.
+          Every module with assets follows the same required path. Save finished worksheets and filled quiz PDFs under
+          <code>my-work/</code> in the course repo.
         </p>
         <ol class="steps">
-          <li><strong>Read</strong> the module reading for the concept map.</li>
+          <li><strong>Read on-site</strong> — open the module page and work through the rendered reading (with figures when present).</li>
           <li><strong>Download the worksheet</strong> and save finished answers under <code>my-work/worksheets/</code>.</li>
-          <li><strong>Download the tests</strong> and implement until they pass. Quiz PDFs are optional self-checks.</li>
+          <li><strong>Download the tests</strong> (when present) and implement until they pass.</li>
+          <li><strong>Download the required quiz (PDF)</strong>, complete it, then check the separate answer key. Answer keys are never inside the quiz PDF.</li>
         </ol>
       </section>
 
       <section class="band syllabus" id="syllabus">
         <div class="section-head">
           <h2>Syllabus</h2>
-          <p class="section-lede">Modules in learning order. Open a module to download worksheets, tests, and quiz PDFs.</p>
+          <p class="section-lede">
+            Modules in learning order (est. 8-10h each). Open a module to read on-site, then download worksheets, tests, required quizzes, and answer keys. Checkmarks show progress stored in this browser.
+          </p>
         </div>
         <div id="module-list" class="module-list" aria-live="polite"></div>
       </section>
@@ -94,9 +99,10 @@
 
     <footer class="site-footer">
       <p><strong>MailGuard Course</strong> — cloud-security learning for students.</p>
-      <p class="muted">Worksheets and kata implementations are filled in by the student.</p>
+      <p class="muted">Worksheets, required quizzes, and kata implementations are filled in by the student.</p>
     </footer>
 
+    <script type="module" src="js/base.js"></script>
     <script type="module" src="js/home.js"></script>
   </body>
 </html>

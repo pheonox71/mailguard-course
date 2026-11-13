@@ -1,5 +1,7 @@
 # 02 — MailGuard MFA (+ passkeys / WebAuthn literacy)
 
+**Language:** Python (FastAPI-style) for enroll/verify work; the passkeys worksheet is mostly literacy.
+
 Multi-Factor Authentication (**MFA**) on the MailGuard API path: Time-based One-Time Password (**TOTP**) enroll/verify + recovery codes, with a **passkeys / Web Authentication (WebAuthn)** reading track for phishing-resistant MFA.
 
 **Authorship:** AI-generated readings/worksheets/quizzes. The student saves finished worksheets and filled quiz PDFs under [`../my-work/`](../my-work/).
@@ -15,7 +17,7 @@ Multi-Factor Authentication (**MFA**) on the MailGuard API path: Time-based One-
 | Path | Role |
 |------|------|
 | `readings/` | MFA + passkeys intros + credited videos |
-| `quizzes/` | Self-checks |
+| `quizzes/` | Required quizzes (answer keys under `quizzes/answer-keys/`) |
 | `worksheets/` | Guided questions before implementation |
 
 ## Start here

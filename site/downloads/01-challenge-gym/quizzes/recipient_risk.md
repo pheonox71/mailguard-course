@@ -1,6 +1,6 @@
-# Self-check — Recipient risk
+# Quiz — Recipient risk
 
-Complete after [`../readings/recipient_risk.md`](../readings/recipient_risk.md). Attempt before opening the answer key.
+Complete after [`../readings/recipient_risk.md`](../readings/recipient_risk.md). Complete the quiz, then check the separate answer key.
 
 1. What three recipient classes does this kata care about relative to an org domain?
 2. Why can a **mixed** internal+external recipient set be a missend signal?

@@ -1,5 +1,7 @@
 # Worksheet — `dmarc_policy`
 
+**Language:** Python 3 + pytest (implement `katas/dmarc_policy.py`).
+
 **Order:** email_auth reading + worksheet → this page → `tests/test_dmarc_policy.py` → implement stub.
 
 ## Concepts

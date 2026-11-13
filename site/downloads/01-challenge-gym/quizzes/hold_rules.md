@@ -1,6 +1,6 @@
-# Self-check — Hold rules
+# Quiz — Hold rules
 
-Complete after [`../readings/hold_rules.md`](../readings/hold_rules.md). Attempt before opening the answer key.
+Complete after [`../readings/hold_rules.md`](../readings/hold_rules.md). Complete the quiz, then check the separate answer key.
 
 1. Expand **DLP** and give the three policy actions this kata models.
 2. What does **first-match-wins** mean for an ordered rule list?

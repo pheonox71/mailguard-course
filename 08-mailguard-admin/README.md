@@ -1,3 +1,5 @@
 # 08 — MailGuard Admin
 
-TypeScript/Vue admin for rules and the hold queue. See root README and syllabus.
+**Language:** Vue 3 + TypeScript.
+
+Admin SPA for rules and the hold queue. See root README and syllabus.

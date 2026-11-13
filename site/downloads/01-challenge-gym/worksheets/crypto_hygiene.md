@@ -1,5 +1,7 @@
 # Worksheet — `crypto_hygiene`
 
+**Language:** Python 3 + pytest (implement `katas/crypto_hygiene.py`; use the standard library / well-known crypto APIs — do not invent algorithms).
+
 **Order:** skim [readings/crypto_hygiene.md](../readings/crypto_hygiene.md) → answer below in writing → read `tests/test_crypto_hygiene.py` → implement `katas/crypto_hygiene.py` → `pytest tests/test_crypto_hygiene.py -q`
 
 Peek at `solutions/crypto_hygiene.py` only after a real attempt.

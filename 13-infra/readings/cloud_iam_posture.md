@@ -27,6 +27,5 @@ Prefer official IAM docs below if videos move.
 4. [NIST CSF overview](https://www.nist.gov/cyberframework) — identify/protect framing without exam prep.
 5. [OWASP — Cloud Security](https://owasp.org/www-project-cloud-security/) — project landing / cheat-adjacent material.
 
-## Self-check
-
+## Quiz (required)
 [`../quizzes/cloud_iam_posture.md`](../quizzes/cloud_iam_posture.md)

@@ -1,4 +1,4 @@
-# Self-check — Cloud-share DLP
+# Quiz — Cloud-share DLP
 
 1. Expand **DLP**. Give one file-share example that email hold misses.
 2. Name three share-link controls.

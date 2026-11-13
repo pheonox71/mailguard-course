@@ -1,4 +1,4 @@
-# Self-check — OSS & security UX
+# Quiz — OSS & security UX
 
 1. Expand **OSS**. Name one step before opening a PR.
 2. Why is “just make the user click through a scary modal” weak security UX?

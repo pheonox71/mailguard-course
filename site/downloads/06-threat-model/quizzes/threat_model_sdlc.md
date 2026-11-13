@@ -1,4 +1,4 @@
-# Self-check — Threat modeling / SSDLC
+# Quiz — Threat modeling / SSDLC
 
 1. Expand **STRIDE** (list the six words).
 2. What are Shostack’s “four questions” at a high level?

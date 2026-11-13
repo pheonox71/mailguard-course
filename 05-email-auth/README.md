@@ -1,5 +1,7 @@
 # 05 — Email authentication (SPF / DKIM / DMARC)
 
+**Language:** Python 3 + pytest for the `dmarc_policy` kata.
+
 SMTP/TLS literacy plus domain authentication — what outbound hold/DLP cannot solve alone when attackers spoof lookalike mail.
 
 **Learn-by-building:** stub in `katas/`, contract in `tests/`, guided by `readings/` + `worksheets/`. Reference in `solutions/`.

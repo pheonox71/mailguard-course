@@ -1,6 +1,6 @@
-# Self-check — TOTP verify
+# Quiz — TOTP verify
 
-Complete after [`../readings/totp_verify.md`](../readings/totp_verify.md). Attempt before opening the answer key.
+Complete after [`../readings/totp_verify.md`](../readings/totp_verify.md). Complete the quiz, then check the separate answer key.
 
 1. Expand **TOTP** and state what inputs produce the short code.
 2. How does TOTP relate to **HOTP**?

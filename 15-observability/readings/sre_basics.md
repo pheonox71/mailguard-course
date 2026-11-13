@@ -27,6 +27,5 @@ Prefer the Google SRE book chapters below if a video moves.
 3. [OpenTelemetry docs — Concepts](https://opentelemetry.io/docs/concepts/) — signals you will emit in this module.
 4. [Google — CRE life lessons / SLOs](https://cloud.google.com/blog/products/gcp/sre-fundamentals-slis-slas-and-slos) — short companion.
 
-## Self-check
-
+## Quiz (required)
 [`../quizzes/sre_basics.md`](../quizzes/sre_basics.md)

@@ -32,6 +32,5 @@ Prefer written RFCs/docs below if videos move.
 5. [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticators & federation high-level.
 6. [OWASP — Credential Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Credential_Storage_Cheat_Sheet.html) — why vaults beat spreadsheets (for apps still on passwords).
 
-## Self-check
-
+## Quiz (required)
 [`../quizzes/identity_depth.md`](../quizzes/identity_depth.md)

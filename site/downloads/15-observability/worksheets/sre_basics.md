@@ -1,5 +1,7 @@
 # Worksheet — SRE basics for MailGuard
 
+**Language / tooling:** Written SRE worksheet (Markdown). When you wire metrics later, use the observability stack you document in Module 15 (Prometheus/OpenTelemetry-class tools) — not a random app framework.
+
 ## SLIs (pick 2–3)
 
 | SLI name | Measurement idea | Good events | Bad events |

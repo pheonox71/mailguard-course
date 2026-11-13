@@ -1,4 +1,4 @@
-# Self-check — Cloud IAM posture
+# Quiz — Cloud IAM posture
 
 1. Expand **IAM**.
 2. Why is `Action: "*"` on a runtime role a smell?

@@ -1,5 +1,7 @@
 # Worksheet — `totp_verify`
 
+**Language:** Python 3 + pytest (implement `katas/totp_verify.py`; prefer `pyotp`).
+
 **Order:** skim [readings/totp_verify.md](../readings/totp_verify.md) → answer below in writing → read `tests/test_totp_verify.py` → implement `katas/totp_verify.py` → `pytest tests/test_totp_verify.py -q`
 
 Peek at `solutions/totp_verify.py` only after a real attempt.

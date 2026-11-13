@@ -1,15 +1,75 @@
 {
   "brand": "MailGuard Course",
   "tagline": "Cloud-security learning for students building identity, email DLP, and secure SaaS skills.",
-  "generatedAt": "2026-11-12T11:10:40.732Z",
+  "generatedAt": "2026-11-13T10:27:44.099Z",
   "modules": [
+    {
+      "id": "00-setup",
+      "number": "00",
+      "title": "Setup / getting ready",
+      "phase": "Foundations",
+      "blurb": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux.",
+      "hours": "est. 8-10h",
+      "language": "Tooling",
+      "languageDetail": "Cross-platform installs (Git, Python, later Node/Go/Docker/Terraform/K8s)",
+      "hasModuleDir": true,
+      "worksheets": [
+        {
+          "id": "course_setup",
+          "label": "course setup",
+          "href": "downloads/00-setup/worksheets/course_setup.md",
+          "filename": "course_setup.md"
+        }
+      ],
+      "worksheetsZip": null,
+      "worksheetSingle": {
+        "id": "course_setup",
+        "label": "course setup",
+        "href": "downloads/00-setup/worksheets/course_setup.md",
+        "filename": "course_setup.md"
+      },
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [
+        {
+          "id": "course_setup",
+          "label": "course setup",
+          "href": "downloads/00-setup/quizzes/course_setup.md",
+          "filename": "course_setup.md",
+          "pdfHref": "downloads/00-setup/quizzes/course_setup.pdf",
+          "pdfFilename": "course_setup.pdf",
+          "answerKeyHref": "downloads/00-setup/answer-keys/course_setup.md"
+        }
+      ],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": {
+        "id": "course_setup",
+        "label": "course setup",
+        "href": "downloads/00-setup/quizzes/course_setup.md",
+        "filename": "course_setup.md",
+        "pdfHref": "downloads/00-setup/quizzes/course_setup.pdf",
+        "pdfFilename": "course_setup.pdf",
+        "answerKeyHref": "downloads/00-setup/answer-keys/course_setup.md"
+      },
+      "readings": [
+        {
+          "id": "course_setup",
+          "label": "course setup",
+          "path": "00-setup/readings/course_setup.md",
+          "href": "content/00-setup/readings/course_setup.md"
+        }
+      ]
+    },
     {
       "id": "01-challenge-gym",
       "number": "01",
       "title": "Challenge Gym",
       "phase": "Foundations",
       "blurb": "Short Python katas with pytest contracts — TOTP, hold rules, recipient risk, and crypto hygiene.",
-      "hours": "8–10 h",
+      "hours": "est. 8-10h",
+      "language": "Python",
+      "languageDetail": "Python 3 + pytest for katas and tests",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -73,7 +133,8 @@
           "href": "downloads/01-challenge-gym/quizzes/crypto_hygiene.md",
           "filename": "crypto_hygiene.md",
           "pdfHref": "downloads/01-challenge-gym/quizzes/crypto_hygiene.pdf",
-          "pdfFilename": "crypto_hygiene.pdf"
+          "pdfFilename": "crypto_hygiene.pdf",
+          "answerKeyHref": "downloads/01-challenge-gym/answer-keys/crypto_hygiene.md"
         },
         {
           "id": "hold_rules",
@@ -81,7 +142,8 @@
           "href": "downloads/01-challenge-gym/quizzes/hold_rules.md",
           "filename": "hold_rules.md",
           "pdfHref": "downloads/01-challenge-gym/quizzes/hold_rules.pdf",
-          "pdfFilename": "hold_rules.pdf"
+          "pdfFilename": "hold_rules.pdf",
+          "answerKeyHref": "downloads/01-challenge-gym/answer-keys/hold_rules.md"
         },
         {
           "id": "recipient_risk",
@@ -89,7 +151,8 @@
           "href": "downloads/01-challenge-gym/quizzes/recipient_risk.md",
           "filename": "recipient_risk.md",
           "pdfHref": "downloads/01-challenge-gym/quizzes/recipient_risk.pdf",
-          "pdfFilename": "recipient_risk.pdf"
+          "pdfFilename": "recipient_risk.pdf",
+          "answerKeyHref": "downloads/01-challenge-gym/answer-keys/recipient_risk.md"
         },
         {
           "id": "totp_verify",
@@ -97,7 +160,8 @@
           "href": "downloads/01-challenge-gym/quizzes/totp_verify.md",
           "filename": "totp_verify.md",
           "pdfHref": "downloads/01-challenge-gym/quizzes/totp_verify.pdf",
-          "pdfFilename": "totp_verify.pdf"
+          "pdfFilename": "totp_verify.pdf",
+          "answerKeyHref": "downloads/01-challenge-gym/answer-keys/totp_verify.md"
         }
       ],
       "quizzesZip": "downloads/01-challenge-gym/quizzes.zip",
@@ -107,22 +171,26 @@
         {
           "id": "crypto_hygiene",
           "label": "crypto hygiene",
-          "path": "01-challenge-gym/readings/crypto_hygiene.md"
+          "path": "01-challenge-gym/readings/crypto_hygiene.md",
+          "href": "content/01-challenge-gym/readings/crypto_hygiene.md"
         },
         {
           "id": "hold_rules",
           "label": "hold rules",
-          "path": "01-challenge-gym/readings/hold_rules.md"
+          "path": "01-challenge-gym/readings/hold_rules.md",
+          "href": "content/01-challenge-gym/readings/hold_rules.md"
         },
         {
           "id": "recipient_risk",
           "label": "recipient risk",
-          "path": "01-challenge-gym/readings/recipient_risk.md"
+          "path": "01-challenge-gym/readings/recipient_risk.md",
+          "href": "content/01-challenge-gym/readings/recipient_risk.md"
         },
         {
           "id": "totp_verify",
           "label": "totp verify",
-          "path": "01-challenge-gym/readings/totp_verify.md"
+          "path": "01-challenge-gym/readings/totp_verify.md",
+          "href": "content/01-challenge-gym/readings/totp_verify.md"
         }
       ]
     },
@@ -132,7 +200,9 @@
       "title": "MailGuard MFA",
       "phase": "Identity & access",
       "blurb": "TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy.",
-      "hours": "10–12 h",
+      "hours": "est. 8-10h",
+      "language": "Python",
+      "languageDetail": "Python (FastAPI-style) for enroll/verify; worksheet is mostly literacy",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -158,7 +228,8 @@
           "href": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.md",
           "filename": "passkeys_webauthn.md",
           "pdfHref": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.pdf",
-          "pdfFilename": "passkeys_webauthn.pdf"
+          "pdfFilename": "passkeys_webauthn.pdf",
+          "answerKeyHref": "downloads/02-mailguard-mfa/answer-keys/passkeys_webauthn.md"
         }
       ],
       "quizzesZip": null,
@@ -169,13 +240,15 @@
         "href": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.md",
         "filename": "passkeys_webauthn.md",
         "pdfHref": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.pdf",
-        "pdfFilename": "passkeys_webauthn.pdf"
+        "pdfFilename": "passkeys_webauthn.pdf",
+        "answerKeyHref": "downloads/02-mailguard-mfa/answer-keys/passkeys_webauthn.md"
       },
       "readings": [
         {
           "id": "passkeys_webauthn",
           "label": "passkeys webauthn",
-          "path": "02-mailguard-mfa/readings/passkeys_webauthn.md"
+          "path": "02-mailguard-mfa/readings/passkeys_webauthn.md",
+          "href": "content/02-mailguard-mfa/readings/passkeys_webauthn.md"
         }
       ]
     },
@@ -185,7 +258,9 @@
       "title": "OIDC / access policy",
       "phase": "Identity & access",
       "blurb": "Happy-path OIDC, SAML comparison, and identity-depth worksheet practice.",
-      "hours": "10–12 h",
+      "hours": "est. 8-10h",
+      "language": "Conceptual",
+      "languageDetail": "Tables and diagrams; optional Python only if you code a demo later",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -211,7 +286,8 @@
           "href": "downloads/03-oidc-access/quizzes/identity_depth.md",
           "filename": "identity_depth.md",
           "pdfHref": "downloads/03-oidc-access/quizzes/identity_depth.pdf",
-          "pdfFilename": "identity_depth.pdf"
+          "pdfFilename": "identity_depth.pdf",
+          "answerKeyHref": "downloads/03-oidc-access/answer-keys/identity_depth.md"
         }
       ],
       "quizzesZip": null,
@@ -222,13 +298,15 @@
         "href": "downloads/03-oidc-access/quizzes/identity_depth.md",
         "filename": "identity_depth.md",
         "pdfHref": "downloads/03-oidc-access/quizzes/identity_depth.pdf",
-        "pdfFilename": "identity_depth.pdf"
+        "pdfFilename": "identity_depth.pdf",
+        "answerKeyHref": "downloads/03-oidc-access/answer-keys/identity_depth.md"
       },
       "readings": [
         {
           "id": "identity_depth",
           "label": "identity depth",
-          "path": "03-oidc-access/readings/identity_depth.md"
+          "path": "03-oidc-access/readings/identity_depth.md",
+          "href": "content/03-oidc-access/readings/identity_depth.md"
         }
       ]
     },
@@ -238,7 +316,9 @@
       "title": "ZTNA lite",
       "phase": "Identity & access",
       "blurb": "VPN vs zero-trust access — diagrams and compare tables, no commercial mesh required.",
-      "hours": "3–5 h",
+      "hours": "est. 8-10h",
+      "language": "Conceptual",
+      "languageDetail": "Diagrams and compare tables (no app language required)",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -264,7 +344,8 @@
           "href": "downloads/04-ztna-lite/quizzes/ztna_lite.md",
           "filename": "ztna_lite.md",
           "pdfHref": "downloads/04-ztna-lite/quizzes/ztna_lite.pdf",
-          "pdfFilename": "ztna_lite.pdf"
+          "pdfFilename": "ztna_lite.pdf",
+          "answerKeyHref": "downloads/04-ztna-lite/answer-keys/ztna_lite.md"
         }
       ],
       "quizzesZip": null,
@@ -275,13 +356,15 @@
         "href": "downloads/04-ztna-lite/quizzes/ztna_lite.md",
         "filename": "ztna_lite.md",
         "pdfHref": "downloads/04-ztna-lite/quizzes/ztna_lite.pdf",
-        "pdfFilename": "ztna_lite.pdf"
+        "pdfFilename": "ztna_lite.pdf",
+        "answerKeyHref": "downloads/04-ztna-lite/answer-keys/ztna_lite.md"
       },
       "readings": [
         {
           "id": "ztna_lite",
           "label": "ztna lite",
-          "path": "04-ztna-lite/readings/ztna_lite.md"
+          "path": "04-ztna-lite/readings/ztna_lite.md",
+          "href": "content/04-ztna-lite/readings/ztna_lite.md"
         }
       ]
     },
@@ -291,7 +374,9 @@
       "title": "Email authentication",
       "phase": "Email & DLP literacy",
       "blurb": "SPF, DKIM, DMARC, and a dmarc_policy kata with tests.",
-      "hours": "6–8 h",
+      "hours": "est. 8-10h",
+      "language": "Python",
+      "languageDetail": "Python 3 + pytest for the dmarc_policy kata",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -325,7 +410,8 @@
           "href": "downloads/05-email-auth/quizzes/email_auth.md",
           "filename": "email_auth.md",
           "pdfHref": "downloads/05-email-auth/quizzes/email_auth.pdf",
-          "pdfFilename": "email_auth.pdf"
+          "pdfFilename": "email_auth.pdf",
+          "answerKeyHref": "downloads/05-email-auth/answer-keys/email_auth.md"
         }
       ],
       "quizzesZip": null,
@@ -336,13 +422,15 @@
         "href": "downloads/05-email-auth/quizzes/email_auth.md",
         "filename": "email_auth.md",
         "pdfHref": "downloads/05-email-auth/quizzes/email_auth.pdf",
-        "pdfFilename": "email_auth.pdf"
+        "pdfFilename": "email_auth.pdf",
+        "answerKeyHref": "downloads/05-email-auth/answer-keys/email_auth.md"
       },
       "readings": [
         {
           "id": "email_auth",
           "label": "email auth",
-          "path": "05-email-auth/readings/email_auth.md"
+          "path": "05-email-auth/readings/email_auth.md",
+          "href": "content/05-email-auth/readings/email_auth.md"
         }
       ]
     },
@@ -351,8 +439,10 @@
       "number": "06",
       "title": "Threat model / secure SDLC",
       "phase": "Email & DLP literacy",
-      "blurb": "STRIDE-lite on the hold path plus a lightweight SAMM self-check.",
-      "hours": "5–7 h",
+      "blurb": "STRIDE-lite on the hold path plus a lightweight SAMM checklist.",
+      "hours": "est. 8-10h",
+      "language": "Conceptual",
+      "languageDetail": "Written threat-model tables (Markdown)",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -378,7 +468,8 @@
           "href": "downloads/06-threat-model/quizzes/threat_model_sdlc.md",
           "filename": "threat_model_sdlc.md",
           "pdfHref": "downloads/06-threat-model/quizzes/threat_model_sdlc.pdf",
-          "pdfFilename": "threat_model_sdlc.pdf"
+          "pdfFilename": "threat_model_sdlc.pdf",
+          "answerKeyHref": "downloads/06-threat-model/answer-keys/threat_model_sdlc.md"
         }
       ],
       "quizzesZip": null,
@@ -389,13 +480,15 @@
         "href": "downloads/06-threat-model/quizzes/threat_model_sdlc.md",
         "filename": "threat_model_sdlc.md",
         "pdfHref": "downloads/06-threat-model/quizzes/threat_model_sdlc.pdf",
-        "pdfFilename": "threat_model_sdlc.pdf"
+        "pdfFilename": "threat_model_sdlc.pdf",
+        "answerKeyHref": "downloads/06-threat-model/answer-keys/threat_model_sdlc.md"
       },
       "readings": [
         {
           "id": "threat_model_sdlc",
           "label": "threat model sdlc",
-          "path": "06-threat-model/readings/threat_model_sdlc.md"
+          "path": "06-threat-model/readings/threat_model_sdlc.md",
+          "href": "content/06-threat-model/readings/threat_model_sdlc.md"
         }
       ]
     },
@@ -405,7 +498,9 @@
       "title": "MailGuard API",
       "phase": "Product build",
       "blurb": "FastAPI rules API for hold / allow / reject.",
-      "hours": "12–16 h",
+      "hours": "est. 8-10h",
+      "language": "Python",
+      "languageDetail": "Python 3 + FastAPI + pytest",
       "hasModuleDir": true,
       "worksheets": [],
       "worksheetsZip": null,
@@ -424,7 +519,9 @@
       "title": "MailGuard Admin",
       "phase": "Product build",
       "blurb": "TypeScript/Vue admin for rules and the hold queue.",
-      "hours": "12–16 h",
+      "hours": "est. 8-10h",
+      "language": "Vue + TypeScript",
+      "languageDetail": "Vue 3 + TypeScript for the admin SPA",
       "hasModuleDir": true,
       "worksheets": [],
       "worksheetsZip": null,
@@ -443,7 +540,9 @@
       "title": "MailGuard Worker",
       "phase": "Product build",
       "blurb": "Queue worker path for applying MailGuard decisions.",
-      "hours": "10–12 h",
+      "hours": "est. 8-10h",
+      "language": "Go",
+      "languageDetail": "Go worker / queue consumer",
       "hasModuleDir": true,
       "worksheets": [],
       "worksheetsZip": null,
@@ -462,7 +561,9 @@
       "title": "Secure Drop",
       "phase": "Product build",
       "blurb": "Expiring share links, audit, and cloud-share DLP literacy.",
-      "hours": "10–12 h",
+      "hours": "est. 8-10h",
+      "language": "Python",
+      "languageDetail": "Python service for share links; worksheet literacy first",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -488,7 +589,8 @@
           "href": "downloads/10-secure-drop/quizzes/cloud_share_dlp.md",
           "filename": "cloud_share_dlp.md",
           "pdfHref": "downloads/10-secure-drop/quizzes/cloud_share_dlp.pdf",
-          "pdfFilename": "cloud_share_dlp.pdf"
+          "pdfFilename": "cloud_share_dlp.pdf",
+          "answerKeyHref": "downloads/10-secure-drop/answer-keys/cloud_share_dlp.md"
         }
       ],
       "quizzesZip": null,
@@ -499,13 +601,15 @@
         "href": "downloads/10-secure-drop/quizzes/cloud_share_dlp.md",
         "filename": "cloud_share_dlp.md",
         "pdfHref": "downloads/10-secure-drop/quizzes/cloud_share_dlp.pdf",
-        "pdfFilename": "cloud_share_dlp.pdf"
+        "pdfFilename": "cloud_share_dlp.pdf",
+        "answerKeyHref": "downloads/10-secure-drop/answer-keys/cloud_share_dlp.md"
       },
       "readings": [
         {
           "id": "cloud_share_dlp",
           "label": "cloud share dlp",
-          "path": "10-secure-drop/readings/cloud_share_dlp.md"
+          "path": "10-secure-drop/readings/cloud_share_dlp.md",
+          "href": "content/10-secure-drop/readings/cloud_share_dlp.md"
         }
       ]
     },
@@ -515,7 +619,9 @@
       "title": "Security notes",
       "phase": "Product build",
       "blurb": "OWASP-mapped lab notes tied to MailGuard mitigations.",
-      "hours": "6–8 h",
+      "hours": "est. 8-10h",
+      "language": "Conceptual",
+      "languageDetail": "Written security notes (Markdown)",
       "hasModuleDir": true,
       "worksheets": [],
       "worksheetsZip": null,
@@ -534,7 +640,9 @@
       "title": "CI + AWS",
       "phase": "Cloud & platform",
       "blurb": "PR CI and a documented cloud deploy — no secrets in git.",
-      "hours": "8–10 h",
+      "hours": "est. 8-10h",
+      "language": "CI + AWS",
+      "languageDetail": "GitHub Actions YAML and AWS deploy notes",
       "hasModuleDir": true,
       "worksheets": [],
       "worksheetsZip": null,
@@ -553,7 +661,9 @@
       "title": "Infra",
       "phase": "Cloud & platform",
       "blurb": "Compose + Terraform story with IAM / misconfig posture worksheet.",
-      "hours": "12–14 h",
+      "hours": "est. 8-10h",
+      "language": "Terraform + Compose",
+      "languageDetail": "Terraform (AWS) and Docker Compose — not application JS",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -579,7 +689,8 @@
           "href": "downloads/13-infra/quizzes/cloud_iam_posture.md",
           "filename": "cloud_iam_posture.md",
           "pdfHref": "downloads/13-infra/quizzes/cloud_iam_posture.pdf",
-          "pdfFilename": "cloud_iam_posture.pdf"
+          "pdfFilename": "cloud_iam_posture.pdf",
+          "answerKeyHref": "downloads/13-infra/answer-keys/cloud_iam_posture.md"
         }
       ],
       "quizzesZip": null,
@@ -590,13 +701,15 @@
         "href": "downloads/13-infra/quizzes/cloud_iam_posture.md",
         "filename": "cloud_iam_posture.md",
         "pdfHref": "downloads/13-infra/quizzes/cloud_iam_posture.pdf",
-        "pdfFilename": "cloud_iam_posture.pdf"
+        "pdfFilename": "cloud_iam_posture.pdf",
+        "answerKeyHref": "downloads/13-infra/answer-keys/cloud_iam_posture.md"
       },
       "readings": [
         {
           "id": "cloud_iam_posture",
           "label": "cloud iam posture",
-          "path": "13-infra/readings/cloud_iam_posture.md"
+          "path": "13-infra/readings/cloud_iam_posture.md",
+          "href": "content/13-infra/readings/cloud_iam_posture.md"
         }
       ]
     },
@@ -606,7 +719,9 @@
       "title": "K8s local",
       "phase": "Stretch",
       "blurb": "kind/minikube deploy with probes and resource requests.",
-      "hours": "10–12 h",
+      "hours": "est. 8-10h",
+      "language": "Kubernetes YAML",
+      "languageDetail": "Kubernetes manifests (kind/minikube)",
       "hasModuleDir": true,
       "worksheets": [],
       "worksheetsZip": null,
@@ -625,7 +740,9 @@
       "title": "Observability",
       "phase": "Stretch",
       "blurb": "Golden signals plus SLI/SLO and a lightweight postmortem worksheet.",
-      "hours": "10–12 h",
+      "hours": "est. 8-10h",
+      "language": "Ops / metrics",
+      "languageDetail": "Metrics/logs/traces config and written SRE worksheets",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -651,7 +768,8 @@
           "href": "downloads/15-observability/quizzes/sre_basics.md",
           "filename": "sre_basics.md",
           "pdfHref": "downloads/15-observability/quizzes/sre_basics.pdf",
-          "pdfFilename": "sre_basics.pdf"
+          "pdfFilename": "sre_basics.pdf",
+          "answerKeyHref": "downloads/15-observability/answer-keys/sre_basics.md"
         }
       ],
       "quizzesZip": null,
@@ -662,13 +780,15 @@
         "href": "downloads/15-observability/quizzes/sre_basics.md",
         "filename": "sre_basics.md",
         "pdfHref": "downloads/15-observability/quizzes/sre_basics.pdf",
-        "pdfFilename": "sre_basics.pdf"
+        "pdfFilename": "sre_basics.pdf",
+        "answerKeyHref": "downloads/15-observability/answer-keys/sre_basics.md"
       },
       "readings": [
         {
           "id": "sre_basics",
           "label": "sre basics",
-          "path": "15-observability/readings/sre_basics.md"
+          "path": "15-observability/readings/sre_basics.md",
+          "href": "content/15-observability/readings/sre_basics.md"
         }
       ]
     },
@@ -678,7 +798,9 @@
       "title": "GitOps + policy",
       "phase": "Stretch",
       "blurb": "Sync flow and policy-as-code checks on manifests.",
-      "hours": "6–8 h",
+      "hours": "est. 8-10h",
+      "language": "GitOps / policy",
+      "languageDetail": "Kubernetes YAML + policy-as-code (e.g. Kyverno/Conftest)",
       "hasModuleDir": true,
       "worksheets": [],
       "worksheetsZip": null,
@@ -697,7 +819,9 @@
       "title": "Phish Lite",
       "phase": "Optional",
       "blurb": "Optional phishing-awareness quiz UI for learning honesty practice.",
-      "hours": "6–8 h",
+      "hours": "est. 8-10h",
+      "language": "Svelte",
+      "languageDetail": "Svelte / SvelteKit for the optional quiz UI",
       "hasModuleDir": true,
       "worksheets": [],
       "worksheetsZip": null,
@@ -716,7 +840,9 @@
       "title": "OSS + security UX",
       "phase": "Optional",
       "blurb": "Upstream contribution hygiene and security-warning UX reflection.",
-      "hours": "3–6 h",
+      "hours": "est. 8-10h",
+      "language": "Vue + TypeScript",
+      "languageDetail": "Vue + TypeScript for UX mocks; writing for the OSS track",
       "hasModuleDir": true,
       "worksheets": [
         {
@@ -742,7 +868,8 @@
           "href": "downloads/18-oss-ux-stretch/quizzes/oss_and_security_ux.md",
           "filename": "oss_and_security_ux.md",
           "pdfHref": "downloads/18-oss-ux-stretch/quizzes/oss_and_security_ux.pdf",
-          "pdfFilename": "oss_and_security_ux.pdf"
+          "pdfFilename": "oss_and_security_ux.pdf",
+          "answerKeyHref": "downloads/18-oss-ux-stretch/answer-keys/oss_and_security_ux.md"
         }
       ],
       "quizzesZip": null,
@@ -753,13 +880,15 @@
         "href": "downloads/18-oss-ux-stretch/quizzes/oss_and_security_ux.md",
         "filename": "oss_and_security_ux.md",
         "pdfHref": "downloads/18-oss-ux-stretch/quizzes/oss_and_security_ux.pdf",
-        "pdfFilename": "oss_and_security_ux.pdf"
+        "pdfFilename": "oss_and_security_ux.pdf",
+        "answerKeyHref": "downloads/18-oss-ux-stretch/answer-keys/oss_and_security_ux.md"
       },
       "readings": [
         {
           "id": "oss_and_security_ux",
           "label": "oss and security ux",
-          "path": "18-oss-ux-stretch/readings/oss_and_security_ux.md"
+          "path": "18-oss-ux-stretch/readings/oss_and_security_ux.md",
+          "href": "content/18-oss-ux-stretch/readings/oss_and_security_ux.md"
         }
       ]
     }

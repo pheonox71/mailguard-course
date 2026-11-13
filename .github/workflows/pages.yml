@@ -1,0 +1,63 @@
+name: Deploy course site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install quiz PDF deps
+        run: pip install -r site/scripts/requirements.txt
+
+      - name: Prepare site downloads + readings
+        working-directory: site
+        run: npm run prepare-downloads
+
+      - name: Guard — never publish my-work
+        run: |
+          if [ -e site/my-work ] || [ -e site/downloads/my-work ]; then
+            echo "Refusing to publish: my-work appeared under site/" >&2
+            exit 1
+          fi
+          # Publish root is site/ only; my-work/ stays in repo root and is not uploaded.
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

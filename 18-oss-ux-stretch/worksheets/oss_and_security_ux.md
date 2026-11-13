@@ -1,5 +1,7 @@
 # Worksheet — OSS & security UX (optional)
 
+**Language:** Track A is writing / git hygiene. Track B UI mocks should use **Vue 3 + TypeScript** (same admin UI stack) when you sketch interactive copy — not an unrelated frontend.
+
 Pick **Track A**, **Track B**, or both.
 
 ## Track A — OSS practice

@@ -1,4 +1,4 @@
-# Self-check — SRE basics
+# Quiz — SRE basics
 
 1. Expand **SLI**, **SLO**, and (optionally) **SLA**.
 2. What is an **error budget** for?

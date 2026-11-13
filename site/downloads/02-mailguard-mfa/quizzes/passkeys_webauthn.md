@@ -1,4 +1,4 @@
-# Self-check — Passkeys / WebAuthn
+# Quiz — Passkeys / WebAuthn
 
 1. Expand **WebAuthn**. What is a **passkey** in everyday language?
 2. Why can TOTP still be phished?

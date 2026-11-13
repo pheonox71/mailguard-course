@@ -1,6 +1,8 @@
 # Worksheet — Threat model the MailGuard hold path
 
-**Order:** reading → this worksheet (save finished answers under `my-work/worksheets/`) → self-check quiz PDF when ready.
+**Language:** Conceptual (Markdown tables and short answers). No application language is required.
+
+**Order:** reading → this worksheet (save finished answers under `my-work/worksheets/`) → required quiz PDF, then separate answer key.
 
 ## Part A — Scope (4 bullets)
 

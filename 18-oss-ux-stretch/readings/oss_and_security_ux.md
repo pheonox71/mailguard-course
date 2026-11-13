@@ -28,6 +28,5 @@ Prefer written links if a video moves.
 4. [Chromium — Permission UX / quiet UI notes](https://www.chromium.org/Home/chromium-security/enamel/) — browser-team thinking on interruptions (skim).
 5. [OWASP — Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html) — only for “don’t train users into unsafe clicks” mindset when designing phishing *education* UIs.
 
-## Self-check
-
+## Quiz (required)
 [`../quizzes/oss_and_security_ux.md`](../quizzes/oss_and_security_ux.md)

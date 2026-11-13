@@ -21,14 +21,16 @@ Related reading: [OWASP MFA Cheat Sheet](https://cheatsheetseries.owasp.org/chea
 
 ## Workflow (do not spoil yourself)
 
+**Language:** Python 3 + pytest for every kata stub and test in this module.
+
 For **each** kata, in order:
 
-1. **Readings** — `readings/<kata>.md`: short intro + verified external links (RFC/OWASP/MDN/docs)
-2. **Self-check** — `quizzes/<kata>.md`: short quiz after the reading (answer key at bottom)
-3. **Worksheet** — `worksheets/<kata>.md`: concepts, short written questions, REPL warm-up
-4. **Read tests** — `tests/test_<kata>.py` defines correct behavior
-5. **Implement stubs** — fill `katas/<kata>.py` (`NotImplementedError` → real code)
-6. **pytest green** — run that file’s tests, then the full suite when all three are done
+1. **Readings** — `readings/<kata>.md` (also rendered on the course site): short intro + verified external links
+2. **Worksheet** — `worksheets/<kata>.md`: concepts, short written questions, REPL warm-up
+3. **Read tests** — `tests/test_<kata>.py` defines correct behavior
+4. **Implement stubs** — fill `katas/<kata>.py` (`NotImplementedError` → real code)
+5. **pytest green** — run that file’s tests, then the full suite when ready
+6. **Quiz (offline)** — download the fillable quiz PDF from the course site as a required step
 
 ```bash
 pytest tests/test_totp_verify.py -q    # first kata
@@ -45,7 +47,7 @@ Index of quizzes: [`quizzes/README-01-challenge-gym-quizzes.md`](./quizzes/READM
 | Path | Role |
 |------|------|
 | `readings/` | Short intros + verified external links per kata |
-| `quizzes/` | Short self-checks after each reading (pattern for later modules) |
+| `quizzes/` | Required quizzes after each reading (answer keys separate) (pattern for later modules) |
 | `worksheets/` | Guided learning before/while implementing |
 | `katas/` | Stubs you implement (`raise NotImplementedError`) |
 | `tests/` | Thorough pytest contract — do not weaken these |

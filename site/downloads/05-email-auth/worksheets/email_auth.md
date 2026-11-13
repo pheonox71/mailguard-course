@@ -1,6 +1,8 @@
 # Worksheet — Email authentication
 
-**Order:** read [`../readings/email_auth.md`](../readings/email_auth.md) → answer below → quiz → implement `katas/dmarc_policy.py`.
+**Language:** Conceptual answers here; the paired kata (`dmarc_policy`) is **Python 3 + pytest**.
+
+**Order:** read [`../readings/email_auth.md`](../readings/email_auth.md) → answer below → implement `katas/dmarc_policy.py` (see that worksheet) → download the quiz PDF when ready.
 
 ## Concepts
 

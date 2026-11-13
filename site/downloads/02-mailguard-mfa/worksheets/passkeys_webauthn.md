@@ -1,5 +1,7 @@
 # Worksheet — Passkeys / WebAuthn
 
+**Language:** Conceptual worksheet. Any coded demo later should use **Python** (e.g. FastAPI) for the relying-party server — not a random frontend-only stack.
+
 ## Short questions
 
 1. What binds a WebAuthn credential to a site so a phishing clone fails?

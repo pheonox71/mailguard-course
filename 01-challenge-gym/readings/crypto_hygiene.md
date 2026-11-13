@@ -53,6 +53,5 @@ Time-based One-Time Password (**TOTP**) already taught “don’t hand-roll HMAC
 - [NIST SP 800-57 Part 1 Rev. 5 — Recommendation for Key Management](https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final) — lifecycle vocabulary (generate, distribute, store, rotate, destroy).
 - Skim certificate fields in a browser’s certificate viewer once after the kata is green.
 
-## Self-check
-
+## Quiz (required)
 After this reading: [`../quizzes/crypto_hygiene.md`](../quizzes/crypto_hygiene.md).

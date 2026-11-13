@@ -1,5 +1,7 @@
 # Worksheet — `hold_rules`
 
+**Language:** Python 3 + pytest (implement `katas/hold_rules.py`).
+
 **Order:** skim [readings/hold_rules.md](../readings/hold_rules.md) → answer below in writing → read `tests/test_hold_rules.py` → implement `katas/hold_rules.py` → `pytest tests/test_hold_rules.py -q`
 
 Peek at `solutions/hold_rules.py` only after a real attempt.

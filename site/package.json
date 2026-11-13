@@ -4,8 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "prepare-readings": "node scripts/prepare-readings.mjs",
     "prepare-downloads": "node scripts/prepare-downloads.mjs",
-    "dev": "npm run prepare-downloads && python3 -m http.server 5173 --bind 127.0.0.1",
+    "preview": "python3 -m http.server 5173 --bind 127.0.0.1",
+    "dev": "npm run prepare-readings && npm run preview",
     "start": "npm run dev"
   }
 }

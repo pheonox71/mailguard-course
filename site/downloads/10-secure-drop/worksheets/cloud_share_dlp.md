@@ -1,5 +1,7 @@
 # Worksheet — Cloud-share DLP
 
+**Language:** Conceptual design first. If you code the mini lab, use **Python** for the share-link service (same stack as the MailGuard API path).
+
 ## Design a share object
 
 Fields for a mock `ShareLink` (bullets OK): id, owner, visibility enum, expires_at, revoked_at, audit events.

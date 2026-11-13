@@ -35,6 +35,5 @@ Also skim: [Shostack + Associates — threat modeling beginner guide](https://ad
 5. [LINDDUN](https://www.linddun.org/) — privacy threat categories (skim).
 6. [Shostack four-question frame (GitHub)](https://github.com/adamshostack/4QuestionFrame) — one-pager.
 
-## Self-check
-
+## Quiz (required)
 [`../quizzes/threat_model_sdlc.md`](../quizzes/threat_model_sdlc.md)

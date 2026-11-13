@@ -1,4 +1,4 @@
-# Self-check — Email authentication
+# Quiz — Email authentication
 
 1. Expand **SMTP**. Does SMTP+TLS prove the `From:` domain is authorized?
 2. Expand **SPF**, **DKIM**, and **DMARC** in one line each.

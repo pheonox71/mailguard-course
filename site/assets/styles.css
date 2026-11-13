@@ -587,3 +587,222 @@ a:hover {
     transition: none !important;
   }
 }
+
+.language-chip {
+  margin: 0.85rem 0 0;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgba(125, 255, 210, 0.18);
+  border-radius: 12px;
+  background: rgba(14, 32, 40, 0.55);
+  max-width: 52rem;
+}
+
+.language-chip > span:first-child {
+  display: inline-block;
+  margin-right: 0.55rem;
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.topics {
+  margin-top: 2.5rem;
+}
+
+.topics-heading {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin: 0 0 1rem;
+}
+
+.topic-block {
+  margin: 0 0 2rem;
+  padding: 1.35rem 1.4rem 1.5rem;
+  border: 1px solid rgba(125, 255, 210, 0.12);
+  border-radius: var(--radius);
+  background: rgba(8, 20, 28, 0.55);
+}
+
+.topic-block-header h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+}
+
+.topic-block-header p {
+  margin: 0.4rem 0 0;
+}
+
+.reading-body {
+  margin-top: 1.25rem;
+  max-width: 52rem;
+}
+
+.reading-body h1,
+.reading-body h2,
+.reading-body h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.reading-body h1 {
+  font-size: 1.45rem;
+  margin: 0 0 0.85rem;
+}
+
+.reading-body h2 {
+  font-size: 1.2rem;
+  margin: 1.6rem 0 0.55rem;
+}
+
+.reading-body h3 {
+  font-size: 1.05rem;
+  margin: 1.25rem 0 0.45rem;
+}
+
+.reading-body p,
+.reading-body li {
+  color: #d7e4dc;
+}
+
+.reading-body a {
+  color: var(--brand);
+}
+
+.reading-body code {
+  font-size: 0.92em;
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+  background: rgba(125, 255, 210, 0.08);
+}
+
+.reading-body pre {
+  overflow-x: auto;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(2, 10, 14, 0.75);
+  border: 1px solid rgba(125, 255, 210, 0.1);
+}
+
+.reading-body pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.reading-figure {
+  margin: 1.25rem 0;
+  padding: 0.85rem;
+  border-radius: 14px;
+  background: rgba(2, 10, 14, 0.55);
+  border: 1px solid rgba(125, 255, 210, 0.12);
+}
+
+.reading-figure img {
+  display: block;
+  width: min(100%, 640px);
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.reading-figure figcaption {
+  margin-top: 0.65rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.topic-downloads {
+  margin-top: 1.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(125, 255, 210, 0.1);
+}
+
+.topic-downloads h3 {
+  margin: 0 0 0.65rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--warm);
+}
+
+:root {
+  --ink: #071412;
+  --ink-2: #0d1f1b;
+  --panel: rgba(14, 36, 30, 0.74);
+  --line: rgba(159, 217, 177, 0.16);
+  --text: #e8f2ea;
+  --muted: #9db5a6;
+  --brand: #9fd9b1;
+  --brand-deep: #3d8f72;
+  --warm: #d4a574;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
+}
+
+.nav-reset {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(159, 217, 177, 0.22);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.nav-reset:hover { color: var(--text); border-color: rgba(159, 217, 177, 0.45); }
+
+.progress-summary { margin-top: 1rem; font-size: 0.95rem; }
+
+.module-row.is-complete {
+  border-color: rgba(159, 217, 177, 0.42);
+  background: rgba(20, 48, 40, 0.72);
+}
+.module-row.is-complete .module-num { color: var(--brand); }
+
+.progress-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.module-complete-toggle { margin: 1rem 0 0; }
+.topic-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+}
+.btn-key {
+  background: rgba(159, 217, 177, 0.1);
+  border-color: rgba(159, 217, 177, 0.4);
+  color: #c8f0d4;
+}
+.reading-body {
+  max-width: 42rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+@media (max-width: 720px) {
+  .topnav .nav-reset { display: none; }
+  .module-page { padding-inline: 1rem; }
+}

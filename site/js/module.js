@@ -1,8 +1,24 @@
+import { marked } from 'https://cdn.jsdelivr.net/npm/marked@12.0.2/lib/marked.esm.js'
+import { withBase } from './base.js'
+import {
+  loadProgress,
+  markModuleVisited,
+  setModuleComplete,
+  setTopicComplete,
+  isModuleComplete,
+  isTopicComplete,
+  resumeHref,
+  resumeLabel,
+  resetProgress,
+} from './progress.js'
+
 const params = new URLSearchParams(location.search)
-const id = params.get('id') || '01-challenge-gym'
+const id = params.get('id') || '00-setup'
 const root = document.getElementById('module-root')
 const crumb = document.getElementById('crumb-current')
 const adjacent = document.getElementById('module-adjacent')
+const resumeCta = document.getElementById('resume-cta')
+const resetBtn = document.getElementById('reset-progress')
 
 function titleCase(label) {
   return label.replace(/\b\w/g, (c) => c.toUpperCase())
@@ -16,15 +32,122 @@ function escapeHtml(value) {
     .replaceAll('"', '&quot;')
 }
 
+function readingBase(href) {
+  const parts = href.split('/')
+  parts.pop()
+  return parts.join('/')
+}
+
+function resolveAssetUrl(src, base) {
+  if (!src || /^(https?:|data:|mailto:|#)/i.test(src)) return src
+  if (src.startsWith('/')) return src
+  return `${base}/${src}`.replace(/\/{2,}/g, '/')
+}
+
+function enhanceFigures(html, base) {
+  const wrap = document.createElement('div')
+  wrap.innerHTML = html
+  wrap.querySelectorAll('img').forEach((img) => {
+    const src = img.getAttribute('src') || ''
+    img.setAttribute('src', resolveAssetUrl(src, base))
+    img.loading = 'lazy'
+    const caption = (img.getAttribute('alt') || '').trim()
+    if (!caption) return
+    if (img.parentElement?.tagName === 'FIGURE') {
+      let figcap = img.parentElement.querySelector('figcaption')
+      if (!figcap) {
+        figcap = document.createElement('figcaption')
+        img.parentElement.appendChild(figcap)
+      }
+      figcap.textContent = caption
+      return
+    }
+    const figure = document.createElement('figure')
+    figure.className = 'reading-figure'
+    img.replaceWith(figure)
+    figure.appendChild(img)
+    const figcap = document.createElement('figcaption')
+    figcap.textContent = caption
+    figure.appendChild(figcap)
+  })
+  wrap.querySelectorAll('a[href]').forEach((a) => {
+    const href = a.getAttribute('href') || ''
+    if (/^(https?:)?\/\//i.test(href) || href.startsWith('mailto:')) {
+      a.setAttribute('target', '_blank')
+      a.setAttribute('rel', 'noopener noreferrer')
+    } else if (!href.startsWith('#') && !href.startsWith('mailto:')) {
+      a.setAttribute('href', resolveAssetUrl(href, base))
+    }
+  })
+  return wrap.innerHTML
+}
+
+async function loadReadingHtml(reading) {
+  if (!reading?.href) {
+    return `<p class="empty-note">Reading file not prepared. Run <code>npm run prepare-readings</code> from <code>site/</code>.</p>`
+  }
+  try {
+    const res = await fetch(withBase(reading.href))
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const md = await res.text()
+    const raw = marked.parse(md, { async: false })
+    return enhanceFigures(raw, readingBase(reading.href))
+  } catch {
+    return `<p class="empty-note">Could not load <code>${escapeHtml(reading.href)}</code>. Run <code>npm run prepare-readings</code>.</p>`
+  }
+}
+
+function downloadButtonsForTopic(mod, topicId) {
+  const worksheet = mod.worksheets.find((w) => w.id === topicId)
+  const test = mod.tests.find((t) => t.id === topicId)
+  const quiz = mod.quizzes.find((q) => q.id === topicId)
+  const buttons = []
+  if (worksheet) {
+    buttons.push(
+      `<a class="btn btn-download" download href="${withBase(worksheet.href)}">Download worksheet</a>`,
+    )
+  }
+  if (quiz?.pdfHref) {
+    buttons.push(
+      `<a class="btn btn-download" download href="${withBase(quiz.pdfHref)}">Quiz</a>`,
+    )
+  } else if (quiz?.href) {
+    buttons.push(
+      `<a class="btn btn-download" download href="${withBase(quiz.href)}">Quiz</a>`,
+    )
+  }
+  if (quiz?.answerKeyHref) {
+    buttons.push(
+      `<a class="btn btn-download btn-key" download href="${withBase(quiz.answerKeyHref)}">Quiz Answer Key</a>`,
+    )
+  }
+  if (test) {
+    buttons.push(
+      `<a class="btn btn-download" download href="${withBase(test.href)}">Tests</a>`,
+    )
+  }
+  return buttons
+}
+
 async function main() {
-  const res = await fetch('data/catalog.json')
+  const res = await fetch(withBase('data/catalog.json'))
   if (!res.ok) {
     root.innerHTML =
-      '<p class="empty-note">Catalog missing. Run <code>npm run prepare-downloads</code> from <code>site/</code>.</p>'
+      '<p class="empty-note">Catalog missing. Run <code>npm run prepare-readings</code> (fast) or <code>npm run prepare-downloads</code> from <code>site/</code>.</p>'
     return
   }
 
   const catalog = await res.json()
+  if (resumeCta) {
+    resumeCta.href = withBase(resumeHref(catalog.modules))
+    resumeCta.textContent = resumeLabel(catalog.modules)
+  }
+  resetBtn?.addEventListener('click', () => {
+    if (!confirm('Reset all course progress stored in this browser?')) return
+    resetProgress()
+    location.reload()
+  })
+
   const index = catalog.modules.findIndex((m) => m.id === id)
   const mod = catalog.modules[index]
 
@@ -38,146 +161,178 @@ async function main() {
     return
   }
 
+  markModuleVisited(mod.id)
   document.title = `${mod.number} — ${mod.title} · MailGuard Course`
   crumb.textContent = `${mod.number} ${mod.title}`
 
   const worksheetButtons = []
   if (mod.worksheetsZip) {
     worksheetButtons.push(
-      `<a class="btn btn-download" download href="${mod.worksheetsZip}">Download worksheets (zip)</a>`,
+      `<a class="btn btn-download" download href="${withBase(mod.worksheetsZip)}">Download worksheets (zip)</a>`,
     )
   } else if (mod.worksheetSingle) {
     worksheetButtons.push(
-      `<a class="btn btn-download" download href="${mod.worksheetSingle.href}">Download worksheet</a>`,
+      `<a class="btn btn-download" download href="${withBase(mod.worksheetSingle.href)}">Download worksheet</a>`,
     )
   }
 
   if (mod.testsZip) {
     worksheetButtons.push(
-      `<a class="btn btn-download" download href="${mod.testsZip}">Download tests (zip)</a>`,
+      `<a class="btn btn-download" download href="${withBase(mod.testsZip)}">Download tests (zip)</a>`,
     )
   }
 
   const quizButtons = []
   if (mod.quizzesPdfZip) {
     quizButtons.push(
-      `<a class="btn btn-download" download href="${mod.quizzesPdfZip}">Download quizzes (PDF zip)</a>`,
+      `<a class="btn btn-download" download href="${withBase(mod.quizzesPdfZip)}">Download quizzes (PDF zip)</a>`,
     )
   } else {
     const singlePdf = mod.quizzes.find((q) => q.pdfHref)
     if (singlePdf?.pdfHref) {
       quizButtons.push(
-        `<a class="btn btn-download" download href="${singlePdf.pdfHref}">Download quiz (PDF)</a>`,
+        `<a class="btn btn-download" download href="${withBase(singlePdf.pdfHref)}">Quiz</a>`,
+      )
+    }
+  }
+  if (mod.answerKeysZip) {
+    quizButtons.push(
+      `<a class="btn btn-download btn-key" download href="${withBase(mod.answerKeysZip)}">Quiz Answer Keys (zip)</a>`,
+    )
+  } else {
+    const singleKey = mod.quizzes.find((q) => q.answerKeyHref)
+    if (singleKey?.answerKeyHref) {
+      quizButtons.push(
+        `<a class="btn btn-download btn-key" download href="${withBase(singleKey.answerKeyHref)}">Quiz Answer Key</a>`,
       )
     }
   }
 
-  const quizzesWithPdf = mod.quizzes.filter((q) => q.pdfHref)
-  const quizTopicRows =
-    quizzesWithPdf.length > 1
-      ? `
-    <div class="topic-grid" aria-label="Per-topic quiz PDF downloads" style="margin-top:1.25rem">
-      ${quizzesWithPdf
-        .map(
-          (q) => `
-          <div class="topic-item">
-            <div>
-              <h3>${escapeHtml(titleCase(q.label))}</h3>
-              <p>Fillable quiz PDF (questions only)</p>
-            </div>
-            <div class="download-actions">
-              <a class="btn btn-download" download href="${q.pdfHref}">Download quiz (PDF)</a>
-            </div>
-          </div>`,
-        )
-        .join('')}
-    </div>`
-      : ''
+  const topicIds = [
+    ...new Set([
+      ...mod.readings.map((r) => r.id),
+      ...mod.worksheets.map((w) => w.id),
+      ...mod.quizzes.map((q) => q.id),
+      ...mod.tests.map((t) => t.id),
+    ]),
+  ]
 
-  const topicRows =
-    mod.worksheets.length > 1
-      ? `
-    <div class="topic-grid" aria-label="Per-topic downloads">
-      ${mod.worksheets
-        .map((w) => {
-          const test = mod.tests.find((t) => t.id === w.id)
-          const quiz = mod.quizzes.find((q) => q.id === w.id && q.pdfHref)
-          return `
-          <div class="topic-item">
-            <div>
-              <h3>${escapeHtml(titleCase(w.label))}</h3>
-              <p>Worksheet${test ? ', tests' : ''}${quiz ? ', quiz PDF' : ''}</p>
-            </div>
-            <div class="download-actions">
-              <a class="btn btn-download" download href="${w.href}">Worksheet</a>
-              ${
-                test
-                  ? `<a class="btn btn-download" download href="${test.href}">Test</a>`
-                  : ''
-              }
-              ${
-                quiz
-                  ? `<a class="btn btn-download" download href="${quiz.pdfHref}">Download quiz (PDF)</a>`
-                  : ''
-              }
-            </div>
-          </div>`
-        })
-        .join('')}
-    </div>`
-      : quizTopicRows
+  let state = loadProgress()
+  const topicSections = []
+  for (const topicId of topicIds) {
+    const reading = mod.readings.find((r) => r.id === topicId)
+    const label =
+      reading?.label ||
+      mod.worksheets.find((w) => w.id === topicId)?.label ||
+      mod.quizzes.find((q) => q.id === topicId)?.label ||
+      mod.tests.find((t) => t.id === topicId)?.label ||
+      topicId
+    const buttons = downloadButtonsForTopic(mod, topicId)
+    const readingHtml = reading
+      ? await loadReadingHtml(reading)
+      : `<p class="muted">No on-site reading for this topic yet.</p>`
+    const topicDone = isTopicComplete(state, mod.id, topicId)
 
-  const readings =
-    mod.readings.length > 0
-      ? `
-    <div style="margin-top:2rem">
-      <h2 style="font-family:var(--font-display);font-size:1.25rem;margin:0">Readings in this module</h2>
-      <p class="muted" style="margin:.45rem 0 0">Work through the reading, then use the worksheet as your next step.</p>
-      <ul class="reading-list">
-        ${mod.readings
-          .map(
-            (r) =>
-              `<li>${escapeHtml(titleCase(r.label))} <span class="muted">(${escapeHtml(r.path)})</span></li>`,
-          )
-          .join('')}
-      </ul>
-    </div>`
-      : ''
+    topicSections.push(`
+      <article class="topic-block" id="topic-${escapeHtml(topicId)}" data-topic="${escapeHtml(topicId)}">
+        <header class="topic-block-header">
+          <div class="topic-title-row">
+            <h2>${escapeHtml(titleCase(label))}</h2>
+            <label class="progress-toggle">
+              <input type="checkbox" data-topic-complete="${escapeHtml(topicId)}" ${topicDone ? 'checked' : ''} />
+              Topic complete
+            </label>
+          </div>
+          <p class="muted">Read on this page, then download the worksheet, required quiz, and tests. Use the answer key only after you attempt the quiz.</p>
+        </header>
+        <div class="reading-body">${readingHtml}</div>
+        <div class="topic-downloads">
+          <h3>Downloads</h3>
+          <div class="download-actions">
+            ${
+              buttons.join('') ||
+              '<span class="muted">No worksheet or quiz pack for this topic yet.</span>'
+            }
+          </div>
+        </div>
+      </article>
+    `)
+  }
 
-  const empty =
-    !mod.worksheets.length && !mod.tests.length && !quizzesWithPdf.length
-      ? `<p class="empty-note">This module is a build / stretch step. Worksheet, test, and quiz downloads appear here when those assets exist for the topic.</p>`
-      : ''
+  const packEmpty =
+    !mod.worksheets.length && !mod.tests.length && !mod.quizzes.some((q) => q.pdfHref || q.href)
+  const readingsEmpty = !mod.readings.length
+  const moduleDone = isModuleComplete(state, mod.id)
 
   root.innerHTML = `
     <p class="module-kicker">${escapeHtml(mod.phase)} · ${escapeHtml(mod.hours)}</p>
     <h1>${escapeHtml(mod.number)} — ${escapeHtml(mod.title)}</h1>
     <p class="module-blurb">${escapeHtml(mod.blurb)}</p>
+    <p class="language-chip"><span>Language / tooling</span> ${escapeHtml(mod.language || 'See module README')}${
+      mod.languageDetail
+        ? ` — <span class="muted">${escapeHtml(mod.languageDetail)}</span>`
+        : ''
+    }</p>
+    <label class="progress-toggle module-complete-toggle">
+      <input type="checkbox" id="module-complete" ${moduleDone ? 'checked' : ''} />
+      Mark module complete
+    </label>
 
-    <section class="download-panel" aria-label="Downloads">
-      <h2>Downloads for students</h2>
-      <p>Files come from the course tree. Quiz PDFs are fillable (questions only — no answer keys). Save finished worksheets and filled quiz PDFs under <code>my-work/</code> in the course repo.</p>
+    <section class="download-panel" aria-label="Module download packs">
+      <h2>Module download packs</h2>
+      <p>Required path: read on-site → worksheet → tests (when present) → <strong>required quiz</strong>. Quiz PDFs are fillable questions only; answer keys are separate downloads. Save finished work under <code>my-work/</code>.</p>
       <div class="download-actions">
         ${worksheetButtons.join('') || '<span class="muted">No worksheet pack for this module yet.</span>'}
         ${quizButtons.join('')}
       </div>
-      ${topicRows}
-      ${empty}
+      ${
+        packEmpty && readingsEmpty
+          ? `<p class="empty-note">This module is a build / stretch step. Readings and downloads appear here when those assets exist.</p>`
+          : ''
+      }
     </section>
-    ${readings}
+
+    <section class="topics" aria-label="Topics">
+      <h2 class="topics-heading">Topics</h2>
+      ${
+        topicSections.join('') ||
+        `<p class="empty-note">No topics with readings or downloads yet for this module.</p>`
+      }
+    </section>
   `
+
+  root.querySelector('#module-complete')?.addEventListener('change', (e) => {
+    setModuleComplete(mod.id, e.target.checked)
+    if (resumeCta) {
+      resumeCta.href = withBase(resumeHref(catalog.modules))
+      resumeCta.textContent = resumeLabel(catalog.modules)
+    }
+  })
+  root.querySelectorAll('[data-topic-complete]').forEach((input) => {
+    input.addEventListener('change', (e) => {
+      const topicId = e.target.getAttribute('data-topic-complete')
+      setTopicComplete(mod.id, topicId, e.target.checked)
+      markModuleVisited(mod.id, topicId)
+    })
+  })
+
+  const hash = location.hash.replace(/^#topic-/, '')
+  if (hash) {
+    markModuleVisited(mod.id, hash)
+    document.getElementById(`topic-${hash}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   const prev = catalog.modules[index - 1]
   const next = catalog.modules[index + 1]
   adjacent.innerHTML = `
     ${
       prev
-        ? `<a href="module.html?id=${encodeURIComponent(prev.id)}">← ${prev.number} ${escapeHtml(prev.title)}</a>`
+        ? `<a href="${withBase(`module.html?id=${encodeURIComponent(prev.id)}`)}">← ${prev.number} ${escapeHtml(prev.title)}</a>`
         : '<span></span>'
     }
     ${
       next
-        ? `<a href="module.html?id=${encodeURIComponent(next.id)}">${next.number} ${escapeHtml(next.title)} →</a>`
+        ? `<a href="${withBase(`module.html?id=${encodeURIComponent(next.id)}`)}">${next.number} ${escapeHtml(next.title)} →</a>`
         : '<span></span>'
     }
   `

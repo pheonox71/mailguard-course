@@ -1,5 +1,7 @@
 # 13 — Infra (+ cloud IAM / misconfig posture)
 
+**Language / tooling:** Terraform (AWS) + Docker Compose — not application JavaScript.
+
 Compose + Terraform for the MailGuard story, extended with Identity and Access Management (**IAM**) least-privilege review and intentional misconfig detection literacy.
 
 ## What this teaches

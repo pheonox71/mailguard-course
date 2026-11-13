@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
- * Copy course worksheets / tests into site/downloads and
+ * Copy course worksheets / tests / quizzes / answer keys into site/downloads and
  * emit data/catalog.json for the student-facing UI.
  *
- * Quizzes: questions only — answer-key sections are stripped when present.
+ * Quiz PDFs are questions only. Answer keys are separate downloads.
+ * Readings: delegated to prepare-readings.mjs.
  */
 import {
   mkdirSync,
@@ -18,6 +19,8 @@ import {
 import { join, basename, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execFileSync } from 'node:child_process'
+import { MODULE_META } from './course-meta.mjs'
+import { prepareReadings } from './prepare-readings.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const SITE_ROOT = join(__dirname, '..')
@@ -25,154 +28,6 @@ const COURSE_ROOT = join(SITE_ROOT, '..')
 const OUT_DIR = join(SITE_ROOT, 'downloads')
 const DATA_DIR = join(SITE_ROOT, 'data')
 const QUIZ_PDF_SCRIPT = join(__dirname, 'quiz_md_to_pdf.py')
-
-const MODULE_META = [
-  {
-    id: '01-challenge-gym',
-    number: '01',
-    title: 'Challenge Gym',
-    phase: 'Foundations',
-    blurb:
-      'Short Python katas with pytest contracts — TOTP, hold rules, recipient risk, and crypto hygiene.',
-    hours: '8–10 h',
-  },
-  {
-    id: '02-mailguard-mfa',
-    number: '02',
-    title: 'MailGuard MFA',
-    phase: 'Identity & access',
-    blurb: 'TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy.',
-    hours: '10–12 h',
-  },
-  {
-    id: '03-oidc-access',
-    number: '03',
-    title: 'OIDC / access policy',
-    phase: 'Identity & access',
-    blurb: 'Happy-path OIDC, SAML comparison, and identity-depth worksheet practice.',
-    hours: '10–12 h',
-  },
-  {
-    id: '04-ztna-lite',
-    number: '04',
-    title: 'ZTNA lite',
-    phase: 'Identity & access',
-    blurb: 'VPN vs zero-trust access — diagrams and compare tables, no commercial mesh required.',
-    hours: '3–5 h',
-  },
-  {
-    id: '05-email-auth',
-    number: '05',
-    title: 'Email authentication',
-    phase: 'Email & DLP literacy',
-    blurb: 'SPF, DKIM, DMARC, and a dmarc_policy kata with tests.',
-    hours: '6–8 h',
-  },
-  {
-    id: '06-threat-model',
-    number: '06',
-    title: 'Threat model / secure SDLC',
-    phase: 'Email & DLP literacy',
-    blurb: 'STRIDE-lite on the hold path plus a lightweight SAMM self-check.',
-    hours: '5–7 h',
-  },
-  {
-    id: '07-mailguard-api',
-    number: '07',
-    title: 'MailGuard API',
-    phase: 'Product build',
-    blurb: 'FastAPI rules API for hold / allow / reject.',
-    hours: '12–16 h',
-  },
-  {
-    id: '08-mailguard-admin',
-    number: '08',
-    title: 'MailGuard Admin',
-    phase: 'Product build',
-    blurb: 'TypeScript/Vue admin for rules and the hold queue.',
-    hours: '12–16 h',
-  },
-  {
-    id: '09-mailguard-worker',
-    number: '09',
-    title: 'MailGuard Worker',
-    phase: 'Product build',
-    blurb: 'Queue worker path for applying MailGuard decisions.',
-    hours: '10–12 h',
-  },
-  {
-    id: '10-secure-drop',
-    number: '10',
-    title: 'Secure Drop',
-    phase: 'Product build',
-    blurb: 'Expiring share links, audit, and cloud-share DLP literacy.',
-    hours: '10–12 h',
-  },
-  {
-    id: '11-security-notes',
-    number: '11',
-    title: 'Security notes',
-    phase: 'Product build',
-    blurb: 'OWASP-mapped lab notes tied to MailGuard mitigations.',
-    hours: '6–8 h',
-  },
-  {
-    id: '12-ci-aws',
-    number: '12',
-    title: 'CI + AWS',
-    phase: 'Cloud & platform',
-    blurb: 'PR CI and a documented cloud deploy — no secrets in git.',
-    hours: '8–10 h',
-  },
-  {
-    id: '13-infra',
-    number: '13',
-    title: 'Infra',
-    phase: 'Cloud & platform',
-    blurb: 'Compose + Terraform story with IAM / misconfig posture worksheet.',
-    hours: '12–14 h',
-  },
-  {
-    id: '14-k8s-local',
-    number: '14',
-    title: 'K8s local',
-    phase: 'Stretch',
-    blurb: 'kind/minikube deploy with probes and resource requests.',
-    hours: '10–12 h',
-  },
-  {
-    id: '15-observability',
-    number: '15',
-    title: 'Observability',
-    phase: 'Stretch',
-    blurb: 'Golden signals plus SLI/SLO and a lightweight postmortem worksheet.',
-    hours: '10–12 h',
-  },
-  {
-    id: '16-gitops-policy',
-    number: '16',
-    title: 'GitOps + policy',
-    phase: 'Stretch',
-    blurb: 'Sync flow and policy-as-code checks on manifests.',
-    hours: '6–8 h',
-  },
-  {
-    id: '17-phish-lite',
-    number: '17',
-    title: 'Phish Lite',
-    phase: 'Optional',
-    blurb: 'Optional phishing-awareness quiz UI for learning honesty practice.',
-    hours: '6–8 h',
-  },
-  {
-    id: '18-oss-ux-stretch',
-    number: '18',
-    title: 'OSS + security UX',
-    phase: 'Optional',
-    blurb: 'Upstream contribution hygiene and security-warning UX reflection.',
-    hours: '3–6 h',
-  },
-]
 
 function listFiles(dir, predicate) {
   if (!existsSync(dir)) return []
@@ -188,7 +43,6 @@ function stripAnswerKey(markdown) {
     /\n---\s*\n+##\s*Answer key[\s\S]*$/i,
     /\n##\s*Answer key[\s\S]*$/i,
     /\n##\s*Answers?[\s\S]*$/i,
-    // Separate answer-key docs (link-only footer)
     /\n+Answer key:\s*\[[\s\S]*$/i,
   ]
   let out = markdown
@@ -241,9 +95,9 @@ for (const meta of MODULE_META) {
     join(moduleDir, 'quizzes'),
     (n) => n.endsWith('.md') && !n.startsWith('README'),
   )
-  const readingsSrc = listFiles(
-    join(moduleDir, 'readings'),
-    (n) => n.endsWith('.md') && !n.startsWith('README'),
+  const answerKeysSrc = listFiles(
+    join(moduleDir, 'quizzes', 'answer-keys'),
+    (n) => n.endsWith('.md'),
   )
 
   const worksheets = []
@@ -291,6 +145,30 @@ for (const meta of MODULE_META) {
     zipFiles(tDir, zipInputs, zipPath)
   }
 
+  const answerKeyById = new Map()
+  if (answerKeysSrc.length) {
+    const kDir = join(moduleOut, 'answer-keys')
+    ensureDir(kDir)
+    for (const src of answerKeysSrc) {
+      const name = basename(src)
+      copyFileSync(src, join(kDir, name))
+      const id = basename(name, '.md')
+      answerKeyById.set(id, {
+        id,
+        label: topicLabel(name),
+        href: `downloads/${meta.id}/answer-keys/${name}`,
+        filename: name,
+      })
+    }
+    if (answerKeysSrc.length > 1) {
+      zipFiles(
+        kDir,
+        answerKeysSrc.map((s) => join(kDir, basename(s))),
+        join(moduleOut, 'answer-keys.zip'),
+      )
+    }
+  }
+
   const quizzes = []
   if (quizzesSrc.length) {
     const qDir = join(moduleOut, 'quizzes')
@@ -298,7 +176,9 @@ for (const meta of MODULE_META) {
     for (const src of quizzesSrc) {
       const name = basename(src)
       const stripped = stripAnswerKey(readFileSync(src, 'utf8'))
-      if (/##\s*Answer key/i.test(stripped)) continue
+      if (/##\s*Answer key/i.test(stripped)) {
+        console.warn(`quiz still contains answer key heading: ${meta.id}/${name}`)
+      }
       const mdOut = join(qDir, name)
       writeFileSync(mdOut, stripped, 'utf8')
       const id = basename(name, '.md')
@@ -316,6 +196,7 @@ for (const meta of MODULE_META) {
         const detail = err?.stderr?.toString?.() || err?.message || String(err)
         console.warn(`quiz PDF skipped for ${meta.id}/${name}: ${detail.trim()}`)
       }
+      const key = answerKeyById.get(id)
       quizzes.push({
         id,
         label: topicLabel(name),
@@ -323,30 +204,23 @@ for (const meta of MODULE_META) {
         filename: name,
         pdfHref,
         pdfFilename: pdfHref ? pdfName : null,
+        answerKeyHref: key?.href || null,
       })
     }
     const pdfFiles = quizzes
       .filter((q) => q.pdfFilename)
       .map((q) => join(qDir, q.pdfFilename))
     if (pdfFiles.length > 1) {
-      const zipPath = join(moduleOut, 'quizzes-pdf.zip')
-      zipFiles(qDir, pdfFiles, zipPath)
+      zipFiles(qDir, pdfFiles, join(moduleOut, 'quizzes-pdf.zip'))
     }
     if (quizzes.length > 1) {
-      const zipPath = join(moduleOut, 'quizzes.zip')
       zipFiles(
         qDir,
         quizzes.map((q) => join(qDir, q.filename)),
-        zipPath,
+        join(moduleOut, 'quizzes.zip'),
       )
     }
   }
-
-  const readings = readingsSrc.map((src) => ({
-    id: basename(src, '.md'),
-    label: topicLabel(basename(src)),
-    path: relative(COURSE_ROOT, src).replace(/\\/g, '/'),
-  }))
 
   modules.push({
     ...meta,
@@ -364,7 +238,9 @@ for (const meta of MODULE_META) {
         ? `downloads/${meta.id}/quizzes-pdf.zip`
         : null,
     quizSingle: quizzes.length === 1 ? quizzes[0] : null,
-    readings,
+    answerKeysZip:
+      answerKeyById.size > 1 ? `downloads/${meta.id}/answer-keys.zip` : null,
+    readings: [],
   })
 }
 
@@ -384,6 +260,12 @@ const withQuizPdfs = modules.reduce(
   (n, m) => n + m.quizzes.filter((q) => q.pdfHref).length,
   0,
 )
-console.log(
-  `Prepared downloads for ${modules.length} modules (${withWorksheets} with worksheets, ${withTests} with tests, ${withQuizPdfs} quiz PDFs) → downloads/`,
+const withKeys = modules.reduce(
+  (n, m) => n + m.quizzes.filter((q) => q.answerKeyHref).length,
+  0,
 )
+console.log(
+  `Prepared downloads for ${modules.length} modules (${withWorksheets} worksheets, ${withTests} tests, ${withQuizPdfs} quiz PDFs, ${withKeys} answer keys) → downloads/`,
+)
+
+prepareReadings({ preserveDownloads: true })

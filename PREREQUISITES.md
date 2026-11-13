@@ -1,6 +1,6 @@
 # Prerequisites
 
-What you should already have (or be willing to pick up quickly) before Module `01`. This course surveys backend, frontend, and platform/infra; it does **not** teach programming from zero.
+What you should already have (or be willing to pick up quickly) before Module `01`. Start with Module [`00-setup/`](./00-setup/) for installs and version checks (est. 8-10h). This course surveys backend, frontend, and platform/infra; it does **not** teach programming from zero.
 
 **Authorship:** AI-generated course scaffolding. Student fills worksheets and implements stubs.
 

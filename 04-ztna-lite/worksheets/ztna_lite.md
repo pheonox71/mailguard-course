@@ -1,5 +1,7 @@
 # Worksheet — ZTNA lite
 
+**Language:** Conceptual (diagrams and compare tables). No application language is required for this sheet.
+
 ## 1. Diagram
 
 Draw (ASCII or image) two boxes:

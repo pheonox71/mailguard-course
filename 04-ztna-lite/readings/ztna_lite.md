@@ -31,6 +31,5 @@ MailGuard modules already practice app identity (TOTP, OIDC). ZTNA is the *netwo
 3. [NCSC (UK) — Zero trust architecture design principles](https://www.ncsc.gov.uk/collection/zero-trust-architecture) — pragmatic principles.
 4. [Cloudflare Learning — What is ZTNA?](https://www.cloudflare.com/learning/access-management/what-is-ztna/) — plain-language ZTNA vs VPN (vendor learning site; read for concepts).
 
-## Self-check
-
+## Quiz (required)
 [`../quizzes/ztna_lite.md`](../quizzes/ztna_lite.md)

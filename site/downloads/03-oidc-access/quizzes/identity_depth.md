@@ -1,4 +1,4 @@
-# Self-check — Identity depth
+# Quiz — Identity depth
 
 1. Expand **SAML** and **OIDC**. Which is XML-assertion heavy in classical enterprise SSO?
 2. Why do non-SSO apps still exist in large orgs?

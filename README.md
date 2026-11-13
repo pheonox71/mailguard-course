@@ -1,59 +1,80 @@
-# mailguard-course
+# MailGuard Course
 
-CS grad choosing a year of deliberate challenge — building **cloud security SaaS** skills in public (identity / MFA, email DLP & missend prevention, secure transfer): Python → TypeScript/Vue → Go → AWS/Terraform/CI → K8s / observability / OIDC.
+**Live site:** [https://pheonox71.github.io/mailguard-course/](https://pheonox71.github.io/mailguard-course/)
 
-**Why:** Transformation through learning and challenge — ship hard problems, raise the bar, document trade-offs. Career prep for cloud security / identity / DLP engineering roles. Honest tenure; ambitious craft.
+Student-facing course for cloud-security skills: setup → identity / MFA → email authentication → DLP-minded product work → cloud / platform practice. Readings render in the browser; worksheets, tests, and **required** quizzes download for offline work.
 
-**Thread:** **MailGuard** — outbound message & file guard (identity / DLP / secure-transfer–shaped learning, not a product clone).
+**Authorship:** Course structure, readings, stubs, tests, quizzes, and rubrics are AI-generated. Worksheet answers, filled quiz PDFs, and kata implementations are filled in by the student.
 
-**Authorship:** Course structure, readings, stubs, tests, quizzes, and rubrics are AI-generated. Worksheet answers, filled quiz PDFs, and kata implementations are filled in by the student under [`my-work/`](./my-work/).
+**Student work folder:** Completed personal worksheets and filled quiz PDFs live under [`my-work/`](./my-work/) (`my-work/worksheets/`, `my-work/quizzes/`) in this repository. They are **not** accessible from the course website — the site never links to or serves those files.
 
-**Start here (Module 0):** [SYLLABUS.md](./SYLLABUS.md) · [PREREQUISITES.md](./PREREQUISITES.md) · [GLOSSARY.md](./GLOSSARY.md) · [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md) · student site in [`site/`](./site/)
+---
 
-**Where finished work goes:**
+## Who it’s for
 
-| Path | What you put there |
-|------|--------------------|
-| [`my-work/worksheets/`](./my-work/worksheets/) | Completed worksheet answers |
-| [`my-work/quizzes/`](./my-work/quizzes/) | Filled quiz PDFs from the course site |
+Students with CS fundamentals and comfort in Python who want a survey path across backend, frontend, and platform/infra — without employer branding in public materials.
 
-Leave blank worksheets/quizzes under each module unchanged. Implement kata stubs in place; keep written answers in `my-work/`.
+---
 
-| Folder | Phase | Teaches | Career / skill focus |
-|--------|-------|---------|----------------------|
-| [`01-challenge-gym/`](./01-challenge-gym/) | A | Concise Python + TOTP/pytest + crypto hygiene | MFA/OTP literacy; HMAC/AEAD misuse avoidance |
-| [`02-mailguard-mfa/`](./02-mailguard-mfa/) | A | MFA/OTP + passkeys / WebAuthn literacy | Phishing-resistant MFA |
-| [`03-oidc-access/`](./03-oidc-access/) | A | OIDC + SAML / device certs / password-vault literacy | Identity & access depth |
-| [`04-ztna-lite/`](./04-ztna-lite/) | A | ZTNA vs VPN concepts | Zero-trust access literacy |
-| [`05-email-auth/`](./05-email-auth/) | A | SPF / DKIM / DMARC + SMTP/TLS | Email domain authentication |
-| [`06-threat-model/`](./06-threat-model/) | A | STRIDE / lightweight secure SDLC | Threat modeling before build |
-| [`07-mailguard-api/`](./07-mailguard-api/) | A | FastAPI DLP-ish rule API | Identity / access-policy style backend |
-| [`08-mailguard-admin/`](./08-mailguard-admin/) | A | TypeScript/Vue admin | Full-stack SaaS admin UX |
-| [`09-mailguard-worker/`](./09-mailguard-worker/) | A | Go worker / queue path | Secure-transfer–shaped workers |
-| [`10-secure-drop/`](./10-secure-drop/) | A | Secure file transfer + cloud-share DLP | Share-link governance |
-| [`11-security-notes/`](./11-security-notes/) | A | OWASP → MailGuard mitigations | Threat notes for the MailGuard thread |
-| [`12-ci-aws/`](./12-ci-aws/) | A | GitHub Actions + AWS deploy | DevOps + cloud deploy |
-| [`13-infra/`](./13-infra/) | A | Compose + Terraform + IAM posture | Platform / least-privilege IaC |
-| [`14-k8s-local/`](./14-k8s-local/) | B | kind/minikube deploy | Platform / Kubernetes basics |
-| [`15-observability/`](./15-observability/) | B | Metrics/logs/traces + SRE (SLI/SLO) | Observability + reliability |
-| [`16-gitops-policy/`](./16-gitops-policy/) | B | GitOps + policy-as-code concepts | GitOps / policy engines |
-| [`17-phish-lite/`](./17-phish-lite/) | B opt. | Svelte phishing quiz | Security awareness frontend |
-| [`18-oss-ux-stretch/`](./18-oss-ux-stretch/) | B opt. | OSS contribution + security UX notes | Collaboration / portfolio signals |
+## Course flow
 
-**How to run (Challenge Gym):**
+1. **Module 00 — Setup** — install and version-check tools (Windows / macOS / Linux).
+2. **Modules 01–18** — each topic: **read on-site** → **worksheet** → **tests** (when present) → **required quiz PDF** → separate **quiz answer key**.
+3. Mark topics/modules complete in the browser (progress stored locally; resume CTA in the nav).
+4. Save finished worksheets and filled quizzes under `my-work/` in the repo (not on the site).
+
+Every module is listed as **est. 8-10h**.
+
+---
+
+## Site features
+
+- Home / syllabus in learning order with progress checkmarks
+- On-site rendered readings (including captioned diagrams where present)
+- Download buttons for worksheets, tests, quiz PDFs (questions only), and separate answer keys
+- Next / previous module navigation
+- Resume control (“Start/Continue Module …”) plus reset progress
+- Language / tooling chip per module (stack languages only)
+
+---
+
+## Run the site locally
 
 ```bash
-cd 01-challenge-gym
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-pytest -q
+cd site
+npm start
 ```
 
-**Email-auth kata:**
+Open **http://127.0.0.1:5173/**
+
+`npm start` runs `prepare-readings` then a static server. To rebuild worksheet/test/quiz packs (including fillable quiz PDFs):
 
 ```bash
-cd 05-email-auth
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-pytest -q
+cd site
+pip3 install -r scripts/requirements.txt   # once
+npm run prepare-downloads
+npm start
 ```
+
+The static server is rooted at `site/` only — parent folders such as `my-work/` are never served.
+
+---
+
+## Repo layout
+
+| Path | Role |
+|------|------|
+| [`00-setup/`](./00-setup/) … [`18-oss-ux-stretch/`](./18-oss-ux-stretch/) | Modules in learning order |
+| [`site/`](./site/) | Student website (readings UI + downloads) |
+| [`my-work/`](./my-work/) | Student’s completed worksheets & quiz PDFs (not on the site) |
+| [`SYLLABUS.md`](./SYLLABUS.md) · [`PREREQUISITES.md`](./PREREQUISITES.md) · [`GLOSSARY.md`](./GLOSSARY.md) · [`CAPSTONE-RUBRIC.md`](./CAPSTONE-RUBRIC.md) | Module 0 orientation |
+
+---
+
+## GitHub Pages
+
+Published from `site/` on pushes to `main` (GitHub Actions). Project URL:
+
+**https://pheonox71.github.io/mailguard-course/**
+
+If the site 404s after the first workflow run, enable Pages in the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.

@@ -1,3 +1,5 @@
 # 09 — MailGuard Worker
 
-Go worker / queue path for applying MailGuard decisions. See root README and syllabus.
+**Language:** Go.
+
+Queue worker path for applying MailGuard decisions. See root README and syllabus.

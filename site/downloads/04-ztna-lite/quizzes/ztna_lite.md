@@ -1,4 +1,4 @@
-# Self-check — ZTNA
+# Quiz — ZTNA
 
 1. Expand **ZTNA**. Expand **VPN**.
 2. What problem does broad VPN admission create after credential theft?

@@ -32,6 +32,5 @@ Prefer MDN + W3C links below if a video moves.
 4. [OWASP MFA Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html) — factors and phishing-resistant authenticators.
 5. [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) — authenticator assurance high-level.
 
-## Self-check
-
+## Quiz (required)
 [`../quizzes/passkeys_webauthn.md`](../quizzes/passkeys_webauthn.md)

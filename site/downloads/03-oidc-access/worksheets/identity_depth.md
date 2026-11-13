@@ -1,5 +1,7 @@
 # Worksheet — Identity depth
 
+**Language:** Conceptual (tables and short answers). Optional demos later may use **Python** for a tiny OIDC client — this sheet itself is writing, not app code.
+
 ## SAML vs OIDC table
 
 | Dimension | SAML | OIDC |
