@@ -10,13 +10,42 @@ By the end of this kata’s reading + assignment + implementation, you should be
 
 **Why this matters.** Without outbound policy, sensitive mail leaves the org the moment someone hits Send — autocomplete mistakes and rushed CCs are expensive. Email Data Loss Prevention (DLP) exists so messages are inspected and acted on *before* delivery. On the job, SaaS email guards and security gateways all share the same inspect → match → act shape; this kata trains that vocabulary without a product lock-in.
 
-**How it works.** An ordered rule list runs against each message. Each rule has predicates (recipient domain, substring in subject/body) and an action (**allow**, **hold/suspend**, **reject/discard**). Evaluation is **first-match-wins**: stop at the first matching rule. Order *is* policy. This kata keeps predicates tiny and skips inventing a DSL so the engine stays interview-explainable.
+Email DLP products sit between sender and recipient and apply **policy**: allow, temporarily hold (suspend), or reject/discard. Admins express rules; engines evaluate messages in a defined order. This kata is a **tiny** version of that idea — domain and substring predicates, **first match wins**, no DSL. The point is clear specs and concise Python, not a production rule language.
+
+**How it works.**
+
+1. Inspect the outbound message (recipients, subject, body — whatever predicates the engine supports).
+2. Walk an **ordered** rule list from top to bottom.
+3. For each rule, evaluate its predicates (e.g. recipient domain, substring in subject/body).
+4. On the **first** matching rule, apply its action: **allow**, **hold/suspend**, or **reject/discard** — then stop.
+5. If nothing matches, apply the engine’s default (documented in the kata/tests). Order *is* policy: swapping two rules can change outcomes for the same mail.
 
 ![Ordered hold rules evaluating a message with first-match-wins allow, hold, or reject outcomes](images/hold-rules-flow.svg)
 
 *Figure. Inspect the message, walk the ordered rule list, and stop at the **first match**. Notice the three actions — allow, hold/suspend, reject/discard — and that evaluation order is part of the policy, not an afterthought. Original course diagram (CC0).*
 
+### Worked example
+
+```text
+Rules (top → bottom):
+  1. if subject contains "payroll"     → hold
+  2. if any recipient domain != org.com → reject
+  3. else                              → allow   (or default)
+
+Message: To: alice@org.com, Subject: "Q4 payroll draft"
+Evaluation: rule 1 matches → hold (rule 2 never runs)
+```
+
+If rule 2 were listed first, an internal payroll draft to `alice@org.com` would **allow** (no external domain) and never reach the payroll hold — same predicates, different order, different outcome.
+
 Real email DLP products share this shape: rules that allow, suspend, or discard to prevent costly mis-sends of sensitive information. MailGuard later folders reuse the same allow / hold / reject vocabulary.
+
+### Common misconceptions / what goes wrong
+
+- **“All matching rules fire.”** First-match-wins means later rules are invisible once one matches — that is why order is part of the policy, not cosmetic.
+- **“A hold engine replaces SPF/DKIM/DMARC.”** Holds catch *outbound* mistakes; domain authentication stops *inbound* spoof. Different problems.
+- **“More predicates always mean better security.”** An unreadable DSL you cannot explain in an interview (or debug at 2 a.m.) fails operationally; start with clear order and tiny predicates.
+- **“Default allow with no final rule is fine.”** Undocumented defaults surprise operators; tests should pin what happens when nothing matches.
 
 ## Videos (verified)
 

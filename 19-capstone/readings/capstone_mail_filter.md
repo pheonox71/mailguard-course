@@ -18,9 +18,42 @@ fixtures → rule engine → hold | allow | reject
          pytest contract + short demo notes
 ```
 
+### Worked example
+
+Table-driven contract sketch (conceptual):
+
+```python
+# Why table-driven: one harness proves many edges; stubs must fail
+CASES = [
+    {"msg": {"to": ["ada@internal.example"], "subject": "hi"}, "want": "allow"},
+    {"msg": {"to": ["ceo@partner.example"], "subject": "Q4"}, "want": "hold"},
+    {"msg": {"to": ["evil@example.com"], "subject": "wire transfer"}, "want": "reject"},
+]
+
+def test_rules_first_match(engine):
+    for case in CASES:
+        assert engine.evaluate(case["msg"]) == case["want"]
+```
+
+Demo notes checklist item:
+
+```text
+[ ] Command to run tests (and why: proves non-stub behavior)
+[ ] Command to feed one fixture and show hold|allow|reject
+[ ] Path to rule list + operator release helper
+[ ] Explicit gaps (no production SMTP, no cloud IAM claim, …)
+```
+
 The student implements the filter and fills the assignment.
 
 Continue with the assignment from the downloads on this page. The quiz is **required**.
+
+### Common misconceptions / what goes wrong
+
+- **“Green tests on empty stubs count.”** Contracts must fail until the engine is real — otherwise the demo is theater.
+- **“Unordered rules are fine if ‘mostly right.’”** First-match order is policy; silent reorder changes allow/hold outcomes.
+- **“Skip the operator path — automation is enough.”** Human-in-the-loop release is part of the MailGuard story and the rubric.
+- **“Claim production gateway readiness.”** Capstone is a coherent demo with honest gaps — not a live MTA.
 
 ---
 

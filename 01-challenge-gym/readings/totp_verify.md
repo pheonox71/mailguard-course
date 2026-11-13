@@ -10,13 +10,40 @@ By the end of this kata’s reading + assignment + implementation, you should be
 
 **Why this matters.** Passwords alone fail when credentials leak or phishing succeeds. TOTP adds a second factor so a stolen password is not enough — but without understanding clock skew, replay, and why you should not hand-roll HMAC, MFA implementations break users or invent bugs. On the job, identity and email-security products expect this literacy when you wire MFA into admin consoles and APIs.
 
-**How it works.** Server and authenticator share a secret **K**. Both derive counter **T** from Unix time ÷ step (usually 30s), run HMAC, truncate to a short code, and compare. A small verify **window** accepts ±N neighboring steps for clock skew only — it does not replace rate limits or replay tracking. Prefer `pyotp` over reinventing crypto; production controls (replay store, lockout, secret-at-rest) land later in `02-mailguard-mfa/`.
+TOTP lets a server and an authenticator app compute the same short code from a **shared secret** and the **current time** (usually a 30-second step). You do **not** need to reimplement HMAC-SHA1 for a short challenge — understand the model, then use a well-regarded library (`pyotp`) to verify codes, including a small **window** for clock skew. Production MFA still needs replay protection, rate limits, and secret storage discipline; those belong later (`02-mailguard-mfa/`).
+
+**How it works.**
+
+1. Server and authenticator share a secret **K** (provisioned once, often via `otpauth://` URI / QR).
+2. Both derive counter **T** from Unix time ÷ step (usually 30s): `T = floor(unix_time / step)`.
+3. Both run HMAC over the counter, truncate to a short decimal code (RFC 6238 / HOTP truncation).
+4. Server compares the presented code to the expected code, optionally accepting ±N neighboring steps (**window**) for clock skew only.
+5. Prefer `pyotp.TOTP.verify(..., valid_window=...)` over reinventing crypto; add rate limits and replay tracking in later modules.
 
 ![TOTP flow from shared secret and time counter through HMAC to a short code, with a server verification window](images/totp-flow.svg)
 
 *Figure. Shared secret **K** and time counter **T** feed HMAC; truncation yields the short code both the app and server compute. The verify **window** only covers clock skew — notice it does not replace rate limits or replay controls. Original course diagram (CC0).*
 
+### Worked example
+
+```python
+import pyotp
+
+totp = pyotp.TOTP("JBSWY3DPEHPK3PXP")  # lab Base32 secret only
+code = totp.now()                       # e.g. "123456" for current step
+assert totp.verify(code, valid_window=1)  # accepts previous/current/next step
+```
+
+If the phone clock is ~20s behind the server, `valid_window=1` (one 30s step) often still accepts; `valid_window=0` rejects. The window does **not** stop an attacker from replaying a just-phished code — that needs a replay store and rate limits.
+
 Challenge-style hiring tasks often pair a short coding exercise with **MFA/One-Time Password (OTP) research**, and prefer elegant solutions over over-engineering. That is the bar this kata trains.
+
+### Common misconceptions / what goes wrong
+
+- **“A bigger window is more user-friendly, so set it huge.”** Large windows widen the replay/guess surface; keep skew tolerance small and add rate limits.
+- **“verify() already stops replay.”** Accepting the same code twice in one window is still possible without a used-code store.
+- **“I should hand-roll HMAC to ‘really understand’ it for product MFA.”** Product paths use reviewed libraries; deep truncation work belongs in the parametrized TOTP kata, not in every verify call site.
+- **“TOTP replaces passwords.”** It is a second factor — phishing can still harvest a live code (see passkeys reading for phishing-resistant authenticators).
 
 ## Videos (verified)
 

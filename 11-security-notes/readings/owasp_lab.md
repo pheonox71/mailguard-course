@@ -8,11 +8,35 @@
 
 **Why this matters.** Broken access control on hold release (IDOR / BOLA) ships silent cross-tenant leaks; injection and misconfiguration turn a rules API into an incident. Supply-chain CVEs in Python/Go deps ship unnoticed if CI never runs `pip-audit` / `govulncheck` or produces an **SBOM** (Software Bill of Materials). Labs without mitigations teach tourism; mapping to MailGuard teaches transfer. Corporate shared clusters are out of scope — unauthorized testing is not a learning feature.
 
-**How it works.** Reproduce a finding locally → label with Top 10 / API Top 10 (e.g. A01:2021 Broken Access Control; API1:2023 BOLA) → write the MailGuard fix (authz on hold id, input validation, least privilege). For supply chain: CI runs dependency audits; **Syft** (or similar) emits an SBOM so when a CVE drops you can answer “are we affected?” quickly.
+**How it works.**
+
+1. Reproduce a finding in a **local** Juice Shop / crAPI container only.
+2. Label with Top 10 / API Top 10 (e.g. A01:2021 Broken Access Control; API1:2023 BOLA) — [OWASP Top 10](https://owasp.org/www-project-top-ten/), [API Security Top 10](https://owasp.org/API-Security/).
+3. Write the MailGuard fix (authz on hold id, input validation, least privilege) you can point to in-repo or in a test.
+4. For supply chain: CI runs dependency audits ([pip-audit](https://pypi.org/project/pip-audit/), [govulncheck](https://go.dev/security/vuln/), Dependabot).
+5. **Syft** (or similar) emits an **SBOM** so when a CVE drops you can answer “are we affected?” quickly ([Syft](https://github.com/anchore/syft)).
 
 ```
 Local Juice Shop / crAPI → categorize → MailGuard mitigation
 CI: pip-audit / govulncheck / Dependabot + Syft SBOM
+```
+
+### Worked example
+
+Mapping + CI sketch:
+
+| Lab finding | Category | MailGuard mitigation |
+|-------------|----------|----------------------|
+| Change `orderId` in URL, see another user’s order | API1:2023 BOLA | `assert hold.tenant_id == caller.tenant_id` before release; pytest for cross-tenant 403 |
+| SQLi in search | A03:2021 Injection | Parameterized queries / ORM binds; never string-format SQL |
+| Outdated `requests` with known CVE | Supply chain | `pip-audit` on PR + Syft SBOM artifact |
+
+```yaml
+# Conceptual CI fragment — why: fail the PR before a known-bad dep merges
+- name: pip-audit
+  run: pip-audit -r requirements.txt
+- name: sbom
+  run: syft dir:. -o spdx-json > sbom.spdx.json
 ```
 
 **On the job.** AppSec reviews of email/identity APIs start with access control and injection; platform teams expect SBOM + audit in CI. This module is that workflow in miniature — vendor-neutral.
@@ -20,6 +44,13 @@ CI: pip-audit / govulncheck / Dependabot + Syft SBOM
 ## Short intro
 
 Map local lab findings to named categories and ship mitigations you can show. Never attack systems you do not own. Local containers only.
+
+### Common misconceptions / what goes wrong
+
+- **“IDOR is only a web app bug.”** Hold release by id without tenant checks is the same BOLA class on an API.
+- **“SBOM is paperwork.”** Without an inventory you cannot answer CVE blast-radius quickly; Syft (or similar) makes that queryable.
+- **“Auditing deps once at kickoff is enough.”** New CVEs land weekly; run audits on every PR.
+- **“The lab is the deliverable.”** Tourism without a MailGuard mitigation row fails the learning goal.
 
 ## Read these (verified)
 

@@ -10,13 +10,45 @@ By the end of this kata’s reading + assignment + implementation, you should be
 
 **Why this matters.** A bare hash looks like “integrity” until an attacker rewrites both the bytes and the digest. Without keyed integrity (HMAC) or authenticated encryption (AEAD), webhooks, audit blobs, and secrets-at-rest can be forged or silently altered. On the job, TLS already uses AEAD for every hop you trust — the same misuse rules (nonce reuse, inventing ciphers, skipping auth) show up in application crypto for email and identity services.
 
-**How it works.** **HMAC** binds a secret key to a hash so only key holders can produce a valid tag; verify with constant-time compare. **AEAD** (e.g. AES-GCM) encrypts and authenticates in one construction; associated data is authenticated but not encrypted. Prefer reviewed libraries (`hmac`, `cryptography.AESGCM`). Key lifecycle: generate (CSPRNG) → store outside git → rotate → revoke. Never reuse a nonce with the same key.
+Time-based One-Time Password (**TOTP**) already taught “don’t hand-roll HMAC.” This kata widens the lens: integrity tags for audit-style blobs, and AEAD for secrets at rest and for app-level envelopes. You will call Python’s `hmac` module and the `cryptography` library’s AES-GCM — not design modes yourself.
+
+**How it works.**
+
+1. **Bare hash (wrong for authenticity).** `H(message)` can be recomputed by anyone who can change the message — so it does not prove a trusted party produced the bytes.
+2. **HMAC.** Bind a secret key to a hash (`HMAC(K, message)`). Only key holders produce a valid tag; verify with a constant-time compare (`hmac.compare_digest`).
+3. **AEAD (e.g. AES-GCM).** Encrypt and authenticate in one construction. Associated data is authenticated but not encrypted. Seal with a fresh nonce; open fails closed if the ciphertext or AAD was tampered.
+4. **Libraries.** Prefer reviewed APIs (`hmac`, `cryptography.hazmat.primitives.ciphers.aead.AESGCM`) — do not invent modes or “raw AES-ECB then ship.”
+5. **Key lifecycle.** Generate with a CSPRNG → store outside git → rotate on schedule or after suspicion → revoke compromised keys. Never reuse a nonce with the same key.
 
 ![Comparison of bare hash, HMAC, and AEAD plus a generate-store-rotate-revoke key lifecycle](images/crypto-hygiene.svg)
 
 *Figure. A bare hash is not authenticity when an attacker can change bytes; **HMAC** binds a secret key; **AEAD** encrypts and authenticates together (TLS is the everyday place this shows up). Notice the key lifecycle strip — generate, store, rotate, revoke — and the rule to use reviewed libraries. Original course diagram (CC0).*
 
 **TLS** (Transport Layer Security) is the protocol that protects HTTP and SMTP connections: the server presents an X.509 **certificate** (a signed binding of public key ↔ name), the client verifies the chain to a trusted root, then the peers agree on a cipher suite. TLS 1.3 uses only AEAD suites (AES-GCM, ChaCha20-Poly1305); TLS 1.2 also allowed non-AEAD CBC suites. You will not implement TLS here; you *will* practice the same misuse rules TLS libraries already enforce — never reuse a nonce with the same key, never skip authentication, never treat “encrypt with raw AES-ECB” as done.
+
+### Worked example
+
+Webhook integrity tag (illustrative):
+
+```python
+import hmac, hashlib
+
+secret = b"whsec_lab_only"
+body = b'{"event":"hold.created","id":"h_42"}'
+tag = hmac.new(secret, body, hashlib.sha256).hexdigest()
+# Authorization-style header a receiver might check:
+# X-Signature: sha256=<tag>
+assert hmac.compare_digest(tag, hmac.new(secret, body, hashlib.sha256).hexdigest())
+```
+
+If an attacker changes `"h_42"` to `"h_99"` without the secret, the tag will not match. A bare `sha256(body)` published beside the body would match the attacker’s rewritten digest too — that is why the key matters.
+
+### Common misconceptions / what goes wrong
+
+- **“Hashing the file proves nobody changed it.”** Without a key (or signature), the attacker updates both content and digest.
+- **“Encrypt-then-ship without a MAC is fine.”** Unauthenticated ciphertext can be bit-flipped; AEAD (or encrypt-then-MAC done correctly) is the fix TLS already standardized on.
+- **“Nonce reuse is rare so we can hard-code IV=0.”** AES-GCM with a repeated nonce under one key catastrophically fails confidentiality and authenticity — libraries expect a unique nonce per seal.
+- **“I’ll roll my own AES mode for learning.”** Learning belongs in crypto courses; product paths consume reviewed libraries so misuse stays visible in code review.
 
 ## Videos (verified)
 

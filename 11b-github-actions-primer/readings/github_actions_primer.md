@@ -2,7 +2,31 @@
 
 **Why this matters.** Reviews catch some bugs; **CI** catches the rest on every push. Module 12 expects a workflow that runs tests (and optionally builds an image) **without** committing cloud secrets. Long-lived cloud keys in git are a classic incident; **OIDC to cloud roles** is the usual modern alternative when you deploy.
 
-**How it works.** A YAML file under `.github/workflows/` declares **when** to run (`on:`), **jobs** on runners, and **steps** (checkout, setup language, test). Secrets stay in the host’s secret store; prefer **OIDC to cloud roles** over long-lived keys when you deploy. On the job, email/identity/cloud security pipelines use the same pattern: PR checks, pinned actions, least-privileged tokens.
+**How it works.**
+
+1. Add a YAML file under `.github/workflows/`.
+2. Declare **when** to run (`on: pull_request`, `push`, etc.).
+3. Define **jobs** on runners (`runs-on: ubuntu-latest`).
+4. List **steps**: checkout → setup language → test (and later build/push image).
+5. Keep secrets in the host’s secret store; prefer **OIDC to cloud roles** over long-lived keys when you deploy. On the job, email/identity/cloud security pipelines use the same pattern: PR checks, pinned actions, least-privileged tokens.
+
+### Worked example
+
+Minimal PR workflow (Module 12 expands this):
+
+```yaml
+# Conceptual minimal workflow — Module 12 expands this for real tests
+name: primer-ci
+on:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Why: prove the runner clone worked before real tests"
+      # Later: pytest / go test / npm test — never commit cloud keys here
+```
 
 This primer has no assignment, quiz, or download pack.
 
@@ -34,20 +58,13 @@ Skim: [GitHub Actions documentation](https://docs.github.com/en/actions).
 
 ## Tiny hands-on example
 
-```yaml
-# Conceptual minimal workflow — Module 12 expands this for real tests
-name: primer-ci
-on:
-  pull_request:
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "Why: prove the runner clone worked before real tests"
-```
+Use the YAML in **Worked example** above. **How:** A PR event starts a VM, checks out your commit, then runs steps — replace the `echo` with `pytest` / `go test` / `npm test` in Module 12.
 
-**How:** A PR event starts a VM, checks out your commit, then runs steps — replace the `echo` with `pytest` / `go test` / `npm test` in Module 12.
+### Common misconceptions / what goes wrong
+
+- **“Put cloud access keys in the workflow YAML.”** Git history leaks them; use secrets + OIDC roles ([security hardening](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)).
+- **“`actions/checkout@main` is fine forever.”** Unpinned tags move; prefer version tags or SHAs in real pipelines.
+- **“CI only needs to run on main.”** PR checks catch breakage before merge — Module 12 expects that habit.
 
 ## Official docs
 

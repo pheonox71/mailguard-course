@@ -8,7 +8,14 @@
 
 **Why this matters.** Poison messages that never succeed will retry forever without a **dead-letter queue (DLQ)** — burning compute and blocking the main queue’s visibility window. Handlers that are not idempotent double-send mail on redelivery after a crash. Field drift between API JSON and Go structs causes silent parse failures in production. DLQs exist so humans can inspect failures without losing the original payload.
 
-**How it works.** A consumer receives a message, processes it, then deletes it. If processing fails, the message becomes visible again (**at-least-once**). After `maxReceiveCount` / max attempts, the broker moves it to a DLQ. Your kata’s `ShouldDLQ(attempt, maxAttempts)` encodes that threshold (typically `attempt >= maxAttempts`). Idempotency keys (message id / hold id) prevent double side effects. Parse shared JSON carefully — same fields as Module 07.
+**How it works.**
+
+1. A consumer **receives** a message (visibility timeout hides it from other workers).
+2. It **processes** the payload (parse JSON, apply decision, side effects).
+3. On success it **deletes** the message.
+4. On failure the message becomes visible again (**at-least-once** redelivery; attempt count increments).
+5. After `maxReceiveCount` / max attempts, the broker moves it to a **DLQ** ([SQS dead-letter queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)).
+6. Your kata’s `ShouldDLQ(attempt, maxAttempts)` encodes that threshold (typically `attempt >= maxAttempts`). Idempotency keys (message id / hold id) prevent double side effects. Parse shared JSON carefully — same fields as Module 07.
 
 ```
 Main queue → worker
@@ -16,11 +23,45 @@ Main queue → worker
    └─ attempt >= max → DLQ (inspect, fix, replay)
 ```
 
+### Worked example
+
+Threshold helper + a poison payload:
+
+```go
+// ShouldDLQ: move to DLQ when attempt reaches max (inclusive)
+func ShouldDLQ(attempt, maxAttempts int) bool {
+    return attempt >= maxAttempts // why: attempt==max means last try failed
+}
+```
+
+| attempt | maxAttempts | ShouldDLQ? |
+|---------|-------------|------------|
+| 1 | 3 | false (retry) |
+| 2 | 3 | false (retry) |
+| 3 | 3 | **true** → DLQ |
+
+```json
+{
+  "message_id": "msg-bad",
+  "decision": "HOLD",
+  "to": "user@example.com"
+}
+```
+
+If the Go struct expects `"hold"` (lowercase) and rejects unknown values, this poison message retries until DLQ — better than blocking the main queue forever. Fix the producer or loosen parse only with an explicit contract change.
+
 **On the job.** SQS-style DLQs are standard in cloud mail and identity pipelines. Knowing when to DLQ vs retry — and how LocalStack demos the same shape — is day-to-day platform security engineering, not a single-vendor trick.
 
 ## Short intro
 
 Queue consumers must survive crashes and bad payloads. Idempotency plus a DLQ turns “retry forever” into “park and investigate.”
+
+### Common misconceptions / what goes wrong
+
+- **“Use `attempt > maxAttempts`.”** Off-by-one leaves one extra burn on the main queue (or never DLQs); the kata expects `>=` — test both edges.
+- **“DLQ means delete the problem.”** DLQ parks the payload for humans; without inspection/replay you just move the outage.
+- **“Redelivery is rare.”** Crashes and timeouts are normal; non-idempotent handlers double-send.
+- **“LocalStack is optional busywork.”** Proving the interface locally catches contract bugs before cloud credentials and cost enter the story.
 
 ## Read these (verified)
 

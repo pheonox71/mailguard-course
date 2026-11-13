@@ -2,7 +2,32 @@
 
 **Why this matters.** MailGuard’s identity, email-auth, API, and capstone labs are Python-first. Without a working interpreter, venv, and pytest habit, Challenge Gym cannot prove the “how” behind TOTP, holds, and rules. On the job, the same loop — isolate deps, let tests define the contract — is how teams ship auth and email-security glue without “works on my machine.”
 
-**How it works.** You isolate deps in a **virtual environment**, install from `requirements.txt`, implement stubs under `katas/`, and let **pytest** define the contract. That loop (read test → write code → re-run) is the course’s core practice: fail first, then make the stub match the spec.
+**How it works.**
+
+1. Confirm a Python 3.11+ (or current stable 3.x) interpreter.
+2. Create and activate a **virtual environment** so deps stay off the system Python.
+3. Install from `requirements.txt` with `pip`.
+4. Read the failing pytest for a kata stub under `katas/`.
+5. Implement until the test passes; re-run often. That loop (read test → write code → re-run) is the course’s core practice: fail first, then make the stub match the spec.
+
+### Worked example
+
+```bash
+python3 -m venv /tmp/mg-py-primer && source /tmp/mg-py-primer/bin/activate
+python - <<'PY'
+def hold_reason(score: int) -> str:
+    return "hold" if score >= 80 else "allow"
+print(hold_reason(90))  # → hold
+PY
+```
+
+A pure function returning a decision string is the same shape as later hold-rule katas, without frameworks yet.
+
+### Common misconceptions / what goes wrong
+
+- **“I’ll install packages globally to save time.”** Global site-packages drift from CI and classmates; always use a venv for course work.
+- **“Green means I understand the crypto/auth.”** Tests are the contract for the stub — still read the Why/How in each module so you can explain the mechanism in an interview.
+- **“Type hints are optional fluff.”** Light hints in kata stubs document the expected shapes; ignoring them often causes the first confusing pytest failures.
 
 This primer has no assignment, quiz, or download pack.
 

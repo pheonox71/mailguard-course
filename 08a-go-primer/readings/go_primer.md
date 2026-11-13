@@ -2,7 +2,38 @@
 
 **Why this matters.** Module 09’s worker consumes queue messages and applies hold/allow/reject. **Go** fits small, explicit network services: fast compile, static binaries, and straightforward concurrency — useful when a Python API owns HTTP and a worker owns async decisions. You *could* keep everything in one Python process; splitting a worker is how teams isolate retries, DLQs, and deploy cadence without blocking the API.
 
-**How it works.** You install the toolchain, write packages under a module (`go.mod`), and verify behavior with `go test`. Interfaces describe ports (e.g. a queue) so the kata can stay in-memory before cloud SQS. On the job, the same pattern shows up in email and identity pipelines: thin consumers, table-driven tests, swap local fakes for cloud queues later.
+**How it works.**
+
+1. Install the Go toolchain and confirm with `go version`.
+2. Create a module (`go mod init`) so imports and tests resolve.
+3. Write packages with exported (`TitleCase`) names for the worker’s public surface.
+4. Describe ports with **interfaces** (e.g. a queue) so the kata stays in-memory before cloud SQS.
+5. Verify with `go test ./...` — table-driven tests lock decisions the same way pytest does for the API.
+6. On the job, the same pattern shows up in email and identity pipelines: thin consumers, table-driven tests, swap local fakes for cloud queues later.
+
+### Worked example
+
+Tiny decision function + test (same shape Module 09 uses):
+
+```go
+package primer
+
+func Decision(score int) string {
+        // Why: tiny pure function — easy to unit test in Module 09
+        if score >= 80 {
+                return "hold"
+        }
+        return "allow"
+}
+```
+
+```go
+func TestDecision(t *testing.T) {
+        if Decision(90) != "hold" {
+                t.Fatalf("expected hold")
+        }
+}
+```
 
 This primer has no assignment, quiz, or download pack.
 
@@ -67,6 +98,12 @@ cd /tmp/mg-go-primer && go test ./...
 ```
 
 **How:** Production code + `_test.go` live side by side; `go test` compiles and runs them — Module 09 uses the same pattern.
+
+### Common misconceptions / what goes wrong
+
+- **“Go replaces the Python API.”** The split is intentional: HTTP/policy in one process, async side effects in another — shared JSON vocabulary, not a rewrite.
+- **“Call the cloud SDK from every package.”** Interfaces keep LocalStack/in-memory fakes testable; sprinkle SDK calls and unit tests need the network.
+- **“Tests are optional until SQS.”** Table-driven `go test` locks the decision contract before any broker exists.
 
 ## Official docs
 

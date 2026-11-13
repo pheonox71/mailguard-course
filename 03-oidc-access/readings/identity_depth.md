@@ -8,11 +8,45 @@
 
 **Why this matters.** Enterprises rarely run “OIDC only.” Without SAML literacy, device-posture signals, and a threat model for password managers on non-SSO apps, identity work stops at the happy path and fails in real estates of legacy apps. On the job, cloud and email-security admins still federate with both SAML and OIDC, and still protect vaults where SSO never arrived.
 
-**How it works.** An Identity Provider (**IdP**) authenticates the user, then federates to apps: **OIDC** (identity layer on OAuth 2.0, typically JWT-shaped tokens) or **SAML** (XML assertions, classical enterprise SSO). Device certificates / posture add *signals* for admission — they do not replace user auth. Where SSO is missing, password managers reduce reuse but introduce vault, phishing-unlock, and shared-folder risks you must model.
+This module’s coding path is OIDC-shaped. Enterprises still run Security Assertion Markup Language (**SAML**) for many apps, issue device certificates for posture, and deploy password managers where SSO never arrived. This reading builds interview literacy without claiming you built a full Identity Provider (**IdP**).
+
+**How it works.**
+
+1. User authenticates at an **IdP** (password + MFA, passkey, etc.).
+2. For **OIDC** apps: IdP runs an OAuth 2.0-based flow and issues identity tokens (typically JWT-shaped) the app validates (issuer, audience, signature, expiry).
+3. For **SAML** apps: IdP issues a signed XML **assertion**; the service provider checks signature, audience, recipient/ACS, and time conditions, then creates a session.
+4. **Device certificates / posture** add admission *signals* (managed device, healthy agent) — they do not replace user authentication.
+5. Where SSO is missing, a **password manager** reduces reuse; you still model vault compromise, phishing-unlock, and shared-folder risks.
 
 ![Identity provider federating SSO to applications via OIDC JSON tokens or SAML XML assertions](images/oidc-vs-saml.svg)
 
 *Figure. One IdP, two common SSO wires: **OIDC** (identity layer on OAuth 2.0, JWT-shaped tokens) vs **SAML** (XML assertions). Notice the coding path here is OIDC-shaped, while enterprises still run both. Original course diagram (CC0).*
+
+### Worked example
+
+```text
+OIDC id_token claims (shape):
+  iss: https://idp.example.com/
+  aud: mailguard-admin
+  sub: user-42
+  exp: 1730003600
+  email: alex@example.com
+
+SAML assertion checks (shape):
+  Signature present + trusted cert
+  Audience == SP entity ID
+  Recipient/ACS == registered ACS URL
+  NotOnOrAfter within skew budget
+```
+
+Same user, two wires: JSON token validation vs XML assertion conditions. Device posture might additionally require a client cert before the app accepts either.
+
+### Common misconceptions / what goes wrong
+
+- **“OIDC replaced SAML everywhere.”** Many enterprise apps still speak SAML; literacy for both is table stakes.
+- **“A device certificate means the user is authenticated.”** Device proof is a signal; without user auth (or with a stolen unlocked device) it is not enough.
+- **“Password managers eliminate phishing.”** They reduce reuse and typing into random forms, but unlock phishing, malware, and shared-vault mistakes remain — model them (OWASP secrets / MFA sheets).
+- **“If SSO works in demo, federation is done.”** Audience/ACS mismatches and cert rollover are how production SSO breaks after the happy path.
 
 ## Videos (verified)
 

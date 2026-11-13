@@ -8,7 +8,13 @@
 
 **Why this matters.** Laptop `kubectl apply` does not scale and is hard to audit. Drift appears when someone “just fixed prod” outside git. Policy-as-code stops unsafe desired state (no probes, `:latest`, privileged pods) before it becomes the cluster’s reality. On the job, platform and security teams expect git as the source of truth for what runs mail/identity workloads — and CI gates that reject bad manifests.
 
-**How it works.** GitOps treats git as the desired state; a sync agent applies it. In **pull** mode, an in-cluster agent (Argo CD-class) watches the repo and reconciles. In **push** mode, CI runs `kubectl`/`helm` from outside. Policy tools (Kyverno, OPA/Gatekeeper, Conftest) validate manifests in CI or at admission. This module reuses Module 14 checks and adds a “bad manifest” fixture that must fail.
+**How it works.**
+
+1. Treat git as the **desired state** for Deployments/Services (and related objects).
+2. In **pull** mode, an in-cluster agent (Argo CD-class) watches the repo and reconciles drift.
+3. In **push** mode, CI runs `kubectl`/`helm` from outside — simpler start, credentials live in CI.
+4. Policy tools (Kyverno, OPA/Gatekeeper, Conftest) validate manifests in CI or at admission.
+5. This module reuses Module 14 checks and adds a “bad manifest” fixture that must fail — keep claims proportional to what you automated.
 
 ```text
 git commit (desired) → CI policy check → sync agent pulls → cluster matches git
@@ -18,19 +24,33 @@ git commit (desired) → CI policy check → sync agent pulls → cluster matche
 
 Trade-off: pull GitOps needs an agent and RBAC in-cluster; push is simpler to start but credentials live in CI and drift is easier if people apply by hand.
 
-## Short intro
+### Worked example
 
-GitOps + policy-as-code turn “hope the YAML is safe” into enforceable gates.
-
-## Annotated checks
+Fail CI before sync (Conftest-class; Kyverno/OPA equivalent works the same idea). Good shape mirrors [`../fixtures/good_deployment.yaml`](../fixtures/good_deployment.yaml) (probes + pinned tag + requests):
 
 ```bash
 # Why fail CI before sync: stop bad desired-state from rolling out
 conftest test fixtures/bad_deployment.yaml -p policy/
-# or Kyverno/OPA equivalent — same idea: deny missing probes / privileged pods
+# Expected: FAIL — missing readinessProbe / privileged / :latest (policy-dependent)
+```
+
+```text
+# Sync flow after green CI
+PR merge → git desired state updated → agent detects drift → apply → Ready pods
 ```
 
 Keep claims honest: if you only failed a fixture in CI, do not say “production GitOps” yet.
+
+### Common misconceptions / what goes wrong
+
+- **“GitOps means nobody reviews YAML.”** Git is the source of truth *and* the review surface — policy + humans still gate merges.
+- **“Fix prod with kubectl, commit later.”** That is drift; the next sync may overwrite your hotfix — revert/fix in git and let the agent reconcile.
+- **“Passing sync equals safe cluster.”** Without policy, privileged pods and missing probes sync “successfully.”
+- **“Push and pull are the same risk.”** Push stores deploy credentials in CI; pull needs careful in-cluster RBAC — pick deliberately ([OpenGitOps Principles](https://opengitops.dev/)).
+
+## Short intro
+
+GitOps treats git as the desired state; a sync agent applies it. Policy-as-code stops unsafe manifests before they roll out. This module reuses Module 14 checks and adds a “bad manifest” fixture that must fail. GitOps + policy-as-code turn “hope the YAML is safe” into enforceable gates.
 
 ## Read these (verified)
 

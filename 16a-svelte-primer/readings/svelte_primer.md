@@ -2,7 +2,16 @@
 
 **Why this matters.** Optional Module 17 (Phish Lite) uses **Svelte / SvelteKit** for a small learning UI. You need just enough framework literacy to follow the assignment — and a hard ethical boundary: simulations never capture real credentials. On the job, security-awareness UIs fail when honesty and metrics are an afterthought; the framework is secondary to that boundary.
 
-**How it works.** Svelte compiles components at build time (less runtime framework overhead than some SPA approaches). SvelteKit adds routing and project structure. Node.js + npm remain the toolchain (same install family as the Vue primer).
+**How it works.**
+
+1. Install/reuse **Node.js** + npm (same toolchain family as the Vue primer).
+2. **Svelte** compiles components at build time (less runtime framework overhead than some SPA approaches).
+3. **SvelteKit** adds routing and project structure for pages like consent → scenario → results.
+4. In Module 17, label learning purpose clearly and never harvest credentials — the framework only hosts that UI.
+
+```text
+node/npm → scaffold Kit app → components + routes → build/dev server
+```
 
 This primer has no assignment, quiz, or download pack.
 
@@ -34,12 +43,22 @@ Teams pick Svelte for small, fast interactive apps and teaching demos. In securi
 
 ## Tiny hands-on example
 
+### Worked example
+
+Confirm the toolchain before Module 17 scaffolding:
+
 ```bash
 # Why: confirm Node before scaffolding a Kit app in Module 17
 node -e "console.log('svelte primer: node ok', process.version)"
 ```
 
 Optional later (Module 17): follow the official `npm create svelte@latest` flow in a **scratch directory**, not inside unrelated modules.
+
+### Common misconceptions / what goes wrong
+
+- **“The framework choice is the security model.”** Consent labels and no-password forms matter more than Svelte vs Vue for awareness UIs.
+- **“Scaffold inside every course module.”** Keep Kit apps in a scratch directory so unrelated packages do not tangle Module 08/17 trees.
+- **“Skip Node checks.”** Kit needs a working `node`/`npm` — confirm versions before debugging route errors.
 
 ## Official docs
 

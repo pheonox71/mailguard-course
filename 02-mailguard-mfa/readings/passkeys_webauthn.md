@@ -8,11 +8,46 @@
 
 **Why this matters.** TOTP proves “something you have,” but a convincing phishing page can still harvest the live code and replay it. Without phishing-resistant authenticators, identity and cloud admin portals stay one lookalike domain away from account takeover. On the job, passkeys / WebAuthn are how teams raise assurance beside (or instead of) OTP — without claiming TOTP literacy alone is enough.
 
-**How it works.** At registration, the authenticator creates a public-key credential bound to the relying-party **RP ID**. At assertion, the browser/OS signs a server challenge only for that RP ID / origin. A lookalike domain should not get a usable assertion. Recovery (lost device, backup passkey, IT-assisted reset) is an operational design problem — plan it before turning off TOTP/recovery codes.
+TOTP proves “something you have” via a shared secret — but a convincing phishing page can still harvest the live code. Passkeys use WebAuthn: the browser/OS authenticator signs a challenge for *this* origin, so a lookalike domain should not get a usable assertion.
+
+**How it works.**
+
+1. **Registration.** The relying party (RP) sends a challenge; the authenticator creates a public-key credential bound to the **RP ID** (a registrable domain suffix, not merely “whatever string the page typed”).
+2. **Storage.** The RP stores the credential id + public key (and related metadata); the private key stays in the authenticator / platform.
+3. **Assertion.** At login, the RP sends a new challenge; the browser/OS asks the authenticator to sign only if the request matches that RP ID / origin.
+4. **Verify.** The RP verifies the signature with the stored public key and checks challenge, origin/RP ID, and flags per WebAuthn.
+5. **Recovery.** Lost device, backup passkey, and IT-assisted reset are operational design problems — plan them before turning off TOTP/recovery codes.
 
 ![TOTP code typed into a fake site versus a WebAuthn passkey bound to the relying-party origin](images/passkeys-vs-totp.svg)
 
 *Figure. On the left, a typed TOTP code can be harvested and replayed. On the right, the authenticator signs only for the real relying-party origin — notice a lookalike domain does not get a usable assertion. Original course diagram (CC0).*
+
+### Worked example
+
+```text
+RP ID:  example.com
+Origin: https://login.example.com
+
+Registration ceremony (shape):
+  navigator.credentials.create({ publicKey: {
+    rp: { id: "example.com", name: "Example" },
+    user: { id: ..., name: "alex@example.com", displayName: "Alex" },
+    challenge: <serverBytes>,
+    pubKeyCredParams: [{ alg: -7, type: "public-key" }, ...]
+  }})
+
+Assertion on https://evil-example.com:
+  authenticator should refuse — RP ID / origin binding does not match.
+```
+
+A phished TOTP code typed into `evil-example.com` still works at the real site until it expires; a passkey assertion for the wrong RP does not.
+
+### Common misconceptions / what goes wrong
+
+- **“Passkeys are just better passwords in the cloud.”** The private key never goes to the RP; the phishing resistance comes from origin/RP-bound signatures, not from longer secrets.
+- **“RP ID equals the full origin including scheme and path.”** Credentials are scoped to a registrable domain suffix (RP ID); misunderstanding that breaks registration or weakens the threat model — see W3C WebAuthn.
+- **“Turn off TOTP the day passkeys ship.”** Without recovery (second device, backup passkey, IT reset), lockouts become outages.
+- **“This replaces Challenge Gym TOTP work.”** Passkeys sit *beside* TOTP literacy; the course still needs OTP for labs and for estates that have not moved yet.
 
 ## Videos (verified)
 

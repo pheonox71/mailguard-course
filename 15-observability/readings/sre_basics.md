@@ -23,9 +23,38 @@ User journey → SLI events (good/bad) → SLO compliance → error budget left?
 
 Trade-off: tight SLOs create more freezes; loose SLOs hide user pain. Prefer fewer meaningful SLIs over dozens of vanity gauges.
 
+### Worked example
+
+Error-budget burn for a release SLI (see [Google SRE Book — Service Level Objectives](https://sre.google/sre-book/service-level-objectives/)):
+
+```text
+SLO: 99% of releases complete in < 30s over 28 days
+Error budget: 1% of events may be slow/fail
+
+Suppose 10_000 release attempts in the window:
+  Budget = 0.01 × 10_000 = 100 bad events
+  Observed bad = 40
+  Budget remaining = 60% → feature work OK
+  If bad jumps to 120 → budget burned → freeze risky launches, fix reliability
+```
+
+```text
+# Why count good/bad release events — not “CPU looks fine”:
+release_success{le="30s"} / release_attempts
+```
+
+Alert on **burn rate over a window**, not every single failure — why: avoid pager fatigue that trains people to ignore real incidents.
+
+### Common misconceptions / what goes wrong
+
+- **“CPU/memory dashboards are SLIs.”** SLIs measure *user-visible* success; vanity gauges do not tell you whether to freeze a release.
+- **“Alert on every failed release.”** Single-event pages burn attention; burn-rate alerts over a window distinguish noise from budget threat.
+- **“Error budget is a stick for blameless people.”** Budgets are a *policy* for risk vs reliability; postmortems fix systems/process, not individuals ([Postmortem Culture](https://sre.google/sre-book/postmortem-culture/)).
+- **“Tighter SLO is always better.”** Unrealistic targets force permanent freezes or silent SLO lies — pick targets you can measure and act on.
+
 ## Short intro
 
-SRE vocabulary turns telemetry into release policy — not just pretty graphs.
+Observability without objectives becomes dashboard tourism. Site Reliability Engineering (**SRE**) popularized measuring reliability with Service Level Indicators (**SLI**s), targeting them with Service Level Objectives (**SLO**s), and spending **error budgets** when reality misses the target — then learning via postmortems. SRE vocabulary turns telemetry into release policy — not just pretty graphs.
 
 ## Videos (verified)
 
@@ -36,18 +65,6 @@ SRE vocabulary turns telemetry into release policy — not just pretty graphs.
    Why it helps: how error budgets drive release vs reliability trade-offs; pair with written postmortem culture chapter.
 
 Prefer the Google SRE book chapters below if a video moves.
-
-## Annotated practice
-
-When you wire metrics later:
-
-```text
-# Why count good/bad release events — not “CPU looks fine”:
-# decisions need user-visible success criteria
-release_success{le="30s"} / release_attempts
-```
-
-Alert on **burn rate over a window**, not every single failure — why: avoid pager fatigue that trains people to ignore real incidents.
 
 ## Read these (verified)
 

@@ -2,7 +2,16 @@
 
 **Why this matters.** Clicking a cloud console does not review well and drifts silently. **Terraform** expresses buckets, IAM, and queues as code so Module 13 can `plan` changes before they hit a real account. On the job, reviewers read the plan — not a console screenshot — when mail/identity infra changes.
 
-**How it works.** You write **HCL** (HashiCorp Configuration Language) describing desired resources. `terraform plan` shows a diff; `apply` mutates cloud APIs; **state** maps real IDs back to your config — and must not be committed when it contains secrets.
+**How it works.**
+
+1. Write **HCL** (HashiCorp Configuration Language) describing desired resources (providers + `resource` blocks).
+2. Run `terraform init` to download providers declared in the config.
+3. Run `terraform plan` to see the create/update/destroy diff **before** any mutation.
+4. Run `terraform apply` only when the plan is intentional; **state** maps real IDs back to your config — and must not be committed when it contains secrets.
+
+```text
+HCL config → init (providers) → plan (diff) → apply (cloud APIs) → state
+```
 
 This primer has no assignment, quiz, or download pack.
 
@@ -34,6 +43,10 @@ You do not need cloud credentials for this primer — Module 13 documents plan a
 
 ## Tiny hands-on example
 
+### Worked example
+
+Local-only HCL (no cloud account) so `plan` still teaches blast-radius review:
+
 ```hcl
 # Conceptual — do not apply without credentials and a backend you own
 terraform {
@@ -56,6 +69,12 @@ terraform plan   # Why: see the diff before any apply
 ```
 
 **How:** `init` installs providers; `plan` shows it would create a local file — same discipline as planning IAM/bucket changes later.
+
+### Common misconceptions / what goes wrong
+
+- **“`plan` green means production is safe.”** Plan only shows *this* config’s diff; it does not prove least privilege, public-access blocks, or that remote state is locked down.
+- **“Commit `terraform.tfstate` for the team.”** State often holds secrets and resource IDs — use a remote backend with access control, not git history.
+- **“Skip plan and just `apply -auto-approve`.”** You lose the blast-radius review that makes Terraform worth using for mail/identity IAM.
 
 ## Official docs
 

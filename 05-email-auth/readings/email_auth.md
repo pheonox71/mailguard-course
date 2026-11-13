@@ -6,13 +6,58 @@
 2. Distinguish Sender Policy Framework (**SPF**), DomainKeys Identified Mail (**DKIM**), and Domain-based Message Authentication, Reporting and Conformance (**DMARC**) — what each checks and how they combine. DMARC passes if **at least one** of SPF or DKIM passes **and** aligns with the visible `From:`.
 3. Read a DMARC DNS policy (`p=`, `rua=`, and RFC 9989 tags such as `t=` / `np=` / `psd=`) and say what hold/DLP rules **cannot** fix alone when attackers spoof lookalike mail.
 
-**Why this matters.** Hold/DLP rules catch *outbound* mistakes; they do not stop attackers who **spoof** your (or a partner’s) domain into someone else’s inbox. Without SPF/DKIM/DMARC, receivers cannot tell authorized mail from lookalike fraud. On the job, email and cloud-security teams publish DNS auth, read aggregate reports, and step `p=` carefully — TLS on SMTP encrypts a hop but does not prove `From:`.
+**Why this matters.** Hold/DLP rules catch *outbound* mistakes (missend, policy); they do not stop attackers who **spoof** your (or a partner’s) domain into someone else’s inbox. Without SPF/DKIM/DMARC, receivers cannot tell authorized mail from lookalike fraud. On the job, email and cloud-security teams publish DNS auth, read aggregate reports, and step `p=` carefully — TLS on SMTP encrypts a hop but does not prove `From:`.
 
-**How it works.** **SMTP** forwards mail hop-by-hop; TLS on a hop encrypts that connection (STARTTLS between MTAs is opportunistic unless MTA-STS/DANE enforce it). **SPF** lists hosts allowed for the envelope sender / HELO — not the header `From:`. **DKIM** signs selected headers/body; public key in DNS. **DMARC** requires SPF or DKIM to **pass and align** with the visible `From:`, sets policy (`p=`), and collects reports (`rua`). Receivers combine these; operators use reports before flipping to `p=reject`.
+Attackers also **spoof inbound or lookalike domains**. SPF publishes which hosts may send for the **envelope sender (MAIL FROM / Return-Path) or HELO domain** — it does **not** check the header `From:`. DKIM adds a cryptographic signature over selected headers/body with a public key in DNS. DMARC adds the **alignment** check that ties SPF or DKIM to the visible `From:` domain, tells receivers what to do on failure (`p=`), and where to send aggregate reports (`rua`).
+
+**How it works.**
+
+1. **SMTP hop.** The sending MTA transfers the message to the next hop (often the receiving MX). Optional TLS on that connection encrypts the pipe for *that* hop only.
+2. **SPF check.** The receiver looks up the SPF TXT for the envelope sender domain (MAIL FROM / Return-Path) or HELO identity and asks: is this connecting IP authorized? SPF does **not** inspect the header `From:`.
+3. **DKIM verify.** The receiver finds a `DKIM-Signature` header, fetches the public key from DNS (`selector._domainkey.domain`), and verifies the signature over the signed headers and body.
+4. **DMARC alignment.** The receiver takes the visible `From:` domain and asks whether SPF and/or DKIM **passed and aligned** with that domain (organizational or strict, per policy). At least one aligned pass is enough for DMARC pass.
+5. **Policy + reports.** On failure, the published `p=` (`none` / `quarantine` / `reject`) guides disposition; `rua=` collects aggregate reports so operators can fix legitimate senders before tightening.
+
+```text
+Sender MTA --SMTP(+TLS?)--> Receiver MTA
+                              |-- SPF: envelope/HELO vs IP (DNS TXT)
+                              |-- DKIM: signature vs DNS pubkey
+                              `-- DMARC: align SPF|DKIM with From: → p=/rua
+```
+
+**SMTP + TLS** literacy: encrypting the pipe (TLS) stops casual eavesdropping on that hop; it does not replace SPF/DKIM/DMARC. Between MTAs, STARTTLS is opportunistic unless MTA-STS or DANE enforces authenticated TLS. Domain authentication is how receivers decide “did this domain authorize this message?”
+
+### Worked example
+
+DNS (illustrative):
+
+```text
+example.com.            TXT  "v=spf1 ip4:203.0.113.10 -all"
+selector._domainkey.example.com.  TXT  "v=DKIM1; k=rsa; p=MIIBIj..."
+_dmarc.example.com.     TXT  "v=DMARC1; p=quarantine; rua=mailto:dmarc@example.com"
+```
+
+Message shape the receiver sees:
+
+```text
+Return-Path: <bounce@example.com>
+From: Billing <billing@example.com>
+DKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=selector;
+    h=from:to:subject:date; bh=...; b=...
+```
+
+If the connecting IP is `203.0.113.10`, SPF can pass for `example.com`. If the DKIM signature verifies with `d=example.com`, DKIM passes. DMARC then checks alignment of those results with header `From:` (`example.com`). A spoofed `From: billing@example.com` sent from an unauthorized IP *without* a valid aligned DKIM signature fails DMARC even if the hop used TLS.
 
 ![SPF, DKIM, and DMARC checks from sending MTA through receiving MTA with DNS-published controls](images/spf-dkim-dmarc.svg)
 
 *Figure. SMTP+TLS protects the hop; **SPF** authorizes envelope hosts, **DKIM** signs content, **DMARC** aligns results with the visible `From:` and sets `p=` policy. Notice hold/DLP and domain auth solve different problems (outbound mistakes vs inbound spoof). Original course diagram (CC0).*
+
+### Common misconceptions / what goes wrong
+
+- **“TLS on SMTP means the From: is trusted.”** TLS encrypts (and maybe authenticates) the *transport hop*; it says nothing about who is allowed to use the domain in `From:`. That is SPF/DKIM/DMARC’s job.
+- **“SPF checks the From: header.”** SPF evaluates the envelope sender / HELO against the connecting IP. Attackers can put any address in `From:` while using a different MAIL FROM — without DMARC alignment, SPF alone does not stop that.
+- **“STARTTLS between MTAs is always enforced.”** Server-to-server STARTTLS is opportunistic unless MTA-STS or DANE require authenticated TLS; an active attacker can strip it, and many hops never validate certificates.
+- **“Flip to p=reject on day one.”** Aggregate reports (`rua=`) exist so you find legitimate relays missing SPF/DKIM/alignment before reject breaks payroll or marketing.
 
 ## Videos (verified)
 

@@ -8,12 +8,40 @@
 
 **Why this matters.** Without a rules API, operators cannot encode “hold external domains” or “reject secret substrings” as durable policy — every decision becomes a one-off script. First-match-wins without tests drifts into silent allow; an in-memory-only store vanishes on restart and cannot support multi-instance or audit. History of mail gateways is full of policy engines that grew from ad-hoc filters; a thin, tested evaluate function is the trade-off that keeps the kata honest before Postgres and authn.
 
-**How it works.** Operators **create** ordered rules (predicates + decision). On evaluate, the service walks the list top-down, stops at the **first** match, and returns `hold` / `allow` / `reject` (or a documented default). Keep evaluation as a **pure function** separate from FastAPI handlers so pytest can cover edge cases without HTTP. Pydantic models shape requests; OpenAPI documents the surface. Persistence, authn/z, and pagination stay out of the kata on purpose — stretch labs add Postgres later.
+**How it works.**
+
+1. Operators **create** ordered rules (predicates + decision: `hold` / `allow` / `reject`).
+2. On evaluate, the service walks the list **top-down**.
+3. Stop at the **first** match; return that decision (or a documented default if none match).
+4. Keep evaluation as a **pure function** separate from FastAPI handlers so pytest covers edge cases without HTTP.
+5. Pydantic models shape requests; OpenAPI documents the surface ([FastAPI first steps](https://fastapi.tiangolo.com/tutorial/first-steps/)).
+6. Persistence, authn/z, and pagination stay out of the kata on purpose — stretch labs add Postgres later.
 
 ```
 Client → POST /rules  → store (ordered list)
 Client → POST /evaluate(message) → walk rules → first match → decision
 ```
+
+### Worked example
+
+Rules and one evaluate call (conceptual JSON):
+
+```json
+[
+  {"id": "r1", "match": {"recipient_domain": "external.example"}, "action": "hold"},
+  {"id": "r2", "match": {"body_contains": "SECRET"}, "action": "reject"},
+  {"id": "r3", "match": {}, "action": "allow"}
+]
+```
+
+```http
+POST /evaluate
+{"to": "user@external.example", "subject": "Q3", "body": "hi"}
+
+→ 200 {"decision": "hold", "matched_rule": "r1"}
+```
+
+If `r1` were listed *after* a blanket allow, the same message would silently allow — **order is policy**.
 
 **On the job.** Email DLP and identity-adjacent gateways expose the same pattern: policy CRUD + evaluate on the message path. Interviewers care that you can explain first-match vs scoring, why pure evaluation is testable, and what an in-memory store cannot prove in production — vendor-neutral skills for any cloud mail or SaaS security API.
 
@@ -22,6 +50,13 @@ Client → POST /evaluate(message) → walk rules → first match → decision
 MailGuard’s product thread needs a **rules API**: operators create rules; the service decides whether an outbound message is allowed, held for review, or rejected. This module is a thin FastAPI-shaped service with an in-memory store and a pure evaluation function you can unit-test without standing up a database.
 
 Keep the public vocabulary vendor-neutral: rules, holds, allow, reject — not a commercial product clone.
+
+### Common misconceptions / what goes wrong
+
+- **“Last-match or score-sum is the same as first-match.”** Different semantics produce different outcomes for the same rule list; document and test the one you chose.
+- **“Evaluation inside the route handler is fine.”** Mixing HTTP and policy makes edge-case tests slow and fragile; pure `evaluate(rules, message)` is the contract.
+- **“In-memory means production-ready.”** Restarts wipe rules; two API instances disagree. Production needs authn/z, persistence, pagination, and audit logs — the kata stays small **why:** prove the decision engine before infrastructure hides policy bugs.
+- **“No match → hold for safety.”** Maybe — but only if documented. Silent defaults are how missends (or false blocks) ship.
 
 ## Videos (verified)
 

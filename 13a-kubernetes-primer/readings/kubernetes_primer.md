@@ -2,7 +2,17 @@
 
 **Why this matters.** Compose is enough for a laptop story; **Kubernetes** is how many teams run the same containers with health probes, restarts, and resource requests. Module 14 puts MailGuard’s shape on kind/minikube before GitOps in Module 16. On the job, API/worker pods for mail and identity services live here — probes and requests are the difference between a quiet restart and a silent outage.
 
-**How it works.** You declare desired state in **YAML** (Deployment, Service, etc.). The control plane reconciles actual pods toward that state. **kubectl** is the CLI; **kind**/**minikube** give you a local cluster without a cloud bill.
+**How it works.**
+
+1. Declare desired state in **YAML** (Deployment, Service, etc.).
+2. Apply with **kubectl**; the control plane reconciles actual pods toward that state.
+3. A **Deployment** keeps N replicas from a Pod template; a **Service** gives stable networking to matching pods.
+4. **kind**/**minikube** give you a local cluster without a cloud bill — Module 14 adds probes and resource requests on this shape.
+
+```text
+YAML apply → API server → controllers → Pods running
+                ↑ kubectl is the CLI to that API
+```
 
 This primer has no assignment, quiz, or download pack.
 
@@ -35,6 +45,10 @@ Why `--client` only: confirm the CLI is installed without needing a cluster API 
 
 ## Tiny hands-on example
 
+### Worked example
+
+Minimal Deployment shape (apply only inside Module 14’s cluster):
+
 ```yaml
 # Conceptual snippet — apply only inside Module 14's cluster
 apiVersion: apps/v1
@@ -60,6 +74,12 @@ spec:
 ```
 
 **How:** The Deployment names a Pod template; Kubernetes creates pods matching the selector — Module 14 adds probes and resource requests on top of this shape.
+
+### Common misconceptions / what goes wrong
+
+- **“A Pod is the durable unit.”** Pods are ephemeral; Deployments (or similar controllers) recreate them — design for restarts.
+- **“kubectl apply once and you’re done.”** Without probes/requests (Module 14) and later GitOps/policy (Module 16), laptop apply drifts from what production needs.
+- **“Compose knowledge transfers 1:1.”** Labels/selectors and Service DNS are the Kubernetes networking contract — missing `matchLabels` means zero traffic.
 
 ## Official docs
 

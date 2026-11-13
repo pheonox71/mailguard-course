@@ -2,7 +2,33 @@
 
 **Why this matters.** Hold/release queues need **durable** state: who held a message, when, and whether it was released. In-memory demos lose that story on restart; without a queryable store you cannot prove “who released this hold?” after an incident. Document stores or logs alone rarely give the same transactional constraints for account/rule/audit rows — SQL remains the default for that shape of SaaS data.
 
-**How it works.** You model entities as **tables** (rows + columns), identify rows with **keys**, and change data with declarative statements (`SELECT` / `INSERT` / `UPDATE`). The MailGuard API module starts in-memory, then asks you to *sketch* a Postgres-shaped design — this primer is that vocabulary. On the job, the same pattern backs email-security and identity APIs: durable holds, rules, and audit trails operators can query.
+**How it works.**
+
+1. Model entities as **tables** (rows + columns) with constraints (`NOT NULL`, keys).
+2. Identify rows with **primary keys** so holds/rules stay addressable across restarts.
+3. Change data with declarative statements (`SELECT` / `INSERT` / `UPDATE`) — the engine plans how, you declare what.
+4. Evolve schema with **migrations** (Alembic later) so deploys do not hand-edit production tables.
+5. The MailGuard API module starts in-memory, then asks you to *sketch* a Postgres-shaped design — this primer is that vocabulary. On the job, the same pattern backs email-security and identity APIs: durable holds, rules, and audit trails operators can query.
+
+### Worked example
+
+Sketch that answers “what is held?” without an app server:
+
+```sql
+-- Why: one table can answer "what is held?" without an app server
+CREATE TABLE holds (
+  id          TEXT PRIMARY KEY,
+  state       TEXT NOT NULL,  -- held | released | rejected
+  created_at  TEXT NOT NULL,
+  actor       TEXT NOT NULL
+);
+
+INSERT INTO holds (id, state, created_at, actor)
+VALUES ('msg-1', 'held', '2026-11-13T12:00:00Z', 'api');
+
+SELECT id, state FROM holds WHERE state = 'held';
+-- → msg-1 | held
+```
 
 This primer has no assignment, quiz, or download pack.
 
@@ -31,22 +57,13 @@ You do **not** need a live database for this primer — the vocabulary above is 
 
 ## Tiny hands-on example
 
-```sql
--- Why: one table can answer "what is held?" without an app server
-CREATE TABLE holds (
-  id          TEXT PRIMARY KEY,
-  state       TEXT NOT NULL,  -- held | released | rejected
-  created_at  TEXT NOT NULL,
-  actor       TEXT NOT NULL
-);
+Use the SQL sketch in **Worked example** above (`CREATE` → `INSERT` → `SELECT`). **How:** `CREATE TABLE` defines the shape; `INSERT` records a hold; `SELECT` filters — the same questions operators ask in an admin UI.
 
-INSERT INTO holds (id, state, created_at, actor)
-VALUES ('msg-1', 'held', '2026-11-13T12:00:00Z', 'api');
+### Common misconceptions / what goes wrong
 
-SELECT id, state FROM holds WHERE state = 'held';
-```
-
-**How:** `CREATE TABLE` defines the shape; `INSERT` records a hold; `SELECT` filters — the same questions operators ask in an admin UI.
+- **“Logs are enough for audit.”** Append-only logs help forensics, but hold/release needs queryable current state with constraints — tables answer “is this still held?” in one row.
+- **“In-memory is fine until launch.”** Restarts wipe holds; multi-instance APIs disagree on state. Sketch SQL early even if the kata stays in-memory.
+- **“Any string in `state` is fine.”** Without constraints/checks, typos (`relased`) become silent bugs; treat legal states as part of the schema design.
 
 ## Official docs
 

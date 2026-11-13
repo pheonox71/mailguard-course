@@ -10,13 +10,47 @@ By the end of this kata’s reading + assignment + implementation, you should be
 
 **Why this matters.** Accidental missends (internal + external in one To/Cc) and invalid addresses leak data or bounce into the wrong inbox. Without a recipient-risk signal, hold rules have nothing principled to trigger on. On the job, the same “verify the recipient” habit shows up in DLP products and in Business Email Compromise (BEC) playbooks — different attacker models, same classification step.
 
-**How it works.** Normalize each address (strip, lowercase domain), then classify as **internal**, **external**, or **invalid** against the org domain. A set that is **mixed** or contains **invalid** addresses is a missend / data-loss signal that can feed a hold rule. This kata uses a simple `local@domain` shape — not full RFC 5322 — so the contract stays testable.
+A common missend pattern: a message meant for **internal** colleagues also includes an **external** address (or a typo’d / invalid address). Classifying recipients against an org domain and flagging **mixed** or **invalid** sets is the seed of a hold decision. This kata uses a **simple** `local@domain` normalizer — enough to practice specs and string discipline, not full RFC 5322 parsing.
+
+**How it works.**
+
+1. Take each recipient address from To/Cc (and Bcc if in scope).
+2. **Normalize**: strip surrounding whitespace; lowercase the domain part.
+3. Classify against the org domain: **internal** (exact org domain), **external** (other valid `local@domain`), or **invalid** (missing `@`, empty local, etc. — per kata tests).
+4. Aggregate the set: all-internal → lower risk; **mixed** (internal + external) or any **invalid** → missend / data-loss signal.
+5. Feed that signal into a hold-rule engine (pair with the hold-rules kata) so policy can hold or reject before send.
 
 ![Recipient classification into internal, external, or invalid, then a set outcome that can feed hold rules](images/recipient-risk.svg)
 
 *Figure. Normalize first, then classify each address against the org domain. Notice that **mixed** or **invalid** set outcomes are the missend signal — the same “verify the recipient” habit applies to accidents and to BEC pressure, with different attacker models. Original course diagram (CC0).*
 
+### Worked example
+
+Org domain: `org.com`
+
+```text
+To: Alice <alice@org.com>, Bob <bob@partner.io>
+Normalized domains: org.com, partner.io
+Classes: internal, external
+Set outcome: mixed  →  candidate for hold
+```
+
+```text
+To: alice@org.com, not-an-email
+Classes: internal, invalid
+Set outcome: invalid present  →  candidate for hold/reject
+```
+
+Accidental missend: user meant only `alice@org.com` but autocomplete added `bob@partner.io`. BEC: attacker pressure uses lookalike external addresses — still “verify the recipient,” different attacker model.
+
 Pair this with the hold-rules kata: risk signals often feed “should we hold?” policies in email Data Loss Prevention (DLP) products.
+
+### Common misconceptions / what goes wrong
+
+- **“Case in the domain doesn’t matter so skip normalization.”** Without lowercasing domains, `Alice@Org.COM` and `alice@org.com` disagree and classification flakes.
+- **“Mixed recipients are always malicious.”** Mixed is a *signal* (often autocomplete), not a verdict — policy may hold for review rather than hard-reject.
+- **“This kata’s regex is production-ready.”** Real mail needs proper parsers, display names, and IDN (see OWASP); documenting the gap is part of the literacy.
+- **“BEC and missend need different classifiers.”** Both start from “who are the recipients?” — attacker model differs after classification.
 
 ## Videos (verified)
 

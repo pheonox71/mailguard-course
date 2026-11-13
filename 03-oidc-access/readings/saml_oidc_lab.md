@@ -9,7 +9,50 @@
 
 **Why this matters.** Federation bugs are not theoretical: unsigned assertions, loose ACS/redirect matching, and missing PKCE turn “we have SSO” into account takeover. Without checking audience, time windows, and InResponseTo, replay and mix-up attacks succeed. On the job, identity engineers validate these conditions every time a new app joins the IdP.
 
-**How it works.** **SAML:** IdP issues a signed XML assertion; the SP verifies signature, audience, recipient/ACS, time window (`NotOnOrAfter` + skew), and InResponseTo (SP-initiated), then creates a session. **OIDC:** auth-code flow + **PKCE** (RFC 7636) binds the code to the client that started the flow; exact redirect URI matching and issuer checks blunt mix-up (RFC 9700). Lab IdPs like Keycloak let you break and fix these checks safely.
+**How it works.**
+
+**SAML (SP-initiated shape):**
+
+1. User hits the SP; SP redirects to the IdP (often with `RelayState`).
+2. IdP authenticates the user and returns a signed XML assertion (POST or redirect binding) to the Assertion Consumer Service (**ACS**).
+3. SP verifies: signature present and trusted, **audience**, **recipient/ACS**, time window (`NotOnOrAfter` + skew), and **InResponseTo** (binds to the authn request).
+4. On success, SP creates an application session.
+
+**OIDC auth-code + PKCE (RFC 7636):**
+
+1. Client creates `code_verifier` / `code_challenge` and redirects to the IdP authorize endpoint with an exact **redirect_uri**.
+2. User authenticates; IdP returns an authorization `code` to that redirect URI.
+3. Client redeems the code at the token endpoint, proving possession of `code_verifier`.
+4. Client validates tokens (issuer, audience, signature, nonce where used). Exact redirect matching and issuer checks blunt mix-up (RFC 9700).
+
+Lab IdPs like Keycloak let you break and fix these checks safely.
+
+### Worked example
+
+```text
+SAML condition checklist (fixture-style):
+  ✔ Signature: RSA-SHA256 over Assertion, cert matches IdP metadata
+  ✔ Audience:  https://sp.example.com/metadata
+  ✔ Recipient: https://sp.example.com/acs
+  ✔ Time:      NotOnOrAfter = now+5m, skew allowance ±2m
+  ✔ InResponseTo: matches AuthnRequest ID _abc123
+
+OIDC token request (shape):
+  POST /token
+  grant_type=authorization_code
+  code=SplxlOBeZQQYbYS6WxSbIA
+  redirect_uri=https://app.example.com/callback   # must match authorize request exactly
+  code_verifier=dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+```
+
+If `redirect_uri` differs by a trailing slash, honest clients fail closed — and open redirect / mix-up bugs get blocked when registration enforces exact match.
+
+### Common misconceptions / what goes wrong
+
+- **“Signature on the Response is enough; skip Assertion checks.”** XML Signature Wrapping and unsigned assertions exploit incomplete verification — check the assertion the SP will trust (OWASP SAML cheat sheet).
+- **“PKCE is only for mobile.”** Public and many confidential clients use PKCE so a stolen code alone is useless (RFC 7636 / RFC 9700).
+- **“Clock skew of a few minutes can be ignored.”** Too-tight windows lock out users; too-loose windows widen replay — document skew like cert rollover.
+- **“IdP-initiated SAML is always safer.”** Without careful RelayState/ACS handling it enables open redirects; treat it as an operational choice with controls, not a free upgrade.
 
 ## Read these (verified)
 

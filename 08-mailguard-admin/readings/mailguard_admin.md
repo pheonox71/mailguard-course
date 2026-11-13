@@ -8,18 +8,52 @@
 
 **Why this matters.** The API can be correct and still fail operators: unclear Approve/Release, missing audit cues, or XSS via raw HTML subjects turns a hold queue into an attack surface. Secrets in the SPA bundle are stolen once and reused forever. Admin UIs are where identity, least privilege, and email-content handling meet the human — skipping TypeScript strictness and XSS hygiene is how “internal tool” incidents start.
 
-**How it works.** A Vue 3 + TypeScript SPA talks to the Module 07 rules/hold API over HTTP. Forms validate rule fields before submit; the hold queue renders rows with **text** bindings (not `innerHTML`). Dangerous actions need accessible names, focus, and often confirm. Auth uses short-lived session cookies or a backend-for-frontend — never long-lived cloud tokens in git or the browser bundle. This module’s graded kata is a small TypeScript helper for validating rule forms and formatting hold-queue rows — enough to prove TS discipline before you wire the full UI.
+**How it works.**
+
+1. A Vue 3 + TypeScript SPA talks to the Module 07 rules/hold API over HTTPS.
+2. Forms validate rule fields (predicates, action) before submit.
+3. The hold queue renders rows with **text** bindings — not `innerHTML` — so attacker-controlled subjects cannot inject script ([OWASP XSS Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)).
+4. Dangerous actions (approve / release / reject) need accessible names, focus order, and often an explicit confirm.
+5. Auth uses short-lived session cookies or a backend-for-frontend — never long-lived cloud tokens in git or the browser bundle.
+6. This module’s graded kata is a small TypeScript helper for validating rule forms and formatting hold-queue rows — enough to prove TS discipline before you wire the full UI.
 
 ```
 Operator browser (Vue SPA) → HTTPS → MailGuard API → holds / rules
          ↑ never embed long-lived API keys here
 ```
 
+### Worked example
+
+Formatting a hold-queue row safely (conceptual):
+
+```ts
+type HoldRow = {
+  id: string;
+  state: "held" | "approved" | "rejected" | "released";
+  subject: string; // may contain attacker-controlled text
+};
+
+function rowLabel(h: HoldRow): string {
+  // Why: return plain text for the template — Vue text interpolation escapes HTML
+  return `${h.id} · ${h.state} · ${h.subject}`;
+}
+
+// Template: {{ rowLabel(hold) }}  — safe
+// Avoid: v-html="hold.subject"   — XSS if subject is <img onerror=...>
+```
+
 **On the job.** Security products live or die on operator clarity: release is irreversible, subjects may contain attacker-controlled strings, and auditors ask who clicked what. Vendor-neutral skills — strict TS models, XSS-safe rendering, accessible confirmations — transfer to any cloud identity or DLP console.
 
 ## Short intro
 
-The admin is the human control surface for MailGuard: list rules, inspect held messages, approve/release or reject. Prefer a Vue 3 + TypeScript SPA against the Module 07 API.
+The admin is the human control surface for MailGuard: list rules, inspect held messages, approve/release or reject. Prefer a Vue 3 + TypeScript SPA against the Module 07 API. This module’s graded kata is a small TypeScript helper for validating rule forms and formatting hold-queue rows — enough to prove TS discipline before you wire the full UI.
+
+### Common misconceptions / what goes wrong
+
+- **“Internal tools do not need XSS care.”** Held subjects and addresses are untrusted input; `innerHTML` / `v-html` turns the queue into a script host.
+- **“Strict TypeScript slows demos.”** Untyped form state is how allow/hold labels swap; the kata exists to prove discipline before a full SPA.
+- **“Cloud API keys in `.env` shipped to the client are OK.”** Anything in the SPA bundle is readable; use session/BFF patterns.
+- **“Confirm dialogs are optional UX.”** Release is irreversible; accessible confirm reduces miss-clicks and documents intent for audit.
 
 ## Read these (verified)
 

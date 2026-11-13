@@ -21,9 +21,35 @@ Hold UI: clear consequence → confirm release → audit log
 
 Trade-off: more friction on release can prevent missend but slows legitimate ops — design confirmations that match severity.
 
+### Worked example
+
+Hold-release warning checklist item for an admin UI PR:
+
+```text
+PR checklist — security warning UX
+[ ] Risk stated in plain language (who/what is affected)
+[ ] Consequence explicit (e.g. “External recipients will receive this message”)
+[ ] Primary action = safe default; destructive release requires confirm
+[ ] No permanent “don’t show again” on critical release warnings
+[ ] Screenshot or test plan so reviewers verify without guessing
+```
+
+```bash
+# Why fork + branch: keep proposed changes reviewable and reversible
+git checkout -b fix/hold-warning-copy
+# Why tests/screenshots in the PR: reviewers verify without guessing
+```
+
+### Common misconceptions / what goes wrong
+
+- **“Redder banners = safer product.”** Alarm fatigue trains operators to dismiss everything; clarity and action beat volume ([NN/g — Error Message Guidelines](https://www.nngroup.com/articles/error-message-guidelines/)).
+- **“Forever-dismiss is a nice convenience.”** Critical hold/release warnings must not disappear permanently after one click-through.
+- **“Huge first PRs impress maintainers.”** Minimal, documented changes with a test plan get review; kitchen-sink diffs stall ([Open Source Guides](https://opensource.guide/how-to-contribute/)).
+- **“Phishing education UIs can borrow real login flows.”** Consent/honesty framing is mandatory — never train users into unsafe credential entry (Module 17).
+
 ## Short intro
 
-MailGuard’s admin hold/release flow is a natural place to practice warning copy and confirmation UX.
+Career-prep portfolios that show “I can collaborate beyond a solo repo” often include a small upstream contribution and evidence you care how humans meet security controls. MailGuard’s admin hold/release flow is a natural place to practice warning copy and confirmation UX.
 
 ## Videos (verified)
 
@@ -31,14 +57,6 @@ Prefer the written Open Source Guides + NN/g + Chromium enamel links below (cont
 Optional: search YouTube for “usable security warnings” / “alarm fatigue security UX” from academic or browser-team talks and confirm the current title before watching.
 
 Prefer written links if a video moves.
-
-## Annotated contribution commands
-
-```bash
-# Why fork + branch: keep proposed changes reviewable and reversible
-git checkout -b fix/hold-warning-copy
-# Why tests/screenshots in the PR: reviewers verify without guessing
-```
 
 ## Read these (verified)
 

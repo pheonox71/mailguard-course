@@ -10,7 +10,7 @@
 
 **How it works.**
 
-1. **RFC 7643** defines resources (User, Group) and schemas; **RFC 7644** defines the HTTP protocol (`/Users`, filters, PATCH).
+1. **[RFC 7643](https://www.rfc-editor.org/rfc/rfc7643)** defines resources (User, Group) and schemas; **[RFC 7644](https://www.rfc-editor.org/rfc/rfc7644)** defines the HTTP protocol (`/Users`, filters, PATCH).
 2. An Identity Provider (**IdP**) (or broker) POSTs/PATCHes users into the app’s SCIM endpoint; clients often **filter** first (`userName eq …`) to avoid duplicates.
 3. **JIT:** account appears at first SSO — simple, but lifecycle depends on later hooks.
 4. **Directory sync** (e.g. Entra Connect-class): continuous sync from on-prem/cloud directories — different operational model than app-level SCIM.
@@ -23,14 +23,39 @@ IdP lifecycle event → SCIM POST/PATCH/DELETE → app account state
 
 Trade-off: SCIM needs a correct endpoint and filter support; JIT is faster to ship and weaker on leavers unless you add lifecycle jobs.
 
+### Worked example
+
+Filter-then-create (IdP-style) against a lab `/Users` endpoint:
+
+```http
+GET /Users?filter=userName%20eq%20%22ada@example.com%22
+Authorization: Bearer <scim-token>
+```
+
+```http
+POST /Users
+Content-Type: application/scim+json
+
+{
+  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
+  "userName": "ada@example.com",
+  "active": true,
+  "emails": [{ "value": "ada@example.com", "primary": true }]
+}
+```
+
+Why filter first: IdPs query before create/update to avoid duplicates ([RFC 7644](https://www.rfc-editor.org/rfc/rfc7644)). Why `active: false` on leave is not enough alone: revoke tokens, roles, and forwarding too.
+
+### Common misconceptions / what goes wrong
+
+- **“Fast join latency means identity is secure.”** Leaver lag (T+24h still active on hold queues) is the usual incident — measure deprovision SLAs.
+- **“JIT replaces SCIM.”** JIT creates on first SSO; without lifecycle hooks it does not tear down promptly.
+- **“Setting `active=false` closes all access.”** Sessions, API tokens, mailbox forwards, and group grants can outlive a disabled flag.
+- **“Any filter string is fine.”** Incomplete filter support causes duplicate users or failed sync — support the subset IdPs actually send.
+
 ## Lab idea
 
 Minimal FastAPI SCIM `/Users` endpoint passing a subset of filters; optionally validate against a vendor SCIM test harness.
-
-```text
-# Why support filter: IdPs query before create/update
-GET /Users?filter=userName eq "ada@example.com"
-```
 
 ## Read these (verified)
 

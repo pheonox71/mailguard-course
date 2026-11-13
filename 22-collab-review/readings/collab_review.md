@@ -13,7 +13,7 @@
 
 1. Branch → small commits with [Conventional Commits](https://www.conventionalcommits.org/) subjects (`feat:`, `fix:`, `docs:` …).
 2. Open a PR with intent, risk, and test plan; keep diff focused (split refactors from auth).
-3. **CODEOWNERS** routes required reviewers by path.
+3. **CODEOWNERS** routes required reviewers by path ([GitHub — About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)).
 4. Reviewers check secrets, authz, validation, dangerous defaults; CI logs triage red jobs before merge.
 5. For larger ideas, write a one-page design/RFC before coding — why: align threat model and UX before sunk cost.
 
@@ -23,17 +23,35 @@ idea → short RFC → small PR → CI → security-minded review → merge
 
 Trade-off: tiny PRs add merge overhead but cut review risk; mega-PRs feel faster and ship hidden footguns.
 
-## Annotated review habits
+### Worked example
+
+Security-minded PR review checklist item:
+
+```text
+PR review — MailGuard-shaped change
+[ ] Intent / risk / test plan filled in (why this change, how verified)
+[ ] No secrets (*.pem, API keys, long-lived cloud keys) in the diff
+[ ] Authz: who can hold/release/read? defaults fail closed?
+[ ] Input validation on new API fields
+[ ] CI: read the failing job log before re-running blindly
+[ ] Split: refactor commits separate from auth/policy commits
+```
 
 ```bash
 # Why conventional subject: changelog + bisect clarity
 git commit -m "fix: require readinessProbe on api deployment"
 
-# Why read CI logs before re-running blindly: find the failing contract fast
 # Why block *.pem in PRs: secrets in git outlive the PR tab
 ```
 
 Do **not** rewrite course `main` history to “practice rebase games.”
+
+### Common misconceptions / what goes wrong
+
+- **“LGTM on a mega-PR is fine if CI is green.”** Auth bugs hide in large mixed diffs; split refactors from security-sensitive changes ([OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)).
+- **“Re-run CI without reading logs.”** Blind retries waste time; the failing contract usually names the file.
+- **“CODEOWNERS is optional ceremony.”** Path-based owners are how teams force review on identity/mail/IAM paths.
+- **“Force-pushing rewritten `main` teaches git.”** History rewrite on shared main is out of scope and harmful — practice on personal branches.
 
 ## Read these (verified)
 

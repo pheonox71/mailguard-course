@@ -8,7 +8,32 @@
 
 **Why this matters.** Shipping hold/release without naming abuse stories leaves gaps that MFA, audits, and CI cannot invent for you. Teams that skip threat modeling discover spoofed operators, silent rule tampering, and held-body disclosure in production — after users are affected. A lightweight pass costs a page of Markdown; a missed elevation path costs incident response.
 
-**How it works.** Threat modeling asks four questions (Shostack): what are we working on → what can go wrong → what are we doing about it → did we do a good job? **STRIDE** (Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege) is a Microsoft-origin checklist that maps each abuse story to a concrete element (session, rule store, queue). Secure Software Development Life Cycle (**SDLC**) means those questions recur in requirements, design, implementation, test, and operate — not only in a final pen-test fantasy. **LINDDUN** is a privacy-oriented sibling; for MailGuard, focus on disclosure of held message bodies and audit access. **OWASP SAMM** (Software Assurance Maturity Model) maps five business functions (Governance, Design, Implementation, Verification, Operations) so you pick *one* practice to improve — not claim enterprise maturity.
+**How it works.**
+
+1. **What are we working on?** Sketch the hold/release path and trust boundaries (browser → admin/API → rule store → queue → next hop).
+2. **What can go wrong?** Walk **STRIDE** against each element: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege (Microsoft-origin checklist — see [STRIDE reference](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats)).
+3. **What are we doing about it?** Map each abuse story to a mitigation you ship (MFA, audit logs, first-match tests, least privilege) or mark an honest gap.
+4. **Did we do a good job?** Revisit when the design changes; Secure Software Development Life Cycle (**SDLC**) means these questions recur in requirements, design, implementation, test, and operate — not only in a final pen-test fantasy.
+5. **Privacy sibling:** **LINDDUN** is privacy-oriented; for MailGuard, focus on disclosure of held message bodies and audit access ([LINDDUN](https://www.linddun.org/)).
+6. **Maturity map:** **OWASP SAMM** maps five business functions (Governance, Design, Implementation, Verification, Operations) so you pick *one* practice to improve — not claim enterprise maturity ([OWASP SAMM](https://owasp.org/www-project-samm/)).
+
+```
+Shostack four questions
+  → STRIDE (or LINDDUN-lite) rows on the diagram
+  → mitigations / gaps
+  → SAMM: one practice to raise next
+```
+
+### Worked example
+
+One STRIDE-lite row for MailGuard’s hold path:
+
+| Element | STRIDE | Abuse story | Mitigation or gap |
+|---------|--------|-------------|-------------------|
+| Operator session | Spoofing | Attacker uses a stolen session to approve holds | MFA + short-lived session; gap if admin has no step-up on release |
+| Rule store | Tampering | Quiet edit flips first-match order to silent allow | Audit log on rule write + CI tests for evaluate order |
+| Held body | Information disclosure | Support role reads full message body | Least privilege / redacted preview; document if full body is required |
+| Release API | Elevation of privilege | Low-privilege user calls `POST /holds/{id}/release` | Authz check on hold id (tenant + role); 403 on miss |
 
 **On the job.** Email and identity gateways always have privileged operator actions (release, rule edit). Interviewers and security reviews expect you to walk a trust-boundary diagram and name STRIDE rows with mitigations or honest gaps — vendor-neutral vocabulary that transfers across cloud mail and SaaS admin consoles.
 
@@ -16,7 +41,7 @@
 
 Threat modeling asks “what can go wrong?” before or while you build. Secure Software Development Life Cycle (**SDLC**) means security activities show up in requirements, design, implementation, test, and operate — not only in a final pen-test fantasy.
 
-**STRIDE** is still useful interview vocabulary. Prefer a short table over a unused enterprise tool: six abuse stories tied to MailGuard’s hold path beat a blank “we follow best practices.”
+**STRIDE** (Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege) is a Microsoft-origin checklist still useful as interview vocabulary. **LINDDUN** is a privacy-oriented sibling; for MailGuard, focus on disclosure of held message bodies and audit access. Prefer a short table over an unused enterprise tool: six abuse stories tied to MailGuard’s hold path beat a blank “we follow best practices.”
 
 ![STRIDE-lite checklist with example questions for a hold and release path](images/stride-lite.svg)
 
@@ -29,6 +54,13 @@ Threat modeling asks “what can go wrong?” before or while you build. Secure 
 | STRIDE-lite table | Fast feature reviews | Misses privacy-specific linking threats (use LINDDUN-lite) |
 | Full threat-modeling tools | Regulated programs | Overhead for a student kata |
 | Pen-test only at the end | Finds some bugs | Too late for design-level trust boundaries |
+
+### Common misconceptions / what goes wrong
+
+- **“We have MFA and audit logs, so we already threat-modeled.”** Controls without named abuse stories leave blind spots (e.g. rule-order tampering) that MFA never covers.
+- **“STRIDE is obsolete / only for Microsoft stacks.”** It is a vocabulary checklist; the point is coverage of spoof/tamper/disclose/elevate on *your* diagram, not a product allegiance.
+- **“SAMM means we are mature.”** SAMM is a map of practices. Inflating scores without evidence fails reviews; pick one practice and show a concrete next step.
+- **“Privacy is separate from security threat modeling.”** Held bodies and audit access are disclosure risks — LINDDUN-lite belongs on the same page as STRIDE for a gateway.
 
 ## Videos (verified)
 

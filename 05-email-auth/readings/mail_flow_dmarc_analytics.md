@@ -9,7 +9,43 @@
 
 **Why this matters.** Real mail rarely goes “MUA → final MX” in one hop. Gateways, relays, and journaling rewrite paths so SPF breaks even for legitimate senders — and without aggregate analytics you either stay on `p=none` forever or flip to `p=reject` and break payroll/marketing. On the job, email-security engineers read RFC 9990-shaped reports, preserve DKIM (or ARC), and place MX vs outbound smart-hosts deliberately.
 
-**How it works.** **Inbound:** MX points at the gateway (or workspace); mail is inspected then delivered. **Outbound:** workspace sends via a smart-host/gateway that may rewrite envelope data — SPF often fails after relay, while aligned **DKIM** can still make **DMARC** pass. **ARC** (RFC 8617) helps downstream receivers trust authentication results across intermediaries. Aggregate reports summarize pass/fail by source IP so you climb `none → quarantine → reject` with evidence. Bulk-sender mandates expect SPF/DKIM/DMARC at minimum.
+**How it works.**
+
+1. **Inbound placement.** MX for the domain points at the security gateway (or directly at the workspace). Mail is inspected (spam, malware, policy), then delivered into the mailbox store.
+2. **Outbound placement.** The workspace sends via a smart-host / gateway connector. Envelope data or the connecting IP may change after relay — SPF for the original MAIL FROM often fails at the final receiver.
+3. **Authentication across intermediaries.** Aligned **DKIM** (signature survives if headers/body are preserved) can still make **DMARC** pass when SPF fails. **ARC** (RFC 8617) seals prior authentication results so downstream receivers can trust them across hops.
+4. **Aggregate feedback.** Receivers send XML aggregate reports (RFC 9990-shaped) to `rua=` summarizing pass/fail by source IP. Operators climb `none → quarantine → reject` only when reports show legitimate senders are covered.
+5. **Bulk-sender mandates.** High-volume senders are expected to publish SPF/DKIM/DMARC at minimum (see Google/Yahoo 2024 guidance and Outlook.com postmaster expectations).
+
+```text
+Inbound:  Internet → [gateway MX] → workspace
+Outbound: workspace → smart-host/gateway → Internet MX
+Auth:     SPF often fails after relay; aligned DKIM (± ARC) can still pass DMARC
+```
+
+### Worked example
+
+A marketing ESP sends as `news@example.com` from `198.51.100.50`. Aggregate report row (shape simplified):
+
+```text
+<source_ip>198.51.100.50</source_ip>
+<count>1200</count>
+<policy_evaluated>
+  <disposition>none</disposition>
+  <dkim>pass</dkim>
+  <spf>fail</spf>
+</policy_evaluated>
+<header_from>example.com</header_from>
+```
+
+SPF fails because the ESP IP is not in `example.com`’s SPF (or the envelope domain differs). DKIM `d=example.com` aligns with `From:`, so DMARC can still pass. Next `p=` step: keep `p=none` until every high-volume source shows aligned pass; then move to `quarantine`, then `reject`.
+
+### Common misconceptions / what goes wrong
+
+- **“SPF failed, so the mail is forged.”** After a legitimate relay, SPF often fails while aligned DKIM still authorizes the message for DMARC.
+- **“Gateway in the path always breaks DMARC.”** Gateways break SPF when they change the connecting IP/envelope; they break DMARC only if they also invalidate or strip aligned DKIM (or you lack ARC where needed).
+- **“Aggregate reports are optional fluff.”** Without them you guess which IPs are yours; flipping `p=reject` blind breaks real senders.
+- **“ARC replaces SPF/DKIM.”** ARC conveys prior results across intermediaries; receivers still need a trustworthy ARC chain and underlying authentication story.
 
 ## Read these (verified)
 

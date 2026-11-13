@@ -2,7 +2,32 @@
 
 **Why this matters.** Security labs fail for boring reasons: wrong Python, no `venv`, Git missing, or tools installed too late. Without a repeatable machine baseline, every later module becomes “debug the laptop” instead of learning identity, email auth, and cloud access. On the job, the same hygiene — isolate deps, verify versions, defer heavy tooling until needed — keeps shared environments and CI honest.
 
-**How it works.** Install a small **core** set now (Git, Python 3.11+, `venv`/`pip`, `pytest`, editor). Confirm each with a version check. Defer Node, Go, Docker, Terraform, kubectl/kind, and cloud CLIs until the module that needs them. That staged path mirrors how teams onboard: unblock day-one work first, then add platform tooling when the workload appears.
+**How it works.**
+
+1. Install a small **core** set now: Git, Python 3.11+ (or current stable 3.x), `venv`/`pip`, `pytest`, and an editor.
+2. Confirm each with a version check (`git --version`, `python3 --version`, `pytest --version`).
+3. Create a Challenge Gym `.venv`, install `requirements.txt`, and run `pytest -q` so the toolchain is proven (failing kata tests are expected).
+4. Defer Node, Go, Docker, Terraform, kubectl/kind, and cloud CLIs until the module that needs them.
+5. Mark Module 00 complete only after the checklist below passes.
+
+That staged path mirrors how teams onboard: unblock day-one work first, then add platform tooling when the workload appears.
+
+### Worked example
+
+```bash
+git --version
+python3 --version          # Windows: py -3 --version
+cd 01-challenge-gym && python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt && pytest --version
+```
+
+You should see version strings for Git/Python/pytest. Kata failures are fine; an import or `venv` error means fix setup before Module 01.
+
+### Common misconceptions / what goes wrong
+
+- **“Install every cloud/K8s tool on day one.”** Unused Docker/Terraform/kubectl stacks rot and fight each other; defer until the module that needs them so core Python labs stay unblocked.
+- **“System Python is fine — skip venv.”** Global packages diverge from classmates and CI; a project `.venv` keeps `pyotp`/`cryptography`/pytest on a known graph.
+- **“pytest red means setup failed.”** Early red tests prove the runner works; only interpreter/venv/import errors mean the machine baseline is wrong.
 
 This module prepares your machine for the full course: identity / MFA katas, email authentication, Python APIs, TypeScript/Vue admin, Go workers, AWS/CI, Terraform, and local Kubernetes. You do **not** need every tool on day one — install **core** tools now, and the **later** tools when the matching module arrives.
 

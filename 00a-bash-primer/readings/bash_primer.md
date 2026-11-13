@@ -2,7 +2,30 @@
 
 **Why this matters.** Almost every MailGuard lab starts in a terminal: create a venv, run `pytest`, call `go test`, or bring Compose up. Without shell fluency, the “how” of every later module stays blocked behind copy-paste. On the job, the same skill lets you reproduce CI failures, inspect logs, and keep secrets in the environment instead of committed files.
 
-**How it works.** A shell reads a line, expands variables/globs, then runs a program. Pipes (`|`) pass stdout of one command to stdin of the next. Environment variables configure tools without hard-coding secrets into files you might commit. Exit codes (`$?` / `$LASTEXITCODE`) are how scripts and pipelines decide pass vs fail.
+**How it works.**
+
+1. You type a line; the shell expands variables and globs.
+2. The shell runs the resulting program (or builtin).
+3. Pipes (`|`) pass stdout of one command to stdin of the next; redirects send output to files.
+4. Environment variables (`export VAR=…`) configure tools without hard-coding secrets into files you might commit.
+5. Exit codes (`$?` / `$LASTEXITCODE`) tell scripts and CI whether the last command passed (0) or failed (non-zero).
+
+### Worked example
+
+```bash
+mkdir -p /tmp/mailguard-shell-demo && cd /tmp/mailguard-shell-demo
+echo "hold" > decision.txt
+grep -n hold decision.txt
+echo "exit was $?"    # 0 if grep found a match
+```
+
+Same pattern CI uses: run a check, then branch on the exit code.
+
+### Common misconceptions / what goes wrong
+
+- **“The command printed nothing, so it failed.”** Many tools are quiet on success; check `$?` (or the pipeline status) instead of assuming silence means error.
+- **“Putting the API token in the script is fine for a lab.”** Lab scripts get committed; use the environment so secrets stay out of git history.
+- **“PowerShell and Bash are interchangeable copy-paste.”** Syntax for env vars, activation, and exit codes differs — follow the OS notes in Module 00 when a command fails oddly.
 
 This primer has no assignment, quiz, or download pack — read, try the tiny example, mark complete, then continue.
 

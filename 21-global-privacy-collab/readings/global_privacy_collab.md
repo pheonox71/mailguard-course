@@ -19,6 +19,27 @@ Incident spanning TZ A/B → async handoff note → least-privilege access check
                          → privacy regime checklist → notify / refuse as needed
 ```
 
+### Worked example
+
+Cross-border support request checklist (literacy-level — verify against primary sources before compliance claims):
+
+```text
+Request: “Support in Region B needs the held message PDF for ticket 123.”
+1. What data? (headers only vs body/attachments — minimize)
+2. Who needs access? (named role, time-boxed — least privilege)
+3. Transfer / lawful basis? (check GDPR / CPRA / APPI / LGPD / PIPL as applicable)
+4. Retention? (delete export after ticket; do not leave in chat forever)
+5. Handoff note (UTC timestamps + next owner) if IR spans timezones
+→ If checks fail: refuse paste; escalate privacy/security — do not “just send the PDF”
+```
+
+### Common misconceptions / what goes wrong
+
+- **“Support overseas is the same as local admin access.”** Cross-border transfer and access rules may block casual paste of hold contents.
+- **“Always-on meetings at one region’s 15:00 is inclusive.”** Fixed slots exclude others; rotate or default to async with explicit owners.
+- **“Memorizing every article is the skill.”** Literacy + knowing where to cite ([GDPR.eu](https://gdpr.eu/), [CPPA](https://cppa.ca.gov/), [PPC](https://www.ppc.go.jp/en/), [ANPD](https://www.gov.br/anpd/pt-br)) beats trivia.
+- **“Hold queues are ‘just logs.’”** Bodies and attachments are personal data with retention and access duties.
+
 ## Keep in mind
 
 No language-learning drills. No employer-specific culture decks. Focus on professional norms that travel: clarity, respect for local holidays/time, and privacy-by-design.
