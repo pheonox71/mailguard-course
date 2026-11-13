@@ -1,7 +1,7 @@
 {
   "brand": "MailGuard Course",
   "tagline": "Cloud-security learning for students building identity, email DLP, and secure SaaS skills.",
-  "generatedAt": "2026-11-13T13:20:55.532Z",
+  "generatedAt": "2026-11-13T14:03:05.021Z",
   "modules": [
     {
       "id": "00-setup",
@@ -15,7 +15,7 @@
       "objectives": [
         "Install and version-check core course tools on your OS",
         "Know which later modules need Node, Go, Docker, Terraform, and Kubernetes tools",
-        "Complete the setup checklist and required quiz before Module 01"
+        "Finish the setup checklist and mark Module 00 complete before Module 01"
       ],
       "hasModuleDir": true,
       "worksheets": [
@@ -72,13 +72,13 @@
       "number": "01",
       "title": "Challenge Gym",
       "phase": "Foundations",
-      "blurb": "Short Python katas with pytest contracts — TOTP, hold rules, recipient risk, and crypto hygiene.",
+      "blurb": "Short Python (+ optional Go) katas — RFC 6238 TOTP, Basic auth client, hold rules, recipient risk, crypto hygiene.",
       "hours": "est. 8-10h",
       "language": "Python",
-      "languageDetail": "Python 3 + pytest for katas and tests",
+      "languageDetail": "Python 3 + pytest; optional Go TOTP port",
       "objectives": [
-        "Implement concise Python katas against pytest contracts",
-        "Explain TOTP/OTP concepts without reinventing crypto",
+        "Implement RFC 6238 TOTP/HOTP truncation against Appendix B vectors",
+        "Build a Basic-auth JSON client pattern with skew checks",
         "Apply hold-rule and recipient-risk thinking in small functions"
       ],
       "hasModuleDir": true,
@@ -181,6 +181,12 @@
       "answerKeysZip": "downloads/01-challenge-gym/answer-keys.zip",
       "readings": [
         {
+          "id": "basic_auth_client",
+          "label": "basic auth client",
+          "path": "01-challenge-gym/readings/basic_auth_client.md",
+          "href": "content/01-challenge-gym/readings/basic_auth_client.md"
+        },
+        {
           "id": "crypto_hygiene",
           "label": "crypto hygiene",
           "path": "01-challenge-gym/readings/crypto_hygiene.md",
@@ -197,6 +203,12 @@
           "label": "recipient risk",
           "path": "01-challenge-gym/readings/recipient_risk.md",
           "href": "content/01-challenge-gym/readings/recipient_risk.md"
+        },
+        {
+          "id": "totp_rfc6238",
+          "label": "totp rfc6238",
+          "path": "01-challenge-gym/readings/totp_rfc6238.md",
+          "href": "content/01-challenge-gym/readings/totp_rfc6238.md"
         },
         {
           "id": "totp_verify",
@@ -275,7 +287,7 @@
       "number": "03",
       "title": "OIDC / access policy",
       "phase": "Identity & access",
-      "blurb": "Happy-path OIDC, SAML comparison, and identity-depth worksheet practice.",
+      "blurb": "OIDC + PKCE, SAML assertion checks, Keycloak lab notes, and identity-depth practice.",
       "hours": "est. 8-10h",
       "language": "Conceptual",
       "languageDetail": "Tables and diagrams; optional Python only if you code a demo later",
@@ -331,6 +343,12 @@
           "label": "identity depth",
           "path": "03-oidc-access/readings/identity_depth.md",
           "href": "content/03-oidc-access/readings/identity_depth.md"
+        },
+        {
+          "id": "saml_oidc_lab",
+          "label": "saml oidc lab",
+          "path": "03-oidc-access/readings/saml_oidc_lab.md",
+          "href": "content/03-oidc-access/readings/saml_oidc_lab.md"
         }
       ]
     },
@@ -339,14 +357,14 @@
       "number": "04",
       "title": "ZTNA lite",
       "phase": "Identity & access",
-      "blurb": "VPN vs zero-trust access — diagrams and compare tables, no commercial mesh required.",
+      "blurb": "VPN vs ZTNA, mTLS/device-cert lab literacy, and NIST SP 1800-35.",
       "hours": "est. 8-10h",
       "language": "Conceptual",
-      "languageDetail": "Diagrams and compare tables (no app language required)",
+      "languageDetail": "Diagrams + Python mTLS helpers; local CA lab optional",
       "objectives": [
         "Diagram VPN vs ZTNA access models",
-        "Explain identity-bound app access in plain language",
-        "Avoid claiming a commercial mesh deployment"
+        "Explain mTLS/device-cert checks and revocation pain",
+        "Reference NIST SP 1800-35 without claiming a commercial mesh deploy"
       ],
       "hasModuleDir": true,
       "worksheets": [
@@ -390,6 +408,12 @@
       },
       "answerKeysZip": null,
       "readings": [
+        {
+          "id": "mtls_ztna",
+          "label": "mtls ztna",
+          "path": "04-ztna-lite/readings/mtls_ztna.md",
+          "href": "content/04-ztna-lite/readings/mtls_ztna.md"
+        },
         {
           "id": "ztna_lite",
           "label": "ztna lite",
@@ -467,6 +491,12 @@
           "label": "email auth",
           "path": "05-email-auth/readings/email_auth.md",
           "href": "content/05-email-auth/readings/email_auth.md"
+        },
+        {
+          "id": "mail_flow_dmarc_analytics",
+          "label": "mail flow dmarc analytics",
+          "path": "05-email-auth/readings/mail_flow_dmarc_analytics.md",
+          "href": "content/05-email-auth/readings/mail_flow_dmarc_analytics.md"
         }
       ]
     },
@@ -559,7 +589,20 @@
       "quizzesPdfZip": null,
       "quizSingle": null,
       "answerKeysZip": null,
-      "readings": []
+      "readings": [
+        {
+          "id": "hold_state",
+          "label": "hold state",
+          "path": "07-mailguard-api/readings/hold_state.md",
+          "href": "content/07-mailguard-api/readings/hold_state.md"
+        },
+        {
+          "id": "mailguard_api",
+          "label": "mailguard api",
+          "path": "07-mailguard-api/readings/mailguard_api.md",
+          "href": "content/07-mailguard-api/readings/mailguard_api.md"
+        }
+      ]
     },
     {
       "id": "08-mailguard-admin",
@@ -586,7 +629,14 @@
       "quizzesPdfZip": null,
       "quizSingle": null,
       "answerKeysZip": null,
-      "readings": []
+      "readings": [
+        {
+          "id": "mailguard_admin",
+          "label": "mailguard admin",
+          "path": "08-mailguard-admin/readings/mailguard_admin.md",
+          "href": "content/08-mailguard-admin/readings/mailguard_admin.md"
+        }
+      ]
     },
     {
       "id": "09-mailguard-worker",
@@ -613,7 +663,20 @@
       "quizzesPdfZip": null,
       "quizSingle": null,
       "answerKeysZip": null,
-      "readings": []
+      "readings": [
+        {
+          "id": "mailguard_worker",
+          "label": "mailguard worker",
+          "path": "09-mailguard-worker/readings/mailguard_worker.md",
+          "href": "content/09-mailguard-worker/readings/mailguard_worker.md"
+        },
+        {
+          "id": "sqs_dlq",
+          "label": "sqs dlq",
+          "path": "09-mailguard-worker/readings/sqs_dlq.md",
+          "href": "content/09-mailguard-worker/readings/sqs_dlq.md"
+        }
+      ]
     },
     {
       "id": "10-secure-drop",
@@ -676,6 +739,12 @@
           "label": "cloud share dlp",
           "path": "10-secure-drop/readings/cloud_share_dlp.md",
           "href": "content/10-secure-drop/readings/cloud_share_dlp.md"
+        },
+        {
+          "id": "ppap_secure_transfer",
+          "label": "ppap secure transfer",
+          "path": "10-secure-drop/readings/ppap_secure_transfer.md",
+          "href": "content/10-secure-drop/readings/ppap_secure_transfer.md"
         }
       ]
     },
@@ -704,7 +773,20 @@
       "quizzesPdfZip": null,
       "quizSingle": null,
       "answerKeysZip": null,
-      "readings": []
+      "readings": [
+        {
+          "id": "owasp_lab",
+          "label": "owasp lab",
+          "path": "11-security-notes/readings/owasp_lab.md",
+          "href": "content/11-security-notes/readings/owasp_lab.md"
+        },
+        {
+          "id": "security_notes",
+          "label": "security notes",
+          "path": "11-security-notes/readings/security_notes.md",
+          "href": "content/11-security-notes/readings/security_notes.md"
+        }
+      ]
     },
     {
       "id": "12-ci-aws",
@@ -731,7 +813,20 @@
       "quizzesPdfZip": null,
       "quizSingle": null,
       "answerKeysZip": null,
-      "readings": []
+      "readings": [
+        {
+          "id": "ci_aws",
+          "label": "ci aws",
+          "path": "12-ci-aws/readings/ci_aws.md",
+          "href": "content/12-ci-aws/readings/ci_aws.md"
+        },
+        {
+          "id": "oidc_aws",
+          "label": "oidc aws",
+          "path": "12-ci-aws/readings/oidc_aws.md",
+          "href": "content/12-ci-aws/readings/oidc_aws.md"
+        }
+      ]
     },
     {
       "id": "13-infra",
@@ -822,7 +917,20 @@
       "quizzesPdfZip": null,
       "quizSingle": null,
       "answerKeysZip": null,
-      "readings": []
+      "readings": [
+        {
+          "id": "k8s_helm_deepen",
+          "label": "k8s helm deepen",
+          "path": "14-k8s-local/readings/k8s_helm_deepen.md",
+          "href": "content/14-k8s-local/readings/k8s_helm_deepen.md"
+        },
+        {
+          "id": "k8s_local",
+          "label": "k8s local",
+          "path": "14-k8s-local/readings/k8s_local.md",
+          "href": "content/14-k8s-local/readings/k8s_local.md"
+        }
+      ]
     },
     {
       "id": "15-observability",
@@ -881,6 +989,12 @@
       "answerKeysZip": null,
       "readings": [
         {
+          "id": "ir_detection",
+          "label": "ir detection",
+          "path": "15-observability/readings/ir_detection.md",
+          "href": "content/15-observability/readings/ir_detection.md"
+        },
+        {
           "id": "sre_basics",
           "label": "sre basics",
           "path": "15-observability/readings/sre_basics.md",
@@ -913,7 +1027,20 @@
       "quizzesPdfZip": null,
       "quizSingle": null,
       "answerKeysZip": null,
-      "readings": []
+      "readings": [
+        {
+          "id": "argo_crossplane",
+          "label": "argo crossplane",
+          "path": "16-gitops-policy/readings/argo_crossplane.md",
+          "href": "content/16-gitops-policy/readings/argo_crossplane.md"
+        },
+        {
+          "id": "gitops_policy",
+          "label": "gitops policy",
+          "path": "16-gitops-policy/readings/gitops_policy.md",
+          "href": "content/16-gitops-policy/readings/gitops_policy.md"
+        }
+      ]
     },
     {
       "id": "17-phish-lite",
@@ -940,7 +1067,20 @@
       "quizzesPdfZip": null,
       "quizSingle": null,
       "answerKeysZip": null,
-      "readings": []
+      "readings": [
+        {
+          "id": "phish_lite",
+          "label": "phish lite",
+          "path": "17-phish-lite/readings/phish_lite.md",
+          "href": "content/17-phish-lite/readings/phish_lite.md"
+        },
+        {
+          "id": "phish_lite_svelte",
+          "label": "phish lite svelte",
+          "path": "17-phish-lite/readings/phish_lite_svelte.md",
+          "href": "content/17-phish-lite/readings/phish_lite_svelte.md"
+        }
+      ]
     },
     {
       "id": "18-oss-ux-stretch",
@@ -1067,6 +1207,108 @@
           "label": "capstone mail filter",
           "path": "19-capstone/readings/capstone_mail_filter.md",
           "href": "content/19-capstone/readings/capstone_mail_filter.md"
+        }
+      ]
+    },
+    {
+      "id": "20-scim-provisioning",
+      "number": "20",
+      "title": "SCIM / JIT provisioning",
+      "phase": "Identity & access",
+      "blurb": "SCIM filters, joiner-mover-leaver risk, and directory provisioning literacy.",
+      "hours": "est. 8-10h",
+      "language": "Python",
+      "languageDetail": "Python 3 + pytest; FastAPI SCIM lab optional",
+      "objectives": [
+        "Parse a SCIM eq filter subset and reason about deprovisioning SLAs",
+        "Contrast JIT vs SCIM vs directory sync",
+        "Map Entra / Google Workspace examples without vendor lock-in copy"
+      ],
+      "hasModuleDir": true,
+      "worksheets": [],
+      "worksheetsZip": null,
+      "worksheetSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "scim_provisioning",
+          "label": "scim provisioning",
+          "path": "20-scim-provisioning/readings/scim_provisioning.md",
+          "href": "content/20-scim-provisioning/readings/scim_provisioning.md"
+        }
+      ]
+    },
+    {
+      "id": "21-global-privacy-collab",
+      "number": "21",
+      "title": "Global collaboration & privacy",
+      "phase": "Stretch",
+      "blurb": "Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL literacy.",
+      "hours": "est. 8-10h",
+      "language": "Conceptual",
+      "languageDetail": "English readings + a small Python tagging kata",
+      "objectives": [
+        "Practice async handoffs across timezones",
+        "Compare major privacy regimes at a literacy level",
+        "Connect privacy duties to hold/release queues"
+      ],
+      "hasModuleDir": true,
+      "worksheets": [],
+      "worksheetsZip": null,
+      "worksheetSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "global_privacy_collab",
+          "label": "global privacy collab",
+          "path": "21-global-privacy-collab/readings/global_privacy_collab.md",
+          "href": "content/21-global-privacy-collab/readings/global_privacy_collab.md"
+        }
+      ]
+    },
+    {
+      "id": "22-collab-review",
+      "number": "22",
+      "title": "Git & code review",
+      "phase": "Stretch",
+      "blurb": "PR hygiene, conventional commits, security review, and design-note practice.",
+      "hours": "est. 8-10h",
+      "language": "Git",
+      "languageDetail": "Git/GitHub collaboration patterns; Python helpers for hygiene checks",
+      "objectives": [
+        "Open small reviewable PRs with clear English descriptions",
+        "Review for secrets, authz, and input validation",
+        "Use conventional commits and CODEOWNERS effectively"
+      ],
+      "hasModuleDir": true,
+      "worksheets": [],
+      "worksheetsZip": null,
+      "worksheetSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "collab_review",
+          "label": "collab review",
+          "path": "22-collab-review/readings/collab_review.md",
+          "href": "content/22-collab-review/readings/collab_review.md"
         }
       ]
     }

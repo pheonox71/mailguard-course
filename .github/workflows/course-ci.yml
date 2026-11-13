@@ -23,6 +23,7 @@ jobs:
           - dir: 01-challenge-gym
           - dir: 02-mailguard-mfa
           - dir: 03-oidc-access
+          - dir: 04-ztna-lite
           - dir: 05-email-auth
           - dir: 07-mailguard-api
           - dir: 10-secure-drop
@@ -33,6 +34,9 @@ jobs:
           - dir: 15-observability
           - dir: 16-gitops-policy
           - dir: 19-capstone
+          - dir: 20-scim-provisioning
+          - dir: 21-global-privacy-collab
+          - dir: 22-collab-review
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -66,6 +70,20 @@ jobs:
         working-directory: 09-mailguard-worker
         run: |
           cp solutions/decision.go worker/decision.go
+          cp solutions/sqs_contract.go worker/sqs_contract.go
+          go test ./...
+
+  go-totp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Apply solution and test
+        working-directory: 01-challenge-gym/go-totp
+        run: |
+          cp ../solutions/totp.go totp.go
           go test ./...
 
   node-katas:

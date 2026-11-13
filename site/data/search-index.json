@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T13:20:55.535Z",
+  "generatedAt": "2026-11-13T14:03:05.026Z",
   "entries": [
     {
       "kind": "module",
@@ -8,7 +8,7 @@
       "moduleId": "00-setup",
       "moduleTitle": "Setup / getting ready",
       "topicId": null,
-      "body": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux. Install and version-check core course tools on your OS Know which later modules need Node, Go, Docker, Terraform, and Kubernetes tools Complete the setup checklist and required quiz before Module 01 Tooling",
+      "body": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux. Install and version-check core course tools on your OS Know which later modules need Node, Go, Docker, Terraform, and Kubernetes tools Finish the setup checklist and mark Module 00 complete before Module 01 Tooling",
       "snippet": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux."
     },
     {
@@ -18,7 +18,7 @@
       "moduleId": "00-setup",
       "moduleTitle": "00 Setup / getting ready",
       "topicId": "course_setup",
-      "body": "# Course setup — tools for the MailGuard path\n\nThis module prepares your machine for the full course: identity / MFA katas, email authentication, Python APIs, TypeScript/Vue admin, Go workers, AWS/CI, Terraform, and local Kubernetes. You do **not** need every tool on day one — install **core** tools now, and the **later** tools when the matching module arrives.\n\n**Authorship:** AI-generated. The student completes the worksheet and quiz.\n\nContinue with the worksheet from the downloads on this page. The quiz is **required**.\n\n---\n\n## What the course uses (audit)\n\n| Area | Tools / libraries | First needed |\n|------|-------------------|--------------|\n| Editor + VCS | Code editor; **Git** | 00 / whole course |\n| Python path | **Python 3.11+**, `pip`, `venv`, **pytest**, **pyotp**, **cryptography**; later **FastAPI** | 01, 05, 07, 10 |\n| Frontend | **Node.js** + npm/pnpm; **TypeScript**; **Vue 3**; optional **Svelte / SvelteKit** | 08, 17 (also to preview the course site: `cd site && npm start`) |\n| Go path | **Go** toolchain (`go test`, modules) | 09 |\n| Containers | **Docker** + **Docker Compose** | 12 (image CI step), 13, 14 |\n| Cloud / CI | **GitHub** account; **GitHub Actions**; **AWS** account (free tier) or local stand-ins; **AWS CLI** (optional early) | 12+ |\n| IaC | **Terraform** | 13 |\n| Kubernetes | **kubectl**; **kind** or **minikube**; YAML / Helm or Kustomize; **Argo CD** for GitOps in 16 | 14–16 |\n| Course site | Modern browser; PDF reader for fillable quiz PDFs; Node.js to run `site/` locally | 00 / whole course |\n| Sample data | Module fixtures and stubs in-repo (no separate dataset download) | per module |\n\nOfficial docs linked below. Prefer current stable releases unless a module README pins a version.\n\n---\n\n## Core installs (do these now)\n\n### 1. Git\n\n- Windows: [Git for Windows](https://git-scm.com/download/win)\n- macOS: [Git downloads](https://git-scm.com/download/mac) or `xcode-select --install`\n- Linux: distro packages — e.g. `sudo apt install git` (Debian/Ubuntu)\n\n**Check:** `git --version`\n\n### 2. Python 3.11+ (or current stable 3.x)\n\n- Windows / macOS / source: [python.org downloads](https://www.python.org/downloads/)\n- macOS (Homebrew): `brew install python`\n- Linux: distro `python3` / `python3-venv` / `python3-pip`\n\nOn Windows installer, enable **Add python.exe to PATH**.\n\n**Check:**\n\n```bash\npython3 --version   # Windows: py -3 --version  (or python --version)\npython3 -m pip --version\n```\n\nOn Windows use `py -3` (or `python`) instead of `python3`; `python3` may open the Microsoft Store alias.\n\n### 3. Virtualenv + Challenge Gym deps\n\nFrom the course repo:\n\n```bash\ncd 01-challenge-gym\npython3 -m venv .venv\n# Windows PowerShell: py -3 -m venv .venv\n# Windows PowerShell: .venv\\Scripts\\Activate.ps1\n#   If activation is blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned\n# Windows cmd.exe: .venv\\Scripts\\activate.bat\nsource .venv/bin/activate\npip install -r requirements.txt\npytest -q\n```\n\n(Expect failing tests until you implement katas — the important part is that `pytest` runs.)\n\n**Check:** `pytest --version`\n\n### 4. Code editor\n\nAny editor is fine (VS Code, Cursor, Neovim, etc.). Install a Python extension if you use VS Code/Cursor.\n\n### 5. PDF reader for quizzes\n\nUse a reader that can fill AcroForm PDFs (many browsers work; Preview / Adobe Reader / Okular also fine). Save finished PDFs under `my-work/quizzes/`.\n\n---\n\n## Install when you reach that module\n\n### Node.js (Modules 08, 17)\n\n- [Node.js LTS downloads](https://nodejs.org/)\n\n**Check:** `node --version` · `npm --version`\n\n### Go (Module 09)\n\n- [Go install](https://go.dev/doc/install)\n\n**Check:** `go version`\n\n### Docker + Compose (Modules 13–14)\n\n- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/macOS) or [Docker Engine](https://docs.docker.com/engine/install/) (Linux)\n\n**Check:** `docker --version` · `docker compose version`\n\n### Terraform (Module 13)\n\n- [HashiCorp Terraform installs](https://developer.hashicorp.com/terraform/install)\n\n**Check:** `terraform version`\n\n### kubectl + kind or minikube (Modules 14–16)\n\n- [kubectl install](https://kubernetes.io/docs/tasks/tools/)\n- [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [minikube](https://minikube.sigs.k8s.io/docs/start/)\n\n**Check:** `kubectl version --client` · `kind version` or `minikube version`\n\n### GitHub + AWS (Modules 12+)\n\n- [GitHub signup](https://github.com/signup)\n- [AWS free tier](https://aws.amazon.com/free/) (or local stand-ins such as LocalStack/MinIO when a module allows)\n- Optional: [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) — `aws --version`\n\nNever commit cloud secrets. Module READMEs describe least-privilege demos.\n\n---\n\n## OS tips\n\n| OS | Notes |\n|----|--------|\n| **Windows** | Prefer PowerShell or Git Bash; WSL2 is excellent for Python/Docker/kind. |\n| **macOS** | Homebrew simplifies Git, Python, Go, Terraform, kubectl. |\n| **Linux** | Use your distro packages for Git/Python; follow upstream docs for Docker/Terraform/kind. |\n\n---\n\n## Final setup checklist\n\nTick these on the worksheet:\n\n1. `git --version` works  \n2. `python3 --version` (Windows: `py -3 --version`) shows 3.11+ (or current stable 3.x)  \n3. `python3 -m venv` (Windows: `py -3 -m venv`) works; Challenge Gym venv installs `requirements.txt`  \n4. `pytest --version` works inside that venv  \n5. Editor + Git configured; you can commit  \n6. Browser opens the course site; you can download a quiz PDF  \n7. You know *when* to add Node, Go, Docker, Terraform, kubectl/kind, GitHub, and AWS  \n\nThen complete the **required** quiz and start Module 01.\n",
+      "body": "# Course setup — tools for the MailGuard path\n\nThis module prepares your machine for the full course: identity / MFA katas, email authentication, Python APIs, TypeScript/Vue admin, Go workers, AWS/CI, Terraform, and local Kubernetes. You do **not** need every tool on day one — install **core** tools now, and the **later** tools when the matching module arrives.\n\nWork through the installs below, then mark Module 00 complete on the site. This module has no worksheet, quiz, or download pack.\n\n---\n\n## What the course uses (audit)\n\n| Area | Tools / libraries | First needed |\n|------|-------------------|--------------|\n| Editor + VCS | Code editor; **Git** | 00 / whole course |\n| Python path | **Python 3.11+**, `pip`, `venv`, **pytest**, **pyotp**, **cryptography**; later **FastAPI** | 01, 05, 07, 10 |\n| Frontend | **Node.js** + npm/pnpm; **TypeScript**; **Vue 3**; optional **Svelte / SvelteKit** | 08, 17 (also to preview the course site: `cd site && npm start`) |\n| Go path | **Go** toolchain (`go test`, modules) | 09 |\n| Containers | **Docker** + **Docker Compose** | 12 (image CI step), 13, 14 |\n| Cloud / CI | **GitHub** account; **GitHub Actions**; **AWS** account (free tier) or local stand-ins; **AWS CLI** (optional early) | 12+ |\n| IaC | **Terraform** | 13 |\n| Kubernetes | **kubectl**; **kind** or **minikube**; YAML / Helm or Kustomize; **Argo CD** for GitOps in 16 | 14–16 |\n| Course site | Modern browser; Node.js to preview the site locally (`cd site && npm start`); later modules use fillable quiz PDFs | 00 / whole course |\n| Sample data | Module fixtures and stubs in-repo (no separate dataset download) | per module |\n\nOfficial docs linked below. Prefer current stable releases unless a module README pins a version.\n\n---\n\n## Core installs (do these now)\n\n### 1. Git\n\n- Windows: [Git for Windows](https://git-scm.com/download/win)\n- macOS: [Git downloads](https://git-scm.com/download/mac) or `xcode-select --install`\n- Linux: distro packages — e.g. `sudo apt install git` (Debian/Ubuntu)\n\n**Check:** `git --version`\n\n### 2. Python 3.11+ (or current stable 3.x)\n\n- Windows / macOS / source: [python.org downloads](https://www.python.org/downloads/)\n- macOS (Homebrew): `brew install python`\n- Linux: distro `python3` / `python3-venv` / `python3-pip`\n\nOn Windows installer, enable **Add python.exe to PATH**.\n\n**Check:**\n\n```bash\npython3 --version   # Windows: py -3 --version  (or python --version)\npython3 -m pip --version\n```\n\nOn Windows use `py -3` (or `python`) instead of `python3`; `python3` may open the Microsoft Store alias.\n\n### 3. Virtualenv + Challenge Gym deps\n\nFrom the course repo:\n\n```bash\ncd 01-challenge-gym\npython3 -m venv .venv\n# Windows PowerShell: py -3 -m venv .venv\n# Windows PowerShell: .venv\\Scripts\\Activate.ps1\n#   If activation is blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned\n# Windows cmd.exe: .venv\\Scripts\\activate.bat\nsource .venv/bin/activate\npip install -r requirements.txt\npytest -q\n```\n\n(Expect failing tests until you implement katas — the important part is that `pytest` runs.)\n\n**Check:** `pytest --version`\n\n### 4. Code editor\n\nAny editor is fine (VS Code, Cursor, Neovim, etc.). Install a Python extension if you use VS Code/Cursor.\n\n### 5. PDF reader for quizzes\n\nUse a reader that can fill AcroForm PDFs (many browsers work; Preview / Adobe Reader / Okular also fine). Save finished PDFs under `my-work/quizzes/`.\n\n---\n\n## Install when you reach that module\n\n### Node.js (Modules 08, 17)\n\n- [Node.js LTS downloads](https://nodejs.org/)\n\n**Check:** `node --version` · `npm --version`\n\n### Go (Module 09)\n\n- [Go install](https://go.dev/doc/install)\n\n**Check:** `go version`\n\n### Docker + Compose (Modules 13–14)\n\n- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/macOS) or [Docker Engine](https://docs.docker.com/engine/install/) (Linux)\n\n**Check:** `docker --version` · `docker compose version`\n\n### Terraform (Module 13)\n\n- [HashiCorp Terraform installs](https://developer.hashicorp.com/terraform/install)\n\n**Check:** `terraform version`\n\n### kubectl + kind or minikube (Modules 14–16)\n\n- [kubectl install](https://kubernetes.io/docs/tasks/tools/)\n- [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [minikube](https://minikube.sigs.k8s.io/docs/start/)\n\n**Check:** `kubectl version --client` · `kind version` or `minikube version`\n\n### GitHub + AWS (Modules 12+)\n\n- [GitHub signup](https://github.com/signup)\n- [AWS free tier](https://aws.amazon.com/free/) (or local stand-ins such as LocalStack/MinIO when a module allows)\n- Optional: [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) — `aws --version`\n\nNever commit cloud secrets. Module READMEs describe least-privilege demos.\n\n---\n\n## OS tips\n\n| OS | Notes |\n|----|--------|\n| **Windows** | Prefer PowerShell or Git Bash; WSL2 is excellent for Python/Docker/kind. |\n| **macOS** | Homebrew simplifies Git, Python, Go, Terraform, kubectl. |\n| **Linux** | Use your distro packages for Git/Python; follow upstream docs for Docker/Terraform/kind. |\n\n---\n\n## Final setup checklist\n\nConfirm each item before marking Module 00 complete:\n\n1. `git --version` works  \n2. `python3 --version` (Windows: `py -3 --version`) shows 3.11+ (or current stable 3.x)  \n3. `python3 -m venv` (Windows: `py -3 -m venv`) works; Challenge Gym venv installs `requirements.txt`  \n4. `pytest --version` works inside that venv  \n5. Editor + Git configured; you can commit  \n6. Browser opens the course site  \n7. You know *when* to add Node, Go, Docker, Terraform, kubectl/kind, GitHub, and AWS  \n\nThen mark Module 00 complete in the site progress UI and start Module 01.\n",
       "snippet": "# Course setup — tools for the MailGuard path This module prepares your machine for the full course: identity / MFA katas, email authentication, Python APIs, Ty"
     },
     {
@@ -28,8 +28,18 @@
       "moduleId": "01-challenge-gym",
       "moduleTitle": "Challenge Gym",
       "topicId": null,
-      "body": "Short Python katas with pytest contracts — TOTP, hold rules, recipient risk, and crypto hygiene. Implement concise Python katas against pytest contracts Explain TOTP/OTP concepts without reinventing crypto Apply hold-rule and recipient-risk thinking in small functions Python",
-      "snippet": "Short Python katas with pytest contracts — TOTP, hold rules, recipient risk, and crypto hygiene."
+      "body": "Short Python (+ optional Go) katas — RFC 6238 TOTP, Basic auth client, hold rules, recipient risk, crypto hygiene. Implement RFC 6238 TOTP/HOTP truncation against Appendix B vectors Build a Basic-auth JSON client pattern with skew checks Apply hold-rule and recipient-risk thinking in small functions Python",
+      "snippet": "Short Python (+ optional Go) katas — RFC 6238 TOTP, Basic auth client, hold rules, recipient risk, crypto hygiene."
+    },
+    {
+      "kind": "reading",
+      "id": "01-challenge-gym:basic_auth_client",
+      "title": "basic auth client",
+      "moduleId": "01-challenge-gym",
+      "moduleTitle": "01 Challenge Gym",
+      "topicId": "basic_auth_client",
+      "body": "# Reading — Basic auth JSON client\n\n## Learning objectives\n\n1. Build an HTTP Basic `Authorization` header (RFC 7617).\n2. Parse a minimal JSON token response safely.\n3. Reason about clock skew when pairing auth with TOTP.\n\n## Read these (verified)\n\n1. [RFC 7617](https://www.rfc-editor.org/rfc/rfc7617)\n2. [MDN — Authorization](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)\n3. [httpx Auth](https://www.python-httpx.org/advanced/authentication/) or [requests Auth](https://requests.readthedocs.io/en/latest/user/authentication/)\n\n## Next step\n\nWorksheet → `katas/basic_auth_client.py` → quiz.\n",
+      "snippet": "# Reading — Basic auth JSON client ## Learning objectives 1. Build an HTTP Basic `Authorization` header (RFC 7617). 2. Parse a minimal JSON token response safel"
     },
     {
       "kind": "reading",
@@ -60,6 +70,16 @@
       "topicId": "recipient_risk",
       "body": "# Reading — Recipient risk\n\n## Learning objectives\n\nBy the end of this kata’s reading + worksheet + implementation, you should be able to:\n\n1. Classify recipients as internal / external / invalid against an org domain after simple normalization.\n2. Explain why **mixed** or **invalid** recipient sets are a missend / data-loss signal that can feed a hold rule.\n3. Distinguish accidental missends from **Business Email Compromise (BEC)** / phishing — same “verify the recipient” habit, different attacker model.\n\n## Short intro\n\nA common missend pattern: a message meant for **internal** colleagues also includes an **external** address (or a typo’d / invalid address). Classifying recipients against an org domain and flagging **mixed** or **invalid** sets is the seed of a hold decision. This kata uses a **simple** `local@domain` normalizer — enough to practice specs and string discipline, not full RFC 5322 parsing.\n\n![Recipient classification into internal, external, or invalid, then a set outcome that can feed hold rules](images/recipient-risk.svg)\n\n*Figure. Normalize first, then classify each address against the org domain. Notice that **mixed** or **invalid** set outcomes are the missend signal — the same “verify the recipient” habit applies to accidents and to BEC pressure, with different attacker models. Original course diagram (CC0).*\n\nPair this with the hold-rules kata: risk signals often feed “should we hold?” policies in email Data Loss Prevention (DLP) products.\n\n## Videos (verified)\n\n1. **[FBI Warns of Business Email Compromise Scams](https://www.youtube.com/watch?v=cBcjTJmxgh4)** — FBI – Federal Bureau of Investigation  \n   Why it helps: official framing of BEC — lookalike addresses and payment requests; reinforces **verify the recipient** before trusting mail.\n\n2. **[PSA: Business E-Mail Compromise Scams](https://www.youtube.com/watch?v=u3nAeVNSV24)** — FBI – Federal Bureau of Investigation  \n   Why it helps: short dramatization of a rushed wire on a suspicious “boss” email — same urgency/missend pressure DLP holds interrupt.\n\n3. **[Recognize and Report Phishing](https://www.youtube.com/watch?v=9pTW-F6V2N0)** — CISA  \n   Why it helps: quick checklist for sender/address mismatch and odd urgency — literacy that pairs with programmatic recipient classification.\n\n## Read these (verified)\n\n### Email address handling\n\n1. [Open Worldwide Application Security Project (OWASP) Email Validation and Verification Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Email_Validation_and_Verification_Cheat_Sheet.html) — normalize before compare; don’t invent brittle regex empires; domain lowercasing.\n2. [RFC 5321 — SMTP](https://datatracker.ietf.org/doc/html/rfc5321) — skim address / mailbox concepts (optional depth after the kata is green).\n3. [RFC 5322 — Internet Message Format](https://datatracker.ietf.org/doc/html/rfc5322) — full address syntax is richer than this kata; know the gap.\n\n### Missend / DLP motivation\n\n4. [NZ Privacy Commissioner — prevent privacy breaches through email](https://www.privacy.org.nz/resources-and-learning/knowledge-base/view/516/) — wrong recipient as a leading breach type.\n5. [OVIC — tips to reduce data breaches when sending emails](https://ovic.vic.gov.au/privacy/resources-for-organisations/tips-to-reduce-data-breaches-when-sending-emails/) — verify full addresses; delay-send as a practical control.\n6. [Microsoft Purview Data Loss Prevention](https://learn.microsoft.com/en-us/purview/dlp-learn-about-dlp) — product framing for protection / detection / response on email and sharing.\n\n### Career prep (honest)\n\n7. DLP / secure-transfer engineering roles care about missend prevention and policy engines — portfolio work shows fluency; calendar years are separate.\n8. Challenge quality and stack familiarity matter in screening for cloud security SaaS roles.\n\n## Keep in mind\n\nReal mail needs proper parsers, display-name handling, and Unicode/IDN awareness (see OWASP). Document that production gap in your trade-offs; don’t pretend the kata is RFC-complete.\n\n## Next step\n\nContinue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.\n",
       "snippet": "# Reading — Recipient risk ## Learning objectives By the end of this kata’s reading + worksheet + implementation, you should be able to: 1. Classify recipients "
+    },
+    {
+      "kind": "reading",
+      "id": "01-challenge-gym:totp_rfc6238",
+      "title": "totp rfc6238",
+      "moduleId": "01-challenge-gym",
+      "moduleTitle": "01 Challenge Gym",
+      "topicId": "totp_rfc6238",
+      "body": "# Reading — Parametrized TOTP (RFC 6238)\n\n## Learning objectives\n\n1. Implement HOTP dynamic truncation (RFC 4226 §5.3) yourself.\n2. Parametrize TOTP by digest (SHA-1/256/512), digits (6–10), step, and T0.\n3. Validate against RFC 6238 Appendix B vectors and the errata on seed lengths.\n4. Optionally port the same logic to Go (`crypto/hmac`, `encoding/binary`).\n\n## Short intro\n\nLibrary wrappers are fine for product MFA — but screening-style tasks often ask you to **derive the counter, HMAC, and truncate** correctly. Appendix B publishes known answers; the errata clarifies that the shared secret length matches the hash (20 / 32 / 64 bytes), not a single 20-byte seed for every digest.\n\nPair this with the Basic-auth JSON client kata when you need an authenticated call that also tolerates small clock skew.\n\n## Read these (verified)\n\n1. [RFC 4226 — HOTP](https://www.rfc-editor.org/rfc/rfc4226) — §5.3 truncation.\n2. [RFC 6238 — TOTP](https://www.rfc-editor.org/rfc/rfc6238) — §4 + Appendix B.\n3. [RFC 6238 errata](https://www.rfc-editor.org/errata_search.php?rfc=6238) — seed length per hash.\n4. [RFC 7617 — HTTP Basic](https://www.rfc-editor.org/rfc/rfc7617) — Authorization header.\n\n## Keep in mind\n\nNever paste employer challenge text into public repos. Publish only your own generic implementation and keep secrets out of gists.\n\n## Next step\n\nWorksheet → implement `katas/totp_rfc6238.py` → optional `go-totp/` → quiz.\n",
+      "snippet": "# Reading — Parametrized TOTP (RFC 6238) ## Learning objectives 1. Implement HOTP dynamic truncation (RFC 4226 §5.3) yourself. 2. Parametrize TOTP by digest (SH"
     },
     {
       "kind": "reading",
@@ -98,8 +118,8 @@
       "moduleId": "03-oidc-access",
       "moduleTitle": "OIDC / access policy",
       "topicId": null,
-      "body": "Happy-path OIDC, SAML comparison, and identity-depth worksheet practice. Sketch a happy-path OIDC login and protected resource Compare OIDC and SAML at a conceptual level Note logout/revocation and device-cert ideas without overclaiming Conceptual",
-      "snippet": "Happy-path OIDC, SAML comparison, and identity-depth worksheet practice."
+      "body": "OIDC + PKCE, SAML assertion checks, Keycloak lab notes, and identity-depth practice. Sketch a happy-path OIDC login and protected resource Compare OIDC and SAML at a conceptual level Note logout/revocation and device-cert ideas without overclaiming Conceptual",
+      "snippet": "OIDC + PKCE, SAML assertion checks, Keycloak lab notes, and identity-depth practice."
     },
     {
       "kind": "reading",
@@ -112,14 +132,34 @@
       "snippet": "# Reading — Identity depth (SAML, device certs, password managers) ## Learning objectives 1. Compare **SAML** and **OIDC** for enterprise single sign-on (**SSO*"
     },
     {
+      "kind": "reading",
+      "id": "03-oidc-access:saml_oidc_lab",
+      "title": "saml oidc lab",
+      "moduleId": "03-oidc-access",
+      "moduleTitle": "03 OIDC / access policy",
+      "topicId": "saml_oidc_lab",
+      "body": "# Reading — SAML 2.0 + OIDC lab deepen\n\n## Learning objectives\n\n1. Run **Keycloak** locally as an IdP (lab only).\n2. Contrast auth-code + **PKCE** (OIDC) with SAML SP/IdP-initiated flows.\n3. Check assertion conditions: audience, recipient/ACS, time window, InResponseTo, signature present.\n4. Know headline attacks: XML Signature Wrapping, unsigned assertions, open redirects; OAuth mix-up / redirect URI mismatch.\n\n## Read these (verified)\n\n1. [OASIS SAML 2.0 Technical Overview](https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html)\n2. [OWASP SAML Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SAML_Security_Cheat_Sheet.html)\n3. [RFC 7636 — PKCE](https://www.rfc-editor.org/rfc/rfc7636)\n4. [RFC 9700 — OAuth Security BCP](https://www.rfc-editor.org/rfc/rfc9700)\n5. [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)\n6. [Keycloak — Getting started](https://www.keycloak.org/guides#getting-started)\n\n## Keep in mind\n\nCertificate rollover, clock skew, RelayState, and single logout are operational details — document them in the worksheet even when the kata uses fixtures.\n\n## Next step\n\n`saml_checks` + `pkce` katas → quiz.\n",
+      "snippet": "# Reading — SAML 2.0 + OIDC lab deepen ## Learning objectives 1. Run **Keycloak** locally as an IdP (lab only). 2. Contrast auth-code + **PKCE** (OIDC) with SAM"
+    },
+    {
       "kind": "module",
       "id": "04-ztna-lite",
       "title": "04 — ZTNA lite",
       "moduleId": "04-ztna-lite",
       "moduleTitle": "ZTNA lite",
       "topicId": null,
-      "body": "VPN vs zero-trust access — diagrams and compare tables, no commercial mesh required. Diagram VPN vs ZTNA access models Explain identity-bound app access in plain language Avoid claiming a commercial mesh deployment Conceptual",
-      "snippet": "VPN vs zero-trust access — diagrams and compare tables, no commercial mesh required."
+      "body": "VPN vs ZTNA, mTLS/device-cert lab literacy, and NIST SP 1800-35. Diagram VPN vs ZTNA access models Explain mTLS/device-cert checks and revocation pain Reference NIST SP 1800-35 without claiming a commercial mesh deploy Conceptual",
+      "snippet": "VPN vs ZTNA, mTLS/device-cert lab literacy, and NIST SP 1800-35."
+    },
+    {
+      "kind": "reading",
+      "id": "04-ztna-lite:mtls_ztna",
+      "title": "mtls ztna",
+      "moduleId": "04-ztna-lite",
+      "moduleTitle": "04 ZTNA lite",
+      "topicId": "mtls_ztna",
+      "body": "# Reading — mTLS, device certs, ZTNA\n\n## Learning objectives\n\n1. Issue a lab client certificate from a private CA (`openssl` or `step-ca`).\n2. Enforce mTLS in front of the admin (nginx/Caddy) and discuss CRL/OCSP pain.\n3. Tie identity-bound access to ZTNA ideas; read **NIST SP 1800-35**.\n\n## Read these (verified)\n\n1. [NIST SP 1800-35 — Implementing a ZTA](https://www.nccoe.nist.gov/projects/implementing-zero-trust-architecture)\n2. [step-ca](https://smallstep.com/docs/step-ca/)\n3. [Mozilla — TLS client auth overview](https://developer.mozilla.org/en-US/docs/Web/Security/Transport_Layer_Security)\n\n## Lab idea\n\nPrivate CA → client cert → require certificate on the admin vhost; document revocation workflow.\n\n## Next step\n\n`mtls_checks` kata → worksheet → quiz.\n",
+      "snippet": "# Reading — mTLS, device certs, ZTNA ## Learning objectives 1. Issue a lab client certificate from a private CA (`openssl` or `step-ca`). 2. Enforce mTLS in fro"
     },
     {
       "kind": "reading",
@@ -152,6 +192,16 @@
       "snippet": "# Reading — Email authentication & SMTP/TLS literacy ## Learning objectives 1. Explain Simple Mail Transfer Protocol (**SMTP**) as the store-and-forward *sendin"
     },
     {
+      "kind": "reading",
+      "id": "05-email-auth:mail_flow_dmarc_analytics",
+      "title": "mail flow dmarc analytics",
+      "moduleId": "05-email-auth",
+      "moduleTitle": "05 Email authentication",
+      "topicId": "mail_flow_dmarc_analytics",
+      "body": "# Reading — Mail flow + DMARC aggregate analytics\n\n## Learning objectives\n\n1. Place a cloud **email security gateway** relative to Microsoft 365 / Google Workspace (MX vs outbound smart-host).\n2. Explain connectors/transport rules, journaling/archive, ARC (RFC 8617), and why SPF often fails after relay while DMARC may still pass via DKIM.\n3. Parse DMARC aggregate reports (RFC 9990-shaped) and recommend the next `p=` step.\n4. Know bulk-sender receiver mandates (Google/Yahoo 2024; Outlook.com high-volume expectations).\n\n## Read these (verified)\n\n1. [RFC 8617 — ARC](https://www.rfc-editor.org/rfc/rfc8617)\n2. [RFC 9990 — DMARC aggregate](https://www.rfc-editor.org/rfc/rfc9990) (and related DMARC reporting RFCs)\n3. [Google bulk sender guidelines](https://support.google.com/a/answer/81126)\n4. [Outlook.com postmaster](https://postmaster.outlook.com/)\n5. [Exchange Online mail flow](https://learn.microsoft.com/en-us/exchange/mail-flow-best-practices/mail-flow-best-practices)\n6. [aiosmtpd](https://aiosmtpd.readthedocs.io/)\n\n## Lab idea\n\nPython **aiosmtpd** relay applying hold rules, then reinjecting allowed mail to MailHog/Mailpit.\n\n## Next step\n\n`mail_flow` + `dmarc_aggregate` katas → quiz.\n",
+      "snippet": "# Reading — Mail flow + DMARC aggregate analytics ## Learning objectives 1. Place a cloud **email security gateway** relative to Microsoft 365 / Google Workspac"
+    },
+    {
       "kind": "module",
       "id": "06-threat-model",
       "title": "06 — Threat model / secure SDLC",
@@ -182,6 +232,26 @@
       "snippet": "FastAPI rules API for hold / allow / reject."
     },
     {
+      "kind": "reading",
+      "id": "07-mailguard-api:hold_state",
+      "title": "hold state",
+      "moduleId": "07-mailguard-api",
+      "moduleTitle": "07 MailGuard API",
+      "topicId": "hold_state",
+      "body": "# Reading — Hold / approve / release\n\n## Learning objectives\n\n1. Model a first-class hold queue with explicit state transitions.\n2. Separate **approve** (human decision) from **release** (send onward).\n3. Reject illegal transitions instead of silently no-oping.\n\n## Short intro\n\nAn email-security gateway often **holds** outbound mail for review. Operators approve or reject; only approved items are released to the next hop. Keep vocabulary vendor-neutral: hold, approve, release, reject.\n\nPersistence (Postgres + SQLAlchemy/Alembic) belongs in your stretch lab — the kata stays a pure state machine you can unit-test.\n\n## Read these (verified)\n\n1. [FastAPI — Path operations](https://fastapi.tiangolo.com/tutorial/path-operations/)\n2. [SQLAlchemy 2.0 — ORM quick start](https://docs.sqlalchemy.org/en/20/orm/quickstart.html)\n3. [Alembic tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html)\n\n## Next step\n\nWorksheet → `hold_state` + `rule_actions` katas → quiz.\n",
+      "snippet": "# Reading — Hold / approve / release ## Learning objectives 1. Model a first-class hold queue with explicit state transitions. 2. Separate **approve** (human de"
+    },
+    {
+      "kind": "reading",
+      "id": "07-mailguard-api:mailguard_api",
+      "title": "mailguard api",
+      "moduleId": "07-mailguard-api",
+      "moduleTitle": "07 MailGuard API",
+      "topicId": "mailguard_api",
+      "body": "# Reading — MailGuard API\n\n## Learning objectives\n\n1. Sketch a small HTTP API that stores ordered hold/allow/reject rules.\n2. Evaluate a message against those rules with **first-match-wins** semantics.\n3. Cover happy path and edge cases with automated tests.\n\n## Short intro\n\nMailGuard’s product thread needs a **rules API**: operators create rules; the service decides whether an outbound message is allowed, held for review, or rejected. This module is a thin FastAPI-shaped service with an in-memory store and a pure evaluation function you can unit-test without standing up a database.\n\nKeep the public vocabulary vendor-neutral: rules, holds, allow, reject — not a commercial product clone.\n\n## Videos (verified)\n\n1. **[FastAPI tutorial overview](https://www.youtube.com/watch?v=0QRcFgKecYg)** — freeCodeCamp  \n   Why it helps: fast tour of routes, models, and docs UI.\n\n## Read these (verified)\n\n1. [FastAPI — First steps](https://fastapi.tiangolo.com/tutorial/first-steps/) — routing and OpenAPI.\n2. [Pydantic — Models](https://docs.pydantic.dev/latest/concepts/models/) — request/response shapes.\n3. [pytest — Get Started](https://docs.pytest.org/en/stable/getting-started.html) — tests as contract.\n4. Challenge Gym [`hold_rules`](../../01-challenge-gym/readings/hold_rules.md) — same decision vocabulary.\n\n## Keep in mind\n\nProduction APIs add authn/z, persistence, pagination, and audit logs. Your kata stays small on purpose.\n\n## Next step\n\nContinue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.\n\n## Phase 3 deepen\n\nAdd Postgres persistence in your lab environment, plus the `hold_state` and `rule_actions` katas for approve/release and auto-bcc/delete actions.\n",
+      "snippet": "# Reading — MailGuard API ## Learning objectives 1. Sketch a small HTTP API that stores ordered hold/allow/reject rules. 2. Evaluate a message against those rul"
+    },
+    {
       "kind": "module",
       "id": "08-mailguard-admin",
       "title": "08 — MailGuard Admin",
@@ -192,6 +262,16 @@
       "snippet": "TypeScript/Vue admin for rules and the hold queue."
     },
     {
+      "kind": "reading",
+      "id": "08-mailguard-admin:mailguard_admin",
+      "title": "mailguard admin",
+      "moduleId": "08-mailguard-admin",
+      "moduleTitle": "08 MailGuard Admin",
+      "topicId": "mailguard_admin",
+      "body": "# Reading — MailGuard Admin\n\n## Learning objectives\n\n1. Describe an operator UI for rules and held messages.\n2. Keep TypeScript strict for form models and queue rows.\n3. Call a rules API without embedding secrets in the frontend.\n\n## Short intro\n\nThe admin is the human control surface for MailGuard: list rules, inspect held messages, approve/release or reject. Prefer a Vue 3 + TypeScript SPA against the Module 07 API. This module’s graded kata is a small TypeScript helper for validating rule forms and formatting hold-queue rows — enough to prove TS discipline before you wire the full UI.\n\n## Read these (verified)\n\n1. [Vue 3 — Introduction](https://vuejs.org/guide/introduction.html)\n2. [TypeScript — Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)\n3. [MDN — Form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)\n4. [OWASP — XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)\n\n## Next step\n\nContinue with the worksheet from the downloads on this page. The quiz is required after you attempt the worksheet and tests.\n",
+      "snippet": "# Reading — MailGuard Admin ## Learning objectives 1. Describe an operator UI for rules and held messages. 2. Keep TypeScript strict for form models and queue r"
+    },
+    {
       "kind": "module",
       "id": "09-mailguard-worker",
       "title": "09 — MailGuard Worker",
@@ -200,6 +280,26 @@
       "topicId": null,
       "body": "Queue worker path for applying MailGuard decisions. Implement a Go queue worker that applies hold rules Document the shared contract with the Python API Containerize the worker with a clear local demo Go",
       "snippet": "Queue worker path for applying MailGuard decisions."
+    },
+    {
+      "kind": "reading",
+      "id": "09-mailguard-worker:mailguard_worker",
+      "title": "mailguard worker",
+      "moduleId": "09-mailguard-worker",
+      "moduleTitle": "09 MailGuard Worker",
+      "topicId": "mailguard_worker",
+      "body": "# Reading — MailGuard Worker\n\n## Learning objectives\n\n1. Consume queued messages and apply rule decisions.\n2. Keep a queue interface so local demos and cloud queues share code.\n3. Document the contract with the Python API.\n\n## Short intro\n\nAPI services accept operator input; **workers** apply decisions asynchronously — hold persistence, notifications, or release to an MTA. This module is a Go worker with an in-memory queue interface and table-driven tests.\n\n## Read these (verified)\n\n1. [Go — Getting Started](https://go.dev/doc/tutorial/getting-started)\n2. [Go — testing package](https://pkg.go.dev/testing)\n3. [AWS SQS — How it works](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) (conceptual; use a local interface first)\n\n## Next step\n\nContinue with the worksheet from the downloads on this page.\n",
+      "snippet": "# Reading — MailGuard Worker ## Learning objectives 1. Consume queued messages and apply rule decisions. 2. Keep a queue interface so local demos and cloud queu"
+    },
+    {
+      "kind": "reading",
+      "id": "09-mailguard-worker:sqs_dlq",
+      "title": "sqs dlq",
+      "moduleId": "09-mailguard-worker",
+      "moduleTitle": "09 MailGuard Worker",
+      "topicId": "sqs_dlq",
+      "body": "# Reading — Queue consumer + DLQ\n\n## Learning objectives\n\n1. Consume work from a queue behind an interface (LocalStack SQS in lab).\n2. Make processing idempotent; route poison messages to a **dead-letter queue**.\n3. Share a JSON contract with the API module.\n\n## Read these (verified)\n\n1. [AWS SQS dead-letter queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)\n2. [LocalStack SQS](https://docs.localstack.cloud/user-guide/aws/sqs/)\n3. [encoding/json](https://pkg.go.dev/encoding/json)\n\n## Next step\n\nImplement `ShouldDLQ` / `ParseQueueMessage`, then run `go test ./...`.\n",
+      "snippet": "# Reading — Queue consumer + DLQ ## Learning objectives 1. Consume work from a queue behind an interface (LocalStack SQS in lab). 2. Make processing idempotent;"
     },
     {
       "kind": "module",
@@ -222,6 +322,16 @@
       "snippet": "# Reading — File / cloud-share DLP ## Learning objectives 1. Explain why **email hold** alone does not cover files shared via cloud links. 2. List controls: lin"
     },
     {
+      "kind": "reading",
+      "id": "10-secure-drop:ppap_secure_transfer",
+      "title": "ppap secure transfer",
+      "moduleId": "10-secure-drop",
+      "moduleTitle": "10 Secure Drop",
+      "topicId": "ppap_secure_transfer",
+      "body": "# Reading — Insecure password-ZIP transfer → Secure Drop\n\n## Learning objectives\n\n1. Explain the **global** insecure pattern: password-protected archive in one message, password in another on the **same channel**.\n2. Why it fails: same-channel secrecy, blocks malware scanning, abused by malware loaders historically.\n3. Prefer portal-style secure transfer: link + **recipient OTP**, expiry, and **revoke-after-missend**.\n\n## Short intro\n\nSome regions nicknamed this pattern “PPAP”; treat it as a **worldwide** anti-pattern, not a culture lesson. Secure Drop-style delivery converts attachments to expiring download URLs with verification and revocation.\n\n## Read these (verified)\n\n1. [IIJ — PPAP report (English)](https://www.iij.ad.jp/en/dev/iir/pdf/iir_vol51_report_EN.pdf) — historical context\n2. Module Secure Drop reading + object-storage presigned URL docs for your cloud\n3. [OWASP File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)\n\n## Next step\n\nExtend Secure Drop with recipient OTP + revoke → quiz.\n",
+      "snippet": "# Reading — Insecure password-ZIP transfer → Secure Drop ## Learning objectives 1. Explain the **global** insecure pattern: password-protected archive in one me"
+    },
+    {
       "kind": "module",
       "id": "11-security-notes",
       "title": "11 — Security notes",
@@ -232,6 +342,26 @@
       "snippet": "OWASP-mapped lab notes tied to MailGuard mitigations."
     },
     {
+      "kind": "reading",
+      "id": "11-security-notes:owasp_lab",
+      "title": "owasp lab",
+      "moduleId": "11-security-notes",
+      "moduleTitle": "11 Security notes",
+      "topicId": "owasp_lab",
+      "body": "# Reading — OWASP Top 10 / API Top 10 lab\n\n## Learning objectives\n\n1. Map findings from a **local-only** lab (OWASP Juice Shop or crAPI) to Top 10 / API Top 10.\n2. Tie each finding to a MailGuard mitigation.\n3. Add supply-chain CI hints: pip-audit, govulncheck, Dependabot, Syft SBOM.\n\n## Read these (verified)\n\n1. [OWASP Top 10](https://owasp.org/www-project-top-ten/)\n2. [OWASP API Security Top 10 (2023)](https://owasp.org/API-Security/)\n3. [pip-audit](https://pypi.org/project/pip-audit/) · [govulncheck](https://go.dev/security/vuln/) · [Syft](https://github.com/anchore/syft)\n\n## Keep in mind\n\nNever attack systems you do not own. Local containers only.\n\n## Next step\n\n`owasp_map` kata → worksheet → quiz.\n",
+      "snippet": "# Reading — OWASP Top 10 / API Top 10 lab ## Learning objectives 1. Map findings from a **local-only** lab (OWASP Juice Shop or crAPI) to Top 10 / API Top 10. 2"
+    },
+    {
+      "kind": "reading",
+      "id": "11-security-notes:security_notes",
+      "title": "security notes",
+      "moduleId": "11-security-notes",
+      "moduleTitle": "11 Security notes",
+      "topicId": "security_notes",
+      "body": "# Reading — Security notes\n\n## Learning objectives\n\n1. Map findings to OWASP Top 10 / API Top 10 categories.\n2. Tie each finding to a MailGuard mitigation you can show in-repo.\n3. Stay ethical: local labs only; no attacks on systems you do not own.\n\n## Short intro\n\nSecurity notes turn vague “we should be careful” into **named risks + concrete fixes**. Use a local intentionally vulnerable app (e.g. OWASP Juice Shop) *only on localhost*, capture findings, and map them to MailGuard controls (authn, hold rules, least privilege, input validation).\n\n## Read these (verified)\n\n1. [OWASP Top 10](https://owasp.org/www-project-top-ten/)\n2. [OWASP API Security Top 10 (2023)](https://owasp.org/API-Security/)\n3. [OWASP Juice Shop — Getting Started](https://pwning.owasp-juice.shop/companion-guide/latest/part1/running.html)\n4. [CWE Top 25](https://cwe.mitre.org/top25/)\n\n## Next step\n\nContinue with the worksheet from the downloads on this page.\n",
+      "snippet": "# Reading — Security notes ## Learning objectives 1. Map findings to OWASP Top 10 / API Top 10 categories. 2. Tie each finding to a MailGuard mitigation you can"
+    },
+    {
       "kind": "module",
       "id": "12-ci-aws",
       "title": "12 — CI + AWS",
@@ -240,6 +370,26 @@
       "topicId": null,
       "body": "PR CI and a documented cloud deploy — no secrets in git. Add CI that runs tests on pull requests or pushes Document a cloud deploy path without committing secrets Explain least-privilege choices for the demo identity CI + AWS",
       "snippet": "PR CI and a documented cloud deploy — no secrets in git."
+    },
+    {
+      "kind": "reading",
+      "id": "12-ci-aws:ci_aws",
+      "title": "ci aws",
+      "moduleId": "12-ci-aws",
+      "moduleTitle": "12 CI + AWS",
+      "topicId": "ci_aws",
+      "body": "# Reading — CI + cloud deploy\n\n## Learning objectives\n\n1. Run tests (and optionally build an image) on every PR/push.\n2. Prefer federated OIDC roles over long-lived cloud keys in git.\n3. Document a deploy path a stranger can follow.\n\n## Short intro\n\nContinuous Integration catches broken rules engines before merge. Cloud deploy should use short-lived credentials — GitHub Actions OIDC to a cloud role is the modern default. This module’s kata validates workflow hygiene helpers (detect forbidden secret patterns; require a test job name).\n\n## Read these (verified)\n\n1. [GitHub Actions — Workflow syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)\n2. [GitHub Actions — OIDC with cloud providers](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)\n3. [AWS — IAM best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)\n4. [OWASP — CI/CD Security Top 10](https://owasp.org/www-project-top-10-ci-cd-security-risks/)\n\n## Next step\n\nContinue with the worksheet from the downloads on this page.\n",
+      "snippet": "# Reading — CI + cloud deploy ## Learning objectives 1. Run tests (and optionally build an image) on every PR/push. 2. Prefer federated OIDC roles over long-liv"
+    },
+    {
+      "kind": "reading",
+      "id": "12-ci-aws:oidc_aws",
+      "title": "oidc aws",
+      "moduleId": "12-ci-aws",
+      "moduleTitle": "12 CI + AWS",
+      "topicId": "oidc_aws",
+      "body": "# Reading — OIDC to AWS + ECS\n\n## Learning objectives\n\n1. Prefer **GitHub Actions OIDC** over long-lived `AWS_ACCESS_KEY_ID` secrets.\n2. Constrain role trust by `sub` (repo + ref).\n3. Sketch an ECS Fargate deploy from CI.\n\n## Read these (verified)\n\n1. [GitHub Actions — OIDC with AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)\n2. [AWS ECS on Fargate](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html)\n3. [Terraform AWS provider — IAM OIDC](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_openid_connect_provider)\n\n## Next step\n\n`oidc_aws` kata + starter Terraform sketch → quiz.\n",
+      "snippet": "# Reading — OIDC to AWS + ECS ## Learning objectives 1. Prefer **GitHub Actions OIDC** over long-lived `AWS_ACCESS_KEY_ID` secrets. 2. Constrain role trust by `"
     },
     {
       "kind": "module",
@@ -272,6 +422,26 @@
       "snippet": "kind/minikube deploy with probes and resource requests."
     },
     {
+      "kind": "reading",
+      "id": "14-k8s-local:k8s_helm_deepen",
+      "title": "k8s helm deepen",
+      "moduleId": "14-k8s-local",
+      "moduleTitle": "14 K8s local",
+      "topicId": "k8s_helm_deepen",
+      "body": "# Reading — kind + Helm/Kustomize deepen\n\n## Learning objectives\n\n1. Run the app on kind/minikube with probes and requests.\n2. Prefer Helm or Kustomize overlays for env differences.\n3. Name managed Kubernetes + GitOps as the production next step.\n\n## Read these (verified)\n\n1. [Kubernetes probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)\n2. [Helm](https://helm.sh/docs/) / [Kustomize](https://kustomize.io/)\n3. [kind](https://kind.sigs.k8s.io/)\n\n## Next step\n\n`helm_values_check` kata → quiz in module 16 for GitOps pull vs push.\n",
+      "snippet": "# Reading — kind + Helm/Kustomize deepen ## Learning objectives 1. Run the app on kind/minikube with probes and requests. 2. Prefer Helm or Kustomize overlays f"
+    },
+    {
+      "kind": "reading",
+      "id": "14-k8s-local:k8s_local",
+      "title": "k8s local",
+      "moduleId": "14-k8s-local",
+      "moduleTitle": "14 K8s local",
+      "topicId": "k8s_local",
+      "body": "# Reading — K8s local\n\n## Learning objectives\n\n1. Run a Deployment + Service on kind or minikube.\n2. Add liveness/readiness probes and CPU/memory requests.\n3. Know what you have not automated yet (GitOps, policy).\n\n## Short intro\n\nContainers need orchestration for restarts, probes, and resource requests. Start local (kind/minikube), keep manifests small, and document gaps honestly.\n\n## Read these (verified)\n\n1. [Kubernetes — Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)\n2. [Configure Liveness, Readiness and Startup Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)\n3. [kind — Quick Start](https://kind.sigs.k8s.io/docs/user/quick-start/)\n4. [Resource requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)\n\n## Next step\n\nContinue with the worksheet from the downloads on this page.\n",
+      "snippet": "# Reading — K8s local ## Learning objectives 1. Run a Deployment + Service on kind or minikube. 2. Add liveness/readiness probes and CPU/memory requests. 3. Kno"
+    },
+    {
       "kind": "module",
       "id": "15-observability",
       "title": "15 — Observability",
@@ -280,6 +450,16 @@
       "topicId": null,
       "body": "Golden signals plus SLI/SLO and a lightweight postmortem worksheet. Define golden signals for the hold pipeline Draft SLI/SLO notes and a lightweight postmortem Hook at least one metric or structured log in the story Ops / metrics",
       "snippet": "Golden signals plus SLI/SLO and a lightweight postmortem worksheet."
+    },
+    {
+      "kind": "reading",
+      "id": "15-observability:ir_detection",
+      "title": "ir detection",
+      "moduleId": "15-observability",
+      "moduleTitle": "15 Observability",
+      "topicId": "ir_detection",
+      "body": "# Reading — Incident response & detection\n\n## Learning objectives\n\n1. Apply **NIST SP 800-61r3** lifecycle language to MailGuard incidents.\n2. Triage identity alerts (e.g. impossible travel) at a conceptual level.\n3. Write a **blameless English postmortem** (impact, timeline, actions) — no secondary-language summary line required.\n\n## Read these (verified)\n\n1. [NIST SP 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)\n2. Existing module SRE / golden signals reading\n3. Cloud identity sign-in log docs for the IdP you use in lab\n\n## Keep in mind\n\nEDR/MDR are concepts here — stay vendor-neutral. Detection content is English-only for course artifacts.\n\n## Next step\n\n`ir_triage` kata → worksheet → quiz.\n",
+      "snippet": "# Reading — Incident response & detection ## Learning objectives 1. Apply **NIST SP 800-61r3** lifecycle language to MailGuard incidents. 2. Triage identity ale"
     },
     {
       "kind": "reading",
@@ -302,6 +482,26 @@
       "snippet": "Sync flow and policy-as-code checks on manifests."
     },
     {
+      "kind": "reading",
+      "id": "16-gitops-policy:argo_crossplane",
+      "title": "argo crossplane",
+      "moduleId": "16-gitops-policy",
+      "moduleTitle": "16 GitOps + policy",
+      "topicId": "argo_crossplane",
+      "body": "# Reading — Argo CD, policy-as-code, Crossplane intro\n\n## Learning objectives\n\n1. Explain **pull** GitOps (Argo CD app-of-apps) vs push pipelines.\n2. Fail CI on bad manifests with Kyverno or Conftest.\n3. Sketch a Crossplane claim for cloud resources (generic intro).\n\n## Read these (verified)\n\n1. [Argo CD docs](https://argo-cd.readthedocs.io/)\n2. [Kyverno](https://kyverno.io/) / [Conftest](https://www.conftest.dev/)\n3. [Crossplane docs](https://docs.crossplane.io/)\n\n## Next step\n\n`gitops_mode` kata + existing policy_check → quiz.\n",
+      "snippet": "# Reading — Argo CD, policy-as-code, Crossplane intro ## Learning objectives 1. Explain **pull** GitOps (Argo CD app-of-apps) vs push pipelines. 2. Fail CI on b"
+    },
+    {
+      "kind": "reading",
+      "id": "16-gitops-policy:gitops_policy",
+      "title": "gitops policy",
+      "moduleId": "16-gitops-policy",
+      "moduleTitle": "16 GitOps + policy",
+      "topicId": "gitops_policy",
+      "body": "# Reading — GitOps + policy\n\n## Learning objectives\n\n1. Diagram pull-based sync of manifests from git.\n2. Fail CI on a policy violation (e.g. missing probes).\n3. Keep claims proportional to what you automated.\n\n## Short intro\n\nGitOps treats git as the desired state; a sync agent applies it. Policy-as-code stops unsafe manifests before they roll out. This module reuses Module 14 checks and adds a “bad manifest” fixture that must fail.\n\n## Read these (verified)\n\n1. [OpenGitOps Principles](https://opengitops.dev/)\n2. [Argo CD — Understanding](https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/)\n3. [Kyverno — Writing policies](https://kyverno.io/docs/writing-policies/) (or Conftest/OPA)\n4. [Kubernetes Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/)\n\n## Next step\n\nContinue with the worksheet from the downloads on this page.\n",
+      "snippet": "# Reading — GitOps + policy ## Learning objectives 1. Diagram pull-based sync of manifests from git. 2. Fail CI on a policy violation (e.g. missing probes). 3. "
+    },
+    {
       "kind": "module",
       "id": "17-phish-lite",
       "title": "17 — Phish Lite",
@@ -310,6 +510,26 @@
       "topicId": null,
       "body": "Optional phishing-awareness quiz UI for learning honesty practice. Build a small Svelte phishing-awareness quiz UI Keep the project clearly labeled as a learning clone Practice honest UX copy for warnings and results Svelte",
       "snippet": "Optional phishing-awareness quiz UI for learning honesty practice."
+    },
+    {
+      "kind": "reading",
+      "id": "17-phish-lite:phish_lite",
+      "title": "phish lite",
+      "moduleId": "17-phish-lite",
+      "moduleTitle": "17 Phish Lite",
+      "topicId": "phish_lite",
+      "body": "# Reading — Phish Lite\n\n## Learning objectives\n\n1. Build a small awareness quiz UI (Svelte preferred).\n2. Label the experience as a learning simulation.\n3. Prefer report-rate metrics over “gotcha” humiliation.\n\n## Short intro\n\nPhishing awareness tools train people to spot risky messages. Keep ethics first: informed participants, no real password capture, clear debrief. The graded kata scores quiz answers and computes a simple report-rate metric.\n\n## Read these (verified)\n\n1. [Svelte tutorial](https://svelte.dev/tutorial)\n2. [NIST SP 800-50 — Awareness training concepts](https://csrc.nist.gov/pubs/sp/800/50/final) (awareness framing)\n3. [APWG — Phishing activity](https://apwg.org/) (industry context)\n\n## Next step\n\nContinue with the worksheet from the downloads on this page.\n",
+      "snippet": "# Reading — Phish Lite ## Learning objectives 1. Build a small awareness quiz UI (Svelte preferred). 2. Label the experience as a learning simulation. 3. Prefer"
+    },
+    {
+      "kind": "reading",
+      "id": "17-phish-lite:phish_lite_svelte",
+      "title": "phish lite svelte",
+      "moduleId": "17-phish-lite",
+      "moduleTitle": "17 Phish Lite",
+      "topicId": "phish_lite_svelte",
+      "body": "# Reading — Ethical phishing-training app\n\n## Learning objectives\n\n1. Design a **Svelte/SvelteKit**-shaped training UI with consent and **no credential capture**.\n2. Prefer **report rate** and time-to-report over vanity click rates.\n3. Keep simulations clearly labeled as training — never weaponize against unaware users.\n\n## Read these (verified)\n\n1. [SvelteKit docs](https://kit.svelte.dev/docs/introduction)\n2. [Vitest](https://vitest.dev/) / [Playwright](https://playwright.dev/)\n3. [NIST SP 800-50](https://csrc.nist.gov/publications/detail/sp/800-50/final) — awareness training concepts\n\n## Next step\n\nExtend `score.js` metrics → worksheet → quiz. Optional: scaffold a local SvelteKit app outside `my-work` patterns you already use.\n",
+      "snippet": "# Reading — Ethical phishing-training app ## Learning objectives 1. Design a **Svelte/SvelteKit**-shaped training UI with consent and **no credential capture**."
     },
     {
       "kind": "module",
@@ -348,8 +568,68 @@
       "moduleId": "19-capstone",
       "moduleTitle": "19 Capstone: mail filter",
       "topicId": "capstone_mail_filter",
-      "body": "# Capstone — small mail filter end-to-end\n\nThis module closes the course: ship a **coherent demo** of outbound message filtering (hold / allow / reject), prove it with tests, and self-grade against [`../../CAPSTONE-RUBRIC.md`](../../CAPSTONE-RUBRIC.md).\n\n**Authorship:** AI-generated. The student implements the filter and fills the worksheet.\n\nContinue with the worksheet from the downloads on this page. The quiz is **required**.\n\n---\n\n## What “done” looks like\n\nA stranger can:\n\n1. Read your short demo notes  \n2. Run documented commands  \n3. See a sample message held, allowed, or rejected by rules you wrote  \n4. See tests pass on your implementation  \n\nYou are **not** claiming a production mail gateway.\n\n---\n\n## Suggested shape (keep it small)\n\n| Piece | Role |\n|-------|------|\n| Rule list | Ordered rules; first-match-wins (or document another order) |\n| Actions | `hold`, `allow`, `reject` |\n| Sample messages | 3–5 fixtures covering internal/external, risky recipients, subject keywords |\n| Tests | Table-driven cases that fail on empty stubs |\n| Operator path | Print held queue *or* a tiny approve/release function |\n\nReuse ideas from Challenge Gym hold rules, MailGuard API, and threat-model notes — do not paste vendor product claims.\n\n---\n\n## Evidence for the rubric\n\nMap each Must row in `CAPSTONE-RUBRIC.md` to a file path or command in your worksheet. Stretch rows are optional ceiling; pick at least two if you want “portfolio-ready” as defined there.\n\n---\n\n## Quiz (required)\n\nDownload the quiz PDF from the course site, complete it, then check the separate answer key.\n",
+      "body": "# Capstone — small mail filter end-to-end\n\nThis module closes the course: ship a **coherent demo** of outbound message filtering (hold / allow / reject), prove it with tests, and self-grade against [`../../CAPSTONE-RUBRIC.md`](../../CAPSTONE-RUBRIC.md).\n\nThe student implements the filter and fills the worksheet.\n\nContinue with the worksheet from the downloads on this page. The quiz is **required**.\n\n---\n\n## What “done” looks like\n\nA stranger can:\n\n1. Read your short demo notes  \n2. Run documented commands  \n3. See a sample message held, allowed, or rejected by rules you wrote  \n4. See tests pass on your implementation  \n\nYou are **not** claiming a production mail gateway.\n\n---\n\n## Suggested shape (keep it small)\n\n| Piece | Role |\n|-------|------|\n| Rule list | Ordered rules; first-match-wins (or document another order) |\n| Actions | `hold`, `allow`, `reject` |\n| Sample messages | 3–5 fixtures covering internal/external, risky recipients, subject keywords |\n| Tests | Table-driven cases that fail on empty stubs |\n| Operator path | Print held queue *or* a tiny approve/release function |\n\nReuse ideas from Challenge Gym hold rules, MailGuard API, and threat-model notes — do not paste vendor product claims.\n\n---\n\n## Evidence for the rubric\n\nMap each Must row in `CAPSTONE-RUBRIC.md` to a file path or command in your worksheet. Stretch rows are optional ceiling; pick at least two if you want “portfolio-ready” as defined there.\n\n---\n\n## Quiz (required)\n\nDownload the quiz PDF from the course site, complete it, then check the separate answer key.\n",
       "snippet": "# Capstone — small mail filter end-to-end This module closes the course: ship a **coherent demo** of outbound message filtering (hold / allow / reject), prove i"
+    },
+    {
+      "kind": "module",
+      "id": "20-scim-provisioning",
+      "title": "20 — SCIM / JIT provisioning",
+      "moduleId": "20-scim-provisioning",
+      "moduleTitle": "SCIM / JIT provisioning",
+      "topicId": null,
+      "body": "SCIM filters, joiner-mover-leaver risk, and directory provisioning literacy. Parse a SCIM eq filter subset and reason about deprovisioning SLAs Contrast JIT vs SCIM vs directory sync Map Entra / Google Workspace examples without vendor lock-in copy Python",
+      "snippet": "SCIM filters, joiner-mover-leaver risk, and directory provisioning literacy."
+    },
+    {
+      "kind": "reading",
+      "id": "20-scim-provisioning:scim_provisioning",
+      "title": "scim provisioning",
+      "moduleId": "20-scim-provisioning",
+      "moduleTitle": "20 SCIM / JIT provisioning",
+      "topicId": "scim_provisioning",
+      "body": "# Reading — SCIM / JIT / directories\n\n## Learning objectives\n\n1. Describe SCIM 2.0 resources and filtering (RFC 7643/7644).\n2. Contrast JIT vs SCIM vs directory sync (e.g. Entra Connect patterns).\n3. Explain why **deprovisioning latency** often matters more than provisioning speed.\n\n## Read these (verified)\n\n1. [RFC 7643 — SCIM core](https://www.rfc-editor.org/rfc/rfc7643)\n2. [RFC 7644 — SCIM protocol](https://www.rfc-editor.org/rfc/rfc7644)\n3. [Microsoft Entra — SCIM overview](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/use-scim-to-provision-users-and-groups)\n4. [Google Workspace — Admin SDK Directory API](https://developers.google.com/admin-sdk/directory)\n\n## Lab idea\n\nMinimal FastAPI SCIM `/Users` endpoint passing a subset of filters; optionally validate against a vendor SCIM test harness.\n\n## Next step\n\nWorksheets → katas → quiz.\n",
+      "snippet": "# Reading — SCIM / JIT / directories ## Learning objectives 1. Describe SCIM 2.0 resources and filtering (RFC 7643/7644). 2. Contrast JIT vs SCIM vs directory s"
+    },
+    {
+      "kind": "module",
+      "id": "21-global-privacy-collab",
+      "title": "21 — Global collaboration & privacy",
+      "moduleId": "21-global-privacy-collab",
+      "moduleTitle": "Global collaboration & privacy",
+      "topicId": null,
+      "body": "Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL literacy. Practice async handoffs across timezones Compare major privacy regimes at a literacy level Connect privacy duties to hold/release queues Conceptual",
+      "snippet": "Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL literacy."
+    },
+    {
+      "kind": "reading",
+      "id": "21-global-privacy-collab:global_privacy_collab",
+      "title": "global privacy collab",
+      "moduleId": "21-global-privacy-collab",
+      "moduleTitle": "21 Global collaboration & privacy",
+      "topicId": "global_privacy_collab",
+      "body": "# Reading — Global collaboration & privacy\n\n## Learning objectives\n\n1. Collaborate across timezones: async updates, explicit handoffs, inclusive meeting hygiene.\n2. Compare major privacy laws at a literacy level: **GDPR**, **CCPA/CPRA**, **APPI**, **LGPD**, **PIPL**.\n3. Connect privacy duties to MailGuard hold/release (minimization, access, retention, cross-border caution).\n\n## Read these (verified)\n\n1. [GDPR.eu overview](https://gdpr.eu/) (prefer EUR-Lex for normative text)\n2. [California CPPA — CCPA/CPRA](https://cppa.ca.gov/)\n3. [Japan PPC English](https://www.ppc.go.jp/en/)\n4. [Brazil ANPD (LGPD)](https://www.gov.br/anpd/pt-br)\n\n## Keep in mind\n\nNo language-learning drills. No employer-specific culture decks. Focus on professional norms that travel: clarity, respect for local holidays/time, and privacy-by-design.\n\n## Next step\n\nWorksheets → kata → quiz.\n",
+      "snippet": "# Reading — Global collaboration & privacy ## Learning objectives 1. Collaborate across timezones: async updates, explicit handoffs, inclusive meeting hygiene. "
+    },
+    {
+      "kind": "module",
+      "id": "22-collab-review",
+      "title": "22 — Git & code review",
+      "moduleId": "22-collab-review",
+      "moduleTitle": "Git & code review",
+      "topicId": null,
+      "body": "PR hygiene, conventional commits, security review, and design-note practice. Open small reviewable PRs with clear English descriptions Review for secrets, authz, and input validation Use conventional commits and CODEOWNERS effectively Git",
+      "snippet": "PR hygiene, conventional commits, security review, and design-note practice."
+    },
+    {
+      "kind": "reading",
+      "id": "22-collab-review:collab_review",
+      "title": "collab review",
+      "moduleId": "22-collab-review",
+      "moduleTitle": "22 Git & code review",
+      "topicId": "collab_review",
+      "body": "# Reading — Git & code review\n\n## Learning objectives\n\n1. Open small, reviewable PRs with clear English descriptions.\n2. Review for security: secrets, authz, input validation, dangerous defaults.\n3. Use conventional commits, CODEOWNERS, and CI logs effectively.\n4. Write a one-page design note / RFC-style proposal.\n\n## Read these (verified)\n\n1. [Conventional Commits](https://www.conventionalcommits.org/)\n2. [GitHub — About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)\n3. [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)\n\n## Next step\n\nWorksheet → kata → quiz. Practice repo optional.\n",
+      "snippet": "# Reading — Git & code review ## Learning objectives 1. Open small, reviewable PRs with clear English descriptions. 2. Review for security: secrets, authz, inpu"
     },
     {
       "kind": "glossary",

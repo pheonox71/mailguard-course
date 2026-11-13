@@ -45,15 +45,15 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
   **Done when:** Enroll/verify TOTP; one-time recovery codes; no secrets in git; passkeys / WebAuthn worksheet + quiz done.
 
 - [ ] **03 — OIDC / access policy** · est. 8-10h · [`03-oidc-access/`](./03-oidc-access/)  
-  **Done when:** Happy-path OIDC login + protected route/API; SAML vs OIDC, device-cert concepts, and password-manager-for-non-SSO worksheet done; logout/revocation notes; no inflated SSO claims.
+  **Done when:** OIDC + PKCE helpers green; SAML assertion-check kata green; Keycloak lab notes; SAML vs OIDC worksheet; logout/revocation notes; no inflated SSO claims.
 
 - [ ] **04 — ZTNA lite** · est. 8-10h · [`04-ztna-lite/`](./04-ztna-lite/)  
-  **Done when:** VPN vs ZTNA diagram + compare table; can explain identity-bound app access without claiming a commercial mesh deploy.
+  **Done when:** VPN vs ZTNA diagram + compare table; mTLS checks kata green; NIST SP 1800-35 reading noted; no commercial mesh required.
 
 ### Email & DLP literacy
 
 - [ ] **05 — Email authentication** · est. 8-10h · [`05-email-auth/`](./05-email-auth/)  
-  **Done when:** SPF/DKIM/DMARC + SMTP/TLS literacy worksheet done; `dmarc_policy` kata tests green; can explain `p=none→reject` and aggregate reports.
+  **Done when:** SPF/DKIM/DMARC literacy done; `dmarc_policy` + `dmarc_aggregate` + `mail_flow` katas green; ARC/gateway placement explained.
 
 - [ ] **06 — Threat model / secure SDLC** · est. 8-10h · [`06-threat-model/`](./06-threat-model/)  
   **Done when:** STRIDE-lite table for hold/release (≥6 rows); SAMM self-check paragraph; privacy note on held content.
@@ -70,7 +70,7 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
   **Done when:** Local queue demo behind an interface; short Python-vs-Go contract note.
 
 - [ ] **10 — Secure Drop** · est. 8-10h · [`10-secure-drop/`](./10-secure-drop/)  
-  **Done when:** Upload → object storage → time-limited link + audit log demo; cloud-share DLP worksheet done (visibility / revoke / audit).
+  **Done when:** Upload → expiring link + recipient OTP + revoke-after-missend; PPAP-as-global-anti-pattern worksheet done.
 
 - [ ] **11 — Security notes** · est. 8-10h · [`11-security-notes/`](./11-security-notes/)  
   **Done when:** ≥5 lab notes mapped to MailGuard mitigations; no attacks on real systems.
@@ -102,6 +102,17 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 
 ---
 
+- [ ] **20 — SCIM / JIT provisioning** · est. 8-10h · [`20-scim-provisioning/`](./20-scim-provisioning/)  
+  **Done when:** SCIM filter + joiner-mover-leaver katas green; deprovisioning worksheet + quiz done.
+
+- [ ] **21 — Global collaboration & privacy** · est. 8-10h · [`21-global-privacy-collab/`](./21-global-privacy-collab/)  
+  **Done when:** Timezone/collaboration + privacy-regime worksheets done; `privacy_tags` green; quiz done. English only — no language-learning track.
+
+- [ ] **22 — Git & code review** · est. 8-10h · [`22-collab-review/`](./22-collab-review/)  
+  **Done when:** `pr_hygiene` green; security review checklist worksheet + quiz done (practice repo optional).
+
+
+
 ## Suggested order
 
 Capstone polish sits **after Phase A (00–13)** and **before Phase B stretch (14–18)**. Module folder `19-capstone/` keeps that number so Phase B folders stay stable — treat 19 as “after 13 in the learning path,” not “after 18.”
@@ -116,6 +127,7 @@ Module 0 (this file + prereqs + glossary)
   → Capstone polish (19 — rubric / mail filter)
   → Phase B stretch: 14 K8s → 15 Observability → 16 GitOps
   → optional 17 Phish Lite; optional 18 OSS / security UX
+  → 20 SCIM → 21 Global privacy/collab → 22 Git/code review
 ```
 
 Quizzes follow the Challenge Gym pattern — see [`01-challenge-gym/quizzes/README-01-challenge-gym-quizzes.md`](./01-challenge-gym/quizzes/README-01-challenge-gym-quizzes.md).
