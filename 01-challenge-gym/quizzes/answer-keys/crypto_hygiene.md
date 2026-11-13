@@ -2,9 +2,9 @@
 
 Use only after attempting the quiz questions.
 
-1. **Hash-based Message Authentication Code** — needs a secret **key** so only key holders can compute valid tags; without the key an attacker cannot forge one.
-2. **Authenticated Encryption with Associated Data** — AAD is authenticated but not encrypted (headers, version strings, routing metadata).
-3. **Transport Layer Security** — certificate binds a **public key** to a **name** (and related fields), signed by a trusted issuer chain.
-4. Examples: empty/short AES key; skipping auth; rolling your own mode; comparing HMAC tags with `==` instead of constant-time compare.
-5. Generate, store/protect, distribute, rotate, revoke/destroy (any solid three).
+1. Without a key anyone who can change the message can recompute the digest; HMAC tags are forgeable only with the secret.
+2. Attackers can swap metadata (version, tenant id, routing) while keeping a valid body ciphertext; AAD binds that metadata to the seal.
+3. Certificates bind a public key to a name via a trusted chain so clients can authenticate the server without a pre-shared password per site.
+4. Nonce reuse with AES-GCM catastrophically breaks confidentiality/authenticity; invented modes skip decades of review and fail subtly.
+5. Store (secret in git) and rotate/revoke failed — any past commit or clone holder can forge webhook tags forever until rotated and revoked.
 6. A hash without a key can be recomputed by anyone who can change the data; use HMAC or AEAD auth, not a bare digest.

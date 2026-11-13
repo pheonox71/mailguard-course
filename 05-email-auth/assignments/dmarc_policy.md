@@ -13,8 +13,9 @@
 
 ## Short questions
 
-1. What does `adkim=s` change versus `adkim=r` at a high level?
-2. What replaced `pct` in RFC 9989 and why?
+1. Why choose `adkim=s` versus `adkim=r` — what spoofing / forwarding failure does strict alignment catch that relaxed may miss?
+2. Why did RFC 9989 remove `pct` and add `t` (test mode) — what operational mistake did percentage sampling encourage?
+3. Scenario: `v=DMARC1` is not the first tag. Why must `parse_dmarc_record` fail closed?
 
 ## Implement
 

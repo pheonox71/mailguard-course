@@ -1,6 +1,6 @@
 # Terraform / HCL primer
 
-**Why this matters.** Clicking a cloud console does not review well and drifts silently. **Terraform** expresses buckets, IAM, and queues as code so Module 13 can `plan` changes before they hit a real account.
+**Why this matters.** Clicking a cloud console does not review well and drifts silently. **Terraform** expresses buckets, IAM, and queues as code so Module 13 can `plan` changes before they hit a real account. On the job, reviewers read the plan — not a console screenshot — when mail/identity infra changes.
 
 **How it works.** You write **HCL** (HashiCorp Configuration Language) describing desired resources. `terraform plan` shows a diff; `apply` mutates cloud APIs; **state** maps real IDs back to your config — and must not be committed when it contains secrets.
 
@@ -49,9 +49,10 @@ resource "local_file" "primer" {
 
 ```bash
 mkdir -p /tmp/mg-tf-primer && cd /tmp/mg-tf-primer
+# Why /tmp: keep the primer throwaway; do not mix with real state
 # paste the HCL into main.tf, then:
-terraform init
-terraform plan
+terraform init   # Why: download providers declared in the config
+terraform plan   # Why: see the diff before any apply
 ```
 
 **How:** `init` installs providers; `plan` shows it would create a local file — same discipline as planning IAM/bucket changes later.

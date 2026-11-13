@@ -1,5 +1,9 @@
 # Course setup — tools for the MailGuard path
 
+**Why this matters.** Security labs fail for boring reasons: wrong Python, no `venv`, Git missing, or tools installed too late. Without a repeatable machine baseline, every later module becomes “debug the laptop” instead of learning identity, email auth, and cloud access. On the job, the same hygiene — isolate deps, verify versions, defer heavy tooling until needed — keeps shared environments and CI honest.
+
+**How it works.** Install a small **core** set now (Git, Python 3.11+, `venv`/`pip`, `pytest`, editor). Confirm each with a version check. Defer Node, Go, Docker, Terraform, kubectl/kind, and cloud CLIs until the module that needs them. That staged path mirrors how teams onboard: unblock day-one work first, then add platform tooling when the workload appears.
+
 This module prepares your machine for the full course: identity / MFA katas, email authentication, Python APIs, TypeScript/Vue admin, Go workers, AWS/CI, Terraform, and local Kubernetes. You do **not** need every tool on day one — install **core** tools now, and the **later** tools when the matching module arrives.
 
 Work through the installs below, then mark Module 00 complete on the site. This module has no assignment, quiz, or download pack.
@@ -29,6 +33,8 @@ Official docs linked below. Prefer current stable releases unless a module READM
 
 ### 1. Git
 
+Why: every module is a git-tracked lab; without Git you cannot pull fixes or keep `my-work/` history separate from course stubs.
+
 - Windows: [Git for Windows](https://git-scm.com/download/win)
 - macOS: [Git downloads](https://git-scm.com/download/mac) or `xcode-select --install`
 - Linux: distro packages — e.g. `sudo apt install git` (Debian/Ubuntu)
@@ -36,6 +42,8 @@ Official docs linked below. Prefer current stable releases unless a module READM
 **Check:** `git --version`
 
 ### 2. Python 3.11+ (or current stable 3.x)
+
+Why: Challenge Gym and most identity/email katas are Python-first; an old or Store-alias interpreter breaks `venv` and pytest.
 
 - Windows / macOS / source: [python.org downloads](https://www.python.org/downloads/)
 - macOS (Homebrew): `brew install python`
@@ -54,6 +62,8 @@ On Windows use `py -3` (or `python`) instead of `python3`; `python3` may open th
 
 ### 3. Virtualenv + Challenge Gym deps
 
+Why: a project `.venv` keeps course packages (`pyotp`, `cryptography`, pytest) off the system Python so CI and classmates get the same import graph.
+
 From the course repo:
 
 ```bash
@@ -68,7 +78,7 @@ pip install -r requirements.txt
 pytest -q
 ```
 
-(Expect failing tests until you implement katas — the important part is that `pytest` runs.)
+(Expect failing tests until you implement katas — the important part is that `pytest` runs. Why run it now: proves the toolchain, not that solutions exist yet.)
 
 **Check:** `pytest --version`
 

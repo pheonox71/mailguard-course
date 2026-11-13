@@ -15,13 +15,15 @@ Peek at `solutions/totp_verify.py` only after a real attempt.
 
 ## Short questions (write answers before coding)
 
-1. Why is a 6-digit code alone not enough authentication if someone can replay a freshly captured code forever?
-2. What should `verify_totp` do if `window` is negative? If `code` is `"12345"` or `"abcdef"`?
-3. In one sentence: what does `for_time` buy you in tests that “use wall-clock now” cannot?
+1. Why is a 6-digit code alone not enough authentication if someone can replay a freshly captured code forever — what additional control must exist on the job?
+2. Why should `verify_totp` reject a negative `window` and malformed codes like `"12345"` / `"abcdef"` instead of coercing them?
+3. Why does `for_time` matter in tests — what fails if every assertion uses wall-clock “now”?
+4. Scenario: `valid_window=0` and the code was generated at the previous step boundary. What happens and why might ops raise the window carefully?
 
 ## REPL warm-up
 
 ```bash
+# Why: use the course venv so pyotp matches requirements.txt / CI
 cd 01-challenge-gym
 source .venv/bin/activate   # after pip install -r requirements.txt
 python

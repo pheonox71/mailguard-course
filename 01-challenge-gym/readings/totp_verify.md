@@ -8,9 +8,9 @@ By the end of this kata’s reading + assignment + implementation, you should be
 2. State why a small verification **window** exists (clock skew) and what it does *not* replace (rate limits, replay controls).
 3. Verify codes with `pyotp` instead of hand-rolling Hash-based Message Authentication Code (HMAC) — and point to RFC 6238 / Open Worldwide Application Security Project (OWASP) Multi-Factor Authentication (MFA) literacy in an interview.
 
-## Short intro
+**Why this matters.** Passwords alone fail when credentials leak or phishing succeeds. TOTP adds a second factor so a stolen password is not enough — but without understanding clock skew, replay, and why you should not hand-roll HMAC, MFA implementations break users or invent bugs. On the job, identity and email-security products expect this literacy when you wire MFA into admin consoles and APIs.
 
-TOTP lets a server and an authenticator app compute the same short code from a **shared secret** and the **current time** (usually a 30-second step). You do **not** need to reimplement HMAC-SHA1 for a short challenge — understand the model, then use a well-regarded library (`pyotp`) to verify codes, including a small **window** for clock skew. Production MFA still needs replay protection, rate limits, and secret storage discipline; those belong later (`02-mailguard-mfa/`).
+**How it works.** Server and authenticator share a secret **K**. Both derive counter **T** from Unix time ÷ step (usually 30s), run HMAC, truncate to a short code, and compare. A small verify **window** accepts ±N neighboring steps for clock skew only — it does not replace rate limits or replay tracking. Prefer `pyotp` over reinventing crypto; production controls (replay store, lockout, secret-at-rest) land later in `02-mailguard-mfa/`.
 
 ![TOTP flow from shared secret and time counter through HMAC to a short code, with a server verification window](images/totp-flow.svg)
 

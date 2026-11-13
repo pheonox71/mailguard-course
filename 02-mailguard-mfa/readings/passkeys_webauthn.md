@@ -6,9 +6,9 @@
 2. Contrast phishing risk of **TOTP** (user can type a code into a fake site) vs **passkeys** (origin-bound assertion).
 3. Place passkeys next to MailGuard’s TOTP path as a *next* factor — not a rewrite of Challenge Gym.
 
-## Short intro
+**Why this matters.** TOTP proves “something you have,” but a convincing phishing page can still harvest the live code and replay it. Without phishing-resistant authenticators, identity and cloud admin portals stay one lookalike domain away from account takeover. On the job, passkeys / WebAuthn are how teams raise assurance beside (or instead of) OTP — without claiming TOTP literacy alone is enough.
 
-TOTP proves “something you have” via a shared secret — but a convincing phishing page can still harvest the live code. Passkeys use WebAuthn: the browser/OS authenticator signs a challenge for *this* origin, so a lookalike domain should not get a usable assertion.
+**How it works.** At registration, the authenticator creates a public-key credential bound to the relying-party **RP ID**. At assertion, the browser/OS signs a server challenge only for that RP ID / origin. A lookalike domain should not get a usable assertion. Recovery (lost device, backup passkey, IT-assisted reset) is an operational design problem — plan it before turning off TOTP/recovery codes.
 
 ![TOTP code typed into a fake site versus a WebAuthn passkey bound to the relying-party origin](images/passkeys-vs-totp.svg)
 

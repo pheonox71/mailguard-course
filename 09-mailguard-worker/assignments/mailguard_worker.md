@@ -1,10 +1,11 @@
 # Assignment — MailGuard Worker
 
-## Short questions
+## Short questions (why / how / scenario)
 
-1. Why put a Go interface in front of the queue client?
-2. What should happen if processing the same message twice (at-least-once delivery)?
-3. Write 3–5 sentences: Python API vs Go worker responsibilities.
+1. **Why** put a Go interface in front of the queue client?
+2. **Scenario:** processing the same message twice (at-least-once delivery) — what should happen, and what must *not* happen?
+3. Write 3–5 sentences: Python API vs Go worker responsibilities — **how** the JSON contract keeps them aligned.
+4. **Why** prefer `go test ./...` from the module root before wiring LocalStack?
 
 ## Done when
 

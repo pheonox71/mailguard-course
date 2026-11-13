@@ -9,7 +9,7 @@ Draw (ASCII or image) two boxes:
 **A. VPN path:** User → VPN concentrator → flat network → many apps  
 **B. ZTNA path:** User → identity broker / connector → *one* app (policy check)
 
-Label where MFA/OIDC fits on each.
+Label where MFA/OIDC fits on each — and annotate **why** lateral movement differs.
 
 ## 2. Compare table
 
@@ -23,5 +23,5 @@ Label where MFA/OIDC fits on each.
 ## 3. Short questions
 
 1. Why is “we have SSO” not the same as “we have ZTNA”?
-2. Name one threat ZTNA reduces that MailGuard hold rules do not address.
-3. What would you *not* claim on a résumé after only this reading module?
+2. Why does ZTNA reduce a threat that MailGuard hold rules do not address (name the threat class)?
+3. What would you *not* claim on a résumé after only this reading module — and why?

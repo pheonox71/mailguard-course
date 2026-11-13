@@ -15,9 +15,10 @@ Peek at `solutions/recipient_risk.py` only after a real attempt.
 
 ## Short questions (write answers before coding)
 
-1. Why hold on *invalid* addresses as well as mixed internal/external?
-2. Should duplicate normalized addresses appear twice in `internal` / `external`? What about the original invalid string `"bad"`?
-3. What must `classify` do if `internal_domain` is `"  "` (whitespace)?
+1. Why hold on *invalid* addresses as well as mixed internal/external — what real missend/typo failure does each catch?
+2. Should duplicate normalized addresses appear twice in `internal` / `external`? Why keep the original invalid string `"bad"` distinguishable?
+3. Why must `classify` reject or fail closed if `internal_domain` is `"  "` (whitespace) — what wrong “all external” outcome appears otherwise?
+4. Scenario: only external recipients, all valid. Is that automatically a hold? Why might policy treat “all external” differently from “mixed”?
 
 ## REPL warm-up
 

@@ -1,8 +1,8 @@
 # Docker primer
 
-**Why this matters.** “Works on my machine” fails CI and demos. **Containers** package an app with its runtime so Module 12 image builds and Module 13 Compose demos look the same on every laptop.
+**Why this matters.** “Works on my machine” fails CI and demos. **Containers** package an app with its runtime so Module 12 image builds and Module 13 Compose demos look the same on every laptop. VMs can isolate too, but images are the usual unit security teams scan and CI rebuilds — baking secrets into layers is the anti-pattern to avoid.
 
-**How it works.** An **image** is a layered filesystem + start command. A **container** is a running instance. **Compose** declares multi-service stacks (API + DB + mail dependencies) in YAML so `docker compose up` tells a story, not twelve manual steps.
+**How it works.** An **image** is a layered filesystem + start command. A **container** is a running instance. **Compose** declares multi-service stacks (API + DB + mail dependencies) in YAML so `docker compose up` tells a story, not twelve manual steps. On the job, email/identity services ship as images from laptop → CI → cloud with the same artifact.
 
 This primer has no assignment, quiz, or download pack.
 
@@ -30,7 +30,7 @@ Identical artifacts from laptop → CI → cloud; fewer “missing library” in
 - macOS / Windows: [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - Linux: [Docker Engine install](https://docs.docker.com/engine/install/)
 
-**Check:** `docker --version` · `docker compose version`
+**Check:** `docker --version` · `docker compose version` — **why:** confirm Engine + Compose plugins before Module 12/13, so “command not found” is not your first CI failure.
 
 ## Tiny hands-on example
 

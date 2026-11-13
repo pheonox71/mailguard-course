@@ -1,8 +1,8 @@
 # SQL primer
 
-**Why this matters.** Hold/release queues need **durable** state: who held a message, when, and whether it was released. In-memory demos lose that story on restart; SQL is how most SaaS APIs persist it.
+**Why this matters.** Hold/release queues need **durable** state: who held a message, when, and whether it was released. In-memory demos lose that story on restart; without a queryable store you cannot prove “who released this hold?” after an incident. Document stores or logs alone rarely give the same transactional constraints for account/rule/audit rows — SQL remains the default for that shape of SaaS data.
 
-**How it works.** You model entities as **tables** (rows + columns), identify rows with **keys**, and change data with declarative statements (`SELECT` / `INSERT` / `UPDATE`). The MailGuard API module starts in-memory, then asks you to *sketch* a Postgres-shaped design — this primer is that vocabulary.
+**How it works.** You model entities as **tables** (rows + columns), identify rows with **keys**, and change data with declarative statements (`SELECT` / `INSERT` / `UPDATE`). The MailGuard API module starts in-memory, then asks you to *sketch* a Postgres-shaped design — this primer is that vocabulary. On the job, the same pattern backs email-security and identity APIs: durable holds, rules, and audit trails operators can query.
 
 This primer has no assignment, quiz, or download pack.
 
@@ -27,7 +27,7 @@ Relational stores give strong consistency for account, rule, and audit data. Sec
 
 ## Install and run
 
-You do **not** need a live database for this primer. Optional: install [PostgreSQL](https://www.postgresql.org/download/) or use SQLite for experiments. Module 07 keeps the kata in-memory; persistence is a stretch with SQLAlchemy/Alembic links in readings.
+You do **not** need a live database for this primer — the vocabulary above is enough to start Module 07. Optional (why: muscle memory for `psql` / SQLite before the stretch persistence lab): install [PostgreSQL](https://www.postgresql.org/download/) or use SQLite for experiments. Module 07 keeps the kata in-memory; persistence is a stretch with SQLAlchemy/Alembic links in readings.
 
 ## Tiny hands-on example
 

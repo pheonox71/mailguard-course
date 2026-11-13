@@ -7,20 +7,20 @@ Pick **Track A**, **Track B**, or both.
 ## Track A — OSS practice
 
 1. Repo you will contribute to (or First Contributions sandbox):
-2. Link to `CONTRIBUTING` / issue template you read:
+2. Link to `CONTRIBUTING` / issue template you read — **why** that doc changed your plan:
 3. Issue or PR URL (draft OK):
-4. What you changed (3 bullets):
-5. What review feedback taught you:
+4. What you changed (3 bullets) — for each, **why** the change helps users/maintainers:
+5. What review feedback taught you (**how** you will apply it next):
 
 ## Track B — Security UX critique
 
 Redesign MailGuard’s hold/release warning (sketch or markdown mock):
 
-1. Current problem (alarm fatigue? unclear action? missing consequence?)
-2. New copy (≤40 words) + primary/secondary actions
+1. Current problem (alarm fatigue? unclear action? missing consequence?) — **why** it fails operators
+2. New copy (≤40 words) + primary/secondary actions — **how** the actions match severity
 3. How phishing-sim or training UIs stay honest (consent, no real credential harvest)
-4. One trade-off (friction vs safety)
+4. One trade-off (friction vs safety) and which side you chose **why**
 
 ## Reflection (either track)
 
-Write 8–12 sentences as if for a tech-share: what you learned about collaborating on security-sensitive UX or OSS.
+Write 8–12 sentences as if for a tech-share: what you learned about collaborating on security-sensitive UX or OSS. Favor why/how over a tool laundry list.

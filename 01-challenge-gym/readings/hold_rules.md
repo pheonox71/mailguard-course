@@ -8,9 +8,9 @@ By the end of this kata’s reading + assignment + implementation, you should be
 2. Implement **first-match-wins** evaluation over a small rule list without inventing a Domain-Specific Language (DSL).
 3. Connect the toy engine to real product language (Microsoft Purview / Google Workspace DLP and similar SaaS email guards) so you can explain trade-offs in an interview.
 
-## Short intro
+**Why this matters.** Without outbound policy, sensitive mail leaves the org the moment someone hits Send — autocomplete mistakes and rushed CCs are expensive. Email Data Loss Prevention (DLP) exists so messages are inspected and acted on *before* delivery. On the job, SaaS email guards and security gateways all share the same inspect → match → act shape; this kata trains that vocabulary without a product lock-in.
 
-Email DLP products sit between sender and recipient and apply **policy**: allow, temporarily hold (suspend), or reject/discard. Admins express rules; engines evaluate messages in a defined order. This kata is a **tiny** version of that idea — domain and substring predicates, **first match wins**, no DSL. The point is clear specs and concise Python, not a production rule language.
+**How it works.** An ordered rule list runs against each message. Each rule has predicates (recipient domain, substring in subject/body) and an action (**allow**, **hold/suspend**, **reject/discard**). Evaluation is **first-match-wins**: stop at the first matching rule. Order *is* policy. This kata keeps predicates tiny and skips inventing a DSL so the engine stays interview-explainable.
 
 ![Ordered hold rules evaluating a message with first-match-wins allow, hold, or reject outcomes](images/hold-rules-flow.svg)
 

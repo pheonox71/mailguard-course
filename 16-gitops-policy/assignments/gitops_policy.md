@@ -1,8 +1,8 @@
 # Assignment — GitOps + policy
 
-1. Draw pull vs push sync in 5–8 boxes.
-2. Which check fails the bad manifest in `fixtures/bad_deployment.yaml`?
-3. What did you *not* automate yet?
+1. Draw pull vs push sync in 5–8 boxes. Label **who holds credentials** in each model and **why** that matters.
+2. Which check fails the bad manifest in `fixtures/bad_deployment.yaml`? Explain **how** the failure protects a cluster.
+3. What did you *not* automate yet? **Why** would over-claiming “full GitOps” hurt trust in a portfolio demo?
 
 ## Done when
 

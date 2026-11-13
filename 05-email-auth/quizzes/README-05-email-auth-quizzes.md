@@ -5,3 +5,4 @@ Required quizzes after readings. Download fillable quiz PDFs from the course sit
 | After reading | Quiz |
 |---------------|------|
 | [`../readings/email_auth.md`](../readings/email_auth.md) | [`email_auth.md`](./email_auth.md) |
+| [`../readings/mail_flow_dmarc_analytics.md`](../readings/mail_flow_dmarc_analytics.md) | [`mail_flow_dmarc_analytics.md`](./mail_flow_dmarc_analytics.md) |

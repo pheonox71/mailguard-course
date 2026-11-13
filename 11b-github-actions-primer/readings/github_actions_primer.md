@@ -1,8 +1,8 @@
 # GitHub Actions primer
 
-**Why this matters.** Reviews catch some bugs; **CI** catches the rest on every push. Module 12 expects a workflow that runs tests (and optionally builds an image) **without** committing cloud secrets.
+**Why this matters.** Reviews catch some bugs; **CI** catches the rest on every push. Module 12 expects a workflow that runs tests (and optionally builds an image) **without** committing cloud secrets. Long-lived cloud keys in git are a classic incident; **OIDC to cloud roles** is the usual modern alternative when you deploy.
 
-**How it works.** A YAML file under `.github/workflows/` declares **when** to run (`on:`), **jobs** on runners, and **steps** (checkout, setup language, test). Secrets stay in the host’s secret store; prefer **OIDC to cloud roles** over long-lived keys when you deploy.
+**How it works.** A YAML file under `.github/workflows/` declares **when** to run (`on:`), **jobs** on runners, and **steps** (checkout, setup language, test). Secrets stay in the host’s secret store; prefer **OIDC to cloud roles** over long-lived keys when you deploy. On the job, email/identity/cloud security pipelines use the same pattern: PR checks, pinned actions, least-privileged tokens.
 
 This primer has no assignment, quiz, or download pack.
 

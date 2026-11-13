@@ -7,9 +7,11 @@
 3. Validate against RFC 6238 Appendix B vectors and the errata on seed lengths.
 4. Optionally port the same logic to Go (`crypto/hmac`, `encoding/binary`).
 
-## Short intro
+**Why this matters.** Library wrappers are fine for product MFA — but screening-style tasks (and debugging interop) often require you to **derive the counter, HMAC, and truncate** correctly. Without the RFC 6238 errata on seed lengths, SHA-256/512 vectors fail mysteriously even when truncation looks right. On the job, knowing *how* TOTP is built helps you validate vendor libraries and clock-skew edge cases instead of treating OTP as a black box.
 
-Library wrappers are fine for product MFA — but screening-style tasks often ask you to **derive the counter, HMAC, and truncate** correctly. Appendix B publishes known answers; the errata clarifies that the shared secret length matches the hash (20 / 32 / 64 bytes), not a single 20-byte seed for every digest.
+**How it works.** Counter `T = floor((t − T0) / X)` (X usually 30s). HMAC the 8-byte big-endian counter with the shared secret. Dynamic truncation (RFC 4226 §5.3): offset from the **last** HMAC byte’s low nibble; take four bytes; clear the high bit (`& 0x7F`); reduce mod `10^digits`. Appendix B publishes known answers; the errata requires seed length to match the hash (20 / 32 / 64 bytes), not one 20-byte seed for every digest.
+
+## Short note
 
 Pair this with the Basic-auth JSON client kata when you need an authenticated call that also tolerates small clock skew.
 

@@ -1,6 +1,6 @@
 # Svelte primer
 
-**Why this matters.** Optional Module 17 (Phish Lite) uses **Svelte / SvelteKit** for a small learning UI. You need just enough framework literacy to follow the assignment — and a hard ethical boundary: simulations never capture real credentials.
+**Why this matters.** Optional Module 17 (Phish Lite) uses **Svelte / SvelteKit** for a small learning UI. You need just enough framework literacy to follow the assignment — and a hard ethical boundary: simulations never capture real credentials. On the job, security-awareness UIs fail when honesty and metrics are an afterthought; the framework is secondary to that boundary.
 
 **How it works.** Svelte compiles components at build time (less runtime framework overhead than some SPA approaches). SvelteKit adds routing and project structure. Node.js + npm remain the toolchain (same install family as the Vue primer).
 

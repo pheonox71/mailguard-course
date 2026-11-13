@@ -6,15 +6,13 @@
 2. Contrast network-level **VPN** admission with application-level **ZTNA**.
 3. Name Policy Engine / Policy Enforcement Point ideas from National Institute of Standards and Technology (**NIST**) SP 800-207 at a high level.
 
-## Short intro
+**Why this matters.** Classical VPN admission parks a client on a flat corporate LAN. After credential theft or malware, **lateral movement** reaches many internal services. Without per-app verification, “we have SSO” still leaves a wide network path open. On the job, cloud and identity teams pair IdPs with Zero Trust Network Access (**ZTNA**) so contractors and admins reach *one* app, not the whole estate.
 
-Classical remote access: join a VPN, then reach wide internal ranges. If malware or a stolen laptop lands on that network, **lateral movement** is easier. Zero Trust Network Access (**ZTNA**) aims to grant access to *specific applications* after verifying user identity, often device posture, and context — ideally without parking the client on a flat corporate LAN.
+**How it works.** ZTNA verifies user identity (often MFA/OIDC), often device posture, and context, then a **policy engine** decides allow/deny and a **policy enforcement point** grants access to a specific application — ideally without broad LAN admission (NIST SP 800-207 vocabulary). Contrast: VPN admits the network first; ZTNA admits the app after continuous evaluation. MailGuard modules already practice app identity (TOTP, OIDC); ZTNA is the access-path story beside that.
 
 ![Side-by-side contrast of VPN network admission versus ZTNA application-level access with policy engine](images/ztna-vs-vpn.svg)
 
 *Figure. VPN admits the client onto a broad LAN (lateral movement risk). ZTNA checks identity/posture/context, then a Policy Engine / Enforcement Point grants **per-app** access — notice “never trust, always verify,” not a single product SKU. Original course diagram (CC0).*
-
-MailGuard modules already practice app identity (TOTP, OIDC). ZTNA is the *network/access path* story that enterprises pair with identity providers.
 
 ## Videos (verified)
 

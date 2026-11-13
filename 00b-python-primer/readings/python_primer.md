@@ -1,8 +1,8 @@
 # Python primer
 
-**Why this matters.** MailGuard’s identity, email-auth, API, and capstone labs are Python-first. Without a working interpreter, venv, and pytest habit, Challenge Gym cannot prove the “how” behind TOTP, holds, and rules.
+**Why this matters.** MailGuard’s identity, email-auth, API, and capstone labs are Python-first. Without a working interpreter, venv, and pytest habit, Challenge Gym cannot prove the “how” behind TOTP, holds, and rules. On the job, the same loop — isolate deps, let tests define the contract — is how teams ship auth and email-security glue without “works on my machine.”
 
-**How it works.** You isolate deps in a **virtual environment**, install from `requirements.txt`, implement stubs under `katas/`, and let **pytest** define the contract. That loop (read test → write code → re-run) is the course’s core practice.
+**How it works.** You isolate deps in a **virtual environment**, install from `requirements.txt`, implement stubs under `katas/`, and let **pytest** define the contract. That loop (read test → write code → re-run) is the course’s core practice: fail first, then make the stub match the spec.
 
 This primer has no assignment, quiz, or download pack.
 
@@ -30,6 +30,7 @@ Teams choose Python for fast iteration on auth, data, and glue code: readable mo
 Follow Module 00 if needed, then:
 
 ```bash
+# Why: confirm 3.x, then isolate this primer’s deps from system site-packages
 python3 --version   # Windows: py -3 --version
 python3 -m venv /tmp/mg-py-primer && source /tmp/mg-py-primer/bin/activate
 # Windows PowerShell: py -3 -m venv .venv ; .venv\Scripts\Activate.ps1

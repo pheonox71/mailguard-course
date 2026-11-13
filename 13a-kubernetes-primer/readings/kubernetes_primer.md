@@ -1,6 +1,6 @@
 # Kubernetes YAML primer
 
-**Why this matters.** Compose is enough for a laptop story; **Kubernetes** is how many teams run the same containers with health probes, restarts, and resource requests. Module 14 puts MailGuard’s shape on kind/minikube before GitOps in Module 16.
+**Why this matters.** Compose is enough for a laptop story; **Kubernetes** is how many teams run the same containers with health probes, restarts, and resource requests. Module 14 puts MailGuard’s shape on kind/minikube before GitOps in Module 16. On the job, API/worker pods for mail and identity services live here — probes and requests are the difference between a quiet restart and a silent outage.
 
 **How it works.** You declare desired state in **YAML** (Deployment, Service, etc.). The control plane reconciles actual pods toward that state. **kubectl** is the CLI; **kind**/**minikube** give you a local cluster without a cloud bill.
 
@@ -30,7 +30,8 @@ Self-healing workloads, consistent deploy APIs across clouds, and a clear path t
 1. [kubectl install](https://kubernetes.io/docs/tasks/tools/)
 2. Cluster tools wait for Module 14: [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) or [minikube](https://minikube.sigs.k8s.io/docs/start/)
 
-**Check now:** `kubectl version --client`
+**Check now:** `kubectl version --client`  
+Why `--client` only: confirm the CLI is installed without needing a cluster API yet (Module 14 starts the cluster).
 
 ## Tiny hands-on example
 

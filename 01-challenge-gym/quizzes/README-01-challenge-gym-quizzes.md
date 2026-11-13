@@ -9,7 +9,7 @@ Download fillable quiz PDFs from the course site and save completed copies under
 For each topic that has a reading:
 
 1. Ship `quizzes/<topic>.md` next to that module’s readings/assignments.
-2. Keep **5–8** items: mix recall, “why,” and one tiny scenario.
+2. Keep **5–8** items: majority **why / how / scenario** (and spot-the-bug); avoid pure acronym expansion or list-only recall.
 3. Keep answer keys in separate documents under `quizzes/answer-keys/` (not in the downloadable quiz PDF).
 4. Link the quiz from the module README and from the reading’s end. Keep answer keys under `quizzes/answer-keys/`.
 5. Do **not** put office-hours / “ask for help” FAQ here — this course is self-serve.

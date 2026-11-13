@@ -2,9 +2,9 @@
 
 Complete after the module reading. Check the separate answer key only after you attempt every item.
 
-1. Expand **Deployment** vs **Service** in one sentence each.
-2. What does a readiness probe gate?
-3. Why are resource requests useful?
-4. Name one difference between kind and a managed cloud Kubernetes service.
-5. **Scenario:** liveness probe path `/healthz` always 500. What happens?
-6. **Spot the bug:** container has no resource requests and a memory leak. Cluster symptom?
+1. Expand **Deployment** vs **Service** in one sentence each, and explain **how** they cooperate for a MailGuard API.
+2. What does a readiness probe gate, and **why** is that different from liveness?
+3. **Why** are resource requests useful even on a laptop kind/minikube cluster?
+4. Name one difference between kind and a managed cloud Kubernetes service, and **why** that matters for production claims.
+5. **Scenario:** liveness probe path `/healthz` always returns 500. What happens step by step, and **why**?
+6. **Spot the bug / why:** container has no resource requests and a memory leak. What cluster symptom appears and how?

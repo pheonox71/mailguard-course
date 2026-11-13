@@ -6,9 +6,9 @@
 2. Explain device certificates / posture as *additional signals*, not magic.
 3. Threat-model an enterprise password manager for apps that still use passwords (non-SSO).
 
-## Short intro
+**Why this matters.** Enterprises rarely run “OIDC only.” Without SAML literacy, device-posture signals, and a threat model for password managers on non-SSO apps, identity work stops at the happy path and fails in real estates of legacy apps. On the job, cloud and email-security admins still federate with both SAML and OIDC, and still protect vaults where SSO never arrived.
 
-This module’s coding path is OIDC-shaped. Enterprises still run Security Assertion Markup Language (**SAML**) for many apps, issue device certificates for posture, and deploy password managers where SSO never arrived. This reading builds interview literacy without claiming you built a full Identity Provider (**IdP**).
+**How it works.** An Identity Provider (**IdP**) authenticates the user, then federates to apps: **OIDC** (identity layer on OAuth 2.0, typically JWT-shaped tokens) or **SAML** (XML assertions, classical enterprise SSO). Device certificates / posture add *signals* for admission — they do not replace user auth. Where SSO is missing, password managers reduce reuse but introduce vault, phishing-unlock, and shared-folder risks you must model.
 
 ![Identity provider federating SSO to applications via OIDC JSON tokens or SAML XML assertions](images/oidc-vs-saml.svg)
 

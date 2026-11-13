@@ -15,9 +15,10 @@ Peek at `solutions/hold_rules.py` only after a real attempt.
 
 ## Short questions (write answers before coding)
 
-1. Why is “first match wins” easier to explain in an interview than a scored/weighted rule set?
-2. If a rule has `recipient_domain="partner.example"` and `contains="confidential"`, must *both* hold for `matches` to be True?
-3. What should `evaluate` return when no rule matches and the caller passes `default="allow"`?
+1. Why is “first match wins” easier to explain (and audit) than a scored/weighted rule set — what fails when two rules both “partially apply”?
+2. If a rule has `recipient_domain="partner.example"` and `contains="confidential"`, must *both* hold for `matches` to be True? Why is AND the safer default for predicates?
+3. Why does `evaluate` need an explicit `default` when no rule matches — what goes wrong if “no match” silently becomes reject in one product and allow in another?
+4. Scenario: a rule with *no* predicates is inserted at the top. Why must it never match in this kata?
 
 ## REPL warm-up
 

@@ -6,6 +6,17 @@
 2. Evaluate a message against those rules with **first-match-wins** semantics.
 3. Cover happy path and edge cases with automated tests.
 
+**Why this matters.** Without a rules API, operators cannot encode “hold external domains” or “reject secret substrings” as durable policy — every decision becomes a one-off script. First-match-wins without tests drifts into silent allow; an in-memory-only store vanishes on restart and cannot support multi-instance or audit. History of mail gateways is full of policy engines that grew from ad-hoc filters; a thin, tested evaluate function is the trade-off that keeps the kata honest before Postgres and authn.
+
+**How it works.** Operators **create** ordered rules (predicates + decision). On evaluate, the service walks the list top-down, stops at the **first** match, and returns `hold` / `allow` / `reject` (or a documented default). Keep evaluation as a **pure function** separate from FastAPI handlers so pytest can cover edge cases without HTTP. Pydantic models shape requests; OpenAPI documents the surface. Persistence, authn/z, and pagination stay out of the kata on purpose — stretch labs add Postgres later.
+
+```
+Client → POST /rules  → store (ordered list)
+Client → POST /evaluate(message) → walk rules → first match → decision
+```
+
+**On the job.** Email DLP and identity-adjacent gateways expose the same pattern: policy CRUD + evaluate on the message path. Interviewers care that you can explain first-match vs scoring, why pure evaluation is testable, and what an in-memory store cannot prove in production — vendor-neutral skills for any cloud mail or SaaS security API.
+
 ## Short intro
 
 MailGuard’s product thread needs a **rules API**: operators create rules; the service decides whether an outbound message is allowed, held for review, or rejected. This module is a thin FastAPI-shaped service with an in-memory store and a pure evaluation function you can unit-test without standing up a database.
@@ -26,7 +37,7 @@ Keep the public vocabulary vendor-neutral: rules, holds, allow, reject — not a
 
 ## Keep in mind
 
-Production APIs add authn/z, persistence, pagination, and audit logs. Your kata stays small on purpose.
+Production APIs add authn/z, persistence, pagination, and audit logs. Your kata stays small on purpose — **why:** prove the decision engine before wiring infrastructure that hides policy bugs.
 
 ## Next step
 

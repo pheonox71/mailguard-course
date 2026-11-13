@@ -6,15 +6,13 @@
 2. Distinguish Sender Policy Framework (**SPF**), DomainKeys Identified Mail (**DKIM**), and Domain-based Message Authentication, Reporting and Conformance (**DMARC**) — what each checks and how they combine. DMARC passes if **at least one** of SPF or DKIM passes **and** aligns with the visible `From:`.
 3. Read a DMARC DNS policy (`p=`, `rua=`, and RFC 9989 tags such as `t=` / `np=` / `psd=`) and say what hold/DLP rules **cannot** fix alone when attackers spoof lookalike mail.
 
-## Short intro
+**Why this matters.** Hold/DLP rules catch *outbound* mistakes; they do not stop attackers who **spoof** your (or a partner’s) domain into someone else’s inbox. Without SPF/DKIM/DMARC, receivers cannot tell authorized mail from lookalike fraud. On the job, email and cloud-security teams publish DNS auth, read aggregate reports, and step `p=` carefully — TLS on SMTP encrypts a hop but does not prove `From:`.
 
-MailGuard’s hold rules catch *outbound* mistakes (missend, policy). Attackers also **spoof inbound or lookalike domains**. SPF publishes which hosts may send for the **envelope sender (MAIL FROM / Return-Path) or HELO domain** — it does **not** check the header `From:`. DKIM adds a cryptographic signature over selected headers/body with a public key in DNS. DMARC adds the **alignment** check that ties SPF or DKIM to the visible `From:` domain, tells receivers what to do on failure (`p=`), and where to send aggregate reports (`rua`).
+**How it works.** **SMTP** forwards mail hop-by-hop; TLS on a hop encrypts that connection (STARTTLS between MTAs is opportunistic unless MTA-STS/DANE enforce it). **SPF** lists hosts allowed for the envelope sender / HELO — not the header `From:`. **DKIM** signs selected headers/body; public key in DNS. **DMARC** requires SPF or DKIM to **pass and align** with the visible `From:`, sets policy (`p=`), and collects reports (`rua`). Receivers combine these; operators use reports before flipping to `p=reject`.
 
 ![SPF, DKIM, and DMARC checks from sending MTA through receiving MTA with DNS-published controls](images/spf-dkim-dmarc.svg)
 
 *Figure. SMTP+TLS protects the hop; **SPF** authorizes envelope hosts, **DKIM** signs content, **DMARC** aligns results with the visible `From:` and sets `p=` policy. Notice hold/DLP and domain auth solve different problems (outbound mistakes vs inbound spoof). Original course diagram (CC0).*
-
-**SMTP + TLS** literacy: encrypting the pipe (TLS) stops casual eavesdropping on that hop; it does not replace SPF/DKIM/DMARC. Between MTAs, STARTTLS is opportunistic unless MTA-STS or DANE enforces authenticated TLS. Domain authentication is how receivers decide “did this domain authorize this message?”
 
 ## Videos (verified)
 

@@ -1,8 +1,8 @@
 # Bash / shell primer
 
-**Why this matters.** Almost every MailGuard lab starts in a terminal: create a venv, run `pytest`, call `go test`, or bring Compose up. Without shell fluency, the “how” of every later module stays blocked behind copy-paste.
+**Why this matters.** Almost every MailGuard lab starts in a terminal: create a venv, run `pytest`, call `go test`, or bring Compose up. Without shell fluency, the “how” of every later module stays blocked behind copy-paste. On the job, the same skill lets you reproduce CI failures, inspect logs, and keep secrets in the environment instead of committed files.
 
-**How it works.** A shell reads a line, expands variables/globs, then runs a program. Pipes (`|`) pass stdout of one command to stdin of the next. Environment variables configure tools without hard-coding secrets into files you might commit.
+**How it works.** A shell reads a line, expands variables/globs, then runs a program. Pipes (`|`) pass stdout of one command to stdin of the next. Environment variables configure tools without hard-coding secrets into files you might commit. Exit codes (`$?` / `$LASTEXITCODE`) are how scripts and pipelines decide pass vs fail.
 
 This primer has no assignment, quiz, or download pack — read, try the tiny example, mark complete, then continue.
 

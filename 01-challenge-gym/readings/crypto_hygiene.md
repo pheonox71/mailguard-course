@@ -8,9 +8,9 @@ By the end of this kata’s reading + assignment + implementation, you should be
 2. Describe Authenticated Encryption with Associated Data (**AEAD**) as “encrypt + authenticate in one construction,” and name Transport Layer Security (**TLS**) as the everyday place AEAD (and certificates) show up.
 3. State a short **key lifecycle** checklist (generate, store, rotate, revoke) and refuse to invent ciphers — use reviewed libraries instead.
 
-## Short intro
+**Why this matters.** A bare hash looks like “integrity” until an attacker rewrites both the bytes and the digest. Without keyed integrity (HMAC) or authenticated encryption (AEAD), webhooks, audit blobs, and secrets-at-rest can be forged or silently altered. On the job, TLS already uses AEAD for every hop you trust — the same misuse rules (nonce reuse, inventing ciphers, skipping auth) show up in application crypto for email and identity services.
 
-Time-based One-Time Password (**TOTP**) already taught “don’t hand-roll HMAC.” This kata widens the lens: integrity tags for audit-style blobs, and AEAD for secrets at rest and for app-level envelopes. You will call Python’s `hmac` module and the `cryptography` library’s AES-GCM — not design modes yourself.
+**How it works.** **HMAC** binds a secret key to a hash so only key holders can produce a valid tag; verify with constant-time compare. **AEAD** (e.g. AES-GCM) encrypts and authenticates in one construction; associated data is authenticated but not encrypted. Prefer reviewed libraries (`hmac`, `cryptography.AESGCM`). Key lifecycle: generate (CSPRNG) → store outside git → rotate → revoke. Never reuse a nonce with the same key.
 
 ![Comparison of bare hash, HMAC, and AEAD plus a generate-store-rotate-revoke key lifecycle](images/crypto-hygiene.svg)
 

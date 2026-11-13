@@ -16,13 +16,15 @@ Peek at `solutions/crypto_hygiene.py` only after a real attempt.
 ## Short questions (write answers before coding)
 
 1. Why is `sha256(message)` alone insufficient to detect an attacker who can rewrite both the message *and* a stored hash?
-2. What goes wrong if you reuse the same AES-GCM **nonce** with the same key for two different plaintexts?
-3. In one sentence: what does “authenticated” buy you in AEAD that “encrypt-only” does not?
-4. Name two key-lifecycle steps you would document for a MailGuard webhook HMAC secret.
+2. Why is reusing the same AES-GCM **nonce** with the same key catastrophic — what property collapses?
+3. Why does “authenticated” in AEAD matter on the job versus encrypt-only modes that still look “encrypted” in logs?
+4. Why document rotate + revoke (not only generate) for a MailGuard webhook HMAC secret — what fails after a leak if you only generate once?
+5. Scenario: ciphertext verifies with AAD `v1` but a proxy strips the version header. What should open do and why?
 
 ## REPL warm-up
 
 ```bash
+# Why: cryptography + hmac must come from the course venv, not a random global install
 cd 01-challenge-gym
 source .venv/bin/activate
 python
