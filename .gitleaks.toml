@@ -9,9 +9,13 @@ useDefault = true
 # Narrow path allowlist for intentional non-secret fixtures used in lessons.
 # Do not broaden these paths; remove an entry if a real credential appears there.
 [allowlist]
-description = "Known educational test fixtures (TOTP demo key + local compose password)"
+description = "Known educational test fixtures (TOTP/RFC vectors, Basic-auth RFC example, local compose, OTP demos)"
 paths = [
   '''(^|/)01-challenge-gym/tests/test_totp_verify\.py$''',
+  '''(^|/)01-challenge-gym/tests/test_totp_rfc6238\.py$''',
+  '''(^|/)01-challenge-gym/tests/test_basic_auth_client\.py$''',
   '''(^|/)01-challenge-gym/worksheets/totp_verify\.md$''',
+  '''(^|/)01-challenge-gym/go-totp/totp_test\.go$''',
+  '''(^|/)10-secure-drop/tests/test_secure_drop\.py$''',
   '''(^|/)13-infra/starter/docker-compose\.yml$''',
 ]

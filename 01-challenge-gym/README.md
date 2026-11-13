@@ -8,7 +8,8 @@ Challenge-style muscle: short, elegant Python with tests; MFA/OTP concepts witho
 
 - Correct, concise Python under a challenge-style bar (small modules, clear specs)
 - Reading tests as the contract before writing code
-- TOTP verify with a library (RFC 6238) — understand MFA/OTP, don’t reinvent crypto
+- TOTP verify with a library **and** a from-scratch RFC 6238/4226 truncation kata (Appendix B + errata)
+- HTTP Basic auth JSON client pattern with clock-skew checks; optional Go TOTP port
 - Tiny string/rule engines that preview MailGuard hold / missend thinking
 
 ## Why it matters for career prep
@@ -61,6 +62,8 @@ Index of quizzes: [`quizzes/README-01-challenge-gym-quizzes.md`](./quizzes/READM
 | Hold rules | [`readings/hold_rules.md`](./readings/hold_rules.md) | [`quizzes/hold_rules.md`](./quizzes/hold_rules.md) | `worksheets/hold_rules.md` | `katas/hold_rules.py` | `tests/test_hold_rules.py` |
 | Recipient risk | [`readings/recipient_risk.md`](./readings/recipient_risk.md) | [`quizzes/recipient_risk.md`](./quizzes/recipient_risk.md) | `worksheets/recipient_risk.md` | `katas/recipient_risk.py` | `tests/test_recipient_risk.py` |
 | Crypto hygiene | [`readings/crypto_hygiene.md`](./readings/crypto_hygiene.md) | [`quizzes/crypto_hygiene.md`](./quizzes/crypto_hygiene.md) | `worksheets/crypto_hygiene.md` | `katas/crypto_hygiene.py` | `tests/test_crypto_hygiene.py` |
+| TOTP RFC 6238 | [`readings/totp_rfc6238.md`](./readings/totp_rfc6238.md) | [`quizzes/totp_rfc6238.md`](./quizzes/totp_rfc6238.md) | `worksheets/totp_rfc6238.md` | `katas/totp_rfc6238.py` (+ optional `go-totp/`) | `tests/test_totp_rfc6238.py` |
+| Basic auth client | [`readings/basic_auth_client.md`](./readings/basic_auth_client.md) | [`quizzes/basic_auth_client.md`](./quizzes/basic_auth_client.md) | `worksheets/basic_auth_client.md` | `katas/basic_auth_client.py` | `tests/test_basic_auth_client.py` |
 
 Start with **totp_verify**: open [`readings/totp_verify.md`](./readings/totp_verify.md), then its worksheet.
 

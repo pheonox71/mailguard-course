@@ -24,3 +24,5 @@ Suggested filenames later: `07-mailguard-api/quizzes/…`, `02-mailguard-mfa/qui
 | [`../readings/hold_rules.md`](../readings/hold_rules.md) | [`hold_rules.md`](./hold_rules.md) |
 | [`../readings/recipient_risk.md`](../readings/recipient_risk.md) | [`recipient_risk.md`](./recipient_risk.md) |
 | [`../readings/crypto_hygiene.md`](../readings/crypto_hygiene.md) | [`crypto_hygiene.md`](./crypto_hygiene.md) |
+| [`../readings/totp_rfc6238.md`](../readings/totp_rfc6238.md) | [`totp_rfc6238.md`](./totp_rfc6238.md) |
+| [`../readings/basic_auth_client.md`](../readings/basic_auth_client.md) | [`basic_auth_client.md`](./basic_auth_client.md) |
