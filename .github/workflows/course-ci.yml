@@ -1,0 +1,97 @@
+name: Course content CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: course-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python-katas:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dir: 01-challenge-gym
+          - dir: 02-mailguard-mfa
+          - dir: 03-oidc-access
+          - dir: 05-email-auth
+          - dir: 07-mailguard-api
+          - dir: 10-secure-drop
+          - dir: 11-security-notes
+          - dir: 12-ci-aws
+          - dir: 13-infra
+          - dir: 14-k8s-local
+          - dir: 15-observability
+          - dir: 16-gitops-policy
+          - dir: 19-capstone
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        working-directory: ${{ matrix.dir }}
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install pytest; fi
+      - name: Copy solutions into katas and test
+        working-directory: ${{ matrix.dir }}
+        run: |
+          set -euo pipefail
+          if [ ! -d solutions ]; then
+            echo "No solutions/ for ${{ matrix.dir }}" >&2
+            exit 1
+          fi
+          mkdir -p katas
+          # Copy solution modules over kata stubs (keep package inits).
+          find solutions -maxdepth 1 -type f ! -name 'README.md' -exec cp {} katas/ \;
+          python -m pytest -q
+
+  go-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Apply solution and test
+        working-directory: 09-mailguard-worker
+        run: |
+          cp solutions/decision.go worker/decision.go
+          go test ./...
+
+  node-katas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Phish Lite kata
+        working-directory: 17-phish-lite
+        run: |
+          cp solutions/score.js katas/score.js
+          npm test
+      - name: Admin TypeScript kata
+        working-directory: 08-mailguard-admin
+        run: |
+          cp solutions/rule_form.ts katas/rule_form.ts
+          npm test
+
+  quiz-answer-key-counts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Match quiz vs answer-key item counts
+        run: python3 scripts/check_quiz_keys.py

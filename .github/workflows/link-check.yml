@@ -1,0 +1,34 @@
+name: Weekly markdown link check
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Link check markdown (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --max-concurrency 5
+            --timeout 20
+            --exclude-mail
+            --exclude 'file://'
+            --exclude '^#'
+            --exclude 'localhost'
+            --exclude '127\.0\.0\.1'
+            --exclude-path './site/downloads'
+            --exclude-path './site/content'
+            --exclude-path './my-work'
+            './**/*.md'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
