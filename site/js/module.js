@@ -149,10 +149,14 @@ function linkGlossaryTerms(html) {
   return wrap.innerHTML
 }
 
-/** Drop raw repo-relative quiz/worksheet footer lines; strip (`id`) from titles. */
+/** Drop authorship bylines, raw quiz/worksheet footer lines; strip (`id`) from titles. */
 function polishReadingHtml(html) {
   const wrap = document.createElement('div')
   wrap.innerHTML = html
+  wrap.querySelectorAll('p').forEach((p) => {
+    const text = (p.textContent || '').trim()
+    if (/^Authorship:/i.test(text)) p.remove()
+  })
   wrap.querySelectorAll('a[href]').forEach((a) => {
     const href = a.getAttribute('href') || ''
     if (!/\/(quizzes|worksheets)\//.test(href) && !/\.\.\/(quizzes|worksheets)\//.test(href)) return
@@ -365,7 +369,16 @@ async function main() {
   const readingsEmpty = !mod.readings.length
   const moduleDone = isModuleComplete(state, mod.id)
 
+  const aiNotice =
+    mod.id === '00-setup'
+      ? `<aside class="ai-notice" role="note" aria-label="AI assistance notice">
+          <strong>AI assistance notice.</strong>
+          This course's content was researched and compiled with AI assistance. It has been reviewed for accuracy, but verify anything important against the linked primary sources (RFCs, official docs).
+        </aside>`
+      : ''
+
   root.innerHTML = `
+    ${aiNotice}
     <p class="module-kicker">${escapeHtml(mod.phase)} · ${escapeHtml(mod.hours)}</p>
     <h1>${escapeHtml(mod.number)} — ${escapeHtml(mod.title)}</h1>
     <p class="module-blurb">${escapeHtml(mod.blurb)}</p>

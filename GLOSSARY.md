@@ -2,7 +2,7 @@
 
 Shared terms for **mailguard-course**. Acronyms appear as **full name (ABBREV)** with a one-line meaning. Prefer this list when a module reading has not expanded a term yet; readings still expand on first use in their own file.
 
-**Authorship:** AI-generated course scaffolding.
+Course content uses AI assistance — verify important facts against linked primary sources.
 
 ---
 

@@ -2,9 +2,11 @@
 
 **Live site:** [https://pheonox71.github.io/mailguard-course/](https://pheonox71.github.io/mailguard-course/)
 
+> **AI assistance notice:** This course's content was researched and compiled with AI assistance. It has been reviewed for accuracy, but verify anything important against the linked primary sources (RFCs, official docs).
+
 Student-facing course for cloud-security skills: setup → identity / MFA → email authentication → DLP-minded product work → cloud / platform practice. Readings render in the browser; worksheets, tests, and **required** quizzes download for offline work.
 
-**Authorship:** Course structure, readings, stubs, tests, quizzes, and rubrics are AI-generated. Worksheet answers, filled quiz PDFs, and kata implementations are filled in by the student.
+Worksheet answers, filled quiz PDFs, and kata implementations are filled in by the student.
 
 **Student work folder:** Completed personal worksheets and filled quiz PDFs live under [`my-work/`](./my-work/) (`my-work/worksheets/`, `my-work/quizzes/`) in this repository. They are **not** accessible from the course website — the site never links to or serves those files.
 

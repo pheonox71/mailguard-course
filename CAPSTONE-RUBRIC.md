@@ -2,7 +2,7 @@
 
 What “end-to-end MailGuard” means for this course: a **coherent public thread** a recruiter or engineer can clone, run, and understand — not a vendor product clone and not inflated tenure claims.
 
-**Authorship:** AI-generated rubric. Evidence is the student’s implementations, demos, and writeups.
+Evidence is the student’s implementations, demos, and writeups. Course content uses AI assistance — see the site/README notice.
 
 Use this after Phase A is largely green; Phase B items raise the ceiling but are not all required for a credible portfolio story.
 
@@ -17,7 +17,7 @@ You meet the capstone when **all Must** rows are honest **yes**, and at least **
 | # | Criterion | Evidence |
 |---|-----------|----------|
 | M1 | **Thread is clear** | Root README states MailGuard as outbound message & file guard; folder table matches shipped modules. |
-| M2 | **Authorship is clear** | README states AI-generated course + student-filled worksheets/katas. |
+| M2 | **Authorship is clear** | README / site AI-assistance notice is visible; student-filled worksheets/katas are distinct. |
 | M3 | **Runnable demo path** | Documented commands bring up enough of API (+ admin or curl) to show hold/allow/reject on a sample message. |
 | M4 | **Tests are real** | Core Python (and other shipped code) has automated tests that fail on stubs and pass on your implementations. |
 | M5 | **Secrets hygiene** | No live secrets in git; `.env.example` or docs explain required config. |

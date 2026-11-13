@@ -2,7 +2,7 @@
 
 Short checks **after** each kata’s reading (and before or alongside the worksheet). Quizzes are a **required** step alongside readings, worksheets, and tests.
 
-**Authorship:** AI-generated. Download fillable quiz PDFs from the course site and save completed copies under [`../../my-work/quizzes/`](../../my-work/quizzes/).
+Download fillable quiz PDFs from the course site and save completed copies under [`../../my-work/quizzes/`](../../my-work/quizzes/).
 
 ## Pattern (reuse in later modules)
 

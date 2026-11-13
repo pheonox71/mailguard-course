@@ -2,7 +2,7 @@
 
 This module closes the course: ship a **coherent demo** of outbound message filtering (hold / allow / reject), prove it with tests, and self-grade against [`../../CAPSTONE-RUBRIC.md`](../../CAPSTONE-RUBRIC.md).
 
-**Authorship:** AI-generated. The student implements the filter and fills the worksheet.
+The student implements the filter and fills the worksheet.
 
 Continue with the worksheet from the downloads on this page. The quiz is **required**.
 

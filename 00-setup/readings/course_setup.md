@@ -2,7 +2,7 @@
 
 This module prepares your machine for the full course: identity / MFA katas, email authentication, Python APIs, TypeScript/Vue admin, Go workers, AWS/CI, Terraform, and local Kubernetes. You do **not** need every tool on day one — install **core** tools now, and the **later** tools when the matching module arrives.
 
-**Authorship:** AI-generated. Work through the installs below, then mark Module 00 complete on the site. This module has no worksheet, quiz, or download pack.
+Work through the installs below, then mark Module 00 complete on the site. This module has no worksheet, quiz, or download pack.
 
 ---
 

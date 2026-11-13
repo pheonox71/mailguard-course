@@ -1,6 +1,6 @@
 # Email auth — quizzes
 
-Required quizzes after readings. AI-generated; download fillable quiz PDFs from the course site and save completed copies under [`../../my-work/quizzes/`](../../my-work/quizzes/).
+Required quizzes after readings. Download fillable quiz PDFs from the course site and save completed copies under [`../../my-work/quizzes/`](../../my-work/quizzes/).
 
 | After reading | Quiz |
 |---------------|------|
