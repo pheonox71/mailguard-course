@@ -38,4 +38,5 @@ cd 19-capstone
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 pytest -q
+python3 starter/run_demo.py   # prints steps; evaluates samples once katas are implemented
 ```

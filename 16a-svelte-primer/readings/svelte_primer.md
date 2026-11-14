@@ -60,6 +60,12 @@ Optional later (Module 17): follow the official `npm create svelte@latest` flow 
 - **“Scaffold inside every course module.”** Keep Kit apps in a scratch directory so unrelated packages do not tangle Module 08/17 trees.
 - **“Skip Node checks.”** Kit needs a working `node`/`npm` — confirm versions before debugging route errors.
 
+
+## Videos (verified)
+
+1. **[Svelte Tutorial for Beginners](https://www.youtube.com/watch?v=3TVy6GdtNuQ)**  
+   Why it helps: Svelte before Phish Lite.
+
 ## Official docs
 
 1. [Svelte tutorial](https://svelte.dev/tutorial)

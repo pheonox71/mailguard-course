@@ -57,6 +57,12 @@ Alert: admin Ada signed in from Region A at 10:00 UTC and Region B at 10:25 UTC
 - **“Postmortem = name who clicked.”** Blame-heavy writeups do not prevent recurrence; fix logging, access, and playbooks ([NIST SP 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)).
 - **“EDR/MDR brand names are the course.”** Concepts matter; stay vendor-neutral and keep detection artifacts in English.
 
+
+## Videos (verified)
+
+1. **[NIST Cybersecurity Framework overview](https://www.youtube.com/watch?v=S9KxqZ8q1kY)**  
+   Why it helps: CSF backdrop for 800-61r3.
+
 ## Keep in mind
 
 EDR/MDR are concepts here — stay vendor-neutral. Detection content is English-only for course artifacts.

@@ -1,8 +1,159 @@
-# Example Terraform shape — copy to a private working tree; never commit secrets.
-# terraform {
-#   required_providers {
-#     aws = { source = "hashicorp/aws", version = "~> 5.0" }
-#   }
-# }
-# provider "aws" { region = var.region }
-# resource "aws_s3_bucket" "secure_drop" { bucket = var.bucket_name }
+# MailGuard infra sketch — copy to a private working tree; never commit secrets.
+# This file is an *example*. Rename to main.tf locally after you set variables.
+
+terraform {
+  required_version = ">= 1.5.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+  # Remote state (commented until you own a locking backend).
+  # Why remote state: local terraform.tfstate is easy to lose and often contains
+  # sensitive attributes — team plans should share a locked S3/DynamoDB (or
+  # equivalent) backend, never a committed state file.
+  #
+  # backend "s3" {
+  #   bucket         = "YOUR_TF_STATE_BUCKET"
+  #   key            = "mailguard/dev/terraform.tfstate"
+  #   region         = "us-east-1"
+  #   dynamodb_table = "YOUR_TF_LOCK_TABLE"
+  #   encrypt        = true
+  # }
+}
+
+provider "aws" {
+  region = var.aws_region
+
+  # Why default tags: every lab resource is attributable in cost/security reviews.
+  default_tags {
+    tags = {
+      Project     = "mailguard-course"
+      Environment = var.environment
+      ManagedBy   = "terraform"
+    }
+  }
+}
+
+variable "aws_region" {
+  type        = string
+  description = "AWS region for MailGuard lab resources."
+  default     = "us-east-1"
+}
+
+variable "environment" {
+  type        = string
+  description = "Short env name used in resource names and tags."
+  default     = "dev"
+}
+
+variable "bucket_name" {
+  type        = string
+  description = "Globally unique S3 bucket name for Secure Drop objects."
+}
+
+variable "hold_queue_name" {
+  type        = string
+  description = "SQS queue name for held outbound mail work items."
+  default     = "mailguard-hold"
+}
+
+# --- Storage (Secure Drop objects) ------------------------------------------
+
+resource "aws_s3_bucket" "secure_drop" {
+  bucket = var.bucket_name
+}
+
+resource "aws_s3_bucket_public_access_block" "secure_drop" {
+  bucket = aws_s3_bucket.secure_drop.id
+
+  # Why Block Public Access: stops accidental Principal:"*" object policies.
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+# --- Queue (hold pipeline) --------------------------------------------------
+
+resource "aws_sqs_queue" "hold" {
+  name                       = "${var.hold_queue_name}-${var.environment}"
+  visibility_timeout_seconds = 60
+  message_retention_seconds  = 345600
+}
+
+# --- Runtime role (least privilege for API/worker) --------------------------
+
+data "aws_iam_policy_document" "assume_ec2" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role" "mailguard_runtime" {
+  name               = "mailguard-runtime-${var.environment}"
+  assume_role_policy = data.aws_iam_policy_document.assume_ec2.json
+}
+
+# Inline least-privilege policy — see also iam_policy_mailguard.json / .tf.hcl
+data "aws_iam_policy_document" "mailguard_runtime" {
+  statement {
+    sid    = "SecureDropObjects"
+    effect = "Allow"
+    actions = [
+      "s3:GetObject",
+      "s3:PutObject",
+      "s3:DeleteObject",
+    ]
+    resources = ["${aws_s3_bucket.secure_drop.arn}/*"]
+  }
+
+  statement {
+    sid    = "SecureDropListBucket"
+    effect = "Allow"
+    actions = [
+      "s3:ListBucket",
+    ]
+    resources = [aws_s3_bucket.secure_drop.arn]
+  }
+
+  statement {
+    sid    = "HoldQueueConsume"
+    effect = "Allow"
+    actions = [
+      "sqs:ReceiveMessage",
+      "sqs:DeleteMessage",
+      "sqs:GetQueueAttributes",
+      "sqs:ChangeMessageVisibility",
+    ]
+    resources = [aws_sqs_queue.hold.arn]
+  }
+}
+
+resource "aws_iam_role_policy" "mailguard_runtime" {
+  name   = "mailguard-runtime-s3-sqs"
+  role   = aws_iam_role.mailguard_runtime.id
+  policy = data.aws_iam_policy_document.mailguard_runtime.json
+}
+
+output "secure_drop_bucket" {
+  value       = aws_s3_bucket.secure_drop.bucket
+  description = "Bucket name for Secure Drop objects."
+}
+
+output "hold_queue_url" {
+  value       = aws_sqs_queue.hold.url
+  description = "SQS URL for the hold worker."
+}
+
+output "runtime_role_arn" {
+  value       = aws_iam_role.mailguard_runtime.arn
+  description = "Least-privilege role ARN for the API/worker runtime."
+}

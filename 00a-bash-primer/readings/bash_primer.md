@@ -66,6 +66,12 @@ grep -n hold decision.txt && echo "exit was $?"
 
 **How:** `mkdir` creates a sandbox, `echo` writes a file, `grep` searches it, `$?` shows the last exit code — the same pattern CI uses to fail a job.
 
+
+## Videos (verified)
+
+1. **[Bash Scripting Full Course](https://www.youtube.com/watch?v=e7BufAVwDiM)**  
+   Why it helps: shell literacy before Challenge Gym.
+
 ## Official docs
 
 1. [GNU Bash manual](https://www.gnu.org/software/bash/manual/)

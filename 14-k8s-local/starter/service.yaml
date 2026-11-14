@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mailguard-api
+  labels:
+    app: mailguard-api
+spec:
+  type: ClusterIP
+  # Why selector labels: Service routes only to pods the Deployment labels match.
+  selector:
+    app: mailguard-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP

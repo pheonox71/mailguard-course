@@ -16,7 +16,7 @@ The student saves finished assignments and filled quiz PDFs under [`../my-work/`
 
 | Path | Role |
 |------|------|
-| `readings/` | MFA + passkeys intros + credited videos |
+| `readings/` | MFA enroll + passkeys intros + credited videos |
 | `quizzes/` | Required quizzes (answer keys under `quizzes/answer-keys/`) |
 | `assignments/` | Guided questions before implementation |
 | `katas/` | TOTP enroll/verify + recovery stubs |
@@ -25,9 +25,9 @@ The student saves finished assignments and filled quiz PDFs under [`../my-work/`
 
 ## Start here
 
-1. [`readings/passkeys_webauthn.md`](./readings/passkeys_webauthn.md) (can run in parallel with API work)
-2. Quiz → assignment
-3. Implement `katas/mfa_enroll.py` until `pytest -q` is green; store secrets outside git
+1. [`readings/mfa_enroll.md`](./readings/mfa_enroll.md) → [`assignments/mfa_enroll.md`](./assignments/mfa_enroll.md) → quiz
+2. Implement `katas/mfa_enroll.py` until `pytest -q` is green; store secrets outside git
+3. [`readings/passkeys_webauthn.md`](./readings/passkeys_webauthn.md) (can run in parallel) → assignment → quiz
 
 ```bash
 cd 02-mailguard-mfa

@@ -55,6 +55,12 @@ The admin is the human control surface for MailGuard: list rules, inspect held m
 - **“Cloud API keys in `.env` shipped to the client are OK.”** Anything in the SPA bundle is readable; use session/BFF patterns.
 - **“Confirm dialogs are optional UX.”** Release is irreversible; accessible confirm reduces miss-clicks and documents intent for audit.
 
+
+## Videos (verified)
+
+1. **[Vue.js Course for Beginners](https://www.youtube.com/watch?v=FXpIoQ_rT_c)**  
+   Why it helps: admin SPA patterns for hold queues.
+
 ## Read these (verified)
 
 1. [Vue 3 — Introduction](https://vuejs.org/guide/introduction.html)

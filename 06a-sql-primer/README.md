@@ -27,5 +27,5 @@ This module has **no** assignments, quizzes, tests, or download packs.
 ## Done when
 
 - You can explain why SQL shows up on this course path
-- The tiny example runs (or you understand the YAML/SQL snippet)
+- The tiny SQL example makes sense (tables, constraints, parameterized queries)
 - The primer is marked complete in the site progress UI

@@ -55,6 +55,23 @@ export const MODULE_META = [
     readOnly: true,
   },
   {
+    id: '00c-http-primer',
+    number: '00c',
+    title: 'HTTP primer',
+    phase: 'Foundations',
+    blurb:
+      'Methods, status codes, headers, cookies, CORS, and TLS before OIDC and the MailGuard API.',
+    hours: 'est. 8-10h',
+    language: 'HTTP',
+    languageDetail: 'HTTP/1.1 literacy · status codes · headers · cookies · CORS · TLS',
+    objectives: [
+      'Name common methods and what safe vs idempotent means',
+      'Read status codes and key headers without guessing',
+      'Explain cookies, CORS, and TLS at a literacy level for later labs',
+    ],
+    readOnly: true,
+  },
+  {
     id: '01-challenge-gym',
     number: '01',
     title: 'Challenge Gym',
@@ -129,6 +146,22 @@ export const MODULE_META = [
     'Implement a small DMARC policy helper with tests',
     'Relate spoofing controls to MailGuard hold rules',
   ],
+  },
+  {
+    id: '05a-email-threats',
+    number: '05a',
+    title: 'Email threats beyond auth',
+    phase: 'Email & DLP literacy',
+    blurb:
+      'BIMI, MTA-STS/TLS-RPT, DANE, phishing headers, sandboxing, S/MIME/PGP, and time-of-click rewriting.',
+    hours: 'est. 8-10h',
+    language: 'Conceptual',
+    languageDetail: 'Vendor-neutral email-threat literacy after SPF/DKIM/DMARC',
+    objectives: [
+      'Place BIMI, MTA-STS, TLS-RPT, and DANE beside SPF/DKIM/DMARC',
+      'Analyze phishing headers and attachment risk ethically',
+      'Contrast S/MIME/PGP with time-of-click URL rewriting',
+    ],
   },
   {
     id: '06-threat-model',

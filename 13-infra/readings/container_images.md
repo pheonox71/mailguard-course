@@ -39,6 +39,12 @@ curl -s http://127.0.0.1:8000/healthz
 - **“Put AWS keys in the Dockerfile for convenience.”** Layers leak; use runtime env / IAM roles instead.
 - **“Worker image must call cloud SQS on first boot.”** Local queue (LocalStack/ElasticMQ) is enough for the demo path.
 
+
+## Videos (verified)
+
+1. **[Docker Tutorial for Beginners](https://www.youtube.com/watch?v=fqMOX6JJhGo)**  
+   Why it helps: build tags used by Compose.
+
 ## Read these (verified)
 
 1. [Docker — Build images](https://docs.docker.com/build/)

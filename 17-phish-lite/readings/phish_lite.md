@@ -54,6 +54,12 @@ Ethics gate checklist:
 
 Phishing awareness tools train people to spot risky messages. Keep ethics first: informed participants, no real password capture, clear debrief. The graded kata scores quiz answers and computes a simple report-rate metric.
 
+
+## Videos (verified)
+
+1. **[Svelte Tutorial for Beginners](https://www.youtube.com/watch?v=3TVy6GdtNuQ)**  
+   Why it helps: UI stack for the awareness quiz.
+
 ## Read these (verified)
 
 1. [Svelte tutorial](https://svelte.dev/tutorial)

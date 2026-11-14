@@ -38,8 +38,13 @@ replicaCount: 1
 # Why render before install: catch template errors without mutating the cluster
 helm template myapp ./chart -f values-dev.yaml | kubectl apply -f -
 
-# Or Kustomize:
-kubectl apply -k overlays/dev   # Why -k: build overlay then apply in one step
+# Kustomize (shipped under starter/ — preferred in this module):
+kubectl kustomize starter/kustomize/overlays/dev   # Why: inspect rendered YAML first
+kubectl apply -k starter/kustomize/overlays/dev    # Why -k: build overlay then apply
+
+# kind load still required when the overlay pins mailguard-api:local
+docker build -t mailguard-api:local ../07-mailguard-api
+kind load docker-image mailguard-api:local
 ```
 
 ### Common misconceptions / what goes wrong
@@ -49,6 +54,12 @@ kubectl apply -k overlays/dev   # Why -k: build overlay then apply in one step
 - **“Overlays replace GitOps.”** Env packaging is necessary but not sufficient; Module 16 adds sync + policy so prod is not another laptop apply.
 - **“`:latest` in values is fine for prod.”** Mutable tags make rollbacks and incident timelines guesswork — pin digests or immutable tags.
 
+
+## Videos (verified)
+
+1. **[Helm Package Manager for Kubernetes](https://www.youtube.com/watch?v=fy8-G5H80uQ)**  
+   Why it helps: charts vs overlays literacy.
+
 ## Read these (verified)
 
 1. [Kubernetes probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
@@ -57,4 +68,4 @@ kubectl apply -k overlays/dev   # Why -k: build overlay then apply in one step
 
 ## Next step
 
-`helm_values_check` kata → quiz in module 16 for GitOps pull vs push.
+Assignment [`../assignments/k8s_helm_deepen.md`](../assignments/k8s_helm_deepen.md) → `helm_values_check` kata → quiz [`../quizzes/k8s_helm_deepen.md`](../quizzes/k8s_helm_deepen.md). GitOps pull vs push continues in Module 16.

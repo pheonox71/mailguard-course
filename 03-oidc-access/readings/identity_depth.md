@@ -48,6 +48,39 @@ Same user, two wires: JSON token validation vs XML assertion conditions. Device 
 - **“Password managers eliminate phishing.”** They reduce reuse and typing into random forms, but unlock phishing, malware, and shared-vault mistakes remain — model them (OWASP secrets / MFA sheets).
 - **“If SSO works in demo, federation is done.”** Audience/ACS mismatches and cert rollover are how production SSO breaks after the happy path.
 
+## Logout and revocation (OIDC)
+
+Login without logout design leaves sessions and refresh tokens alive after the user thinks they are done. Treat sign-out as an identity-control problem, not only a UI button.
+
+**Why this matters.** Clearing a local cookie does not end the IdP SSO session, and an unrevoked **refresh token** can mint new access tokens. On the job, admin portals and DLP consoles need honest logout notes: RP-initiated logout, token revocation, and what you still cannot kill (already-issued access tokens until they expire).
+
+**How logout / revocation works.**
+
+1. **App session end.** The relying party deletes its own session cookie / server session.
+2. **RP-initiated logout.** Redirect the browser to the IdP `end_session_endpoint` with `id_token_hint` and a registered `post_logout_redirect_uri` so the IdP session ends too ([OIDC RP-Initiated Logout](https://openid.net/specs/openid-connect-rpinitiated-1_0.html)).
+3. **Refresh-token revoke.** Call the IdP `revocation_endpoint` with the refresh token ([RFC 7009](https://www.rfc-editor.org/rfc/rfc7009)) so silent renew fails after logout.
+4. **Access-token lifetime.** Short-lived access tokens still work until `exp` unless you add introspection or a denylist — document that gap honestly.
+5. **Lab practice.** Use the local Keycloak lab ([`keycloak_lab.md`](./keycloak_lab.md)) to click through end-session and revocation against discovery document URLs.
+
+### Worked example (logout shape)
+
+```text
+1. User clicks Sign out in MailGuard admin
+2. App deletes local session
+3. Browser → GET {end_session_endpoint}
+     ?id_token_hint=<current id_token>
+     &post_logout_redirect_uri=http://127.0.0.1:3000/
+4. App → POST {revocation_endpoint}
+     token=<refresh_token>&token_type_hint=refresh_token
+5. Result: IdP SSO cookie cleared; refresh renew fails; access token dies at exp
+```
+
+### Misconceptions (logout)
+
+- **“Logout is only a front-end route change.”** Without IdP logout + refresh revoke, SSO bounce-back and renew keep the user in.
+- **“Revoking the refresh token kills the current access token instantly.”** Access tokens are usually bearer until expiry unless you add extra controls.
+- **“Back-channel logout is required for every lab.”** Useful in multi-tab estates; start with RP-initiated logout + revoke, then read Keycloak/OIDC back-channel docs as a deepen.
+
 ## Videos (verified)
 
 1. **[OAuth 2.0 and OpenID Connect (in plain English)](https://www.youtube.com/watch?v=996OiexHze0)** — OktaDev  

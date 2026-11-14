@@ -58,6 +58,12 @@ API services accept operator input; **workers** apply decisions asynchronously �
 - **“Python and Go can invent their own field names.”** Field drift causes silent parse failures; document and test one JSON contract.
 - **“The worker can call evaluate with different rules.”** Divergent policy engines are how allow/hold disagree across services — share vocabulary and fixtures.
 
+
+## Videos (verified)
+
+1. **[Learn Go Programming - Golang Tutorial for Beginners](https://www.youtube.com/watch?v=YS4e4q9oBaU)**  
+   Why it helps: Go concurrency/packages backdrop for the worker.
+
 ## Read these (verified)
 
 1. [Go — Getting Started](https://go.dev/doc/tutorial/getting-started)

@@ -16,6 +16,21 @@
 4. Map to a MailGuard mitigation you can show (authn, hold rules, least privilege, input validation).
 5. Prefer five solid mapped notes over a laundry list of unrelated CVEs. Use [CWE Top 25](https://cwe.mitre.org/top25/) when you need finer defect vocabulary.
 
+**OWASP Top 10 edition note.** Many labs and older notes still cite **2021** labels (e.g. A01 Broken Access Control, A03 Injection). The [OWASP Top 10:2025](https://owasp.org/Top10/2025/) list reorders and renames some categories — notably elevating **security misconfiguration**, introducing **software supply chain failures**, and **mishandling of exceptional conditions**. When you write notes, prefer **2025** category names when they fit; if you reuse a 2021 label from a lab guide, add a one-line mapping to 2025 so reviewers know you are current.
+
+| 2021 (common in labs) | 2025 (prefer in new notes) |
+|-----------------------|----------------------------|
+| A01 Broken Access Control | A01 Broken Access Control |
+| A05 Security Misconfiguration | A02 Security Misconfiguration |
+| (supply chain often under A08/A06) | A03 Software Supply Chain Failures |
+| A02 Cryptographic Failures | A04 Cryptographic Failures |
+| A03 Injection | A05 Injection |
+| A04 Insecure Design | A06 Insecure Design |
+| A07 Identification and Authentication Failures | A07 Authentication Failures |
+| A08 Software and Data Integrity Failures | A08 Software or Data Integrity Failures |
+| A09 Security Logging and Monitoring Failures | A09 Security Logging and Alerting Failures |
+| A10 SSRF (2021) | A10 Mishandling of Exceptional Conditions (2025; SSRF still matters — map via CWE when needed) |
+
 ```
 Local lab finding → OWASP/API category → MailGuard mitigation → evidence
          ↑ never point tools at systems you do not own
@@ -45,6 +60,12 @@ Security notes turn vague “we should be careful” into **named risks + concre
 - **“Screenshots alone prove understanding.”** Notes need the OWASP/API label and the fix path — tourism vs transfer.
 - **“Shared staging is fine for practice.”** Unauthorized testing is out of scope; local containers only.
 - **“Everything is A01.”** Mis-labeling hides the real fix (e.g. injection vs access control); use the right Top 10 / API row.
+
+
+## Videos (verified)
+
+1. **[OWASP Top 10 (2021 overview still useful with 2025 mapping note)](https://www.youtube.com/watch?v=pTQTJiJ4CIk)**  
+   Why it helps: category literacy for security notes.
 
 ## Read these (verified)
 

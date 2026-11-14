@@ -56,6 +56,12 @@ Keep claims honest: if you only failed a fixture in CI, do not say “production
 
 GitOps treats git as the desired state; a sync agent applies it. Policy-as-code stops unsafe manifests before they roll out. This module reuses Module 14 checks and adds a “bad manifest” fixture that must fail. GitOps + policy-as-code turn “hope the YAML is safe” into enforceable gates.
 
+
+## Videos (verified)
+
+1. **[GitOps with Argo CD](https://www.youtube.com/watch?v=MeUMfwc1srU)**  
+   Why it helps: pull sync mental model.
+
 ## Read these (verified)
 
 1. [OpenGitOps Principles](https://opengitops.dev/)

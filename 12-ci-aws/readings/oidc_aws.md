@@ -70,6 +70,12 @@ Why constrain `sub` to `main`: a feature-branch or fork job must not assume the 
 - **“Forks inherit the same deploy path.”** Pull requests from forks may still request OIDC depending on permissions — treat `pull_request_target` and write tokens as high risk; see GitHub’s OIDC hardening docs.
 - **“Task role = deploy role.”** The CI deploy role updates the service; the **task** role is what the running mail worker uses — keep them separate so a compromised container cannot redeploy itself as admin.
 
+
+## Videos (verified)
+
+1. **[GitHub Actions Certification – Full Course](https://www.youtube.com/watch?v=Tz7FsunBbfQ)**  
+   Why it helps: OIDC permissions context in Actions.
+
 ## Read these (verified)
 
 1. [GitHub Actions — OIDC with AWS](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services)

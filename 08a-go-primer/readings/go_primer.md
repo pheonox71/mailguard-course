@@ -105,6 +105,12 @@ cd /tmp/mg-go-primer && go test ./...
 - **“Call the cloud SDK from every package.”** Interfaces keep LocalStack/in-memory fakes testable; sprinkle SDK calls and unit tests need the network.
 - **“Tests are optional until SQS.”** Table-driven `go test` locks the decision contract before any broker exists.
 
+
+## Videos (verified)
+
+1. **[Learn Go Programming - Golang Tutorial for Beginners](https://www.youtube.com/watch?v=YS4e4q9oBaU)**  
+   Why it helps: Go toolchain before the worker module.
+
 ## Official docs
 
 1. [Go install](https://go.dev/doc/install)

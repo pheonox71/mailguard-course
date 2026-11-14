@@ -1,6 +1,6 @@
 # MailGuard Course
 
-**Live site:** [https://pheonox71.github.io/mailguard-course/](https://pheonox71.github.io/mailguard-course/)
+**Live site:** [MailGuard Course on GitHub Pages](https://pheonox71.github.io/mailguard-course/)
 
 > **AI assistance notice:** This course's content was researched and compiled with AI assistance. It has been reviewed for accuracy, but verify anything important against the linked primary sources (RFCs, official docs).
 
@@ -21,8 +21,8 @@ Students with CS fundamentals and comfort in Python who want a survey path acros
 ## Course flow
 
 1. **Module 00 — Setup** — install and version-check tools (Windows / macOS / Linux).
-2. **Language / tool primers** (read-only, Module 00 style) appear immediately **before** the first module that uses that stack (Bash, Python, SQL, TypeScript/Vue, Go, Docker, GitHub Actions, Terraform, Kubernetes YAML, Svelte). No assignments, quizzes, or downloads — progress checkbox only.
-3. **Modules 01–18** — each topic: **read on-site** → **assignment** → **tests** (when present) → **required quiz PDF** → separate **quiz answer key**.
+2. **Language / tool primers** (read-only, Module 00 style) appear immediately **before** the first module that uses that stack (Bash, Python, HTTP, SQL, TypeScript/Vue, Go, Docker, GitHub Actions, Terraform, Kubernetes YAML, Svelte). No assignments, quizzes, or downloads — progress checkbox only.
+3. **Modules 01–22** (plus primers and capstone **19**) — each build topic: **read on-site** → **assignment** → **tests** (when present) → **required quiz PDF** → separate **quiz answer key**. Primers stay read-only (mark complete only).
 4. Mark topics/modules complete in the browser (progress stored locally; resume CTA in the nav).
 5. Save finished assignments and filled quizzes under `my-work/` in the repo (not on the site).
 
@@ -32,7 +32,7 @@ Every module (including primers) is listed as **est. 8-10h**.
 
 ## Site features
 
-- **Live site:** [https://pheonox71.github.io/mailguard-course/](https://pheonox71.github.io/mailguard-course/)
+- **Live site:** [MailGuard Course on GitHub Pages](https://pheonox71.github.io/mailguard-course/)
 - Home / syllabus in learning order (Module 00 → capstone) with progress checkmarks
 - On-site rendered readings (including captioned diagrams where present)
 - Learning objectives at the top of each module page
@@ -71,7 +71,7 @@ The static server is rooted at `site/` only — parent folders such as `my-work/
 
 | Path | Role |
 |------|------|
-| [`00-setup/`](./00-setup/) … [`18-oss-ux-stretch/`](./18-oss-ux-stretch/) | Modules in learning order (includes `*a`/`*b` language/tool primers) |
+| [`00-setup/`](./00-setup/) … [`22-collab-review/`](./22-collab-review/) | Modules in learning order (includes `*a`/`*b`/`*c` language/tool primers; capstone is `19`) |
 | [`site/`](./site/) | Student website (readings UI + downloads) |
 | [`my-work/`](./my-work/) | Student’s completed assignments & quiz PDFs (not on the site) |
 | [`SYLLABUS.md`](./SYLLABUS.md) · [`PREREQUISITES.md`](./PREREQUISITES.md) · [`GLOSSARY.md`](./GLOSSARY.md) · [`CAPSTONE-RUBRIC.md`](./CAPSTONE-RUBRIC.md) | Module 0 orientation |
@@ -86,8 +86,8 @@ The static server is rooted at `site/` only — parent folders such as `my-work/
 
 ## GitHub Pages
 
-The course site is published from `site/` on pushes to `main` (GitHub Actions). It lives at:
+The course site is published from `site/` on pushes to `main` (GitHub Actions):
 
-**https://pheonox71.github.io/mailguard-course/**
+[MailGuard Course on GitHub Pages](https://pheonox71.github.io/mailguard-course/)
 
 Only `site/` is published. The workflow never links to or serves `my-work/`.

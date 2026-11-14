@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+namespace: mailguard-dev
+
+namePrefix: dev-
+
+# Why overlay patches: keep probes/requests in base; change only env-specific bits.
+patches:
+  - path: replica-patch.yaml
+  - path: image-patch.yaml
+
+commonLabels:
+  environment: dev

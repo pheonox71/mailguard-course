@@ -47,12 +47,71 @@ Why CA → issue → require that order: without a CA and issued cert first, “
 2. [step-ca](https://smallstep.com/docs/step-ca/)
 3. [Mozilla — TLS client auth overview](https://developer.mozilla.org/en-US/docs/Web/Security/Transport_Layer_Security)
 
-## Lab idea
+## Lab idea — openssl (or step-ca) + nginx/Caddy
 
 Private CA → client cert → require certificate on the admin vhost; document revocation workflow.
 
 Why that order: without a CA and issued cert first, “require client cert” only produces handshake failures you cannot debug.
 
+### Option A — openssl lab CA + client cert
+
+```bash
+# Lab-only keys — never reuse outside your laptop; do not commit private keys
+mkdir -p /tmp/mtls-lab && cd /tmp/mtls-lab
+openssl req -x509 -newkey rsa:2048 -nodes -keyout lab-ca.key -out lab-ca.crt \
+  -days 365 -subj "/CN=MailGuard Lab Client CA"
+openssl req -newkey rsa:2048 -nodes -keyout client.key -out client.csr \
+  -subj "/CN=device-42"
+openssl x509 -req -in client.csr -CA lab-ca.crt -CAkey lab-ca.key -CAcreateserial \
+  -out client.crt -days 90
+```
+
+### Option B — step-ca (sketch)
+
+```bash
+# After step-ca is initialized in your lab (see smallstep docs):
+step ca certificate device-42 client.crt client.key
+step certificate inspect client.crt
+```
+
+### nginx — require client cert on admin vhost
+
+```nginx
+server {
+  listen 443 ssl;
+  server_name admin.mail.example;
+  ssl_certificate     /etc/nginx/tls/server.crt;
+  ssl_certificate_key /etc/nginx/tls/server.key;
+  ssl_client_certificate /etc/nginx/tls/lab-ca.crt;
+  ssl_verify_client on;
+  location / {
+    proxy_pass http://127.0.0.1:8080;
+    proxy_set_header X-Client-DN $ssl_client_s_dn;
+  }
+}
+```
+
+### Caddy — client auth snippet
+
+```caddy
+admin.mail.example {
+  tls {
+    client_auth {
+      mode require
+      trust_pool file /etc/caddy/lab-ca.crt
+    }
+  }
+  reverse_proxy 127.0.0.1:8080
+}
+```
+
+Document CRL/OCSP: how you revoke `device-42` and how long clients keep a stolen cert trusted.
+
+## Videos (verified)
+
+1. **[Transport Layer Security (TLS) — Computerphile](https://www.youtube.com/watch?v=0TLDTodL7Lc)** — literacy backdrop for client vs server certs  
+   Why it helps: clarifies what mTLS adds after ordinary HTTPS.
+
 ## Next step
 
-`mtls_checks` kata → assignment → quiz.
+[`../assignments/mtls_ztna.md`](../assignments/mtls_ztna.md) → `mtls_checks` kata → quiz.

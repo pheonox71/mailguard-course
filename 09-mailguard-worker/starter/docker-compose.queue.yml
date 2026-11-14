@@ -1,0 +1,19 @@
+# Local SQS-compatible queue for MailGuard worker labs (ElasticMQ).
+# No cloud account or real credentials required.
+#
+#   cd 09-mailguard-worker/starter
+#   docker compose -f docker-compose.queue.yml up
+#
+# SQS API:  http://127.0.0.1:9324
+# Optional UI: http://127.0.0.1:9325
+#
+# AWS SDK / CLI labs may use any placeholder access key / secret; ElasticMQ
+# does not validate them. Never commit real cloud credentials.
+services:
+  elasticmq:
+    image: softwaremill/elasticmq-native:1.6.12
+    ports:
+      - "9324:9324"
+      - "9325:9325"
+    volumes:
+      - ./elasticmq.conf:/opt/elasticmq.conf:ro

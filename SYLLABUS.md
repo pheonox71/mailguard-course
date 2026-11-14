@@ -44,6 +44,9 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 - [ ] **00b — Python primer** · est. 8-10h · [`00b-python-primer/`](./00b-python-primer/)  
   **Done when:** Python/venv/pytest primer done; primer marked complete (read-only).
 
+- [ ] **00c — HTTP primer** · est. 8-10h · [`00c-http-primer/`](./00c-http-primer/)  
+  **Done when:** HTTP methods/status/headers/cookies/CORS/TLS literacy done; primer marked complete (read-only).
+
 - [ ] **01 — Challenge Gym** · est. 8-10h · [`01-challenge-gym/`](./01-challenge-gym/)  
   **Done when:** All Challenge Gym tests green from *your* `katas/` (incl. crypto hygiene); ≤1 page trade-offs; required quizzes completed after each reading (answer keys checked afterward).
 
@@ -61,7 +64,10 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
 ### Email & DLP literacy
 
 - [ ] **05 — Email authentication** · est. 8-10h · [`05-email-auth/`](./05-email-auth/)  
-  **Done when:** SPF/DKIM/DMARC literacy done; `dmarc_policy` + `dmarc_aggregate` + `mail_flow` katas green; ARC/gateway placement explained.
+  **Done when:** SPF/DKIM/DMARC literacy done; `dmarc_policy` + `dmarc_aggregate` + `mail_flow` katas green; ARC/gateway placement explained; `dmarc_policy` quiz done.
+
+- [ ] **05a — Email threats beyond auth** · est. 8-10h · [`05a-email-threats/`](./05a-email-threats/)  
+  **Done when:** BIMI/MTA-STS/TLS-RPT/DANE + phishing-header/sandboxing/S/MIME-PGP/URL-rewrite assignment + quiz done (vendor-neutral).
 
 - [ ] **06 — Threat model / secure SDLC** · est. 8-10h · [`06-threat-model/`](./06-threat-model/)  
   **Done when:** STRIDE-lite table for hold/release (≥6 rows); SAMM self-check paragraph; privacy note on held content.
@@ -151,10 +157,10 @@ Capstone polish sits **after Phase A (00–13)** and **before Phase B stretch (1
 
 ```text
 Module 0 (this file + prereqs + glossary)
-  → 00 Setup → 00a Bash primer → 00b Python primer
+  → 00 Setup → 00a Bash primer → 00b Python primer → 00c HTTP primer
   → 01 Challenge Gym
   → 02 MFA (+ passkeys) → 03 OIDC / identity depth → 04 ZTNA lite
-  → 05 Email auth → 06 Threat model
+  → 05 Email auth → 05a Email threats → 06 Threat model
   → 06a SQL primer → 07 API
   → 07a TypeScript/Vue primer → 08 Admin
   → 08a Go primer → 09 Worker → 10 Secure Drop → 11 Security notes

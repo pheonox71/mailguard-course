@@ -58,6 +58,12 @@ Prefer pinning third-party Actions by commit SHA in production (supply-chain har
 
 Continuous Integration catches broken rules engines before merge. Cloud deploy should use short-lived credentials — GitHub Actions OIDC to a cloud role is the modern default. This module’s kata validates workflow hygiene helpers (detect forbidden secret patterns; require a test job name).
 
+
+## Videos (verified)
+
+1. **[GitHub Actions Certification – Full Course](https://www.youtube.com/watch?v=Tz7FsunBbfQ)**  
+   Why it helps: CI before OIDC-to-AWS deploys.
+
 ## Read these (verified)
 
 1. [GitHub Actions — Workflow syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)

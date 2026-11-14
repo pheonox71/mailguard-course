@@ -66,6 +66,12 @@ Use the YAML in **Worked example** above. **How:** A PR event starts a VM, check
 - **“`actions/checkout@main` is fine forever.”** Unpinned tags move; prefer version tags or SHAs in real pipelines.
 - **“CI only needs to run on main.”** PR checks catch breakage before merge — Module 12 expects that habit.
 
+
+## Videos (verified)
+
+1. **[GitHub Actions Certification – Full Course to PASS the Exam](https://www.youtube.com/watch?v=Tz7FsunBbfQ)** — freeCodeCamp / Andrew Brown  
+   Why it helps: workflow YAML, jobs/steps, and secrets hygiene before Module 12.
+
 ## Official docs
 
 1. [GitHub Actions docs](https://docs.github.com/en/actions)

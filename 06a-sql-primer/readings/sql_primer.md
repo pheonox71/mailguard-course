@@ -47,9 +47,53 @@ Relational stores give strong consistency for account, rule, and audit data. Sec
 | Concept | Why you care |
 |---------|----------------|
 | Primary key | Stable id for a held message |
-| NOT NULL / constraints | Reject impossible states early |
-| `SELECT` / `INSERT` / `UPDATE` | Read and mutate hold rows |
+| Foreign keys | Rules/holds point at real accounts — orphan rows break audits |
+| `CHECK` constraints | Reject impossible `state` values early |
+| Indexes | Fast lookup by state / created_at for operator queues |
+| Transactions | Approve+audit insert commits together or not at all |
+| Parameterized queries | Stop SQL injection from operator/search input |
 | Migrations (awareness) | Schema changes ship with app versions (Alembic later) |
+
+## Parameterized queries (SQL injection)
+
+**Why:** String-concatenating user input into SQL lets an attacker change the query (classic injection). **How:** pass values as bound parameters:
+
+```sql
+-- Bad (never): "SELECT * FROM holds WHERE id = '" + user_id + "'"
+-- Good (shape):
+SELECT id, state FROM holds WHERE id = ?;   -- SQLite-style placeholder
+-- or $1 / %(id)s depending on the driver
+```
+
+## Transactions
+
+```sql
+BEGIN;
+UPDATE holds SET state = 'released' WHERE id = ? AND state = 'approved';
+INSERT INTO audit(hold_id, actor, action) VALUES (?, ?, 'release');
+COMMIT;
+-- On error: ROLLBACK so you never release without an audit row (or the reverse)
+```
+
+## CHECK, foreign keys, indexes
+
+```sql
+CREATE TABLE accounts (
+  id TEXT PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE holds (
+  id          TEXT PRIMARY KEY,
+  account_id  TEXT NOT NULL REFERENCES accounts(id),
+  state       TEXT NOT NULL CHECK (state IN ('held', 'approved', 'released', 'rejected')),
+  created_at  TEXT NOT NULL
+);
+
+CREATE INDEX holds_state_idx ON holds (state);
+```
+
+Why FKs: deleting an account should not leave holds that point nowhere (or should cascade deliberately). Why CHECK: typos like `relased` fail closed. Why index: operator UIs filter `WHERE state = 'held'` constantly.
 
 ## Install and run
 
@@ -63,7 +107,15 @@ Use the SQL sketch in **Worked example** above (`CREATE` → `INSERT` → `SELEC
 
 - **“Logs are enough for audit.”** Append-only logs help forensics, but hold/release needs queryable current state with constraints — tables answer “is this still held?” in one row.
 - **“In-memory is fine until launch.”** Restarts wipe holds; multi-instance APIs disagree on state. Sketch SQL early even if the kata stays in-memory.
-- **“Any string in `state` is fine.”** Without constraints/checks, typos (`relased`) become silent bugs; treat legal states as part of the schema design.
+- **“Any string in `state` is fine.”** Without CHECK constraints, typos (`relased`) become silent bugs; treat legal states as part of the schema design.
+- **“Escaping by hand is as good as parameters.”** Drivers’ bound parameters are the reliable fix; hand escaping misses encodings.
+- **“Indexes are free.”** They speed reads and slow writes — index the filter columns operators actually use.
+
+
+## Videos (verified)
+
+1. **[SQL Tutorial - Full Database Course for Beginners](https://www.youtube.com/watch?v=HXV3zeQKqGY)**  
+   Why it helps: tables/constraints before MailGuard persistence sketches.
 
 ## Official docs
 

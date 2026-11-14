@@ -64,11 +64,36 @@ Queue consumers must survive crashes and bad payloads. Idempotency plus a DLQ tu
 - **“Redelivery is rare.”** Crashes and timeouts are normal; non-idempotent handlers double-send.
 - **“LocalStack is optional busywork.”** Proving the interface locally catches contract bugs before cloud credentials and cost enter the story.
 
+## Local queue compose
+
+Bring up an SQS-compatible broker on your laptop (ElasticMQ):
+
+```bash
+cd 09-mailguard-worker/starter
+docker compose -f docker-compose.queue.yml up
+```
+
+- Compose file: [`../starter/docker-compose.queue.yml`](../starter/docker-compose.queue.yml)
+- Config (main + DLQ): [`../starter/elasticmq.conf`](../starter/elasticmq.conf)
+- API endpoint: `http://127.0.0.1:9324`
+- Queues: `mailguard-hold` → DLQ `mailguard-hold-dlq` after `maxReceiveCount = 3`
+
+Module 07 can enqueue the shared JSON contract via
+[`../../07-mailguard-api/starter/app/queue_producer.py`](../../07-mailguard-api/starter/app/queue_producer.py)
+(in-memory by default; comments show the ElasticMQ/LocalStack boto3 shape).
+
+
+## Videos (verified)
+
+1. **[Amazon SQS DLQ Setup Guide](https://www.youtube.com/watch?v=p4t0-_POkrI)**  
+   Why it helps: redrive / DLQ mental model (pair with local ElasticMQ).
+
 ## Read these (verified)
 
 1. [AWS SQS dead-letter queues](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
 2. [LocalStack SQS](https://docs.localstack.cloud/user-guide/aws/sqs/)
-3. [encoding/json](https://pkg.go.dev/encoding/json)
+3. [ElasticMQ](https://github.com/softwaremill/elasticmq) — SQS-compatible local broker used by the compose file above
+4. [encoding/json](https://pkg.go.dev/encoding/json)
 
 ## Next step
 

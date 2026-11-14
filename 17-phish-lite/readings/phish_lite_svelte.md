@@ -52,6 +52,18 @@ reportRate(3, 1)  // → 0.75
 2. [Vitest](https://vitest.dev/) / [Playwright](https://playwright.dev/)
 3. [NIST SP 800-50](https://csrc.nist.gov/publications/detail/sp/800-50/final) — awareness training concepts
 
+## Starter scaffold
+
+A SvelteKit-shaped lab lives in [`../starter/`](../starter/):
+
+- `src/routes/+page.svelte` — consent gate + visible **SIMULATION** label
+- `tests/ethics.test.js` — Vitest (`npm test`)
+- `e2e/smoke.spec.ts` + `playwright.config.ts` — Playwright smoke stub
+
+```bash
+cd 17-phish-lite/starter && npm install && npm test
+```
+
 ## Next step
 
-Extend `score.js` metrics → assignment → quiz. Optional: scaffold a local SvelteKit app outside `my-work` patterns you already use.
+Extend `score.js` metrics → assignment → quiz. Then wire scenarios into the starter UI.

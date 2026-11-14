@@ -13,12 +13,13 @@ Compose + Terraform for the MailGuard story, extended with Identity and Access M
 ## Start here
 
 1. [`readings/container_images.md`](./readings/container_images.md) — build `mailguard-api:local` / worker images
-2. [`readings/cloud_iam_posture.md`](./readings/cloud_iam_posture.md)
-3. Quiz → assignment (checklist against your Terraform/Compose)
-4. Infra as code for storage/IAM/queue
+2. [`readings/terraform_plan_walkthrough.md`](./readings/terraform_plan_walkthrough.md) — init → validate → plan
+3. [`readings/cloud_iam_posture.md`](./readings/cloud_iam_posture.md)
+4. Quiz → assignment (checklist against your Terraform/Compose)
+5. Infra as code for storage/IAM/queue
 
 **Done when:** compose demo + Terraform plan documented; IAM assignment checklist completed for *your* resources.
 
 ## Starter
 
-See `starter/docker-compose.yml` and `starter/main.tf.example`. Run `pytest -q` after implementing `katas/compose_checks.py`.
+See `starter/docker-compose.yml`, `starter/main.tf.example` (provider + commented remote backend + S3/SQS/IAM), and `starter/iam_policy_mailguard.json` / `.tf.hcl`. Run `pytest -q` after implementing `katas/compose_checks.py`.

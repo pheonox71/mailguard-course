@@ -82,11 +82,68 @@ cd /tmp/mg-ts-primer && npx tsc decision.ts && node decision.js
 
 **How:** A string union documents legal decisions; the compiler rejects `"hodl"`-style mistakes before a reviewer sees them.
 
+## Vue component example (Module 08 shape)
+
+**Why this matters.** A hold-queue table is not a one-off script: operators need reactive rows, typed decision labels, and a clear separation between “display helpers” and “API calls.” Vue’s Composition API (`<script setup>`) keeps that state next to the template without scattering `document.querySelector` calls. Module 08’s [`starter/`](../../08-mailguard-admin/starter/) boots this pattern under Vite.
+
+**How it works.**
+
+1. Declare a **typed** row model (`Decision` union + `HoldRow` interface).
+2. Hold rows in a **`ref`** so the table re-renders when data changes.
+3. Bind with `v-for` / mustache interpolation — no raw HTML injection for subjects.
+4. Keep cloud secrets out of the SFC; fetch through a backend later.
+
+### Worked example
+
+Minimal single-file component (same idea as `08-mailguard-admin/starter/src/App.vue`):
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue";
+
+type Decision = "hold" | "allow" | "reject";
+
+interface HoldRow {
+  id: string;
+  subject: string;
+  decision: Decision;
+}
+
+const rows = ref<HoldRow[]>([
+  { id: "msg-1", subject: "Q4 forecast.xlsx", decision: "hold" },
+]);
+
+function labelFor(d: Decision): string {
+  return d.toUpperCase(); // Why: display helper stays pure / testable
+}
+</script>
+
+<template>
+  <ul>
+    <li v-for="row in rows" :key="row.id">
+      {{ row.subject }} — {{ labelFor(row.decision) }}
+    </li>
+  </ul>
+</template>
+```
+
+```bash
+# Why typecheck in CI: catch Decision typos before a reviewer clicks Release
+cd 08-mailguard-admin/starter && npm install && npm run typecheck
+```
+
 ### Common misconceptions / what goes wrong
 
 - **“Types are just documentation.”** Without `strict` (or equivalent), `any` sneaks back in and the union buys nothing.
 - **“Vue templates do not need types.”** Form models and API responses still do — that is where allow/hold mix-ups hide.
 - **“Put the API key in the SPA for convenience.”** Browser bundles are public; use a backend-for-frontend or short-lived session instead.
+- **“`v-html` is fine for email subjects.”** Subjects are attacker-controlled text; interpolate as text nodes, not HTML.
+
+
+## Videos (verified)
+
+1. **[Vue.js Course for Beginners](https://www.youtube.com/watch?v=FXpIoQ_rT_c)**  
+   Why it helps: Vue 3 mental model before Module 08.
 
 ## Official docs
 

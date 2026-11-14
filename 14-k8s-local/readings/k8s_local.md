@@ -47,8 +47,20 @@ containers:
 ```bash
 # Why kind/minikube: practice the API without a cloud bill
 kind create cluster   # or: minikube start
+
+# --- kind load step (required for local tags) ---
+# Why: kind nodes do not see images that only exist in your host Docker daemon.
+# Build the Module 07 image, then import it into the kind cluster before apply.
+docker build -t mailguard-api:local ../07-mailguard-api
+kind load docker-image mailguard-api:local
+# How it works: kind copies the image layers into each node’s container runtime
+# so kubelet can start pods with image: mailguard-api:local (no registry pull).
+
 kubectl apply -f starter/deployment.yaml
-kubectl get pods      # Why: confirm Ready before claiming the demo works
+kubectl apply -f starter/service.yaml
+# Or Kustomize overlay (shared base + env patches):
+# kubectl apply -k starter/kustomize/overlays/dev
+kubectl get pods,svc   # Why: confirm Ready + ClusterIP before claiming the demo works
 ```
 
 ### Common misconceptions / what goes wrong
@@ -57,10 +69,17 @@ kubectl get pods      # Why: confirm Ready before claiming the demo works
 - **“No requests is fine on a laptop cluster.”** Without requests the scheduler cannot place fairly; a leak can OOM-kill neighbors — Module 14 checks expect requests.
 - **“Pods Running means users are served.”** `Running` ≠ Ready; until readiness passes, the Service may have empty Endpoints.
 - **“This is production GitOps.”** Laptop `kubectl apply` is practice — sync agents and policy come in Module 16; keep claims proportional.
+- **“`docker build` is enough for kind.”** Without `kind load docker-image` (or a registry the nodes can pull), pods stay `ImagePullBackOff` for `:local` tags.
 
 ## Short intro
 
 Containers need orchestration for restarts, probes, and resource requests. Start local (kind/minikube), keep manifests small, and document gaps honestly.
+
+
+## Videos (verified)
+
+1. **[Kubernetes Course - Full Beginners Tutorial](https://www.youtube.com/watch?v=d6WC5n9G_sM)**  
+   Why it helps: kind/minikube backdrop.
 
 ## Read these (verified)
 
@@ -73,6 +92,14 @@ Containers need orchestration for restarts, probes, and resource requests. Start
 
 Email gateways and identity sidecars often run as Deployments. Knowing **how** probes and requests behave under failure is more valuable than memorizing every kubectl flag.
 
+## Starter layout
+
+| Path | Role |
+|------|------|
+| [`../starter/deployment.yaml`](../starter/deployment.yaml) | Standalone Deployment (probes + requests) |
+| [`../starter/service.yaml`](../starter/service.yaml) | ClusterIP Service for `mailguard-api` |
+| [`../starter/kustomize/`](../starter/kustomize/) | Base + `overlays/dev` for env patches |
+
 ## Next step
 
-Continue with the assignment from the downloads on this page.
+Continue with the [assignment](../assignments/k8s_local.md). For overlays/Helm deepen, see [`k8s_helm_deepen.md`](./k8s_helm_deepen.md).

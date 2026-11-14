@@ -69,6 +69,12 @@ docker run --rm hello-world
 - **“Bake credentials into the image for easier demos.”** Layers are extractable; use runtime env/secrets.
 - **“Compose is only for production orchestration.”** Local Compose approximates topology; production may use other schedulers later (Module 13+).
 
+
+## Videos (verified)
+
+1. **[Docker Tutorial for Beginners](https://www.youtube.com/watch?v=fqMOX6JJhGo)**  
+   Why it helps: images/containers before Compose demos.
+
 ## Official docs
 
 1. [Docker overview](https://docs.docker.com/get-started/overview/)

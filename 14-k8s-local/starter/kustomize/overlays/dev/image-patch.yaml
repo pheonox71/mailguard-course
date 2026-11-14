@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mailguard-api
+spec:
+  template:
+    spec:
+      containers:
+        - name: api
+          # Why pin :local: kind-loaded image tag must match what you built.
+          image: mailguard-api:local

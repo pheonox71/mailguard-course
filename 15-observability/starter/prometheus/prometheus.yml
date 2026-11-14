@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: mailguard-demo
+    static_configs:
+      - targets: ["host.docker.internal:8000"]
+        # On Linux Docker, you may need network_mode or the app container IP.
+        # For a pure local demo, run the instrumented app on :8000 and point
+        # Prometheus at it via extra_hosts / host networking as needed.

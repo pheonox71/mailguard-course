@@ -76,6 +76,12 @@ terraform plan   # Why: see the diff before any apply
 - **“Commit `terraform.tfstate` for the team.”** State often holds secrets and resource IDs — use a remote backend with access control, not git history.
 - **“Skip plan and just `apply -auto-approve`.”** You lose the blast-radius review that makes Terraform worth using for mail/identity IAM.
 
+
+## Videos (verified)
+
+1. **[Learn Terraform (and AWS) by Building a Dev Environment](https://www.youtube.com/watch?v=iRaai1IBlB0)** — freeCodeCamp  
+   Why it helps: plan/apply mental model before Module 13.
+
 ## Official docs
 
 1. [Terraform intro](https://developer.hashicorp.com/terraform/intro)

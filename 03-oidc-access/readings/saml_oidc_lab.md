@@ -54,6 +54,12 @@ If `redirect_uri` differs by a trailing slash, honest clients fail closed — an
 - **“Clock skew of a few minutes can be ignored.”** Too-tight windows lock out users; too-loose windows widen replay — document skew like cert rollover.
 - **“IdP-initiated SAML is always safer.”** Without careful RelayState/ACS handling it enables open redirects; treat it as an operational choice with controls, not a free upgrade.
 
+
+## Videos (verified)
+
+1. **[OAuth 2.0 and OpenID Connect (in plain English)](https://www.youtube.com/watch?v=996OiexHze0)**  
+   Why it helps: OIDC vs related flows literacy.
+
 ## Read these (verified)
 
 1. [OASIS SAML 2.0 Technical Overview](https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html)

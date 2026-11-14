@@ -81,6 +81,12 @@ spec:
 - **“kubectl apply once and you’re done.”** Without probes/requests (Module 14) and later GitOps/policy (Module 16), laptop apply drifts from what production needs.
 - **“Compose knowledge transfers 1:1.”** Labels/selectors and Service DNS are the Kubernetes networking contract — missing `matchLabels` means zero traffic.
 
+
+## Videos (verified)
+
+1. **[Kubernetes Course - Full Beginners Tutorial](https://www.youtube.com/watch?v=d6WC5n9G_sM)**  
+   Why it helps: Pod/Deployment/Service literacy.
+
 ## Official docs
 
 1. [Kubernetes overview](https://kubernetes.io/docs/concepts/overview/)

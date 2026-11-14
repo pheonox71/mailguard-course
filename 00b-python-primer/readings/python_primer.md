@@ -80,6 +80,12 @@ python /tmp/mg_hello.py
 
 **How:** A pure function returns a decision string — the same shape as later hold-rule katas, without frameworks yet.
 
+
+## Videos (verified)
+
+1. **[Python for Beginners – Full Course](https://www.youtube.com/watch?v=eWRfhZAVOY8)**  
+   Why it helps: venv/functions mindset before pytest katas.
+
 ## Official docs
 
 1. [Python 3 tutorial](https://docs.python.org/3/tutorial/)

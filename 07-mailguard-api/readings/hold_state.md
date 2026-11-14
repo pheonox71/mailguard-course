@@ -55,6 +55,12 @@ Persistence (Postgres + SQLAlchemy/Alembic) belongs in your stretch lab — the 
 - **“We’ll add states later; strings are fine.”** Unchecked free-text states drift (`aproved`); model an enum/FSM early and test every edge.
 - **“Alembic is optional busywork.”** Hand-edited production schemas diverge across environments; migrations are how schema changes travel with the app.
 
+
+## Videos (verified)
+
+1. **[FastAPI Tutorial for Beginners – Full Course](https://www.youtube.com/watch?v=VirndPTeRaw)**  
+   Why it helps: HTTP handlers around the hold state machine.
+
 ## Read these (verified)
 
 1. [FastAPI — Path operation configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/)
