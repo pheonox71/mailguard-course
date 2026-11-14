@@ -29,11 +29,13 @@ Later: RP-initiated logout and/or refresh_token revoke
 **1. Start Keycloak (Docker).** Use a lab-only admin password from your environment — do not commit real credentials.
 
 ```bash
-# Lab only — bind to localhost. Set KEYCLOAK_ADMIN_PASSWORD in your shell
+# Lab only — bind to localhost. Set KC_BOOTSTRAP_ADMIN_PASSWORD in your shell
 # to a local throwaway value (never a production secret).
+# Current Keycloak docs use KC_BOOTSTRAP_ADMIN_USERNAME / KC_BOOTSTRAP_ADMIN_PASSWORD.
+# Older guides used KEYCLOAK_ADMIN / KEYCLOAK_ADMIN_PASSWORD — those names are obsolete.
 docker run --rm -p 127.0.0.1:8080:8080 \
-  -e KEYCLOAK_ADMIN=admin \
-  -e KEYCLOAK_ADMIN_PASSWORD \
+  -e KC_BOOTSTRAP_ADMIN_USERNAME=admin \
+  -e KC_BOOTSTRAP_ADMIN_PASSWORD \
   quay.io/keycloak/keycloak:26.0 start-dev
 ```
 

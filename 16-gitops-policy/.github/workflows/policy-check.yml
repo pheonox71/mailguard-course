@@ -1,15 +1,15 @@
 # INSTRUCTIONAL SAMPLE ONLY — GitHub Actions does not run workflows nested under
 # a module folder. The live gate is the repo-root workflow:
 #   .github/workflows/policy-check.yml
-# Copy this shape into a fork root if you are practicing outside this monorepo.
-name: Manifest policy check (instructional sample)
+# Keep this file in sync with that root workflow so students can copy the shape
+# into a fork root when practicing outside this monorepo.
+name: Manifest policy check
 
 on:
-  pull_request:
   push:
-    paths:
-      - '16-gitops-policy/fixtures/**'
-      - '16-gitops-policy/policy/**'
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -37,3 +37,4 @@ jobs:
             echo "expected policy failure on bad_deployment.yaml" >&2
             exit 1
           fi
+          echo "bad fixture correctly failed policy check"

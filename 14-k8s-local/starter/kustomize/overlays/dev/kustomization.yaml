@@ -13,5 +13,7 @@ patches:
   - path: replica-patch.yaml
   - path: image-patch.yaml
 
-commonLabels:
-  environment: dev
+labels:
+  - includeSelectors: true
+    pairs:
+      environment: dev

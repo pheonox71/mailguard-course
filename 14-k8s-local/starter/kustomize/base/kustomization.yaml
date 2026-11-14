@@ -5,6 +5,10 @@ resources:
   - deployment.yaml
   - service.yaml
 
-commonLabels:
-  app.kubernetes.io/name: mailguard-api
-  app.kubernetes.io/part-of: mailguard
+# commonLabels is deprecated (kustomize v5+); labels + includeSelectors
+# preserves the old commonLabels behavior (metadata + selectors).
+labels:
+  - includeSelectors: true
+    pairs:
+      app.kubernetes.io/name: mailguard-api
+      app.kubernetes.io/part-of: mailguard

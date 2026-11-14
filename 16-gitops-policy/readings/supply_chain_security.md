@@ -25,7 +25,13 @@ source → CI build (pinned deps) → SBOM + cosign signature → policy verify 
 ```bash
 # Conceptual — pin + SBOM + sign (tool versions vary)
 cosign sign --yes "$IMAGE_DIGEST"
-cosign verify "$IMAGE_DIGEST"
+# Keyless (Fulcio): cosign requires who signed + which OIDC issuer issued the
+# cert. Without --certificate-identity / --certificate-oidc-issuer (or --key for
+# a public key), verify cannot decide which signatures to trust.
+cosign verify "$IMAGE_DIGEST" \
+  --certificate-identity="$CERT_IDENTITY" \
+  --certificate-oidc-issuer="$CERT_OIDC_ISSUER"
+# Key-based alternative: cosign verify --key cosign.pub "$IMAGE_DIGEST"
 # SBOM: syft / trivy image "$IMAGE" -o cyclonedx-json > sbom.json
 ```
 
