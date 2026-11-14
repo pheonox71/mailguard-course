@@ -8,6 +8,11 @@ Minimal FastAPI app with:
 
 Persistence is an in-memory store (`starter/app/store.py`). Swap for Postgres in a stretch lab.
 
+The store imports the rules engine from `katas/` by default. Set
+`MAILGUARD_USE_SOLUTIONS=1` only when you intentionally want the reference
+implementation (and optional `NotImplementedError` fallback). The module
+`Dockerfile` omits `solutions/` unless built with `--build-arg INCLUDE_SOLUTIONS=1`.
+
 ## Run locally
 
 ```bash

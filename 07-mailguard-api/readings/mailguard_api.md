@@ -46,6 +46,27 @@ If a broad allow rule were listed *before* the domain hold, the same message wou
 
 **On the job.** Email DLP and identity-adjacent gateways expose the same pattern: policy CRUD + evaluate on the message path. Interviewers care that you can explain first-match vs scoring, why pure evaluation is testable, and what an in-memory store cannot prove in production — vendor-neutral skills for any cloud mail or SaaS security API.
 
+### Rules engine import: katas vs solutions
+
+**Why.** The FastAPI starter (`starter/app/store.py`) must call the same `matches` / `evaluate` contract the tests cover. Importing `solutions/` by default would ship answer code into every local run and every Module 13/14 demo image — students would never exercise their own stubs, and the container would leak reference implementations. Keeping the default on `katas/` makes the API fail closed on unfinished work (`NotImplementedError`) until the student implements the engine.
+
+**How.**
+
+1. Default: `store.py` imports from `katas.rules_engine` (your stubs).
+2. Opt-in reference path: set environment variable `MAILGUARD_USE_SOLUTIONS=1`. Then the starter loads `solutions/` and, if a kata function still raises `NotImplementedError`, falls back to the reference implementation and logs a clear warning that fallback happened.
+3. Docker image (`Dockerfile`): copies `katas/` always; copies then **removes** `solutions/` unless you build with `--build-arg INCLUDE_SOLUTIONS=1` (which also sets `MAILGUARD_USE_SOLUTIONS` in the image). Default `mailguard-api:local` therefore does not ship answers.
+4. Course CI proves reference correctness by copying `solutions/` over `katas/` before pytest (same pattern as other modules) — after that copy, the default kata import is the reference code for that job.
+
+```bash
+# Student / default demo image (katas only)
+docker build -t mailguard-api:local .
+
+# Demo before the kata is finished (includes solutions + enables fallback)
+docker build --build-arg INCLUDE_SOLUTIONS=1 -t mailguard-api:local .
+# or locally without Docker:
+MAILGUARD_USE_SOLUTIONS=1 uvicorn starter.app.main:app --port 8000
+```
+
 ## Short intro
 
 MailGuard’s product thread needs a **rules API**: operators create rules; the service decides whether an outbound message is allowed, held for review, or rejected. This module is a thin FastAPI-shaped service with an in-memory store and a pure evaluation function you can unit-test without standing up a database.
