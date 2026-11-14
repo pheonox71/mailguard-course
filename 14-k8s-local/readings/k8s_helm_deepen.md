@@ -35,16 +35,18 @@ replicaCount: 1
 ```
 
 ```bash
-# Why render before install: catch template errors without mutating the cluster
-helm template myapp ./chart -f values-dev.yaml | kubectl apply -f -
-
-# Kustomize (shipped under starter/ — preferred in this module):
-kubectl kustomize starter/kustomize/overlays/dev   # Why: inspect rendered YAML first
-kubectl apply -k starter/kustomize/overlays/dev    # Why -k: build overlay then apply
-
-# kind load still required when the overlay pins mailguard-api:local
+# kind load still required when the chart/overlay pins mailguard-api:local
 docker build -t mailguard-api:local ../07-mailguard-api
 kind load docker-image mailguard-api:local
+
+# Helm chart shipped under starter/chart/
+# Why render before install: catch template errors without mutating the cluster
+helm template mailguard ./starter/chart -f ./starter/chart/values-dev.yaml
+helm upgrade --install mailguard ./starter/chart -f ./starter/chart/values-dev.yaml
+
+# Kustomize (also shipped — overlays patch replicas/image only):
+kubectl kustomize starter/kustomize/overlays/dev   # Why: inspect rendered YAML first
+kubectl apply -k starter/kustomize/overlays/dev    # Why -k: build overlay then apply
 ```
 
 ### Common misconceptions / what goes wrong
@@ -57,7 +59,7 @@ kind load docker-image mailguard-api:local
 
 ## Videos (verified)
 
-1. **[Helm Package Manager for Kubernetes](https://www.youtube.com/watch?v=fy8-G5H80uQ)**  
+1. **[Package Management with Helm // Kubernetes Tutorial](https://www.youtube.com/watch?v=zka4lJbA-y4)** — Christian Lempa  
    Why it helps: charts vs overlays literacy.
 
 ## Read these (verified)

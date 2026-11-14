@@ -16,6 +16,7 @@ Deploy the MailGuard app shape to kind/minikube with probes and resource request
 
 - `starter/deployment.yaml` + `starter/service.yaml`
 - `starter/kustomize/base` + `starter/kustomize/overlays/dev`
+- `starter/chart/` (Helm) — `helm template` / `helm upgrade --install` after `kind load`
 
 **Done when:** app healthy on kind/minikube; probes + requests present; overlay rendered; README notes GitOps as next.
 

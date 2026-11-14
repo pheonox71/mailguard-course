@@ -1,0 +1,5 @@
+# Dev overlay values for kind (same image tag as Kustomize overlay).
+replicaCount: 1
+image:
+  repository: mailguard-api
+  tag: "local"

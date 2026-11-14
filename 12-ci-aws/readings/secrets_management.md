@@ -37,14 +37,20 @@ IAM fragment (conceptual — tighten ARNs to your account):
 SOPS sketch (do not commit real keys):
 
 ```bash
-# Encrypt a values file for git (age or KMS backend in real labs)
-sops --encrypt --age "$AGE_PUBLIC_KEY" secrets.enc.yaml > secrets.enc.yaml
+# Encrypt a plaintext values file for git (age or KMS backend in real labs).
+# Why --output / a separate path: shell redirection (`> secrets.enc.yaml`) truncates
+# the target *before* sops reads it when input and output are the same path —
+# you would encrypt an empty file and lose the plaintext. Prefer --output, or
+# write ciphertext to a different name.
+sops --encrypt --age "$AGE_PUBLIC_KEY" --output secrets.enc.yaml secrets.yaml
+# Equivalent: sops --encrypt --age "$AGE_PUBLIC_KEY" secrets.yaml > secrets.enc.yaml
 ```
 
 ### Common misconceptions / what goes wrong
 
 - **“`.env` in the repo is fine if gitignored on my machine.”** Teammates and CI will copy it; use examples with placeholders only.
 - **“Base64 is encryption.”** Encoding is not confidentiality.
+- **“Redirect ciphertext onto the same path as the plaintext input.”** `sops … secrets.yaml > secrets.yaml` truncates the file first; use `--output` or a distinct ciphertext filename.
 - **“Rotation means wait for expiry.”** Also rotate after personnel changes and suspected leaks.
 - **“The deploy role can read all secrets.”** Scope to named prefixes; separate task role from deploy role.
 

@@ -35,7 +35,8 @@ conftest test fixtures/bad_deployment.yaml -p policy/
 # Expected: FAIL — missing readinessProbe / :latest
 conftest test fixtures/good_deployment.yaml -p policy/
 # Expected: PASS
-# Sample CI shape: .github/workflows/policy-check.yml under this module (copy into your fork root)
+# Live CI gate (repo root): ../../.github/workflows/policy-check.yml
+# Nested instructional copy (GitHub does not run it): .github/workflows/policy-check.yml
 ```
 
 ```text
@@ -59,7 +60,7 @@ GitOps treats git as the desired state; a sync agent applies it. Policy-as-code 
 
 ## Videos (verified)
 
-1. **[GitOps with Argo CD](https://www.youtube.com/watch?v=MeUMfwc1srU)**  
+1. **[ArgoCD Tutorial for Beginners | GitOps CD for Kubernetes](https://www.youtube.com/watch?v=MeU5_k9ssrs)** — TechWorld with Nana  
    Why it helps: pull sync mental model.
 
 ## Read these (verified)

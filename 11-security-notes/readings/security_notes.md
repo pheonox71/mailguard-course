@@ -64,7 +64,7 @@ Security notes turn vague “we should be careful” into **named risks + concre
 
 ## Videos (verified)
 
-1. **[OWASP Top 10 (2021 overview still useful with 2025 mapping note)](https://www.youtube.com/watch?v=pTQTJiJ4CIk)**  
+1. **[OWASP top 10 Explained](https://www.youtube.com/watch?v=U_tsCjOrcK4)** — 2025-oriented overview (use with the mapping note above)  
    Why it helps: category literacy for security notes.
 
 ## Read these (verified)

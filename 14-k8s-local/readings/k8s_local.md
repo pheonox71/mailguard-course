@@ -99,6 +99,7 @@ Email gateways and identity sidecars often run as Deployments. Knowing **how** p
 | [`../starter/deployment.yaml`](../starter/deployment.yaml) | Standalone Deployment (probes + requests) |
 | [`../starter/service.yaml`](../starter/service.yaml) | ClusterIP Service for `mailguard-api` |
 | [`../starter/kustomize/`](../starter/kustomize/) | Base + `overlays/dev` for env patches |
+| [`../starter/chart/`](../starter/chart/) | Helm chart (`values.yaml` + `values-dev.yaml`) |
 
 ## Next step
 

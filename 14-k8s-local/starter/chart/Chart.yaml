@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mailguard-api
+description: Local kind/minikube chart for the MailGuard API shape (Module 14)
+type: application
+version: 0.1.0
+appVersion: "local"

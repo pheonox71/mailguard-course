@@ -1,5 +1,8 @@
-# Sample CI job students can copy into their fork — fails on the bad fixture.
-name: Manifest policy check
+# INSTRUCTIONAL SAMPLE ONLY — GitHub Actions does not run workflows nested under
+# a module folder. The live gate is the repo-root workflow:
+#   .github/workflows/policy-check.yml
+# Copy this shape into a fork root if you are practicing outside this monorepo.
+name: Manifest policy check (instructional sample)
 
 on:
   pull_request:
@@ -16,35 +19,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Conftest
-        uses: instrumenta/conftest-action@master
-        # If the action is unavailable, install via:
-        #   curl -sL https://github.com/open-policy-agent/conftest/releases/download/v0.56.0/conftest_0.56.0_Linux_x86_64.tar.gz | tar xz
+      - name: Install Conftest
+        run: |
+          set -euo pipefail
+          VER=0.56.0
+          curl -fsSL "https://github.com/open-policy-agent/conftest/releases/download/v${VER}/conftest_${VER}_Linux_x86_64.tar.gz" \
+            | tar -xz -C /usr/local/bin conftest
+          conftest --version
       - name: Good fixture must pass
         working-directory: 16-gitops-policy
-        run: |
-          if command -v conftest >/dev/null 2>&1; then
-            conftest test fixtures/good_deployment.yaml -p policy/
-          else
-            echo "Install conftest locally; policy/require_probes.rego is the contract."
-            # Lightweight stand-in so the sample job still teaches the shape:
-            grep -q readinessProbe fixtures/good_deployment.yaml
-            grep -q livenessProbe fixtures/good_deployment.yaml
-            ! grep -q ':latest' fixtures/good_deployment.yaml
-          fi
+        run: conftest test fixtures/good_deployment.yaml -p policy/
       - name: Bad fixture must fail
         working-directory: 16-gitops-policy
         run: |
-          if command -v conftest >/dev/null 2>&1; then
-            if conftest test fixtures/bad_deployment.yaml -p policy/; then
-              echo "expected policy failure" >&2
-              exit 1
-            fi
-          else
-            # Stand-in: bad fixture lacks probes / uses :latest
-            grep -q ':latest' fixtures/bad_deployment.yaml
-            if grep -q readinessProbe fixtures/bad_deployment.yaml; then
-              echo "bad fixture unexpectedly has readinessProbe" >&2
-              exit 1
-            fi
+          set -euo pipefail
+          if conftest test fixtures/bad_deployment.yaml -p policy/; then
+            echo "expected policy failure on bad_deployment.yaml" >&2
+            exit 1
           fi

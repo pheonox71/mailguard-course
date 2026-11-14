@@ -7,11 +7,8 @@ from typing import Literal
 CsfFunction = Literal["govern", "identify", "protect", "detect", "respond", "recover"]
 LegacyPhase = Literal[
     "preparation",
-    "detection",
-    "analysis",
-    "containment",
-    "eradication",
-    "recovery",
+    "detection_analysis",
+    "containment_eradication_recovery",
     "postincident",
 ]
 Phase = CsfFunction
@@ -25,7 +22,7 @@ def phase_order() -> tuple[Phase, ...]:
     return csf_function_order()
 
 
-def legacy_rev2_phases() -> tuple[str, ...]:
+def legacy_rev2_phases() -> tuple[LegacyPhase, ...]:
     return (
         "preparation",
         "detection_analysis",

@@ -7,18 +7,15 @@ from typing import Literal
 # CSF 2.0 function names used by SP 800-61r3 (not the Rev. 2 four-phase labels).
 CsfFunction = Literal["govern", "identify", "protect", "detect", "respond", "recover"]
 
-# Historical Rev. 2 phase labels — still seen in older runbooks.
+# Historical SP 800-61 Rev. 2 four-phase lifecycle (literacy only; r3 uses CSF).
 LegacyPhase = Literal[
     "preparation",
-    "detection",
-    "analysis",
-    "containment",
-    "eradication",
-    "recovery",
+    "detection_analysis",
+    "containment_eradication_recovery",
     "postincident",
 ]
 
-# Back-compat alias for tests/quizzes that still say "Phase".
+# Back-compat alias for tests/quizzes that still say "Phase" — means CSF function.
 Phase = CsfFunction
 
 
@@ -32,8 +29,8 @@ def phase_order() -> tuple[Phase, ...]:
     raise NotImplementedError
 
 
-def legacy_rev2_phases() -> tuple[str, ...]:
-    """Historical Rev. 2 lifecycle labels (for literacy only)."""
+def legacy_rev2_phases() -> tuple[LegacyPhase, ...]:
+    """Historical Rev. 2 four-phase lifecycle labels (for literacy only)."""
     raise NotImplementedError
 
 

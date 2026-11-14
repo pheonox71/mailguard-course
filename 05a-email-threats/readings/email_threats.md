@@ -47,7 +47,7 @@ Why reports (`rua` for DMARC, TLS-RPT for STS) before `enforce`: you learn which
 
 ## Videos (verified)
 
-1. **[Email Authentication Explained (SPF, DKIM, DMARC)](https://www.youtube.com/watch?v=SN5-DnOH8RQ)** — practical backdrop before BIMI/STS  
+1. **[CertMike Explains DMARC, DKIM and SPF](https://www.youtube.com/watch?v=Q8NUW3CZRvw)** — Mike Chapple  
    Why it helps: refreshes Module 05 so the “beyond auth” controls have a base.
 
 ## Read these (verified)

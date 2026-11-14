@@ -1,0 +1,30 @@
+# Default values for local kind/minikube demos.
+# Why pin tag "local": matches `docker build -t mailguard-api:local` + `kind load`.
+replicaCount: 1
+
+image:
+  repository: mailguard-api
+  tag: "local"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+probes:
+  readiness:
+    path: /healthz
+    port: 8000
+    initialDelaySeconds: 3
+    periodSeconds: 5
+  liveness:
+    path: /healthz
+    port: 8000
+    initialDelaySeconds: 10
+    periodSeconds: 10
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi

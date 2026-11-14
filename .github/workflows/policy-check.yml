@@ -1,0 +1,37 @@
+# Runs Conftest against Module 16 fixtures. Nested copy under
+# 16-gitops-policy/.github/workflows/ is instructional only (GitHub ignores it).
+name: Manifest policy check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Conftest
+        run: |
+          set -euo pipefail
+          VER=0.56.0
+          curl -fsSL "https://github.com/open-policy-agent/conftest/releases/download/v${VER}/conftest_${VER}_Linux_x86_64.tar.gz" \
+            | tar -xz -C /usr/local/bin conftest
+          conftest --version
+      - name: Good fixture must pass
+        working-directory: 16-gitops-policy
+        run: conftest test fixtures/good_deployment.yaml -p policy/
+      - name: Bad fixture must fail
+        working-directory: 16-gitops-policy
+        run: |
+          set -euo pipefail
+          if conftest test fixtures/bad_deployment.yaml -p policy/; then
+            echo "expected policy failure on bad_deployment.yaml" >&2
+            exit 1
+          fi
+          echo "bad fixture correctly failed policy check"

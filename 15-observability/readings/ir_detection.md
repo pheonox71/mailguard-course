@@ -60,8 +60,8 @@ Alert: admin Ada signed in from Region A at 10:00 UTC and Region B at 10:25 UTC
 
 ## Videos (verified)
 
-1. **[NIST Cybersecurity Framework overview](https://www.youtube.com/watch?v=S9KxqZ8q1kY)**  
-   Why it helps: CSF backdrop for 800-61r3.
+1. **[Overview - NIST Cybersecurity Framework 2.0](https://www.youtube.com/watch?v=f-6J7-WqcGE)** — Optic Cyber  
+   Why it helps: CSF 2.0 backdrop for SP 800-61r3.
 
 ## Keep in mind
 
