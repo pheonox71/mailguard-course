@@ -13,4 +13,4 @@ Complete after [`../readings/k8s_helm_deepen.md`](../readings/k8s_helm_deepen.md
 
 - Dev overlay renders; pods Ready on kind/minikube after image load
 - Answers explain why/how (not only command names)
-- Quiz [`../quizzes/k8s_helm_deepen.md`](../quizzes/k8s_helm_deepen.md) attempted before the answer key
+- Quiz [`../quizzes/14-k8s-local-k8s_helm_deepen.pdf`](../quizzes/14-k8s-local-k8s_helm_deepen.pdf) attempted before the answer key
