@@ -4,7 +4,7 @@
 
 **Order:** reading → this assignment → implement/demo → required quiz.
 
-Save the finished copy under `my-work/assignments/`.
+Answer the blank copy already under `my-work/assignments/` (do not edit this module file).
 
 ## Demo checklist
 

@@ -2,7 +2,7 @@
 
 name threats on the MailGuard hold path, tie them to mitigations you already built, and run a short secure Software Development Life Cycle (**SDLC**) self-check.
 
-**No office-hours FAQ** — self-serve readings, assignment, quiz. The student saves finished work under [`../my-work/`](../my-work/).
+**No office-hours FAQ** — self-serve readings, assignment, quiz. Blank assignments and quiz PDFs are already under [`../my-work/`](../my-work/); the student answers them in place.
 
 ## What this teaches
 

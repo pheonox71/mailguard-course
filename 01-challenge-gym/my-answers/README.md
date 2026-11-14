@@ -1,7 +1,7 @@
 # My answers — Challenge Gym
 
-Finished assignment answers for this module belong under [`../../my-work/assignments/`](../../my-work/assignments/) in the course repo (for example `01-challenge-gym-totp_verify.md`).
+Blank assignment sheets for this module are already under [`../../my-work/assignments/`](../../my-work/assignments/) (for example `01-challenge-gym-totp_verify.md`). Answer them in place.
 
-Blank question sheets stay in [`../assignments/`](../assignments/). Do not paste answers into those files.
+Leave [`../assignments/`](../assignments/) unchanged — do not paste answers into those course-source files.
 
-Filled quiz PDFs go in [`../../my-work/quizzes/`](../../my-work/quizzes/).
+Blank fillable quiz PDFs are already under [`../../my-work/quizzes/`](../../my-work/quizzes/).

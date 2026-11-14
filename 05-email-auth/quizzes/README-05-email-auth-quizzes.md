@@ -1,6 +1,6 @@
 # Email auth — quizzes
 
-Required quizzes after readings. Download fillable quiz PDFs from the course site and save completed copies under [`../../my-work/quizzes/`](../../my-work/quizzes/).
+Required quizzes after readings. Blank fillable quiz PDFs are already under [`../../my-work/quizzes/`](../../my-work/quizzes/) — answer them in place (site downloads remain available for a fresh blank).
 
 | After reading | Quiz |
 |---------------|------|

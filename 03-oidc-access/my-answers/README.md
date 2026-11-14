@@ -1,3 +1,5 @@
 # My answers — OIDC / access
 
-Save finished assignment answers under [`../../my-work/assignments/`](../../my-work/assignments/). Filled quiz PDFs go in [`../../my-work/quizzes/`](../../my-work/quizzes/). Leave blank assignments under this module unchanged.
+Blank assignment sheets and fillable quiz PDFs for this module are already under [`../../my-work/`](../../my-work/). Open those files and answer in place — no copying needed.
+
+Leave the blank sheets under this module’s `assignments/` / site downloads unchanged.

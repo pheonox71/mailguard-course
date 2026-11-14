@@ -208,8 +208,8 @@ def build_pdf(src: Path, dest: Path) -> int:
     story.append(Paragraph(md_inline_to_xml(title), title_style))
     story.append(
         Paragraph(
-            "Fillable quiz — type answers in the fields, then save a copy under "
-            "<font face='Courier'>my-work/quizzes/</font> in the course repo. "
+            "Fillable quiz — type answers in the fields. Blank copies are already under "
+            "<font face='Courier'>my-work/quizzes/</font>; answer them in place. "
             "Answer keys are not included.",
             meta_style,
         )

@@ -12,7 +12,7 @@ Student fills assignments and implements stubs. Course content uses AI assistanc
 |------|-----|
 | **CS fundamentals** | Comfortable with variables, functions, data structures, basic algorithms, and reading error messages. |
 | **Python 3** | Write small modules, use a virtualenv, run scripts from a terminal. Strongest language assumed. |
-| **Git** | Clone/commit; read a diff; keep finished assignments and quiz PDFs under `my-work/`. |
+| **Git** | Clone/commit; read a diff; answer the blank assignments and quiz PDFs already under `my-work/`. |
 | **Command line** | `cd`, env vars, pipes, install packages with `pip`. |
 | **English technical reading** | RFCs, OWASP cheat sheets, library docs (linked from readings). |
 

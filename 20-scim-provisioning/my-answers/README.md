@@ -1,8 +1,6 @@
 # Module 20 — my-answers
 
-Prefer saving finished assignments and filled quiz PDFs under [`../../my-work/`](../../my-work/).
+Blank assignment and quiz files are already under [`../../my-work/`](../../my-work/). Answer them in place:
 
-Suggested paths:
-
-- Assignments → `../../my-work/assignments/20-scim-*.md`
-- Quiz PDFs → `../../my-work/quizzes/20-scim-provisioning-*.pdf`
+- Assignment → `../../my-work/assignments/20-scim-provisioning-scim_provisioning.md`
+- Quiz PDF → `../../my-work/quizzes/20-scim-provisioning-scim_provisioning.pdf`

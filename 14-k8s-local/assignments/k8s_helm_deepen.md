@@ -1,6 +1,6 @@
 # Assignment — kind + Kustomize / Helm deepen
 
-Complete after [`../readings/k8s_helm_deepen.md`](../readings/k8s_helm_deepen.md). Save your answers under `my-work/assignments/` (copy this file).
+Complete after [`../readings/k8s_helm_deepen.md`](../readings/k8s_helm_deepen.md). Answer the blank copy already under `my-work/assignments/` (do not edit this module file).
 
 1. **Why** keep Deployment probes and resource requests in a shared **base**, then patch only replicas/image in an overlay? What drifts if you fork the whole YAML tree per environment?
 2. Render the dev overlay without mutating the cluster. Paste (or summarize) the command you used and **how** `kubectl kustomize` / `kubectl apply -k` differs from raw `kubectl apply -f`.

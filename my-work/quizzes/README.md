@@ -1,17 +1,17 @@
-# Completed quiz PDFs
+# Quizzes (blank fillable PDFs)
 
-Save filled quiz PDFs here after downloading them from the course site (**Download quiz (PDF)**).
+Blank fillable quiz PDFs for every graded topic are already here. Open the matching PDF, type answers in the form fields, and save in place — no need to download a copy first (site downloads remain available if you want a fresh blank).
 
-Suggested naming: `<module-id>-<topic>.pdf`  
+Naming: `<module-id>-<topic>.pdf`  
 Example: `01-challenge-gym-totp_verify.pdf`
 
-Quiz downloads are questions only (fillable form fields). Answer keys stay separate and are not part of the PDF.
+These PDFs are questions only (fillable form fields). Answer keys stay separate on the course site and are **not** part of these files or this folder.
 
-## Module checklist (suggested filenames)
+## Module checklist (filenames)
 
 | Module | Example quiz PDF names |
 |--------|------------------------|
-| 01–18 | `01-challenge-gym-totp_verify.pdf`, … (follow site download names) |
+| 01–18 | `01-challenge-gym-totp_verify.pdf`, … |
 | 19 Capstone | `19-capstone-capstone_mail_filter.pdf` |
 | 20 SCIM | `20-scim-provisioning-scim_provisioning.pdf` |
 | 21 Global privacy/collab | `21-global-privacy-collab-global_privacy_collab.pdf` |

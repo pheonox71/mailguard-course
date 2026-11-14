@@ -2,7 +2,7 @@
 
 Student-facing site for **MailGuard Course** (cloud-security learning). Browse the syllabus, **read module readings in the browser**, then download assignments, tests, and fillable quiz PDFs to complete offline.
 
-Finished student work is **not** stored or served by this site. Save completed assignments and filled quiz PDFs under the course-repo path `my-work/` (the static site never links to or serves that folder).
+Finished student work is **not** stored or served by this site. Blank assignments and quiz PDFs are already under the course-repo path `my-work/` — answer them in place (the static site never links to or serves that folder).
 
 ## Run locally (fast preview)
 

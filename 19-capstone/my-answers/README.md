@@ -1,8 +1,6 @@
 # Module 19 — my-answers
 
-Prefer saving finished assignments and filled quiz PDFs under [`../../my-work/`](../../my-work/).
+Blank assignment and quiz files are already under [`../../my-work/`](../../my-work/). Answer them in place:
 
-Suggested paths:
-
-- Assignments → `../../my-work/assignments/19-capstone-*.md`
-- Quiz PDFs → `../../my-work/quizzes/19-capstone-*.pdf`
+- Assignment → `../../my-work/assignments/19-capstone-capstone_self_grade.md`
+- Quiz PDF → `../../my-work/quizzes/19-capstone-capstone_mail_filter.pdf`

@@ -8,7 +8,7 @@ Student-facing course for cloud-security skills: setup → identity / MFA → em
 
 Assignment answers, filled quiz PDFs, and kata implementations are filled in by the student.
 
-**Student work folder:** Completed personal assignments and filled quiz PDFs live under [`my-work/`](./my-work/) (`my-work/assignments/`, `my-work/quizzes/`) in this repository. They are **not** accessible from the course website — the site never links to or serves those files.
+**Student work folder:** Blank assignments and fillable quiz PDFs are pre-populated under [`my-work/`](./my-work/) (`my-work/assignments/`, `my-work/quizzes/`). Answer them in place — no file copying. They are **not** accessible from the course website — the site never links to or serves those files.
 
 ---
 
@@ -24,7 +24,7 @@ Students with CS fundamentals and comfort in Python who want a survey path acros
 2. **Language / tool primers** (read-only, Module 00 style) appear immediately **before** the first module that uses that stack (Bash, Python, HTTP, SQL, TypeScript/Vue, Go, Docker, GitHub Actions, Terraform, Kubernetes YAML, Svelte). No assignments, quizzes, or downloads — progress checkbox only.
 3. **Modules 01–22** (plus primers and capstone **19**) — each build topic: **read on-site** → **assignment** → **tests** (when present) → **required quiz PDF** → separate **quiz answer key**. Primers stay read-only (mark complete only).
 4. Mark topics/modules complete in the browser (progress stored locally; resume CTA in the nav).
-5. Save finished assignments and filled quizzes under `my-work/` in the repo (not on the site).
+5. Answer the blank assignments and quiz PDFs already under `my-work/` in the repo (not on the site).
 
 Every module (including primers) is listed as **est. 8-10h**.
 
@@ -73,7 +73,7 @@ The static server is rooted at `site/` only — parent folders such as `my-work/
 |------|------|
 | [`00-setup/`](./00-setup/) … [`22-collab-review/`](./22-collab-review/) | Modules in learning order (includes `*a`/`*b`/`*c` language/tool primers; capstone is `19`) |
 | [`site/`](./site/) | Student website (readings UI + downloads) |
-| [`my-work/`](./my-work/) | Student’s completed assignments & quiz PDFs (not on the site) |
+| [`my-work/`](./my-work/) | Pre-populated blank assignments & quiz PDFs for student answers (not on the site) |
 | [`SYLLABUS.md`](./SYLLABUS.md) · [`PREREQUISITES.md`](./PREREQUISITES.md) · [`GLOSSARY.md`](./GLOSSARY.md) · [`CAPSTONE-RUBRIC.md`](./CAPSTONE-RUBRIC.md) | Module 0 orientation |
 
 ---

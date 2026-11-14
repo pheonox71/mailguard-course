@@ -2,7 +2,7 @@
 
 Short checks **after** each kata’s reading (and before or alongside the assignment). Quizzes are a **required** step alongside readings, assignments, and tests.
 
-Download fillable quiz PDFs from the course site and save completed copies under [`../../my-work/quizzes/`](../../my-work/quizzes/).
+Blank fillable quiz PDFs are already under [`../../my-work/quizzes/`](../../my-work/quizzes/) — answer them in place (site downloads remain available for a fresh blank).
 
 ## Pattern (reuse in later modules)
 

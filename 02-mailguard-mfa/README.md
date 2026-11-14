@@ -4,7 +4,7 @@
 
 Multi-Factor Authentication (**MFA**) on the MailGuard API path: Time-based One-Time Password (**TOTP**) enroll/verify + recovery codes, with a **passkeys / Web Authentication (WebAuthn)** reading track for phishing-resistant MFA.
 
-The student saves finished assignments and filled quiz PDFs under [`../my-work/`](../my-work/).
+Blank assignments and quiz PDFs are already under [`../my-work/`](../my-work/); the student answers them in place.
 
 ## What this teaches
 

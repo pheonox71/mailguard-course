@@ -2,7 +2,7 @@
 
 Orientation for **mailguard-course**: ordered modules, rough hours, progress checkboxes, and **done when** criteria. Work top → bottom through Phase A. Phase B can overlap once the MailGuard API, admin, CI, and infra exist.
 
-Assignment answers, filled quiz PDFs, and kata implementations are filled in by the student under [`my-work/`](./my-work/) (see root README). Course content uses AI assistance — see the notice on the site and README.
+Blank assignments and quiz PDFs are already under [`my-work/`](./my-work/); the student answers them in place (see root README). Kata implementations stay in each module’s stubs. Course content uses AI assistance — see the notice on the site and README.
 
 **Related:** [PREREQUISITES.md](./PREREQUISITES.md) · [GLOSSARY.md](./GLOSSARY.md) · [CAPSTONE-RUBRIC.md](./CAPSTONE-RUBRIC.md)
 

@@ -15,7 +15,7 @@ Bring the MailGuard thread together: a small outbound **mail filter** the studen
 
 1. Runnable filter (CLI or tiny API) that classifies sample outbound messages
 2. Automated tests for the rule engine
-3. Completed [`assignments/capstone_self_grade.md`](./assignments/capstone_self_grade.md) saved under `my-work/assignments/`
+3. Completed [`assignments/capstone_self_grade.md`](./assignments/capstone_self_grade.md) filled under `my-work/assignments/` (blank already there)
 4. Short demo notes (commands + expected output)
 
 ## Workflow

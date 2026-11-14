@@ -2,7 +2,7 @@
 
 **Language:** Conceptual (Markdown tables and short answers). No application language is required.
 
-**Order:** reading → this assignment (save finished answers under `my-work/assignments/`) → required quiz PDF, then separate answer key.
+**Order:** reading → assignment under `my-work/assignments/` (blank already there) → required quiz PDF under `my-work/quizzes/`, then separate answer key on the site.
 
 ## Part A — Scope (4 bullets)
 

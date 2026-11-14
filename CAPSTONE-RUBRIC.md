@@ -85,6 +85,6 @@ Mark yourself honestly:
 - Cloning a commercial DLP/email product’s UI or branding  
 - Certificate walls without linked modules  
 - Office-hours / “ask the author” FAQ for other students — this course is self-serve  
-- Editing answers into the blank module `assignments/` / quiz sources instead of saving finished work under `my-work/`
+- Editing answers into the blank module `assignments/` / quiz sources instead of filling the pre-populated copies under `my-work/`
 
 When in doubt, prefer a smaller green demo over a larger unfinished monorepo.

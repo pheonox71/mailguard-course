@@ -1,8 +1,6 @@
 # Module 21 — my-answers
 
-Prefer saving finished assignments and filled quiz PDFs under [`../../my-work/`](../../my-work/).
+Blank assignment and quiz files are already under [`../../my-work/`](../../my-work/). Answer them in place:
 
-Suggested paths:
-
-- Assignments → `../../my-work/assignments/21-global-privacy-*.md`
-- Quiz PDFs → `../../my-work/quizzes/21-global-privacy-collab-*.pdf`
+- Assignment → `../../my-work/assignments/21-global-privacy-collab-global_privacy_collab.md`
+- Quiz PDF → `../../my-work/quizzes/21-global-privacy-collab-global_privacy_collab.pdf`

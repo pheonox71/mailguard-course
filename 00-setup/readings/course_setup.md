@@ -113,7 +113,7 @@ Any editor is fine (VS Code, Cursor, Neovim, etc.). Install a Python extension i
 
 ### 5. PDF reader for quizzes
 
-Use a reader that can fill AcroForm PDFs (many browsers work; Preview / Adobe Reader / Okular also fine). Save finished PDFs under `my-work/quizzes/`.
+Use a reader that can fill AcroForm PDFs (many browsers work; Preview / Adobe Reader / Okular also fine). Blank quiz PDFs are already under `my-work/quizzes/` — answer them in place.
 
 ---
 

@@ -1,3 +1,3 @@
 # Module 00 — my-answers
 
-Prefer saving finished assignments and filled quiz PDFs under the course-root [`../../my-work/`](../../my-work/) folders so all modules stay in one place.
+Module 00 has no assignment or quiz. Blank sheets for later modules are already under course-root [`../../my-work/`](../../my-work/).

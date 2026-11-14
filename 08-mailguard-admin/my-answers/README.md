@@ -1,3 +1,3 @@
 # Module 08 — my-answers
 
-Prefer saving finished work under [`../../my-work/`](../../my-work/).
+Blank assignments and quiz PDFs for this module are already under [`../../my-work/`](../../my-work/). Answer them in place — no copying needed.

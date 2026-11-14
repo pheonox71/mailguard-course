@@ -97,7 +97,7 @@ def main() -> int:
         return 2
 
     _banner("Demo complete")
-    print("Next: fill assignments/capstone_self_grade.md under my-work/assignments/.")
+    print("Next: fill my-work/assignments/19-capstone-capstone_self_grade.md (blank already there).")
     return 0
 
 

@@ -410,7 +410,7 @@ async function main() {
             : ''
         : `<section class="download-panel" aria-label="Module download packs">
       <h2>Module download packs</h2>
-      <p>Required path: read on-site → assignment → tests (when present) → <strong>required quiz</strong>. Quiz PDFs are fillable questions only; answer keys are separate downloads. Save finished work under <code>my-work/</code>.</p>
+      <p>Required path: read on-site → assignment → tests (when present) → <strong>required quiz</strong>. Blank assignments and quiz PDFs are already under <code>my-work/</code> — answer them in place. Quiz PDFs are fillable questions only; answer keys are separate site downloads.</p>
       <div class="download-actions">
         ${assignmentButtons.join('') || '<span class="muted">No assignment pack for this module yet.</span>'}
         ${quizButtons.join('')}
