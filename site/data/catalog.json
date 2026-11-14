@@ -1,7 +1,7 @@
 {
   "brand": "MailGuard Course",
   "tagline": "Cloud-security learning for students building identity, email DLP, and secure SaaS skills.",
-  "generatedAt": "2026-11-13T15:08:56.303Z",
+  "generatedAt": "2026-11-14T03:19:01.612Z",
   "modules": [
     {
       "id": "00-setup",
@@ -105,6 +105,41 @@
           "label": "python primer",
           "path": "00b-python-primer/readings/python_primer.md",
           "href": "content/00b-python-primer/readings/python_primer.md"
+        }
+      ]
+    },
+    {
+      "id": "00c-http-primer",
+      "number": "00c",
+      "title": "HTTP primer",
+      "phase": "Foundations",
+      "blurb": "Methods, status codes, headers, cookies, CORS, and TLS before OIDC and the MailGuard API.",
+      "hours": "est. 8-10h",
+      "language": "HTTP",
+      "languageDetail": "HTTP/1.1 literacy · status codes · headers · cookies · CORS · TLS",
+      "objectives": [
+        "Name common methods and what safe vs idempotent means",
+        "Read status codes and key headers without guessing",
+        "Explain cookies, CORS, and TLS at a literacy level for later labs"
+      ],
+      "readOnly": true,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "http_primer",
+          "label": "http primer",
+          "path": "00c-http-primer/readings/http_primer.md",
+          "href": "content/00c-http-primer/readings/http_primer.md"
         }
       ]
     },
@@ -367,6 +402,12 @@
       "answerKeysZip": null,
       "readings": [
         {
+          "id": "mfa_enroll",
+          "label": "mfa enroll",
+          "path": "02-mailguard-mfa/readings/mfa_enroll.md",
+          "href": "content/02-mailguard-mfa/readings/mfa_enroll.md"
+        },
+        {
           "id": "passkeys_webauthn",
           "label": "passkeys webauthn",
           "path": "02-mailguard-mfa/readings/passkeys_webauthn.md",
@@ -457,6 +498,12 @@
           "label": "identity depth",
           "path": "03-oidc-access/readings/identity_depth.md",
           "href": "content/03-oidc-access/readings/identity_depth.md"
+        },
+        {
+          "id": "keycloak_lab",
+          "label": "keycloak lab",
+          "path": "03-oidc-access/readings/keycloak_lab.md",
+          "href": "content/03-oidc-access/readings/keycloak_lab.md"
         },
         {
           "id": "saml_oidc_lab",
@@ -641,6 +688,41 @@
           "label": "mail flow dmarc analytics",
           "path": "05-email-auth/readings/mail_flow_dmarc_analytics.md",
           "href": "content/05-email-auth/readings/mail_flow_dmarc_analytics.md"
+        }
+      ]
+    },
+    {
+      "id": "05a-email-threats",
+      "number": "05a",
+      "title": "Email threats beyond auth",
+      "phase": "Email & DLP literacy",
+      "blurb": "BIMI, MTA-STS/TLS-RPT, DANE, phishing headers, sandboxing, S/MIME/PGP, and time-of-click rewriting.",
+      "hours": "est. 8-10h",
+      "language": "Conceptual",
+      "languageDetail": "Vendor-neutral email-threat literacy after SPF/DKIM/DMARC",
+      "objectives": [
+        "Place BIMI, MTA-STS, TLS-RPT, and DANE beside SPF/DKIM/DMARC",
+        "Analyze phishing headers and attachment risk ethically",
+        "Contrast S/MIME/PGP with time-of-click URL rewriting"
+      ],
+      "readOnly": false,
+      "hasModuleDir": true,
+      "assignments": [],
+      "assignmentsZip": null,
+      "assignmentSingle": null,
+      "tests": [],
+      "testsZip": null,
+      "quizzes": [],
+      "quizzesZip": null,
+      "quizzesPdfZip": null,
+      "quizSingle": null,
+      "answerKeysZip": null,
+      "readings": [
+        {
+          "id": "email_threats",
+          "label": "email threats",
+          "path": "05a-email-threats/readings/email_threats.md",
+          "href": "content/05a-email-threats/readings/email_threats.md"
         }
       ]
     },
@@ -1363,6 +1445,12 @@
           "label": "oidc aws",
           "path": "12-ci-aws/readings/oidc_aws.md",
           "href": "content/12-ci-aws/readings/oidc_aws.md"
+        },
+        {
+          "id": "secrets_management",
+          "label": "secrets management",
+          "path": "12-ci-aws/readings/secrets_management.md",
+          "href": "content/12-ci-aws/readings/secrets_management.md"
         }
       ]
     },
@@ -1470,6 +1558,18 @@
           "label": "cloud iam posture",
           "path": "13-infra/readings/cloud_iam_posture.md",
           "href": "content/13-infra/readings/cloud_iam_posture.md"
+        },
+        {
+          "id": "container_images",
+          "label": "container images",
+          "path": "13-infra/readings/container_images.md",
+          "href": "content/13-infra/readings/container_images.md"
+        },
+        {
+          "id": "terraform_plan_walkthrough",
+          "label": "terraform plan walkthrough",
+          "path": "13-infra/readings/terraform_plan_walkthrough.md",
+          "href": "content/13-infra/readings/terraform_plan_walkthrough.md"
         }
       ]
     },
@@ -1671,6 +1771,12 @@
           "href": "content/15-observability/readings/ir_detection.md"
         },
         {
+          "id": "otel_prometheus_lab",
+          "label": "otel prometheus lab",
+          "path": "15-observability/readings/otel_prometheus_lab.md",
+          "href": "content/15-observability/readings/otel_prometheus_lab.md"
+        },
+        {
           "id": "sre_basics",
           "label": "sre basics",
           "path": "15-observability/readings/sre_basics.md",
@@ -1761,6 +1867,12 @@
           "label": "gitops policy",
           "path": "16-gitops-policy/readings/gitops_policy.md",
           "href": "content/16-gitops-policy/readings/gitops_policy.md"
+        },
+        {
+          "id": "supply_chain_security",
+          "label": "supply chain security",
+          "path": "16-gitops-policy/readings/supply_chain_security.md",
+          "href": "content/16-gitops-policy/readings/supply_chain_security.md"
         }
       ]
     },
