@@ -36,8 +36,9 @@ body {
     radial-gradient(900px 600px at 95% 10%, rgba(226, 163, 106, 0.16), transparent 50%),
     linear-gradient(165deg, #050b10 0%, #0a151c 45%, #071018 100%);
   line-height: 1.55;
-  font-variant-ligatures: no-common-ligatures;
-  font-feature-settings: "liga" 0, "clig" 0;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0;
+  -webkit-font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0;
 }
 
 a {
@@ -180,8 +181,9 @@ a:hover {
   line-height: 1.15;
   color: var(--text);
   animation: rise 0.9s ease 0.08s both;
-  font-variant-ligatures: no-common-ligatures;
-  font-feature-settings: "liga" 0, "clig" 0;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0;
+  -webkit-font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0;
 }
 
 .lede {
@@ -346,8 +348,9 @@ html[data-theme='light'] .ai-notice strong {
   font-family: var(--font-display);
   font-size: clamp(1.7rem, 3vw, 2.4rem);
   letter-spacing: -0.03em;
-  font-variant-ligatures: no-common-ligatures;
-  font-feature-settings: "liga" 0, "clig" 0;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0;
+  -webkit-font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0;
 }
 
 .section-lede {
@@ -699,12 +702,52 @@ html[data-theme='light'] .ai-notice strong {
 
 .reading-body h1,
 .reading-body h2,
-.reading-body h3 {
-  font-family: var(--font-display);
-  letter-spacing: -0.02em;
+.reading-body h3,
+.reading-body h4 {
+  /* Body face for prose headings: Fraunces ffi joins read as ligatures even with liga off */
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  word-spacing: 0.2em;
   line-height: 1.25;
-  font-variant-ligatures: no-common-ligatures;
-  font-feature-settings: "liga" 0, "clig" 0;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0;
+  -webkit-font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0;
+}
+
+/* Beat Google Fonts / theme color rules: ligatures stay off on prose headings */
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body .reading-body,
+html body .reading-body h1,
+html body .reading-body h2,
+html body .reading-body h3,
+html body .reading-body h4,
+html[data-theme='light'] .reading-body h1,
+html[data-theme='light'] .reading-body h2,
+html[data-theme='light'] .reading-body h3,
+html[data-theme='light'] .reading-body h4 {
+  font-variant-ligatures: none !important;
+  font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0 !important;
+  -webkit-font-feature-settings: "liga" 0, "clig" 0, "dlig" 0, "hlig" 0, "calt" 0 !important;
+}
+
+html body .reading-body h1,
+html body .reading-body h2,
+html body .reading-body h3,
+html body .reading-body h4,
+html[data-theme='light'] .reading-body h1,
+html[data-theme='light'] .reading-body h2,
+html[data-theme='light'] .reading-body h3,
+html[data-theme='light'] .reading-body h4 {
+  font-family: var(--font-body) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.015em !important;
+  word-spacing: 0.2em !important;
+  font-kerning: none !important;
 }
 
 .reading-body h1 {
