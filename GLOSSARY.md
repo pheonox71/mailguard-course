@@ -86,6 +86,12 @@ Course content uses AI assistance — verify important facts against linked prim
 | **GitOps** | Desired cluster/app state lives in Git; a controller syncs the live system to match. |
 | **Policy-as-code** | Express admission/security rules as code/config (e.g. Kyverno, Conftest) checked in CI or cluster. |
 
+## Developer tooling
+
+| Term | Meaning |
+|------|---------|
+| **Python virtual environment (venv)** | Per-project folder with its own Python interpreter link and installed packages (`python -m venv .venv`), so a project's deps don't clash with system Python or other projects; activate it before `pip install`/`pytest`. Git-ignored, never committed. |
+
 ## Quality & process
 
 | Term | Meaning |

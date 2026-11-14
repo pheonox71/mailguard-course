@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T11:38:36.529Z",
+  "generatedAt": "2026-11-14T11:55:08.218Z",
   "sections": [
     {
       "title": "Identity & authentication",
@@ -353,6 +353,17 @@
           "term": "Policy-as-code",
           "abbrev": "",
           "meaning": "Express admission/security rules as code/config (e.g. Kyverno, Conftest) checked in CI or cluster."
+        }
+      ]
+    },
+    {
+      "title": "Developer tooling",
+      "terms": [
+        {
+          "id": "python-virtual-environment-venv",
+          "term": "Python virtual environment (venv)",
+          "abbrev": "",
+          "meaning": "Per-project folder with its own Python interpreter link and installed packages (`python -m venv .venv`), so a project's deps don't clash with system Python or other projects; activate it before `pip install`/`pytest`. Git-ignored, never committed."
         }
       ]
     },

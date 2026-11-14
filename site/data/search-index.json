@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T11:38:36.536Z",
+  "generatedAt": "2026-11-14T11:55:08.226Z",
   "entries": [
     {
       "kind": "module",
@@ -1490,6 +1490,16 @@
       "topicId": null,
       "body": "Express admission/security rules as code/config (e.g. Kyverno, Conftest) checked in CI or cluster.",
       "snippet": "Express admission/security rules as code/config (e.g. Kyverno, Conftest) checked in CI or cluster."
+    },
+    {
+      "kind": "glossary",
+      "id": "python-virtual-environment-venv",
+      "title": "Python virtual environment (venv)",
+      "moduleId": null,
+      "moduleTitle": "Developer tooling",
+      "topicId": null,
+      "body": "Per-project folder with its own Python interpreter link and installed packages (`python -m venv .venv`), so a project's deps don't clash with system Python or other projects; activate it before `pip install`/`pytest`. Git-ignored, never committed.",
+      "snippet": "Per-project folder with its own Python interpreter link and installed packages (`python -m venv .venv`), so a project's deps don't clash with system Python or o"
     },
     {
       "kind": "glossary",
