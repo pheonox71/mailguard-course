@@ -7,3 +7,4 @@
 5. Auditable intent; easier policy and least privilege (who may attach BCC); avoids surprise PII copies on every allow.
 6. **Alembic** — versions schema with the app so deploys are repeatable; hand-edits drift environments and break rollbacks.
 7. **412** when If-Match / ETag / row version is stale (optimistic concurrency). **Idempotency-Key** dedupes client retries of the same mutating request (replay stored response; no second side effect) — it does not replace FSM checks or ETags.
+8. Read-then-write lets both callers see `held` and both “succeed,” duplicating approve events and breaking audit. Atomic `UPDATE … WHERE state='held'` yields `rowcount` 1 for the winner and 0 for the loser (return 409/412); exactly one transition wins.

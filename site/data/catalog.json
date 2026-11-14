@@ -1,7 +1,7 @@
 {
   "brand": "MailGuard Course",
   "tagline": "Cloud-security learning for students building identity, email DLP, and secure SaaS skills.",
-  "generatedAt": "2026-11-14T04:58:20.095Z",
+  "generatedAt": "2026-11-14T05:26:52.465Z",
   "modules": [
     {
       "id": "00-setup",
@@ -355,19 +355,20 @@
       "hasModuleDir": true,
       "assignments": [
         {
+          "id": "mfa_enroll",
+          "label": "mfa enroll",
+          "href": "downloads/02-mailguard-mfa/assignments/mfa_enroll.md",
+          "filename": "mfa_enroll.md"
+        },
+        {
           "id": "passkeys_webauthn",
           "label": "passkeys webauthn",
           "href": "downloads/02-mailguard-mfa/assignments/passkeys_webauthn.md",
           "filename": "passkeys_webauthn.md"
         }
       ],
-      "assignmentsZip": null,
-      "assignmentSingle": {
-        "id": "passkeys_webauthn",
-        "label": "passkeys webauthn",
-        "href": "downloads/02-mailguard-mfa/assignments/passkeys_webauthn.md",
-        "filename": "passkeys_webauthn.md"
-      },
+      "assignmentsZip": "downloads/02-mailguard-mfa/assignments.zip",
+      "assignmentSingle": null,
       "tests": [
         {
           "id": "mfa_enroll",
@@ -379,6 +380,15 @@
       "testsZip": "downloads/02-mailguard-mfa/tests.zip",
       "quizzes": [
         {
+          "id": "mfa_enroll",
+          "label": "mfa enroll",
+          "href": "downloads/02-mailguard-mfa/quizzes/mfa_enroll.md",
+          "filename": "mfa_enroll.md",
+          "pdfHref": "downloads/02-mailguard-mfa/quizzes/mfa_enroll.pdf",
+          "pdfFilename": "mfa_enroll.pdf",
+          "answerKeyHref": "downloads/02-mailguard-mfa/answer-keys/mfa_enroll.md"
+        },
+        {
           "id": "passkeys_webauthn",
           "label": "passkeys webauthn",
           "href": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.md",
@@ -388,18 +398,10 @@
           "answerKeyHref": "downloads/02-mailguard-mfa/answer-keys/passkeys_webauthn.md"
         }
       ],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
-      "quizSingle": {
-        "id": "passkeys_webauthn",
-        "label": "passkeys webauthn",
-        "href": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.md",
-        "filename": "passkeys_webauthn.md",
-        "pdfHref": "downloads/02-mailguard-mfa/quizzes/passkeys_webauthn.pdf",
-        "pdfFilename": "passkeys_webauthn.pdf",
-        "answerKeyHref": "downloads/02-mailguard-mfa/answer-keys/passkeys_webauthn.md"
-      },
-      "answerKeysZip": null,
+      "quizzesZip": "downloads/02-mailguard-mfa/quizzes.zip",
+      "quizzesPdfZip": "downloads/02-mailguard-mfa/quizzes-pdf.zip",
+      "quizSingle": null,
+      "answerKeysZip": "downloads/02-mailguard-mfa/answer-keys.zip",
       "readings": [
         {
           "id": "mfa_enroll",
@@ -448,6 +450,12 @@
       "assignmentsZip": "downloads/03-oidc-access/assignments.zip",
       "assignmentSingle": null,
       "tests": [
+        {
+          "id": "jwt_checks",
+          "label": "jwt checks",
+          "href": "downloads/03-oidc-access/tests/test_jwt_checks.py",
+          "filename": "test_jwt_checks.py"
+        },
         {
           "id": "oidc_checks",
           "label": "oidc checks",
@@ -654,6 +662,15 @@
       "testsZip": "downloads/05-email-auth/tests.zip",
       "quizzes": [
         {
+          "id": "dmarc_policy",
+          "label": "dmarc policy",
+          "href": "downloads/05-email-auth/quizzes/dmarc_policy.md",
+          "filename": "dmarc_policy.md",
+          "pdfHref": "downloads/05-email-auth/quizzes/dmarc_policy.pdf",
+          "pdfFilename": "dmarc_policy.pdf",
+          "answerKeyHref": "downloads/05-email-auth/answer-keys/dmarc_policy.md"
+        },
+        {
           "id": "email_auth",
           "label": "email auth",
           "href": "downloads/05-email-auth/quizzes/email_auth.md",
@@ -707,15 +724,45 @@
       ],
       "readOnly": false,
       "hasModuleDir": true,
-      "assignments": [],
+      "assignments": [
+        {
+          "id": "email_threats",
+          "label": "email threats",
+          "href": "downloads/05a-email-threats/assignments/email_threats.md",
+          "filename": "email_threats.md"
+        }
+      ],
       "assignmentsZip": null,
-      "assignmentSingle": null,
+      "assignmentSingle": {
+        "id": "email_threats",
+        "label": "email threats",
+        "href": "downloads/05a-email-threats/assignments/email_threats.md",
+        "filename": "email_threats.md"
+      },
       "tests": [],
       "testsZip": null,
-      "quizzes": [],
+      "quizzes": [
+        {
+          "id": "email_threats",
+          "label": "email threats",
+          "href": "downloads/05a-email-threats/quizzes/email_threats.md",
+          "filename": "email_threats.md",
+          "pdfHref": "downloads/05a-email-threats/quizzes/email_threats.pdf",
+          "pdfFilename": "email_threats.pdf",
+          "answerKeyHref": "downloads/05a-email-threats/answer-keys/email_threats.md"
+        }
+      ],
       "quizzesZip": null,
       "quizzesPdfZip": null,
-      "quizSingle": null,
+      "quizSingle": {
+        "id": "email_threats",
+        "label": "email threats",
+        "href": "downloads/05a-email-threats/quizzes/email_threats.md",
+        "filename": "email_threats.md",
+        "pdfHref": "downloads/05a-email-threats/quizzes/email_threats.pdf",
+        "pdfFilename": "email_threats.pdf",
+        "answerKeyHref": "downloads/05a-email-threats/answer-keys/email_threats.md"
+      },
       "answerKeysZip": null,
       "readings": [
         {
@@ -860,10 +907,28 @@
       "assignmentSingle": null,
       "tests": [
         {
+          "id": "api_http",
+          "label": "api http",
+          "href": "downloads/07-mailguard-api/tests/test_api_http.py",
+          "filename": "test_api_http.py"
+        },
+        {
+          "id": "concurrent_approval",
+          "label": "concurrent approval",
+          "href": "downloads/07-mailguard-api/tests/test_concurrent_approval.py",
+          "filename": "test_concurrent_approval.py"
+        },
+        {
           "id": "hold_state",
           "label": "hold state",
           "href": "downloads/07-mailguard-api/tests/test_hold_state.py",
           "filename": "test_hold_state.py"
+        },
+        {
+          "id": "outbox",
+          "label": "outbox",
+          "href": "downloads/07-mailguard-api/tests/test_outbox.py",
+          "filename": "test_outbox.py"
         },
         {
           "id": "rule_actions",
@@ -876,6 +941,12 @@
           "label": "rules engine",
           "href": "downloads/07-mailguard-api/tests/test_rules_engine.py",
           "filename": "test_rules_engine.py"
+        },
+        {
+          "id": "tenant_access",
+          "label": "tenant access",
+          "href": "downloads/07-mailguard-api/tests/test_tenant_access.py",
+          "filename": "test_tenant_access.py"
         }
       ],
       "testsZip": "downloads/07-mailguard-api/tests.zip",
@@ -1626,19 +1697,20 @@
       "hasModuleDir": true,
       "assignments": [
         {
+          "id": "k8s_helm_deepen",
+          "label": "k8s helm deepen",
+          "href": "downloads/14-k8s-local/assignments/k8s_helm_deepen.md",
+          "filename": "k8s_helm_deepen.md"
+        },
+        {
           "id": "k8s_local",
           "label": "k8s local",
           "href": "downloads/14-k8s-local/assignments/k8s_local.md",
           "filename": "k8s_local.md"
         }
       ],
-      "assignmentsZip": null,
-      "assignmentSingle": {
-        "id": "k8s_local",
-        "label": "k8s local",
-        "href": "downloads/14-k8s-local/assignments/k8s_local.md",
-        "filename": "k8s_local.md"
-      },
+      "assignmentsZip": "downloads/14-k8s-local/assignments.zip",
+      "assignmentSingle": null,
       "tests": [
         {
           "id": "helm_values_check",
@@ -1656,6 +1728,15 @@
       "testsZip": "downloads/14-k8s-local/tests.zip",
       "quizzes": [
         {
+          "id": "k8s_helm_deepen",
+          "label": "k8s helm deepen",
+          "href": "downloads/14-k8s-local/quizzes/k8s_helm_deepen.md",
+          "filename": "k8s_helm_deepen.md",
+          "pdfHref": "downloads/14-k8s-local/quizzes/k8s_helm_deepen.pdf",
+          "pdfFilename": "k8s_helm_deepen.pdf",
+          "answerKeyHref": "downloads/14-k8s-local/answer-keys/k8s_helm_deepen.md"
+        },
+        {
           "id": "k8s_local",
           "label": "k8s local",
           "href": "downloads/14-k8s-local/quizzes/k8s_local.md",
@@ -1665,18 +1746,10 @@
           "answerKeyHref": "downloads/14-k8s-local/answer-keys/k8s_local.md"
         }
       ],
-      "quizzesZip": null,
-      "quizzesPdfZip": null,
-      "quizSingle": {
-        "id": "k8s_local",
-        "label": "k8s local",
-        "href": "downloads/14-k8s-local/quizzes/k8s_local.md",
-        "filename": "k8s_local.md",
-        "pdfHref": "downloads/14-k8s-local/quizzes/k8s_local.pdf",
-        "pdfFilename": "k8s_local.pdf",
-        "answerKeyHref": "downloads/14-k8s-local/answer-keys/k8s_local.md"
-      },
-      "answerKeysZip": null,
+      "quizzesZip": "downloads/14-k8s-local/quizzes.zip",
+      "quizzesPdfZip": "downloads/14-k8s-local/quizzes-pdf.zip",
+      "quizSingle": null,
+      "answerKeysZip": "downloads/14-k8s-local/answer-keys.zip",
       "readings": [
         {
           "id": "k8s_helm_deepen",

@@ -51,6 +51,7 @@ Keep claims honest: if you only failed a fixture in CI, do not say “production
 - **“GitOps means nobody reviews YAML.”** Git is the source of truth *and* the review surface — policy + humans still gate merges.
 - **“Fix prod with kubectl, commit later.”** That is drift; the next sync may overwrite your hotfix — revert/fix in git and let the agent reconcile.
 - **“Passing sync equals safe cluster.”** Without policy, privileged pods and missing probes sync “successfully.”
+- **“Pod `runAsNonRoot: true` is enough even if a container sets `false`.”** Container fields override when set — Rego must deny explicit container `false` and inherit the pod value only when the container leaves the field unset.
 - **“Push and pull are the same risk.”** Push stores deploy credentials in CI; pull needs careful in-cluster RBAC — pick deliberately ([OpenGitOps Principles](https://opengitops.dev/)).
 
 ## Short intro

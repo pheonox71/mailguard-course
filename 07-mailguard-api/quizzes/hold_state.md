@@ -7,3 +7,4 @@
 5. **Why:** Why keep auto-bcc as an explicit action kind rather than a silent side effect of allow?
 6. **How / why:** Which tool manages schema migrations for SQLAlchemy apps, and why not hand-edit production tables?
 7. **Literacy:** When would you return **412 Precondition Failed** instead of **409**, and how does an **Idempotency-Key** on Release differ from both?
+8. **Why / how:** Two operators race to approve the same held message. Why must the server use `UPDATE … WHERE state='held'` and require `rowcount == 1` for the winner — what goes wrong with plain read-then-write?

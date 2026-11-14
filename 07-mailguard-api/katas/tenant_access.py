@@ -1,4 +1,7 @@
-"""REFERENCE SOLUTION — tenant-scoped hold GET."""
+"""Tenant-scoped hold GET.
+
+Implement `get_hold` so cross-tenant reads fail closed (prefer 404 to avoid id oracles).
+"""
 
 from __future__ import annotations
 
@@ -19,9 +22,10 @@ def get_hold(
     *,
     prefer_404: bool = True,
 ) -> tuple[int, HoldRecord | None]:
-    hold = holds.get(hold_id)
-    if hold is None:
-        return 404, None
-    if hold.tenant_id != caller_tenant:
-        return (404 if prefer_404 else 403), None
-    return 200, hold
+    """Return (status, hold).
+
+    - Missing hold → 404
+    - Cross-tenant → 404 when prefer_404 else 403
+    - Same tenant → 200 with the record
+    """
+    raise NotImplementedError

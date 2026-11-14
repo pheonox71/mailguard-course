@@ -55,6 +55,21 @@ missing_non_root := {
 	}]}}},
 }
 
+# Pod says non-root, but container explicitly opts back into root — must deny.
+container_false_overrides_pod_true := {
+	"kind": "Deployment",
+	"spec": {"template": {"spec": {
+		"securityContext": {"runAsNonRoot": true},
+		"containers": [{
+			"name": "sneaky",
+			"image": "app:1.0.0",
+			"securityContext": {"runAsNonRoot": false},
+			"readinessProbe": {"httpGet": {"path": "/readyz", "port": 8080}},
+			"livenessProbe": {"httpGet": {"path": "/livez", "port": 8080}},
+		}],
+	}}},
+}
+
 test_good_allows if {
 	count(main.deny) == 0 with input as good_deployment
 }
@@ -75,5 +90,11 @@ test_missing_probe_denied if {
 
 test_missing_non_root_denied if {
 	some msg in main.deny with input as missing_non_root
-	contains(msg, "runAsNonRoot")
+	contains(msg, "non-root")
+}
+
+test_container_false_overrides_pod_true_denied if {
+	some msg in main.deny with input as container_false_overrides_pod_true
+	contains(msg, "sneaky")
+	contains(msg, "non-root")
 }

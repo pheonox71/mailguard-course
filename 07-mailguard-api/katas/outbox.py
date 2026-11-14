@@ -1,4 +1,8 @@
-"""REFERENCE SOLUTION — hold + outbox in one transaction."""
+"""Hold + outbox in one transaction.
+
+Implement `apply_hold_change_with_outbox` so the hold state change and outbox
+row commit together (same transactional unit). Helper types below are given.
+"""
 
 from __future__ import annotations
 
@@ -53,6 +57,8 @@ def apply_hold_change_with_outbox(
     new_state: str,
     payload: dict,
 ) -> None:
-    txn.stage_hold(HoldRow(id=hold_id, state=new_state))
-    txn.stage_outbox(OutboxRow(id=str(uuid.uuid4()), payload=dict(payload), published=False))
-    txn.commit()
+    """Stage hold + outbox, then commit so both land or neither does.
+
+    Use `uuid` for the outbox row id; leave `published=False` until a publisher drains it.
+    """
+    raise NotImplementedError

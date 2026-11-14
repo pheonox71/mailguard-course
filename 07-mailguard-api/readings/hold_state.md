@@ -79,6 +79,20 @@ If-Match: "2"
 → 409  (hold still held / wrong state — not an idempotency replay)
 ```
 
+## Concurrent approve — one winner (`UPDATE … WHERE state='held'`)
+
+**Why.** Two operators (or a double-click + retry) can race on the same held message. A read-then-write FSM in application memory lets both callers see `held` and both “succeed,” so you get duplicate approve events, confusing audits, and sometimes a second side effect downstream. The database (or an equivalent atomic check-and-set) must make **exactly one** transition win.
+
+**How.** Treat approve as optimistic concurrency, not “load row → decide → save”:
+
+```sql
+UPDATE holds
+   SET state = 'approved', updated_at = ?
+ WHERE id = ? AND tenant_id = ? AND state = 'held';
+-- Inspect rowcount / RETURNING: 1 = this caller won; 0 = conflict (already decided).
+```
+
+If `rowcount == 0`, return **409** (or **412** when using If-Match versions) — do not invent a second approve. The `concurrent_approval` kata models that rowcount contract in-memory so you can race two threads and assert exactly one winner. Module `06a`’s SQL primer shows the same pattern for release (`WHERE state='approved'`) plus audit in the same transaction.
 
 ## Videos (verified)
 
