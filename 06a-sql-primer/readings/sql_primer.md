@@ -157,7 +157,7 @@ Use the SQL sketch in **Worked example** above (`CREATE` → `INSERT` → `SELEC
 1. **[SQL Tutorial - Full Database Course for Beginners](https://www.youtube.com/watch?v=HXV3zeQKqGY)**  
    Why it helps: tables/constraints before MailGuard persistence sketches.
 
-## Official docs
+## Official readings
 
 1. [PostgreSQL documentation](https://www.postgresql.org/docs/current/)
 2. [SQLAlchemy ORM quick start](https://docs.sqlalchemy.org/en/20/orm/quickstart.html) (stretch after Module 07)

@@ -36,6 +36,7 @@ body {
     radial-gradient(900px 600px at 95% 10%, rgba(226, 163, 106, 0.16), transparent 50%),
     linear-gradient(165deg, #050b10 0%, #0a151c 45%, #071018 100%);
   line-height: 1.55;
+  font-variant-ligatures: no-common-ligatures;
 }
 
 a {
@@ -178,6 +179,7 @@ a:hover {
   line-height: 1.15;
   color: var(--text);
   animation: rise 0.9s ease 0.08s both;
+  font-variant-ligatures: no-common-ligatures;
 }
 
 .lede {
@@ -342,6 +344,7 @@ html[data-theme='light'] .ai-notice strong {
   font-family: var(--font-display);
   font-size: clamp(1.7rem, 3vw, 2.4rem);
   letter-spacing: -0.03em;
+  font-variant-ligatures: no-common-ligatures;
 }
 
 .section-lede {
@@ -697,6 +700,7 @@ html[data-theme='light'] .ai-notice strong {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
   line-height: 1.25;
+  font-variant-ligatures: no-common-ligatures;
 }
 
 .reading-body h1 {

@@ -112,7 +112,7 @@ cd /tmp/mg-go-primer && go test ./...
 1. **[Learn Go Programming - Golang Tutorial for Beginners](https://www.youtube.com/watch?v=YS4e4q9oBaU)**  
    Why it helps: Go toolchain before the worker module.
 
-## Official docs
+## Official readings
 
 1. [Go install](https://go.dev/doc/install)
 2. [A Tour of Go](https://go.dev/tour/)

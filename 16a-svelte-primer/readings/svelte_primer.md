@@ -66,7 +66,7 @@ Optional later (Module 17): follow the official `npm create svelte@latest` flow 
 1. **[Svelte Tutorial for Beginners](https://www.youtube.com/watch?v=3TVy6GdtNuQ)**  
    Why it helps: Svelte before Phish Lite.
 
-## Official docs
+## Official readings
 
 1. [Svelte tutorial](https://svelte.dev/tutorial)
 2. [SvelteKit introduction](https://kit.svelte.dev/docs/introduction)

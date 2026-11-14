@@ -87,7 +87,7 @@ spec:
 1. **[Kubernetes Course - Full Beginners Tutorial](https://www.youtube.com/watch?v=d6WC5n9G_sM)**  
    Why it helps: Pod/Deployment/Service literacy.
 
-## Official docs
+## Official readings
 
 1. [Kubernetes overview](https://kubernetes.io/docs/concepts/overview/)
 2. [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)

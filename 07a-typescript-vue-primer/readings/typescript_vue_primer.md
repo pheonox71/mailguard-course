@@ -149,7 +149,7 @@ Module 08’s starter also ships a **WCAG 2.2** approve dialog (keyboard/focus) 
 1. **[Vue.js Course for Beginners](https://www.youtube.com/watch?v=FXpIoQ_rT_c)**  
    Why it helps: Vue 3 mental model before Module 08.
 
-## Official docs
+## Official readings
 
 1. [Node.js downloads](https://nodejs.org/)
 2. [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)

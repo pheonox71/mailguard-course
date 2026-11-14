@@ -72,7 +72,7 @@ Use the YAML in **Worked example** above. **How:** A PR event starts a VM, check
 1. **[GitHub Actions Certification – Full Course to PASS the Exam](https://www.youtube.com/watch?v=Tz7FsunBbfQ)** — freeCodeCamp / Andrew Brown  
    Why it helps: workflow YAML, jobs/steps, and secrets hygiene before Module 12.
 
-## Official docs
+## Official readings
 
 1. [GitHub Actions docs](https://docs.github.com/en/actions)
 2. [Workflow syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)

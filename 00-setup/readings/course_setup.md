@@ -50,7 +50,7 @@ Work through the installs below, then mark Module 00 complete on the site. This 
 | Course site | Modern browser; Node.js to preview the site locally (`cd site && npm start`); later modules use fillable quiz PDFs | 00 / whole course |
 | Sample data | Module fixtures and stubs in-repo (no separate dataset download) | per module |
 
-Official docs linked below. Prefer current stable releases unless a module README pins a version.
+Official readings linked below. Prefer current stable releases unless a module README pins a version.
 
 ---
 

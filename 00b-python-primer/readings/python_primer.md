@@ -86,7 +86,7 @@ python /tmp/mg_hello.py
 1. **[Python for Beginners – Full Course [Programming Tutorial]](https://www.youtube.com/watch?v=eWRfhZUzrAc)** — freeCodeCamp.org  
    Why it helps: venv/functions mindset before pytest katas.
 
-## Official docs
+## Official readings
 
 1. [Python 3 tutorial](https://docs.python.org/3/tutorial/)
 2. [venv docs](https://docs.python.org/3/library/venv.html)

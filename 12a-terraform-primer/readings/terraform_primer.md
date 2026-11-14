@@ -84,7 +84,7 @@ terraform plan   # Why: see the diff before any apply
 1. **[Learn Terraform (and AWS) by Building a Dev Environment](https://www.youtube.com/watch?v=iRaai1IBlB0)** — freeCodeCamp  
    Why it helps: plan/apply mental model before Module 13.
 
-## Official docs
+## Official readings
 
 1. [Terraform intro](https://developer.hashicorp.com/terraform/intro)
 2. [Terraform install](https://developer.hashicorp.com/terraform/install)

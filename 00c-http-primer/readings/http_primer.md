@@ -70,7 +70,7 @@ curl -s -o /dev/null -w "%{http_code}\n" https://example.com
 # → 200 (or a redirect code if the client does not follow)
 ```
 
-## Official docs
+## Official readings
 
 1. [MDN — HTTP overview](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
 2. [MDN — HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)

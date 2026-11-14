@@ -72,7 +72,7 @@ grep -n hold decision.txt && echo "exit was $?"
 1. **[Bash Scripting Full Course](https://www.youtube.com/watch?v=e7BufAVwDiM)**  
    Why it helps: shell literacy before Challenge Gym.
 
-## Official docs
+## Official readings
 
 1. [GNU Bash manual](https://www.gnu.org/software/bash/manual/)
 2. [Git for Windows](https://gitforwindows.org/)

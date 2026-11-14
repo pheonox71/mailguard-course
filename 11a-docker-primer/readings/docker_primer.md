@@ -100,7 +100,7 @@ Never put real tokens in the course repo — this shape is literacy only.
 1. **[Docker Tutorial for Beginners](https://www.youtube.com/watch?v=fqMOX6JJhGo)**  
    Why it helps: images/containers before Compose demos.
 
-## Official docs
+## Official readings
 
 1. [Docker overview](https://docs.docker.com/get-started/overview/)
 2. [Docker Compose overview](https://docs.docker.com/compose/)
