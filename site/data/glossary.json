@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T11:55:08.218Z",
+  "generatedAt": "2026-11-14T12:23:05.986Z",
   "sections": [
     {
       "title": "Identity & authentication",
@@ -264,6 +264,12 @@
           "term": "Dead-Letter Queue",
           "abbrev": "DLQ",
           "meaning": "Side queue for messages that failed processing after retries."
+        },
+        {
+          "id": "idempotent-idempotency-key",
+          "term": "Idempotent / idempotency key",
+          "abbrev": "",
+          "meaning": "An operation is idempotent if repeating it has the same effect as doing it once (HTTP GET/PUT/DELETE; not plain POST). Matters because retries and at-least-once queues (SQS) redeliver; an idempotency key (unique request/message ID recorded server-side) lets duplicates be detected and skipped."
         }
       ]
     },

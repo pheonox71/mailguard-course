@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T11:55:08.226Z",
+  "generatedAt": "2026-11-14T12:23:05.997Z",
   "entries": [
     {
       "kind": "module",
@@ -1350,6 +1350,16 @@
       "topicId": null,
       "body": "Side queue for messages that failed processing after retries.",
       "snippet": "Side queue for messages that failed processing after retries."
+    },
+    {
+      "kind": "glossary",
+      "id": "idempotent-idempotency-key",
+      "title": "Idempotent / idempotency key",
+      "moduleId": null,
+      "moduleTitle": "APIs, apps & workers",
+      "topicId": null,
+      "body": "An operation is idempotent if repeating it has the same effect as doing it once (HTTP GET/PUT/DELETE; not plain POST). Matters because retries and at-least-once queues (SQS) redeliver; an idempotency key (unique request/message ID recorded server-side) lets duplicates be detected and skipped.",
+      "snippet": "An operation is idempotent if repeating it has the same effect as doing it once (HTTP GET/PUT/DELETE; not plain POST). Matters because retries and at-least-once"
     },
     {
       "kind": "glossary",
