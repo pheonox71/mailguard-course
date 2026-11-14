@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T12:27:04.861Z",
+  "generatedAt": "2026-11-14T12:36:50.774Z",
   "entries": [
     {
       "kind": "module",
@@ -8,7 +8,7 @@
       "moduleId": "00-setup",
       "moduleTitle": "Setup / getting ready",
       "topicId": null,
-      "body": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux. Install and version-check core course tools on your OS Know which later modules need Node, Go, Docker, Terraform, and Kubernetes tools Finish the setup checklist and mark Module 00 complete before Module 01 Tooling",
+      "body": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux. est. 3-4h Install and version-check core course tools on your OS Know which later modules need Node, Go, Docker, Terraform, and Kubernetes tools Finish the setup checklist and mark Module 00 complete before Module 01 Tooling",
       "snippet": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux."
     },
     {
@@ -28,7 +28,7 @@
       "moduleId": "00a-bash-primer",
       "moduleTitle": "Bash / shell primer",
       "topicId": null,
-      "body": "Short shell literacy before Challenge Gym — cd, pipes, env vars, and why labs use a terminal. Run common course commands (cd, env, pipes) with intent Explain why labs prefer a shell over clicking through GUIs Know where Bash vs PowerShell/WSL tips live for your OS Bash",
+      "body": "Short shell literacy before Challenge Gym — cd, pipes, env vars, and why labs use a terminal. est. 1-1.5h Run common course commands (cd, env, pipes) with intent Explain why labs prefer a shell over clicking through GUIs Know where Bash vs PowerShell/WSL tips live for your OS Bash",
       "snippet": "Short shell literacy before Challenge Gym — cd, pipes, env vars, and why labs use a terminal."
     },
     {
@@ -48,7 +48,7 @@
       "moduleId": "00b-python-primer",
       "moduleTitle": "Python primer",
       "topicId": null,
-      "body": "Refresh Python 3, venv, and pytest habits used from Challenge Gym through the MailGuard API. Create a venv, install deps, and run pytest Read a small function + test as a contract Explain why the course standardizes on Python for identity and API labs Python",
+      "body": "Refresh Python 3, venv, and pytest habits used from Challenge Gym through the MailGuard API. est. 1-1.5h Create a venv, install deps, and run pytest Read a small function + test as a contract Explain why the course standardizes on Python for identity and API labs Python",
       "snippet": "Refresh Python 3, venv, and pytest habits used from Challenge Gym through the MailGuard API."
     },
     {
@@ -68,7 +68,7 @@
       "moduleId": "00c-http-primer",
       "moduleTitle": "HTTP primer",
       "topicId": null,
-      "body": "Methods, status codes, headers, cookies, CORS, and TLS before OIDC and the MailGuard API. Name common methods and what safe vs idempotent means Read status codes and key headers without guessing Explain cookies, CORS, and TLS at a literacy level for later labs HTTP",
+      "body": "Methods, status codes, headers, cookies, CORS, and TLS before OIDC and the MailGuard API. est. 1-1.5h Name common methods and what safe vs idempotent means Read status codes and key headers without guessing Explain cookies, CORS, and TLS at a literacy level for later labs HTTP",
       "snippet": "Methods, status codes, headers, cookies, CORS, and TLS before OIDC and the MailGuard API."
     },
     {
@@ -88,7 +88,7 @@
       "moduleId": "01-challenge-gym",
       "moduleTitle": "Challenge Gym",
       "topicId": null,
-      "body": "Short Python (+ optional Go) katas — RFC 6238 TOTP, Basic auth client, hold rules, recipient risk, crypto hygiene. Implement RFC 6238 TOTP/HOTP truncation against Appendix B vectors Build a Basic-auth JSON client pattern with skew checks Apply hold-rule and recipient-risk thinking in small functions Python",
+      "body": "Short Python (+ optional Go) katas — RFC 6238 TOTP, Basic auth client, hold rules, recipient risk, crypto hygiene. est. 12-16h Implement RFC 6238 TOTP/HOTP truncation against Appendix B vectors Build a Basic-auth JSON client pattern with skew checks Apply hold-rule and recipient-risk thinking in small functions Python",
       "snippet": "Short Python (+ optional Go) katas — RFC 6238 TOTP, Basic auth client, hold rules, recipient risk, crypto hygiene."
     },
     {
@@ -158,7 +158,7 @@
       "moduleId": "02-mailguard-mfa",
       "moduleTitle": "MailGuard MFA",
       "topicId": null,
-      "body": "TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy. Describe enroll/verify and recovery-code flows for MFA Contrast TOTP with passkeys / WebAuthn at a literacy level Document threats and mitigations for MFA secrets Python",
+      "body": "TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy. est. 3-4h Describe enroll/verify and recovery-code flows for MFA Contrast TOTP with passkeys / WebAuthn at a literacy level Document threats and mitigations for MFA secrets Python",
       "snippet": "TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy."
     },
     {
@@ -188,7 +188,7 @@
       "moduleId": "03-oidc-access",
       "moduleTitle": "OIDC / access policy",
       "topicId": null,
-      "body": "OIDC + PKCE, SAML assertion checks, Keycloak lab notes, and identity-depth practice. Sketch a happy-path OIDC login and protected resource Compare OIDC and SAML at a conceptual level Note logout/revocation and device-cert ideas without overclaiming Conceptual",
+      "body": "OIDC + PKCE, SAML assertion checks, Keycloak lab notes, and identity-depth practice. est. 6-8h Sketch a happy-path OIDC login and protected resource Compare OIDC and SAML at a conceptual level Note logout/revocation and device-cert ideas without overclaiming Conceptual",
       "snippet": "OIDC + PKCE, SAML assertion checks, Keycloak lab notes, and identity-depth practice."
     },
     {
@@ -228,7 +228,7 @@
       "moduleId": "04-ztna-lite",
       "moduleTitle": "ZTNA lite",
       "topicId": null,
-      "body": "VPN vs ZTNA, mTLS/device-cert lab literacy, and NIST SP 1800-35. Diagram VPN vs ZTNA access models Explain mTLS/device-cert checks and revocation pain Reference NIST SP 1800-35 without claiming a commercial mesh deploy Conceptual",
+      "body": "VPN vs ZTNA, mTLS/device-cert lab literacy, and NIST SP 1800-35. est. 3-4h Diagram VPN vs ZTNA access models Explain mTLS/device-cert checks and revocation pain Reference NIST SP 1800-35 without claiming a commercial mesh deploy Conceptual",
       "snippet": "VPN vs ZTNA, mTLS/device-cert lab literacy, and NIST SP 1800-35."
     },
     {
@@ -258,7 +258,7 @@
       "moduleId": "05-email-auth",
       "moduleTitle": "Email authentication",
       "topicId": null,
-      "body": "SPF, DKIM, DMARC, and a dmarc_policy kata with tests. Explain SPF, DKIM, and DMARC roles in email authentication Implement a small DMARC policy helper with tests Relate spoofing controls to MailGuard hold rules Python",
+      "body": "SPF, DKIM, DMARC, and a dmarc_policy kata with tests. est. 5-7h Explain SPF, DKIM, and DMARC roles in email authentication Implement a small DMARC policy helper with tests Relate spoofing controls to MailGuard hold rules Python",
       "snippet": "SPF, DKIM, DMARC, and a dmarc_policy kata with tests."
     },
     {
@@ -288,7 +288,7 @@
       "moduleId": "05a-email-threats",
       "moduleTitle": "Email threats beyond auth",
       "topicId": null,
-      "body": "BIMI, MTA-STS/TLS-RPT, DANE, phishing headers, sandboxing, S/MIME/PGP, and time-of-click rewriting. Place BIMI, MTA-STS, TLS-RPT, and DANE beside SPF/DKIM/DMARC Analyze phishing headers and attachment risk ethically Contrast S/MIME/PGP with time-of-click URL rewriting Conceptual",
+      "body": "BIMI, MTA-STS/TLS-RPT, DANE, phishing headers, sandboxing, S/MIME/PGP, and time-of-click rewriting. est. 2-3h Place BIMI, MTA-STS, TLS-RPT, and DANE beside SPF/DKIM/DMARC Analyze phishing headers and attachment risk ethically Contrast S/MIME/PGP with time-of-click URL rewriting Conceptual",
       "snippet": "BIMI, MTA-STS/TLS-RPT, DANE, phishing headers, sandboxing, S/MIME/PGP, and time-of-click rewriting."
     },
     {
@@ -308,7 +308,7 @@
       "moduleId": "06-threat-model",
       "moduleTitle": "Threat model / secure SDLC",
       "topicId": null,
-      "body": "STRIDE-lite on the hold path plus SSDF/ASVS evidence (SAMM optional). Produce a STRIDE-lite table for the hold/release path Map one mitigation to SSDF/ASVS evidence (SAMM optional) Note privacy risks for held message content Conceptual",
+      "body": "STRIDE-lite on the hold path plus SSDF/ASVS evidence (SAMM optional). est. 2-3h Produce a STRIDE-lite table for the hold/release path Map one mitigation to SSDF/ASVS evidence (SAMM optional) Note privacy risks for held message content Conceptual",
       "snippet": "STRIDE-lite on the hold path plus SSDF/ASVS evidence (SAMM optional)."
     },
     {
@@ -328,7 +328,7 @@
       "moduleId": "06a-sql-primer",
       "moduleTitle": "SQL primer",
       "topicId": null,
-      "body": "Relational basics before the MailGuard API — tables, keys, and why holds need durable state. Sketch a small table for held messages with primary keys and tenant_id Explain one-winner UPDATE + audit in the same transaction Relate durable state to hold/release audit needs SQL",
+      "body": "Relational basics before the MailGuard API — tables, keys, and why holds need durable state. est. 1.5-2h Sketch a small table for held messages with primary keys and tenant_id Explain one-winner UPDATE + audit in the same transaction Relate durable state to hold/release audit needs SQL",
       "snippet": "Relational basics before the MailGuard API — tables, keys, and why holds need durable state."
     },
     {
@@ -348,7 +348,7 @@
       "moduleId": "07-mailguard-api",
       "moduleTitle": "MailGuard API",
       "topicId": null,
-      "body": "FastAPI rules API for hold / allow / reject. Build a FastAPI-style rules API for hold/allow/reject Cover core paths with automated tests and OpenAPI Document architecture and production gaps Python",
+      "body": "FastAPI rules API for hold / allow / reject. est. 10-14h Build a FastAPI-style rules API for hold/allow/reject Cover core paths with automated tests and OpenAPI Document architecture and production gaps Python",
       "snippet": "FastAPI rules API for hold / allow / reject."
     },
     {
@@ -378,7 +378,7 @@
       "moduleId": "07a-typescript-vue-primer",
       "moduleTitle": "TypeScript / Vue primer",
       "topicId": null,
-      "body": "Node, TypeScript, and Vue 3 basics before the MailGuard admin UI. Install Node and run a tiny TypeScript check Explain why typed UI helpers catch hold-queue mistakes early Know the Vue 3 mental model enough to follow Module 08 Vue + TypeScript",
+      "body": "Node, TypeScript, and Vue 3 basics before the MailGuard admin UI. est. 2-3h Install Node and run a tiny TypeScript check Explain why typed UI helpers catch hold-queue mistakes early Know the Vue 3 mental model enough to follow Module 08 Vue + TypeScript",
       "snippet": "Node, TypeScript, and Vue 3 basics before the MailGuard admin UI."
     },
     {
@@ -398,7 +398,7 @@
       "moduleId": "08-mailguard-admin",
       "moduleTitle": "MailGuard Admin",
       "topicId": null,
-      "body": "TypeScript/Vue admin for rules and the hold queue. Build a TypeScript/Vue admin for rules and held messages Ship a WCAG 2.2 keyboard/focus approve dialog Keep vue-tsc in CI plus XSS-safe subject render tests Vue + TypeScript",
+      "body": "TypeScript/Vue admin for rules and the hold queue. est. 8-12h Build a TypeScript/Vue admin for rules and held messages Ship a WCAG 2.2 keyboard/focus approve dialog Keep vue-tsc in CI plus XSS-safe subject render tests Vue + TypeScript",
       "snippet": "TypeScript/Vue admin for rules and the hold queue."
     },
     {
@@ -418,7 +418,7 @@
       "moduleId": "08a-go-primer",
       "moduleTitle": "Go primer",
       "topicId": null,
-      "body": "Go toolchain, packages, and go test before the MailGuard worker. Install Go and run go version / go test Explain why workers often use Go for small queue consumers Read a tiny function + test in Go style Go",
+      "body": "Go toolchain, packages, and go test before the MailGuard worker. est. 1.5-2h Install Go and run go version / go test Explain why workers often use Go for small queue consumers Read a tiny function + test in Go style Go",
       "snippet": "Go toolchain, packages, and go test before the MailGuard worker."
     },
     {
@@ -438,7 +438,7 @@
       "moduleId": "09-mailguard-worker",
       "moduleTitle": "MailGuard Worker",
       "topicId": null,
-      "body": "Queue worker path for applying MailGuard decisions. Implement a Go queue worker that applies hold rules Document the shared contract with the Python API Containerize the worker with a clear local demo Go",
+      "body": "Queue worker path for applying MailGuard decisions. est. 6-8h Implement a Go queue worker that applies hold rules Document the shared contract with the Python API Containerize the worker with a clear local demo Go",
       "snippet": "Queue worker path for applying MailGuard decisions."
     },
     {
@@ -468,7 +468,7 @@
       "moduleId": "10-secure-drop",
       "moduleTitle": "Secure Drop",
       "topicId": null,
-      "body": "Expiring share links, audit, and cloud-share DLP literacy. Design expiring share links with an audit trail Relate cloud-share DLP controls to email attachments Keep secrets and object storage credentials out of git Python",
+      "body": "Expiring share links, audit, and cloud-share DLP literacy. est. 4-5h Design expiring share links with an audit trail Relate cloud-share DLP controls to email attachments Keep secrets and object storage credentials out of git Python",
       "snippet": "Expiring share links, audit, and cloud-share DLP literacy."
     },
     {
@@ -498,7 +498,7 @@
       "moduleId": "11-security-notes",
       "moduleTitle": "Security notes",
       "topicId": null,
-      "body": "OWASP-mapped lab notes tied to MailGuard mitigations. Map OWASP-minded findings to MailGuard mitigations Write honest lab notes without attack tooling for real systems Prioritize remediations you can demonstrate in-repo Conceptual",
+      "body": "OWASP-mapped lab notes tied to MailGuard mitigations. est. 3-4h Map OWASP-minded findings to MailGuard mitigations Write honest lab notes without attack tooling for real systems Prioritize remediations you can demonstrate in-repo Conceptual",
       "snippet": "OWASP-mapped lab notes tied to MailGuard mitigations."
     },
     {
@@ -528,7 +528,7 @@
       "moduleId": "11a-docker-primer",
       "moduleTitle": "Docker primer",
       "topicId": null,
-      "body": "Images, containers, and Compose before CI image steps and the infra module. Explain image vs container and why demos prefer Compose Install Docker and run a hello-world style check Relate containers to repeatable MailGuard local demos Docker",
+      "body": "Images, containers, and Compose before CI image steps and the infra module. est. 1.5-2.5h Explain image vs container and why demos prefer Compose Install Docker and run a hello-world style check Relate containers to repeatable MailGuard local demos Docker",
       "snippet": "Images, containers, and Compose before CI image steps and the infra module."
     },
     {
@@ -548,7 +548,7 @@
       "moduleId": "11b-github-actions-primer",
       "moduleTitle": "GitHub Actions primer",
       "topicId": null,
-      "body": "Workflow YAML, jobs, and secrets hygiene before the CI + AWS module. Read a minimal workflow (on/push → job → steps) Explain why CI runs tests before merge and keeps secrets out of git Know where Module 12 builds on this primer GitHub Actions",
+      "body": "Workflow YAML, jobs, and secrets hygiene before the CI + AWS module. est. 1-1.5h Read a minimal workflow (on/push → job → steps) Explain why CI runs tests before merge and keeps secrets out of git Know where Module 12 builds on this primer GitHub Actions",
       "snippet": "Workflow YAML, jobs, and secrets hygiene before the CI + AWS module."
     },
     {
@@ -568,7 +568,7 @@
       "moduleId": "12-ci-aws",
       "moduleTitle": "CI + AWS",
       "topicId": null,
-      "body": "PR CI and a documented cloud deploy — no secrets in git. Add CI that runs tests on pull requests or pushes Document a cloud deploy path without committing secrets Explain least-privilege choices for the demo identity CI + AWS",
+      "body": "PR CI and a documented cloud deploy — no secrets in git. est. 5-7h Add CI that runs tests on pull requests or pushes Document a cloud deploy path without committing secrets Explain least-privilege choices for the demo identity CI + AWS",
       "snippet": "PR CI and a documented cloud deploy — no secrets in git."
     },
     {
@@ -608,7 +608,7 @@
       "moduleId": "12a-terraform-primer",
       "moduleTitle": "Terraform / HCL primer",
       "topicId": null,
-      "body": "HCL, plan/apply, and state basics before the infra module. Install Terraform and run terraform version Explain plan vs apply and why state must stay out of git Recognize a tiny resource block before Module 13 Terraform / HCL",
+      "body": "HCL, plan/apply, and state basics before the infra module. est. 1.5-2h Install Terraform and run terraform version Explain plan vs apply and why state must stay out of git Recognize a tiny resource block before Module 13 Terraform / HCL",
       "snippet": "HCL, plan/apply, and state basics before the infra module."
     },
     {
@@ -628,7 +628,7 @@
       "moduleId": "13-infra",
       "moduleTitle": "Infra",
       "topicId": null,
-      "body": "Compose + Terraform story with IAM / misconfig posture assignment. Express a thin Compose + Terraform footprint for the thread Complete an IAM / misconfig posture assignment for your resources Keep state and credentials out of version control Terraform + Compose",
+      "body": "Compose + Terraform story with IAM / misconfig posture assignment. est. 6-8h Express a thin Compose + Terraform footprint for the thread Complete an IAM / misconfig posture assignment for your resources Keep state and credentials out of version control Terraform + Compose",
       "snippet": "Compose + Terraform story with IAM / misconfig posture assignment."
     },
     {
@@ -668,7 +668,7 @@
       "moduleId": "13a-kubernetes-primer",
       "moduleTitle": "Kubernetes YAML primer",
       "topicId": null,
-      "body": "Pods, Deployments, Services, and kubectl before the local cluster module. Explain Pod vs Deployment vs Service at a literacy level Install kubectl (and know kind/minikube comes in Module 14) Read a tiny Deployment snippet before applying anything Kubernetes YAML",
+      "body": "Pods, Deployments, Services, and kubectl before the local cluster module. est. 1.5-2h Explain Pod vs Deployment vs Service at a literacy level Install kubectl (and know kind/minikube comes in Module 14) Read a tiny Deployment snippet before applying anything Kubernetes YAML",
       "snippet": "Pods, Deployments, Services, and kubectl before the local cluster module."
     },
     {
@@ -688,7 +688,7 @@
       "moduleId": "14-k8s-local",
       "moduleTitle": "K8s local",
       "topicId": null,
-      "body": "kind/minikube deploy with probes and resource requests. Deploy the app shape to kind or minikube Add probes and resource requests to manifests Document what you did not automate yet (GitOps, policy) Kubernetes YAML",
+      "body": "kind/minikube deploy with probes and resource requests. est. 6-8h Deploy the app shape to kind or minikube Add probes and resource requests to manifests Document what you did not automate yet (GitOps, policy) Kubernetes YAML",
       "snippet": "kind/minikube deploy with probes and resource requests."
     },
     {
@@ -718,7 +718,7 @@
       "moduleId": "15-observability",
       "moduleTitle": "Observability",
       "topicId": null,
-      "body": "Golden signals plus SLI/SLO and a lightweight postmortem assignment. Define golden signals and multi-window burn-rate alerts Draft SLI/SLO notes and a lightweight postmortem Keep PII/tokens out of metric labels; apply IR revoke-first lessons Ops / metrics",
+      "body": "Golden signals plus SLI/SLO and a lightweight postmortem assignment. est. 5-7h Define golden signals and multi-window burn-rate alerts Draft SLI/SLO notes and a lightweight postmortem Keep PII/tokens out of metric labels; apply IR revoke-first lessons Ops / metrics",
       "snippet": "Golden signals plus SLI/SLO and a lightweight postmortem assignment."
     },
     {
@@ -758,7 +758,7 @@
       "moduleId": "16-gitops-policy",
       "moduleTitle": "GitOps + policy",
       "topicId": null,
-      "body": "Sync flow and policy-as-code checks on manifests. Diagram a sync flow for manifests Pin digests and verify attestations at admission Keep claims proportional to what you automated GitOps / policy",
+      "body": "Sync flow and policy-as-code checks on manifests. est. 5-7h Diagram a sync flow for manifests Pin digests and verify attestations at admission Keep claims proportional to what you automated GitOps / policy",
       "snippet": "Sync flow and policy-as-code checks on manifests."
     },
     {
@@ -798,7 +798,7 @@
       "moduleId": "16a-svelte-primer",
       "moduleTitle": "Svelte primer",
       "topicId": null,
-      "body": "Svelte / SvelteKit basics before the optional Phish Lite UI. Explain how Svelte differs from Vue at a high level Know Node is required and where official tutorials live Stay clear that Phish Lite is learning-only (no real credential capture) Svelte",
+      "body": "Svelte / SvelteKit basics before the optional Phish Lite UI. est. 1-1.5h Explain how Svelte differs from Vue at a high level Know Node is required and where official tutorials live Stay clear that Phish Lite is learning-only (no real credential capture) Svelte",
       "snippet": "Svelte / SvelteKit basics before the optional Phish Lite UI."
     },
     {
@@ -818,7 +818,7 @@
       "moduleId": "17-phish-lite",
       "moduleTitle": "Phish Lite",
       "topicId": null,
-      "body": "Optional phishing-awareness quiz UI for learning honesty practice. Build a small Svelte phishing-awareness quiz UI Keep the project clearly labeled as a learning clone Practice honest UX copy for warnings and results Svelte",
+      "body": "Optional phishing-awareness quiz UI for learning honesty practice. est. 6-8h Build a small Svelte phishing-awareness quiz UI Keep the project clearly labeled as a learning clone Practice honest UX copy for warnings and results Svelte",
       "snippet": "Optional phishing-awareness quiz UI for learning honesty practice."
     },
     {
@@ -848,7 +848,7 @@
       "moduleId": "18-oss-ux-stretch",
       "moduleTitle": "OSS + security UX",
       "topicId": null,
-      "body": "Upstream contribution hygiene and security-warning UX reflection. Practice upstream contribution hygiene Critique or redesign a security warning UX Write reflections suitable for a portfolio footnote Vue + TypeScript",
+      "body": "Upstream contribution hygiene and security-warning UX reflection. est. 2-3h Practice upstream contribution hygiene Critique or redesign a security warning UX Write reflections suitable for a portfolio footnote Vue + TypeScript",
       "snippet": "Upstream contribution hygiene and security-warning UX reflection."
     },
     {
@@ -868,7 +868,7 @@
       "moduleId": "19-capstone",
       "moduleTitle": "Capstone: mail filter",
       "topicId": null,
-      "body": "End-to-end outbound mail filter demo with tests and a self-grading rubric assignment. Ship a small end-to-end mail filter demo with tests Self-grade honestly against the capstone rubric Package commands and evidence a stranger can follow Python",
+      "body": "End-to-end outbound mail filter demo with tests and a self-grading rubric assignment. est. 8-12h Ship a small end-to-end mail filter demo with tests Self-grade honestly against the capstone rubric Package commands and evidence a stranger can follow Python",
       "snippet": "End-to-end outbound mail filter demo with tests and a self-grading rubric assignment."
     },
     {
@@ -888,7 +888,7 @@
       "moduleId": "20-scim-provisioning",
       "moduleTitle": "SCIM / JIT provisioning",
       "topicId": null,
-      "body": "SCIM filters, joiner-mover-leaver risk, and directory provisioning literacy. Parse a SCIM eq filter subset and reason about deprovisioning SLAs Explain active:false session/token/cache kills and Entra vs Okta PATCH Use RFC 9865 cursor pagination literacy alongside RFC 7643/7644 Python",
+      "body": "SCIM filters, joiner-mover-leaver risk, and directory provisioning literacy. est. 3-4h Parse a SCIM eq filter subset and reason about deprovisioning SLAs Explain active:false session/token/cache kills and Entra vs Okta PATCH Use RFC 9865 cursor pagination literacy alongside RFC 7643/7644 Python",
       "snippet": "SCIM filters, joiner-mover-leaver risk, and directory provisioning literacy."
     },
     {
@@ -908,7 +908,7 @@
       "moduleId": "21-global-privacy-collab",
       "moduleTitle": "Global collaboration & privacy",
       "topicId": null,
-      "body": "Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL and EU AI Act date literacy. Practice async handoffs across timezones Compare major privacy regimes plus EU AI Act application dates Connect privacy duties to hold/release queues Conceptual",
+      "body": "Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL and EU AI Act date literacy. est. 2-3h Practice async handoffs across timezones Compare major privacy regimes plus EU AI Act application dates Connect privacy duties to hold/release queues Conceptual",
       "snippet": "Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL and EU AI Act date literacy."
     },
     {
@@ -928,7 +928,7 @@
       "moduleId": "22-collab-review",
       "moduleTitle": "Git & code review",
       "topicId": null,
-      "body": "PR hygiene, conventional commits, security review, and design-note practice. Open small reviewable PRs with clear English descriptions Review for secrets, authz, and input validation Use conventional commits and CODEOWNERS effectively Git",
+      "body": "PR hygiene, conventional commits, security review, and design-note practice. est. 2-3h Open small reviewable PRs with clear English descriptions Review for secrets, authz, and input validation Use conventional commits and CODEOWNERS effectively Git",
       "snippet": "PR hygiene, conventional commits, security review, and design-note practice."
     },
     {

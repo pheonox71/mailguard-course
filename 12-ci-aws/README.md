@@ -1,6 +1,6 @@
 # 12 — CI + AWS
 
-**Language:** GitHub Actions YAML + cloud deploy notes. Est. 8-10h.
+**Language:** GitHub Actions YAML + cloud deploy notes. Est. 5-7h.
 
 PR/push CI for tests/lint/image, plus a documented cloud deploy path with **no secrets in git**. Prefer OIDC to cloud roles over long-lived keys.
 

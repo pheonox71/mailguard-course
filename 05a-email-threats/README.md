@@ -2,7 +2,7 @@
 
 Vendor-neutral literacy for threats and controls that sit **beside** authentication: BIMI, MTA-STS/TLS-RPT, DANE, phishing-header analysis, attachment sandboxing, S/MIME/PGP, and time-of-click URL rewriting.
 
-**Language / tooling:** Conceptual + light Python helpers. Est. 8-10h.
+**Language / tooling:** Conceptual + light Python helpers. Est. 2-3h.
 
 ## What this teaches
 

@@ -1,6 +1,6 @@
 # 17 — Phish Lite *(optional)*
 
-**Language:** Svelte / SvelteKit. Est. 8-10h.
+**Language:** Svelte / SvelteKit. Est. 6-8h.
 
 Optional phishing-awareness quiz UI for **learning honesty** practice. Clearly label simulations; never capture real credentials.
 

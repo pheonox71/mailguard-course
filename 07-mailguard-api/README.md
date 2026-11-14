@@ -1,6 +1,6 @@
 # 07 — MailGuard API
 
-**Language:** Python 3 + FastAPI + pytest. Est. 8-10h.
+**Language:** Python 3 + FastAPI + pytest. Est. 10-14h.
 
 Build a small rules API for outbound message decisions: create/list rules, evaluate a message, and hold / allow / reject with tests.
 

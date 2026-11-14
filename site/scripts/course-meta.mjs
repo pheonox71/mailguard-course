@@ -10,7 +10,7 @@ export const MODULE_META = [
     phase: 'Foundations',
     blurb:
       'Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux.',
-    hours: 'est. 8-10h',
+    hours: 'est. 3-4h',
     language: 'Tooling',
     languageDetail: 'Cross-platform installs (Git, Python, later Node/Go/Docker/Terraform/K8s)',
     objectives: [
@@ -27,7 +27,7 @@ export const MODULE_META = [
     phase: 'Foundations',
     blurb:
       'Short shell literacy before Challenge Gym — cd, pipes, env vars, and why labs use a terminal.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1-1.5h',
     language: 'Bash',
     languageDetail: 'POSIX-ish shell / Git Bash / PowerShell notes for course labs',
     objectives: [
@@ -44,7 +44,7 @@ export const MODULE_META = [
     phase: 'Foundations',
     blurb:
       'Refresh Python 3, venv, and pytest habits used from Challenge Gym through the MailGuard API.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1-1.5h',
     language: 'Python',
     languageDetail: 'Python 3.11+ · venv · pip · pytest',
     objectives: [
@@ -61,7 +61,7 @@ export const MODULE_META = [
     phase: 'Foundations',
     blurb:
       'Methods, status codes, headers, cookies, CORS, and TLS before OIDC and the MailGuard API.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1-1.5h',
     language: 'HTTP',
     languageDetail: 'HTTP/1.1 literacy · status codes · headers · cookies · CORS · TLS',
     objectives: [
@@ -78,7 +78,7 @@ export const MODULE_META = [
     phase: 'Foundations',
     blurb:
       'Short Python (+ optional Go) katas — RFC 6238 TOTP, Basic auth client, hold rules, recipient risk, crypto hygiene.',
-    hours: 'est. 8-10h',
+    hours: 'est. 12-16h',
     language: 'Python',
     languageDetail: 'Python 3 + pytest; optional Go TOTP port',
     objectives: [
@@ -93,7 +93,7 @@ export const MODULE_META = [
     title: 'MailGuard MFA',
     phase: 'Identity & access',
     blurb: 'TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy.',
-    hours: 'est. 8-10h',
+    hours: 'est. 3-4h',
     language: 'Python',
     languageDetail: 'Python (FastAPI-style) for enroll/verify; assignment is mostly literacy',
     objectives: [
@@ -108,7 +108,7 @@ export const MODULE_META = [
     title: 'OIDC / access policy',
     phase: 'Identity & access',
     blurb: 'OIDC + PKCE, SAML assertion checks, Keycloak lab notes, and identity-depth practice.',
-    hours: 'est. 8-10h',
+    hours: 'est. 6-8h',
     language: 'Conceptual',
     languageDetail: 'Tables and diagrams; optional Python only if you code a demo later',
     objectives: [
@@ -123,7 +123,7 @@ export const MODULE_META = [
     title: 'ZTNA lite',
     phase: 'Identity & access',
     blurb: 'VPN vs ZTNA, mTLS/device-cert lab literacy, and NIST SP 1800-35.',
-    hours: 'est. 8-10h',
+    hours: 'est. 3-4h',
     language: 'Conceptual',
     languageDetail: 'Diagrams + Python mTLS helpers; local CA lab optional',
     objectives: [
@@ -138,7 +138,7 @@ export const MODULE_META = [
     title: 'Email authentication',
     phase: 'Email & DLP literacy',
     blurb: 'SPF, DKIM, DMARC, and a dmarc_policy kata with tests.',
-    hours: 'est. 8-10h',
+    hours: 'est. 5-7h',
     language: 'Python',
     languageDetail: 'Python 3 + pytest for the dmarc_policy kata',
     objectives: [
@@ -154,7 +154,7 @@ export const MODULE_META = [
     phase: 'Email & DLP literacy',
     blurb:
       'BIMI, MTA-STS/TLS-RPT, DANE, phishing headers, sandboxing, S/MIME/PGP, and time-of-click rewriting.',
-    hours: 'est. 8-10h',
+    hours: 'est. 2-3h',
     language: 'Conceptual',
     languageDetail: 'Vendor-neutral email-threat literacy after SPF/DKIM/DMARC',
     objectives: [
@@ -169,7 +169,7 @@ export const MODULE_META = [
     title: 'Threat model / secure SDLC',
     phase: 'Email & DLP literacy',
     blurb: 'STRIDE-lite on the hold path plus SSDF/ASVS evidence (SAMM optional).',
-    hours: 'est. 8-10h',
+    hours: 'est. 2-3h',
     language: 'Conceptual',
     languageDetail: 'Written threat-model tables (Markdown)',
     objectives: [
@@ -185,7 +185,7 @@ export const MODULE_META = [
     phase: 'Product build',
     blurb:
       'Relational basics before the MailGuard API — tables, keys, and why holds need durable state.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1.5-2h',
     language: 'SQL',
     languageDetail: 'SQL literacy for rules/holds persistence (Postgres-shaped)',
     objectives: [
@@ -201,7 +201,7 @@ export const MODULE_META = [
     title: 'MailGuard API',
     phase: 'Product build',
     blurb: 'FastAPI rules API for hold / allow / reject.',
-    hours: 'est. 8-10h',
+    hours: 'est. 10-14h',
     language: 'Python',
     languageDetail: 'Python 3 + FastAPI + pytest',
     objectives: [
@@ -216,7 +216,7 @@ export const MODULE_META = [
     title: 'TypeScript / Vue primer',
     phase: 'Product build',
     blurb: 'Node, TypeScript, and Vue 3 basics before the MailGuard admin UI.',
-    hours: 'est. 8-10h',
+    hours: 'est. 2-3h',
     language: 'Vue + TypeScript',
     languageDetail: 'Node.js LTS · TypeScript strict · Vue 3',
     objectives: [
@@ -232,7 +232,7 @@ export const MODULE_META = [
     title: 'MailGuard Admin',
     phase: 'Product build',
     blurb: 'TypeScript/Vue admin for rules and the hold queue.',
-    hours: 'est. 8-10h',
+    hours: 'est. 8-12h',
     language: 'Vue + TypeScript',
     languageDetail: 'Vue 3 + TypeScript for the admin SPA',
     objectives: [
@@ -247,7 +247,7 @@ export const MODULE_META = [
     title: 'Go primer',
     phase: 'Product build',
     blurb: 'Go toolchain, packages, and go test before the MailGuard worker.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1.5-2h',
     language: 'Go',
     languageDetail: 'Go modules · packages · go test',
     objectives: [
@@ -263,7 +263,7 @@ export const MODULE_META = [
     title: 'MailGuard Worker',
     phase: 'Product build',
     blurb: 'Queue worker path for applying MailGuard decisions.',
-    hours: 'est. 8-10h',
+    hours: 'est. 6-8h',
     language: 'Go',
     languageDetail: 'Go worker / queue consumer',
     objectives: [
@@ -278,7 +278,7 @@ export const MODULE_META = [
     title: 'Secure Drop',
     phase: 'Product build',
     blurb: 'Expiring share links, audit, and cloud-share DLP literacy.',
-    hours: 'est. 8-10h',
+    hours: 'est. 4-5h',
     language: 'Python',
     languageDetail: 'Python service for share links; assignment literacy first',
     objectives: [
@@ -293,7 +293,7 @@ export const MODULE_META = [
     title: 'Security notes',
     phase: 'Product build',
     blurb: 'OWASP-mapped lab notes tied to MailGuard mitigations.',
-    hours: 'est. 8-10h',
+    hours: 'est. 3-4h',
     language: 'Conceptual',
     languageDetail: 'Written security notes (Markdown)',
     objectives: [
@@ -309,7 +309,7 @@ export const MODULE_META = [
     phase: 'Cloud & platform',
     blurb:
       'Images, containers, and Compose before CI image steps and the infra module.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1.5-2.5h',
     language: 'Docker',
     languageDetail: 'Docker Engine/Desktop · images · Compose',
     objectives: [
@@ -325,7 +325,7 @@ export const MODULE_META = [
     title: 'GitHub Actions primer',
     phase: 'Cloud & platform',
     blurb: 'Workflow YAML, jobs, and secrets hygiene before the CI + AWS module.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1-1.5h',
     language: 'GitHub Actions',
     languageDetail: 'Workflow YAML · jobs/steps · OIDC-minded deploy notes',
     objectives: [
@@ -341,7 +341,7 @@ export const MODULE_META = [
     title: 'CI + AWS',
     phase: 'Cloud & platform',
     blurb: 'PR CI and a documented cloud deploy — no secrets in git.',
-    hours: 'est. 8-10h',
+    hours: 'est. 5-7h',
     language: 'CI + AWS',
     languageDetail: 'GitHub Actions YAML and AWS deploy notes',
     objectives: [
@@ -356,7 +356,7 @@ export const MODULE_META = [
     title: 'Terraform / HCL primer',
     phase: 'Cloud & platform',
     blurb: 'HCL, plan/apply, and state basics before the infra module.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1.5-2h',
     language: 'Terraform / HCL',
     languageDetail: 'HashiCorp Configuration Language · terraform plan',
     objectives: [
@@ -372,7 +372,7 @@ export const MODULE_META = [
     title: 'Infra',
     phase: 'Cloud & platform',
     blurb: 'Compose + Terraform story with IAM / misconfig posture assignment.',
-    hours: 'est. 8-10h',
+    hours: 'est. 6-8h',
     language: 'Terraform + Compose',
     languageDetail: 'Terraform (AWS) and Docker Compose — not application JS',
     objectives: [
@@ -388,7 +388,7 @@ export const MODULE_META = [
     phase: 'Stretch',
     blurb:
       'Pods, Deployments, Services, and kubectl before the local cluster module.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1.5-2h',
     language: 'Kubernetes YAML',
     languageDetail: 'kubectl · kind/minikube · Deployment/Service manifests',
     objectives: [
@@ -404,7 +404,7 @@ export const MODULE_META = [
     title: 'K8s local',
     phase: 'Stretch',
     blurb: 'kind/minikube deploy with probes and resource requests.',
-    hours: 'est. 8-10h',
+    hours: 'est. 6-8h',
     language: 'Kubernetes YAML',
     languageDetail: 'Kubernetes manifests (kind/minikube)',
     objectives: [
@@ -419,7 +419,7 @@ export const MODULE_META = [
     title: 'Observability',
     phase: 'Stretch',
     blurb: 'Golden signals plus SLI/SLO and a lightweight postmortem assignment.',
-    hours: 'est. 8-10h',
+    hours: 'est. 5-7h',
     language: 'Ops / metrics',
     languageDetail: 'Metrics/logs/traces config and written SRE assignments',
     objectives: [
@@ -434,7 +434,7 @@ export const MODULE_META = [
     title: 'GitOps + policy',
     phase: 'Stretch',
     blurb: 'Sync flow and policy-as-code checks on manifests.',
-    hours: 'est. 8-10h',
+    hours: 'est. 5-7h',
     language: 'GitOps / policy',
     languageDetail: 'Kubernetes YAML + policy-as-code (e.g. Kyverno/Conftest)',
     objectives: [
@@ -449,7 +449,7 @@ export const MODULE_META = [
     title: 'Svelte primer',
     phase: 'Optional',
     blurb: 'Svelte / SvelteKit basics before the optional Phish Lite UI.',
-    hours: 'est. 8-10h',
+    hours: 'est. 1-1.5h',
     language: 'Svelte',
     languageDetail: 'Svelte · SvelteKit · Node.js',
     objectives: [
@@ -465,7 +465,7 @@ export const MODULE_META = [
     title: 'Phish Lite',
     phase: 'Optional',
     blurb: 'Optional phishing-awareness quiz UI for learning honesty practice.',
-    hours: 'est. 8-10h',
+    hours: 'est. 6-8h',
     language: 'Svelte',
     languageDetail: 'Svelte / SvelteKit for the optional quiz UI',
     objectives: [
@@ -480,7 +480,7 @@ export const MODULE_META = [
     title: 'OSS + security UX',
     phase: 'Optional',
     blurb: 'Upstream contribution hygiene and security-warning UX reflection.',
-    hours: 'est. 8-10h',
+    hours: 'est. 2-3h',
     language: 'Vue + TypeScript',
     languageDetail: 'Vue + TypeScript for UX mocks; writing for the OSS track',
     objectives: [
@@ -496,7 +496,7 @@ export const MODULE_META = [
     phase: 'Capstone',
     blurb:
       'End-to-end outbound mail filter demo with tests and a self-grading rubric assignment.',
-    hours: 'est. 8-10h',
+    hours: 'est. 8-12h',
     language: 'Python',
     languageDetail: 'Python 3 + pytest for the filter core; rubric assignment in Markdown',
     objectives: [
@@ -511,7 +511,7 @@ export const MODULE_META = [
     title: 'SCIM / JIT provisioning',
     phase: 'Identity & access',
     blurb: 'SCIM filters, joiner-mover-leaver risk, and directory provisioning literacy.',
-    hours: 'est. 8-10h',
+    hours: 'est. 3-4h',
     language: 'Python',
     languageDetail: 'Python 3 + pytest; FastAPI SCIM lab optional',
     objectives: [
@@ -526,7 +526,7 @@ export const MODULE_META = [
     title: 'Global collaboration & privacy',
     phase: 'Stretch',
     blurb: 'Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL and EU AI Act date literacy.',
-    hours: 'est. 8-10h',
+    hours: 'est. 2-3h',
     language: 'Conceptual',
     languageDetail: 'English readings + a small Python tagging kata',
     objectives: [
@@ -541,7 +541,7 @@ export const MODULE_META = [
     title: 'Git & code review',
     phase: 'Stretch',
     blurb: 'PR hygiene, conventional commits, security review, and design-note practice.',
-    hours: 'est. 8-10h',
+    hours: 'est. 2-3h',
     language: 'Git',
     languageDetail: 'Git/GitHub collaboration patterns; Python helpers for hygiene checks',
     objectives: [

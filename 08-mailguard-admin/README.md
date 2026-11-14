@@ -1,6 +1,6 @@
 # 08 — MailGuard Admin
 
-**Language:** Vue 3 + TypeScript. Est. 8-10h.
+**Language:** Vue 3 + TypeScript. Est. 8-12h.
 
 Operator UI for rules and the hold queue. This module ships a TypeScript rule-form helper with tests, plus a reading/assignment track for building a Vue admin against the Module 07 API.
 

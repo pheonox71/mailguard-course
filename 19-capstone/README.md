@@ -2,7 +2,7 @@
 
 Bring the MailGuard thread together: a small outbound **mail filter** the student can demo end-to-end, plus a downloadable self-grading assignment against the course rubric.
 
-**Language / tooling:** Python 3 + pytest for the filter core; optional curl/httpie for the demo path. Est. 8-10h.
+**Language / tooling:** Python 3 + pytest for the filter core; optional curl/httpie for the demo path. Est. 8-12h.
 
 ## Learning objectives
 

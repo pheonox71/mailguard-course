@@ -1,6 +1,6 @@
 # 14 — K8s local
 
-**Language:** Kubernetes YAML. Est. 8-10h.
+**Language:** Kubernetes YAML. Est. 6-8h.
 
 Deploy the MailGuard app shape to kind/minikube with split probes, PSS restricted-shaped `securityContext`, resource requests, and a default-deny NetworkPolicy (+ DNS allow).
 

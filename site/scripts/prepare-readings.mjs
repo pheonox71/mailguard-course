@@ -196,7 +196,7 @@ function writeGlossaryAndSearch(modules) {
       moduleId: mod.id,
       moduleTitle: mod.title,
       topicId: null,
-      body: `${mod.blurb} ${(mod.objectives || []).join(' ')} ${mod.language || ''}`,
+      body: `${mod.blurb} ${mod.hours || ''} ${(mod.objectives || []).join(' ')} ${mod.language || ''}`,
       snippet: mod.blurb,
     })
     for (const r of mod.readings || []) {

@@ -1,6 +1,6 @@
 # 09 — MailGuard Worker
 
-**Language:** Go (1.25+). Est. 8-10h.
+**Language:** Go (1.25+). Est. 6-8h.
 
 Queue consumer that applies hold/allow/reject decisions. In-memory interface first; **ElasticMQ** for local SQS API; cloud SQS with **AWS SDK Go v2** later.
 

@@ -26,7 +26,7 @@ Students with CS fundamentals and comfort in Python who want a survey path acros
 4. Mark topics/modules complete in the browser (progress stored locally; resume CTA in the nav).
 5. Answer the blank assignments and quiz PDFs already under `my-work/` in the repo (not on the site).
 
-Every module (including primers) is listed as **est. 8-10h**.
+Each module has its own time estimate (primers often **est. 1-3h**; multi-kata and app builds much longer). Full list and method are in [SYLLABUS.md](./SYLLABUS.md); course total about **132-184h**.
 
 ---
 

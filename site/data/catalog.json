@@ -1,7 +1,7 @@
 {
   "brand": "MailGuard Course",
   "tagline": "Cloud-security learning for students building identity, email DLP, and secure SaaS skills.",
-  "generatedAt": "2026-11-14T12:27:04.852Z",
+  "generatedAt": "2026-11-14T12:36:50.760Z",
   "modules": [
     {
       "id": "00-setup",
@@ -9,7 +9,7 @@
       "title": "Setup / getting ready",
       "phase": "Foundations",
       "blurb": "Install and version-check the tools for the whole MailGuard path — Windows, macOS, and Linux.",
-      "hours": "est. 8-10h",
+      "hours": "est. 3-4h",
       "language": "Tooling",
       "languageDetail": "Cross-platform installs (Git, Python, later Node/Go/Docker/Terraform/K8s)",
       "objectives": [
@@ -44,7 +44,7 @@
       "title": "Bash / shell primer",
       "phase": "Foundations",
       "blurb": "Short shell literacy before Challenge Gym — cd, pipes, env vars, and why labs use a terminal.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1-1.5h",
       "language": "Bash",
       "languageDetail": "POSIX-ish shell / Git Bash / PowerShell notes for course labs",
       "objectives": [
@@ -79,7 +79,7 @@
       "title": "Python primer",
       "phase": "Foundations",
       "blurb": "Refresh Python 3, venv, and pytest habits used from Challenge Gym through the MailGuard API.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1-1.5h",
       "language": "Python",
       "languageDetail": "Python 3.11+ · venv · pip · pytest",
       "objectives": [
@@ -114,7 +114,7 @@
       "title": "HTTP primer",
       "phase": "Foundations",
       "blurb": "Methods, status codes, headers, cookies, CORS, and TLS before OIDC and the MailGuard API.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1-1.5h",
       "language": "HTTP",
       "languageDetail": "HTTP/1.1 literacy · status codes · headers · cookies · CORS · TLS",
       "objectives": [
@@ -149,7 +149,7 @@
       "title": "Challenge Gym",
       "phase": "Foundations",
       "blurb": "Short Python (+ optional Go) katas — RFC 6238 TOTP, Basic auth client, hold rules, recipient risk, crypto hygiene.",
-      "hours": "est. 8-10h",
+      "hours": "est. 12-16h",
       "language": "Python",
       "languageDetail": "Python 3 + pytest; optional Go TOTP port",
       "objectives": [
@@ -343,7 +343,7 @@
       "title": "MailGuard MFA",
       "phase": "Identity & access",
       "blurb": "TOTP enroll/verify, recovery codes, and passkeys / WebAuthn literacy.",
-      "hours": "est. 8-10h",
+      "hours": "est. 3-4h",
       "language": "Python",
       "languageDetail": "Python (FastAPI-style) for enroll/verify; assignment is mostly literacy",
       "objectives": [
@@ -423,7 +423,7 @@
       "title": "OIDC / access policy",
       "phase": "Identity & access",
       "blurb": "OIDC + PKCE, SAML assertion checks, Keycloak lab notes, and identity-depth practice.",
-      "hours": "est. 8-10h",
+      "hours": "est. 6-8h",
       "language": "Conceptual",
       "languageDetail": "Tables and diagrams; optional Python only if you code a demo later",
       "objectives": [
@@ -527,7 +527,7 @@
       "title": "ZTNA lite",
       "phase": "Identity & access",
       "blurb": "VPN vs ZTNA, mTLS/device-cert lab literacy, and NIST SP 1800-35.",
-      "hours": "est. 8-10h",
+      "hours": "est. 3-4h",
       "language": "Conceptual",
       "languageDetail": "Diagrams + Python mTLS helpers; local CA lab optional",
       "objectives": [
@@ -607,7 +607,7 @@
       "title": "Email authentication",
       "phase": "Email & DLP literacy",
       "blurb": "SPF, DKIM, DMARC, and a dmarc_policy kata with tests.",
-      "hours": "est. 8-10h",
+      "hours": "est. 5-7h",
       "language": "Python",
       "languageDetail": "Python 3 + pytest for the dmarc_policy kata",
       "objectives": [
@@ -714,7 +714,7 @@
       "title": "Email threats beyond auth",
       "phase": "Email & DLP literacy",
       "blurb": "BIMI, MTA-STS/TLS-RPT, DANE, phishing headers, sandboxing, S/MIME/PGP, and time-of-click rewriting.",
-      "hours": "est. 8-10h",
+      "hours": "est. 2-3h",
       "language": "Conceptual",
       "languageDetail": "Vendor-neutral email-threat literacy after SPF/DKIM/DMARC",
       "objectives": [
@@ -779,7 +779,7 @@
       "title": "Threat model / secure SDLC",
       "phase": "Email & DLP literacy",
       "blurb": "STRIDE-lite on the hold path plus SSDF/ASVS evidence (SAMM optional).",
-      "hours": "est. 8-10h",
+      "hours": "est. 2-3h",
       "language": "Conceptual",
       "languageDetail": "Written threat-model tables (Markdown)",
       "objectives": [
@@ -844,7 +844,7 @@
       "title": "SQL primer",
       "phase": "Product build",
       "blurb": "Relational basics before the MailGuard API — tables, keys, and why holds need durable state.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1.5-2h",
       "language": "SQL",
       "languageDetail": "SQL literacy for rules/holds persistence (Postgres-shaped)",
       "objectives": [
@@ -879,7 +879,7 @@
       "title": "MailGuard API",
       "phase": "Product build",
       "blurb": "FastAPI rules API for hold / allow / reject.",
-      "hours": "est. 8-10h",
+      "hours": "est. 10-14h",
       "language": "Python",
       "languageDetail": "Python 3 + FastAPI + pytest",
       "objectives": [
@@ -995,7 +995,7 @@
       "title": "TypeScript / Vue primer",
       "phase": "Product build",
       "blurb": "Node, TypeScript, and Vue 3 basics before the MailGuard admin UI.",
-      "hours": "est. 8-10h",
+      "hours": "est. 2-3h",
       "language": "Vue + TypeScript",
       "languageDetail": "Node.js LTS · TypeScript strict · Vue 3",
       "objectives": [
@@ -1030,7 +1030,7 @@
       "title": "MailGuard Admin",
       "phase": "Product build",
       "blurb": "TypeScript/Vue admin for rules and the hold queue.",
-      "hours": "est. 8-10h",
+      "hours": "est. 8-12h",
       "language": "Vue + TypeScript",
       "languageDetail": "Vue 3 + TypeScript for the admin SPA",
       "objectives": [
@@ -1095,7 +1095,7 @@
       "title": "Go primer",
       "phase": "Product build",
       "blurb": "Go toolchain, packages, and go test before the MailGuard worker.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1.5-2h",
       "language": "Go",
       "languageDetail": "Go modules · packages · go test",
       "objectives": [
@@ -1130,7 +1130,7 @@
       "title": "MailGuard Worker",
       "phase": "Product build",
       "blurb": "Queue worker path for applying MailGuard decisions.",
-      "hours": "est. 8-10h",
+      "hours": "est. 6-8h",
       "language": "Go",
       "languageDetail": "Go worker / queue consumer",
       "objectives": [
@@ -1203,7 +1203,7 @@
       "title": "Secure Drop",
       "phase": "Product build",
       "blurb": "Expiring share links, audit, and cloud-share DLP literacy.",
-      "hours": "est. 8-10h",
+      "hours": "est. 4-5h",
       "language": "Python",
       "languageDetail": "Python service for share links; assignment literacy first",
       "objectives": [
@@ -1283,7 +1283,7 @@
       "title": "Security notes",
       "phase": "Product build",
       "blurb": "OWASP-mapped lab notes tied to MailGuard mitigations.",
-      "hours": "est. 8-10h",
+      "hours": "est. 3-4h",
       "language": "Conceptual",
       "languageDetail": "Written security notes (Markdown)",
       "objectives": [
@@ -1369,7 +1369,7 @@
       "title": "Docker primer",
       "phase": "Cloud & platform",
       "blurb": "Images, containers, and Compose before CI image steps and the infra module.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1.5-2.5h",
       "language": "Docker",
       "languageDetail": "Docker Engine/Desktop · images · Compose",
       "objectives": [
@@ -1404,7 +1404,7 @@
       "title": "GitHub Actions primer",
       "phase": "Cloud & platform",
       "blurb": "Workflow YAML, jobs, and secrets hygiene before the CI + AWS module.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1-1.5h",
       "language": "GitHub Actions",
       "languageDetail": "Workflow YAML · jobs/steps · OIDC-minded deploy notes",
       "objectives": [
@@ -1439,7 +1439,7 @@
       "title": "CI + AWS",
       "phase": "Cloud & platform",
       "blurb": "PR CI and a documented cloud deploy — no secrets in git.",
-      "hours": "est. 8-10h",
+      "hours": "est. 5-7h",
       "language": "CI + AWS",
       "languageDetail": "GitHub Actions YAML and AWS deploy notes",
       "objectives": [
@@ -1531,7 +1531,7 @@
       "title": "Terraform / HCL primer",
       "phase": "Cloud & platform",
       "blurb": "HCL, plan/apply, and state basics before the infra module.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1.5-2h",
       "language": "Terraform / HCL",
       "languageDetail": "HashiCorp Configuration Language · terraform plan",
       "objectives": [
@@ -1566,7 +1566,7 @@
       "title": "Infra",
       "phase": "Cloud & platform",
       "blurb": "Compose + Terraform story with IAM / misconfig posture assignment.",
-      "hours": "est. 8-10h",
+      "hours": "est. 6-8h",
       "language": "Terraform + Compose",
       "languageDetail": "Terraform (AWS) and Docker Compose — not application JS",
       "objectives": [
@@ -1650,7 +1650,7 @@
       "title": "Kubernetes YAML primer",
       "phase": "Stretch",
       "blurb": "Pods, Deployments, Services, and kubectl before the local cluster module.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1.5-2h",
       "language": "Kubernetes YAML",
       "languageDetail": "kubectl · kind/minikube · Deployment/Service manifests",
       "objectives": [
@@ -1685,7 +1685,7 @@
       "title": "K8s local",
       "phase": "Stretch",
       "blurb": "kind/minikube deploy with probes and resource requests.",
-      "hours": "est. 8-10h",
+      "hours": "est. 6-8h",
       "language": "Kubernetes YAML",
       "languageDetail": "Kubernetes manifests (kind/minikube)",
       "objectives": [
@@ -1771,7 +1771,7 @@
       "title": "Observability",
       "phase": "Stretch",
       "blurb": "Golden signals plus SLI/SLO and a lightweight postmortem assignment.",
-      "hours": "est. 8-10h",
+      "hours": "est. 5-7h",
       "language": "Ops / metrics",
       "languageDetail": "Metrics/logs/traces config and written SRE assignments",
       "objectives": [
@@ -1863,7 +1863,7 @@
       "title": "GitOps + policy",
       "phase": "Stretch",
       "blurb": "Sync flow and policy-as-code checks on manifests.",
-      "hours": "est. 8-10h",
+      "hours": "est. 5-7h",
       "language": "GitOps / policy",
       "languageDetail": "Kubernetes YAML + policy-as-code (e.g. Kyverno/Conftest)",
       "objectives": [
@@ -1955,7 +1955,7 @@
       "title": "Svelte primer",
       "phase": "Optional",
       "blurb": "Svelte / SvelteKit basics before the optional Phish Lite UI.",
-      "hours": "est. 8-10h",
+      "hours": "est. 1-1.5h",
       "language": "Svelte",
       "languageDetail": "Svelte · SvelteKit · Node.js",
       "objectives": [
@@ -1990,7 +1990,7 @@
       "title": "Phish Lite",
       "phase": "Optional",
       "blurb": "Optional phishing-awareness quiz UI for learning honesty practice.",
-      "hours": "est. 8-10h",
+      "hours": "est. 6-8h",
       "language": "Svelte",
       "languageDetail": "Svelte / SvelteKit for the optional quiz UI",
       "objectives": [
@@ -2063,7 +2063,7 @@
       "title": "OSS + security UX",
       "phase": "Optional",
       "blurb": "Upstream contribution hygiene and security-warning UX reflection.",
-      "hours": "est. 8-10h",
+      "hours": "est. 2-3h",
       "language": "Vue + TypeScript",
       "languageDetail": "Vue + TypeScript for UX mocks; writing for the OSS track",
       "objectives": [
@@ -2128,7 +2128,7 @@
       "title": "Capstone: mail filter",
       "phase": "Capstone",
       "blurb": "End-to-end outbound mail filter demo with tests and a self-grading rubric assignment.",
-      "hours": "est. 8-10h",
+      "hours": "est. 8-12h",
       "language": "Python",
       "languageDetail": "Python 3 + pytest for the filter core; rubric assignment in Markdown",
       "objectives": [
@@ -2200,7 +2200,7 @@
       "title": "SCIM / JIT provisioning",
       "phase": "Identity & access",
       "blurb": "SCIM filters, joiner-mover-leaver risk, and directory provisioning literacy.",
-      "hours": "est. 8-10h",
+      "hours": "est. 3-4h",
       "language": "Python",
       "languageDetail": "Python 3 + pytest; FastAPI SCIM lab optional",
       "objectives": [
@@ -2278,7 +2278,7 @@
       "title": "Global collaboration & privacy",
       "phase": "Stretch",
       "blurb": "Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL and EU AI Act date literacy.",
-      "hours": "est. 8-10h",
+      "hours": "est. 2-3h",
       "language": "Conceptual",
       "languageDetail": "English readings + a small Python tagging kata",
       "objectives": [
@@ -2350,7 +2350,7 @@
       "title": "Git & code review",
       "phase": "Stretch",
       "blurb": "PR hygiene, conventional commits, security review, and design-note practice.",
-      "hours": "est. 8-10h",
+      "hours": "est. 2-3h",
       "language": "Git",
       "languageDetail": "Git/GitHub collaboration patterns; Python helpers for hygiene checks",
       "objectives": [

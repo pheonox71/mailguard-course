@@ -1,6 +1,6 @@
 # 16 — GitOps + policy
 
-**Language:** Kubernetes YAML + policy-as-code. Est. 8-10h.
+**Language:** Kubernetes YAML + policy-as-code. Est. 5-7h.
 
 Sync flow for manifests; CI fails on a deliberate bad manifest.
 

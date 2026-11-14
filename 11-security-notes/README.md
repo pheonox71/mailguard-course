@@ -1,6 +1,6 @@
 # 11 — Security notes
 
-**Language:** Conceptual (Markdown lab notes). Est. 8-10h.
+**Language:** Conceptual (Markdown lab notes). Est. 3-4h.
 
 Map OWASP-minded findings to MailGuard mitigations. No attacks on real systems — local labs only.
 
