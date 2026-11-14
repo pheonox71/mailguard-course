@@ -72,3 +72,6 @@ def test_rules_crud_and_evaluate(client: TestClient) -> None:
 
     deleted = client.delete(f"/rules/{rule_id}")
     assert deleted.status_code == 204
+    assert deleted.content == b""  # FastAPI >=0.117: true empty 204 body
+    missing = client.delete(f"/rules/{rule_id}")
+    assert missing.status_code == 404

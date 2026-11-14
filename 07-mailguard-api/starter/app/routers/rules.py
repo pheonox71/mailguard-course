@@ -86,7 +86,9 @@ def build_rules_router(store: MemoryStore) -> APIRouter:
             contains=rule.contains,
         )
 
-    @r.delete("/rules/{rule_id}", status_code=204)
+    # FastAPI <0.117 asserts on `-> None` + status 204 (from __future__ annotations).
+    # Require fastapi>=0.117; response_model=None keeps the route body-less.
+    @r.delete("/rules/{rule_id}", status_code=204, response_model=None)
     def delete_rule(rule_id: str) -> None:
         if not store.delete_rule(rule_id):
             raise HTTPException(status_code=404, detail="rule not found")
