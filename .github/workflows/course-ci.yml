@@ -14,7 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  python-katas:
+  # Proves the shipped tests are valid by applying solutions/ first.
+  solutions-python:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -55,11 +56,10 @@ jobs:
             exit 1
           fi
           mkdir -p katas
-          # Copy solution modules over kata stubs (keep package inits).
           find solutions -maxdepth 1 -type f ! -name 'README.md' -exec cp {} katas/ \;
-          python -m pytest -q
+          python3 -m pytest -q
 
-  go-worker:
+  solutions-go-worker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -73,7 +73,7 @@ jobs:
           cp solutions/sqs_contract.go worker/sqs_contract.go
           go test ./...
 
-  go-totp:
+  solutions-go-totp:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -86,7 +86,7 @@ jobs:
           cp ../solutions/totp.go totp.go
           go test ./...
 
-  node-katas:
+  solutions-node:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -103,6 +103,26 @@ jobs:
         run: |
           cp solutions/rule_form.ts katas/rule_form.ts
           npm test
+
+  # Runs tests against committed katas/ stubs. Reports per-module status and
+  # always exits 0 so unfinished student work does not fail course CI.
+  learner-katas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Learner kata status (non-gating)
+        run: |
+          chmod +x scripts/run_learner_katas.sh
+          scripts/run_learner_katas.sh
 
   quiz-answer-key-counts:
     runs-on: ubuntu-latest

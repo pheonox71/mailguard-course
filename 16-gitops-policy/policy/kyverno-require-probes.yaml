@@ -1,0 +1,36 @@
+# Kyverno ClusterPolicy sketch — require probes and ban :latest on Deployments.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-probes-and-pinned-tag
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: require-probes
+      match:
+        any:
+          - resources:
+              kinds: [Deployment]
+      validate:
+        message: "Every container needs readinessProbe and livenessProbe"
+        pattern:
+          spec:
+            template:
+              spec:
+                containers:
+                  - readinessProbe: "?"
+                    livenessProbe: "?"
+    - name: ban-latest-tag
+      match:
+        any:
+          - resources:
+              kinds: [Deployment]
+      validate:
+        message: "image tag :latest is not allowed"
+        pattern:
+          spec:
+            template:
+              spec:
+                containers:
+                  - image: "!*:latest"

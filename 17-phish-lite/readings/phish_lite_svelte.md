@@ -29,8 +29,8 @@ Ethics + metrics helpers (implementations live in the kata; contract shape):
 ethicalSimOk({ consent: true, capturesCredentials: false })  // → true
 ethicalSimOk({ consent: true, capturesCredentials: true })   // → false
 
-// reportRate(reported, opportunities) — prefer this over vanity click rates
-reportRate(8, 10)  // → 0.8
+// reportRate(reported, clicked) = reported / (reported + clicked)
+reportRate(3, 1)  // → 0.75
 
 // timeToReportSeconds(sentAt, reportedAt) — faster reporting is the job skill
 ```

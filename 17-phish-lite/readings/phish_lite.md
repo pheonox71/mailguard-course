@@ -28,9 +28,10 @@ Trade-off: hyper-realistic login clones teach recognition but cross into credent
 Report-rate metric (same idea as `score.js` in this module’s kata):
 
 ```text
-report_rate = reports / opportunities
-# Example: 8 reports out of 10 scenarios where reporting was available → 0.8
-# Why prefer this over vanity click rates: rewards the behavior you want on real mail
+report_rate = reported / (reported + clicked)
+# Example: reportRate(3, 1) → 0.75  (three reports, one click-without-report)
+# “clicked” here means non-report outcomes that still count toward the denom.
+# Why prefer this over vanity click rates alone: rewards the behavior you want on real mail.
 ```
 
 Ethics gate checklist:

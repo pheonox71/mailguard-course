@@ -29,9 +29,11 @@ State transition table (illegal cells must error):
 | From \ Action | approve | reject | release |
 |---------------|---------|--------|---------|
 | held | → approved | → rejected | **409** (must approve first) |
-| approved | **409** | **409** (or policy-defined) | → released |
+| approved | **409** | → rejected (policy: may still reject before release) | → released |
 | rejected | **409** | **409** | **409** |
 | released | **409** | **409** | **409** |
+
+This course’s `hold_state` kata treats **approved → reject** as legal so operators can stop a previously approved item before release. Document any stricter policy in your own lab notes.
 
 ```http
 POST /holds/msg-1/release
@@ -55,7 +57,7 @@ Persistence (Postgres + SQLAlchemy/Alembic) belongs in your stretch lab — the 
 
 ## Read these (verified)
 
-1. [FastAPI — Path operations](https://fastapi.tiangolo.com/tutorial/path-operations/)
+1. [FastAPI — Path operation configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/)
 2. [SQLAlchemy 2.0 — ORM quick start](https://docs.sqlalchemy.org/en/20/orm/quickstart.html)
 3. [Alembic tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html)
 

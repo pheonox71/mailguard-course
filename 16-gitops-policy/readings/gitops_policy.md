@@ -30,8 +30,12 @@ Fail CI before sync (Conftest-class; Kyverno/OPA equivalent works the same idea)
 
 ```bash
 # Why fail CI before sync: stop bad desired-state from rolling out
+# Policies live in this module's policy/ (Rego for Conftest + a Kyverno sketch)
 conftest test fixtures/bad_deployment.yaml -p policy/
-# Expected: FAIL — missing readinessProbe / privileged / :latest (policy-dependent)
+# Expected: FAIL — missing readinessProbe / :latest
+conftest test fixtures/good_deployment.yaml -p policy/
+# Expected: PASS
+# Sample CI shape: .github/workflows/policy-check.yml under this module (copy into your fork root)
 ```
 
 ```text

@@ -42,13 +42,14 @@ func ShouldDLQ(attempt, maxAttempts int) bool {
 
 ```json
 {
-  "message_id": "msg-bad",
-  "decision": "HOLD",
-  "to": "user@example.com"
+  "id": "",
+  "subject": "poison",
+  "body": "bad",
+  "attempt": 5
 }
 ```
 
-If the Go struct expects `"hold"` (lowercase) and rejects unknown values, this poison message retries until DLQ — better than blocking the main queue forever. Fix the producer or loosen parse only with an explicit contract change.
+If `id` is empty, `ParseQueueMessage` must error — that poison payload retries until DLQ rather than blocking the main queue forever. Fix the producer; do not silently invent an id.
 
 **On the job.** SQS-style DLQs are standard in cloud mail and identity pipelines. Knowing when to DLQ vs retry — and how LocalStack demos the same shape — is day-to-day platform security engineering, not a single-vendor trick.
 

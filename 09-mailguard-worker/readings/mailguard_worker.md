@@ -24,24 +24,25 @@ Producer / API → Queue → Go worker → apply decision → side effects → a
 
 ### Worked example
 
-Shared queue message JSON (API producer ↔ Go consumer):
+Shared queue message JSON (API producer ↔ Go `QueueMessage` in `worker/sqs_contract.go`):
 
 ```json
 {
-  "message_id": "msg-42",
-  "decision": "hold",
-  "reason_rule": "r1",
-  "to": "user@external.example",
-  "subject": "Q3 forecast"
+  "id": "msg-42",
+  "subject": "Q3 forecast",
+  "body": "Confidential numbers…",
+  "attempt": 1
 }
 ```
 
+The worker applies hold/allow/reject using the **same decision vocabulary** as Module 07 (rules evaluate / hold state). Do not invent parallel field names like `message_id` / `to` in the queue envelope — keep the Go struct and the producer JSON identical.
+
 ```
-Receive → parse JSON → switch decision
-  hold   → persist hold row (idempotent on message_id)
+Receive → ParseQueueMessage → evaluate / apply decision
+  hold   → persist hold row (idempotent on id)
   allow  → forward / no-op if already forwarded
   reject → record rejection
-→ DeleteMessage / ack
+→ DeleteMessage / ack (attempt increments on failure; see DLQ reading)
 ```
 
 **On the job.** Cloud email security, identity provisioning, and DLP all use workers + queues. Interviewers ask about idempotency, shared JSON contracts, and why you do not sprinkle cloud SDK calls through every package — vendor-neutral platform skills.
@@ -53,7 +54,7 @@ API services accept operator input; **workers** apply decisions asynchronously �
 ### Common misconceptions / what goes wrong
 
 - **“Ack before side effects finish.”** A crash after ack loses the work; ack after success (and design for duplicate delivery).
-- **“Exactly-once is guaranteed.”** Most queues are at-least-once; idempotency keys (`message_id` / hold id) are mandatory.
+- **“Exactly-once is guaranteed.”** Most queues are at-least-once; idempotency keys (`id` / hold id) are mandatory.
 - **“Python and Go can invent their own field names.”** Field drift causes silent parse failures; document and test one JSON contract.
 - **“The worker can call evaluate with different rules.”** Divergent policy engines are how allow/hold disagree across services — share vocabulary and fixtures.
 

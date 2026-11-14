@@ -28,11 +28,12 @@ Rules and one evaluate call (conceptual JSON):
 
 ```json
 [
-  {"id": "r1", "match": {"recipient_domain": "external.example"}, "action": "hold"},
-  {"id": "r2", "match": {"body_contains": "SECRET"}, "action": "reject"},
-  {"id": "r3", "match": {}, "action": "allow"}
+  {"id": "r1", "recipient_domain": "external.example", "decision": "hold"},
+  {"id": "r2", "contains": "SECRET", "decision": "reject"}
 ]
 ```
+
+A rule with **no predicates** (neither `recipient_domain` nor `contains`) **never matches**. Use the evaluate call’s documented **default** (usually `allow`) when nothing matches — do not invent a catch-all empty `match: {}` rule.
 
 ```http
 POST /evaluate
@@ -41,7 +42,7 @@ POST /evaluate
 → 200 {"decision": "hold", "matched_rule": "r1"}
 ```
 
-If `r1` were listed *after* a blanket allow, the same message would silently allow — **order is policy**.
+If a broad allow rule were listed *before* the domain hold, the same message would silently allow — **order is policy**.
 
 **On the job.** Email DLP and identity-adjacent gateways expose the same pattern: policy CRUD + evaluate on the message path. Interviewers care that you can explain first-match vs scoring, why pure evaluation is testable, and what an in-memory store cannot prove in production — vendor-neutral skills for any cloud mail or SaaS security API.
 
@@ -60,8 +61,9 @@ Keep the public vocabulary vendor-neutral: rules, holds, allow, reject — not a
 
 ## Videos (verified)
 
-1. **[FastAPI tutorial overview](https://www.youtube.com/watch?v=0QRcFgKecYg)** — freeCodeCamp  
-   Why it helps: fast tour of routes, models, and docs UI.
+1. **[FastAPI Tutorial for Beginners – Full Course](https://www.youtube.com/watch?v=VirndPTeRaw)** — Tech With Tim (2025)  
+   Why it helps: routes, models, docs UI, and a runnable API shape that matches this module’s starter.
+
 
 ## Read these (verified)
 

@@ -6,7 +6,14 @@ from urllib.parse import parse_qs, urlparse
 
 
 def is_safe_redirect(uri: str, *, allowed_roots: tuple[str, ...]) -> bool:
-    """True if uri starts with one of allowed_roots (exact prefix)."""
+    """True if uri is under an allowed root with host-boundary checks.
+
+    Naive string prefix matching is unsafe: an allow-list entry of
+    ``https://app.example.com`` must **not** accept
+    ``https://app.example.com.evil.com/...``. Compare scheme and host
+    (and port) exactly, then require the path to start with the allowed
+    path (or match an exact registered redirect URI).
+    """
     raise NotImplementedError
 
 

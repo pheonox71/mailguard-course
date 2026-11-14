@@ -8,7 +8,7 @@ Mode = Literal["pull", "push"]
 
 
 def classify_sync(tool: str) -> Mode:
-    """argo/flux → pull; jenkins-kubectl → push. ValueError otherwise."""
+    """argocd/argo/flux → pull; jenkins-kubectl → push. ValueError otherwise."""
     raise NotImplementedError
 
 

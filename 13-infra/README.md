@@ -12,9 +12,10 @@ Compose + Terraform for the MailGuard story, extended with Identity and Access M
 
 ## Start here
 
-1. [`readings/cloud_iam_posture.md`](./readings/cloud_iam_posture.md)
-2. Quiz → assignment (checklist against your Terraform/Compose)
-3. Infra as code for storage/IAM/queue
+1. [`readings/container_images.md`](./readings/container_images.md) — build `mailguard-api:local` / worker images
+2. [`readings/cloud_iam_posture.md`](./readings/cloud_iam_posture.md)
+3. Quiz → assignment (checklist against your Terraform/Compose)
+4. Infra as code for storage/IAM/queue
 
 **Done when:** compose demo + Terraform plan documented; IAM assignment checklist completed for *your* resources.
 

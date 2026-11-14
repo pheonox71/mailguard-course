@@ -12,8 +12,9 @@
 
 1. Register GitHub’s OIDC issuer (`token.actions.githubusercontent.com`) as an Identity and Access Management (**IAM**) OIDC provider in AWS.
 2. Create an IAM role whose trust policy allows `sts:AssumeRoleWithWebIdentity` only when JWT claims match (commonly `sub` like `repo:ORG/REPO:ref:refs/heads/main`).
-3. In Actions, request an ID token, call AssumeRoleWithWebIdentity (often via `aws-actions/configure-aws-credentials`), then push an image and update **Amazon Elastic Container Service (ECS)** on **Fargate** (serverless tasks — no EC2 capacity management for the task itself).
-4. Task definition pins image digest/tag, CPU/memory, and task role (least privilege to queues/buckets — not `AdministratorAccess`).
+3. In Actions, set workflow `permissions:` so the job can mint an OIDC token — at minimum `id-token: write` (and usually `contents: read`). Without `id-token: write`, `configure-aws-credentials` cannot request the JWT.
+4. Request an ID token, call AssumeRoleWithWebIdentity (often via `aws-actions/configure-aws-credentials`), then push an image and update **Amazon Elastic Container Service (ECS)** on **Fargate** (serverless tasks — no EC2 capacity management for the task itself).
+5. Task definition pins image digest/tag, CPU/memory, and task role (least privilege to queues/buckets — not `AdministratorAccess`).
 
 ```text
 GitHub job → OIDC JWT → AWS STS AssumeRoleWithWebIdentity
@@ -45,8 +46,23 @@ Trust fragment (conceptual — align with [`../starter/oidc-aws-ecs.tf.example`]
 }
 ```
 
-Why constrain `sub` to `main`: a feature-branch or fork job must not assume the production deploy role. Why Terraform for the trust: the condition is a reviewable diff — console clicks drift.
+Example `sub` shapes (pin the tightest that fits the job):
 
+| Intent | Example `sub` |
+|--------|----------------|
+| Production deploys from `main` only | `repo:ORG/REPO:ref:refs/heads/main` |
+| A protected GitHub Environment | `repo:ORG/REPO:environment:production` |
+| A single workflow file (when using `job_workflow_ref`) | `repo:ORG/REPO:ref:refs/heads/main` plus workflow filters in the job |
+
+Minimal Actions permissions for the deploy job:
+
+```yaml
+permissions:
+  id-token: write   # required to mint the OIDC JWT
+  contents: read
+```
+
+Why constrain `sub` to `main`: a feature-branch or fork job must not assume the production deploy role. Why Terraform for the trust: the condition is a reviewable diff — console clicks drift.
 ### Common misconceptions / what goes wrong
 
 - **“OIDC alone is least privilege.”** Federation only answers *who can assume*; the role’s **permission** policy still decides blast radius (queues, buckets, ECS update). An open trust + admin role is worse than static keys you knew to rotate.

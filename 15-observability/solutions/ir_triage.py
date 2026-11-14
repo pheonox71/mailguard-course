@@ -4,17 +4,32 @@ from __future__ import annotations
 
 from typing import Literal
 
-Phase = Literal["preparation", "detection", "analysis", "containment", "eradication", "recovery", "postincident"]
+CsfFunction = Literal["govern", "identify", "protect", "detect", "respond", "recover"]
+LegacyPhase = Literal[
+    "preparation",
+    "detection",
+    "analysis",
+    "containment",
+    "eradication",
+    "recovery",
+    "postincident",
+]
+Phase = CsfFunction
+
+
+def csf_function_order() -> tuple[CsfFunction, ...]:
+    return ("govern", "identify", "protect", "detect", "respond", "recover")
 
 
 def phase_order() -> tuple[Phase, ...]:
+    return csf_function_order()
+
+
+def legacy_rev2_phases() -> tuple[str, ...]:
     return (
         "preparation",
-        "detection",
-        "analysis",
-        "containment",
-        "eradication",
-        "recovery",
+        "detection_analysis",
+        "containment_eradication_recovery",
         "postincident",
     )
 
