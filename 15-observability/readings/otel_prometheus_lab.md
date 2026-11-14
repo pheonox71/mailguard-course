@@ -12,8 +12,8 @@
 
 1. The app increments **counters** / observes **histograms** on the evaluate path.
 2. It exposes Prometheus text format at **`GET /metrics`**.
-3. **Prometheus** scrapes that path on an interval (see `starter/prometheus/prometheus.yml`).
-4. Optionally, an **OpenTelemetry (OTel) collector** receives OTLP and re-exports metrics (compose service `otel-collector`) — useful when many languages speak OTLP but you still want Prometheus.
+3. **Prometheus** scrapes that path on an interval (see `starter/prometheus/prometheus.yml`). Compose maps `host.docker.internal` to the Docker host so Prometheus can scrape the published `:8000` port on Linux and Desktop alike.
+4. Optionally, an **OpenTelemetry (OTel) collector** receives OTLP and re-exports metrics (compose service `otel-collector`) — useful when many languages speak OTLP but you still want Prometheus. The lab collector uses the **`debug`** exporter (the old `logging` exporter was removed).
 5. You query Prometheus (`rate()`, histograms) and feed SLI/SLO math from Module 15’s SRE reading.
 
 ```text

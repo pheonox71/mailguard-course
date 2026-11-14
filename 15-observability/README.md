@@ -22,7 +22,10 @@ Metrics / logs / traces for MailGuard API + worker, extended with Site Reliabili
 ```bash
 cd 15-observability/starter
 docker compose -f otel-compose.yml up --build
-curl -s localhost:8000/metrics | head
+curl -s -X POST localhost:8000/evaluate -H 'content-type: application/json' \
+  -d '{"subject":"urgent wire transfer"}'
+curl -s localhost:8000/metrics | grep mailguard_holds_total
+# Prometheus UI: http://localhost:9090
 ```
 
 ## Coding lab (katas)

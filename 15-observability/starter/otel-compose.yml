@@ -1,14 +1,31 @@
-# Local Prometheus (+ optional OTel collector) for Module 15.
+# Local Prometheus + instrumented API (+ optional OTel collector) for Module 15.
 # Lab only — no cloud credentials.
+#
+#   docker compose -f otel-compose.yml up --build
+#   curl -s -X POST localhost:8000/evaluate -H 'content-type: application/json' \
+#     -d '{"subject":"urgent wire transfer"}'
+#   curl -s localhost:8000/metrics | grep mailguard_holds_total
+#   # Prometheus UI: http://localhost:9090
 services:
+  app:
+    build: ./app
+    ports:
+      - "8000:8000"
+
   prometheus:
     image: prom/prometheus:v2.55.1
     ports:
       - "9090:9090"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    extra_hosts:
+      # Why host-gateway: scrape the published app port via the Docker host.
+      # Works on Linux Compose and Docker Desktop; avoids brittle container DNS
+      # in restricted lab VMs while keeping the same student curl commands.
+      - "host.docker.internal:host-gateway"
+    depends_on: [app]
 
-  # Optional OpenTelemetry Collector — scrape or receive OTLP in stretch labs.
+  # Optional OpenTelemetry Collector — receives OTLP; Prometheus still scrapes /metrics.
   otel-collector:
     image: otel/opentelemetry-collector-contrib:0.114.0
     command: ["--config=/etc/otelcol/config.yaml"]
@@ -17,3 +34,6 @@ services:
     ports:
       - "4317:4317"
       - "4318:4318"
+      - "8889:8889"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
