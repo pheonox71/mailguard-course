@@ -12,7 +12,7 @@ TOP10 = {
 TOP10_2025 = {
     "broken_access_control": "A01:2025",
     "injection": "A05:2025",
-    "ssrf": "CWE-918",
+    "ssrf": "A01:2025",
     "auth_failure": "A07:2025",
 }
 

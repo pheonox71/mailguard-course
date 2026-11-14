@@ -8,8 +8,8 @@ def test_web_edition_2025_stretch():
     assert label_web("injection", edition="2025") == "A05:2025"
     assert label_web("broken_access_control", edition="2025") == "A01:2025"
     assert label_web("auth_failure", edition="2025") == "A07:2025"
-    # SSRF is not a standalone 2025 Top 10 row — map via CWE.
-    assert label_web("ssrf", edition="2025") == "CWE-918"
+    # SSRF folds into A01:2025 Broken Access Control (related CWE-918).
+    assert label_web("ssrf", edition="2025") == "A01:2025"
 
 def test_api():
     assert label_api("bola") == "API1:2023"

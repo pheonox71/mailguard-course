@@ -10,11 +10,11 @@ TOP10 = {
 }
 
 # Stretch: OWASP Top 10:2025 labels (see security_notes.md mapping table).
-# SSRF is no longer a standalone 2025 Top 10 row — return CWE-918 for literacy.
+# SSRF is folded into A01:2025 Broken Access Control (CWE-918 is a related CWE).
 TOP10_2025 = {
     "broken_access_control": "A01:2025",
     "injection": "A05:2025",
-    "ssrf": "CWE-918",
+    "ssrf": "A01:2025",
     "auth_failure": "A07:2025",
 }
 

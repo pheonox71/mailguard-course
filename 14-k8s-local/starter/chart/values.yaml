@@ -49,3 +49,7 @@ resources:
   limits:
     cpu: 200m
     memory: 128Mi
+
+# kind >= 0.24 enforces NetworkPolicy via kindnet; older kind needs Calico (etc.).
+networkPolicy:
+  enabled: true

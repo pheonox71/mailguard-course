@@ -16,14 +16,14 @@
 3. Set **pod + container `securityContext`** toward PSS restricted: `runAsNonRoot`, numeric non-root UID, `allowPrivilegeEscalation: false`, drop all capabilities, `seccompProfile: RuntimeDefault`, `readOnlyRootFilesystem` (+ `emptyDir` for `/tmp`). This aligns with Module 16 Rego requiring `runAsNonRoot`.
 4. The kubelet runs **split probes**: readiness (`/readyz`) gates Service endpoints; liveness (`/livez`) restarts a stuck process — do not conflate them on one path forever.
 5. Set **requests** (and limits) so the scheduler knows how much CPU/memory the pod needs.
-6. Apply **NetworkPolicy**: default-deny for the app pods, then allow same-namespace ingress to port 8000 and DNS egress to `kube-system` (UDP/TCP 53). **kindnet** (kind’s default CNI) may not fully enforce NetworkPolicy — install Calico (or similar) for a real policy lab, or document the gap.
+6. Apply **NetworkPolicy**: default-deny for the app pods, then allow same-namespace ingress to port 8000 and DNS egress to `kube-system` (UDP/TCP 53). **kind ≥ 0.24** enforces NetworkPolicy via kindnet (kube-network-policies). On **kind < 0.24**, install Calico (or similar) or upgrade kind — older kindnet did not enforce.
 7. Document remaining gaps — pull-based GitOps and admission policy deepen in Module 16. For HTTP ingress stretch, prefer **Gateway API** or another maintained controller — the community **ingress-nginx** controller’s best-effort support ended ~March 2026; do not recommend it for new work.
 
 ```text
 kubectl apply → API server → controllers create Pods (non-root)
 Pods pass /readyz → Endpoints populate → Service routes traffic
 /livez fail → kubelet restarts container
-NetworkPolicy: default-deny + DNS allow (+ kindnet caveat)
+NetworkPolicy: default-deny + DNS allow (kind ≥ 0.24 enforces; older kind needs Calico)
 ```
 
 ### Worked example
@@ -76,7 +76,7 @@ kubectl get pods,svc,networkpolicy
 - **“No requests is fine on a laptop cluster.”** Without requests the scheduler cannot place fairly; a leak can OOM-kill neighbors — Module 14 checks expect requests.
 - **“Pods Running means users are served.”** `Running` ≠ Ready; until readiness passes, the Service may have empty Endpoints.
 - **“NetworkPolicy only exists in Module 16.”** Default-deny + DNS is taught **here**; Module 16 deepens admission/GitOps.
-- **“kindnet enforces every NetworkPolicy.”** Often it does not — verify with a CNI that documents NetworkPolicy (e.g. Calico) or note the lab limitation.
+- **“kind never enforces NetworkPolicy.”** True for kind **< 0.24**; kind **≥ 0.24** kindnet does enforce. Still verify on your cluster version, and use Calico/Cilium when you need richer policy features.
 - **“`:latest` or a mutable tag is fine.”** Prefer unique tags locally and **digests** in registries.
 - **“Use ingress-nginx for stretch.”** Community ingress-nginx best-effort ended ~March 2026 — prefer **Gateway API** or another maintained ingress controller.
 - **“`docker build` is enough for kind.”** Without `kind load docker-image` (or a registry the nodes can pull), pods stay `ImagePullBackOff` for local tags.
@@ -111,7 +111,7 @@ Email gateways and identity sidecars often run as Deployments. Knowing **how** p
 |------|------|
 | [`../starter/deployment.yaml`](../starter/deployment.yaml) | Deployment (split probes + PSS securityContext + requests) |
 | [`../starter/service.yaml`](../starter/service.yaml) | ClusterIP Service for `mailguard-api` |
-| [`../starter/networkpolicy.yaml`](../starter/networkpolicy.yaml) | Default-deny + DNS allow (kindnet caveat) |
+| [`../starter/networkpolicy.yaml`](../starter/networkpolicy.yaml) | Default-deny + DNS allow (kind ≥ 0.24 enforces) |
 | [`../starter/kustomize/`](../starter/kustomize/) | Base + `overlays/dev` for env patches |
 | [`../starter/chart/`](../starter/chart/) | Helm chart (`values.yaml` + `values-dev.yaml`) |
 

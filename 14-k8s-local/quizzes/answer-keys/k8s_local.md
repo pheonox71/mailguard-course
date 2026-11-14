@@ -8,4 +8,4 @@ Use only after attempting the quiz questions.
 4. You operate the control plane locally vs provider-managed control plane/SLA — local demos do not prove HA, upgrades, or multi-AZ behavior.
 5. Kubelet marks the probe failed and restarts the container repeatedly (CrashLoop-like churn) — because liveness failure means “kill and recreate,” not “stop routing only.”
 6. Node pressure / OOMKills; other workloads may be evicted because the leak unbounded memory without requests/limits guidance.
-7. Non-root satisfies PSS restricted / Module 16 Rego. NetworkPolicy default-denies then allows same-namespace ingress + DNS egress; kindnet may not enforce — use Calico (etc.) for a real lab. Community ingress-nginx best-effort ended ~March 2026 — prefer Gateway API / maintained controllers.
+7. Non-root satisfies PSS restricted / Module 16 Rego. NetworkPolicy default-denies then allows same-namespace ingress + DNS egress; kind ≥ 0.24 kindnet enforces — on kind < 0.24 use Calico (etc.) or upgrade. Community ingress-nginx best-effort ended ~March 2026 — prefer Gateway API / maintained controllers.

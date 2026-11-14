@@ -8,4 +8,4 @@ Complete after the module reading. Check the separate answer key only after you 
 4. Name one difference between kind and a managed cloud Kubernetes service, and **why** that matters for production claims.
 5. **Scenario:** liveness probe path `/livez` always returns 500. What happens step by step, and **why**?
 6. **Spot the bug / why:** container has no resource requests and a memory leak. What cluster symptom appears and how?
-7. **Literacy:** Why set `runAsNonRoot` (PSS restricted shape), what does the starter NetworkPolicy deny/allow (and kindnet caveat), and why avoid recommending community ingress-nginx?
+7. **Literacy:** Why set `runAsNonRoot` (PSS restricted shape), what does the starter NetworkPolicy deny/allow (and kind ≥ 0.24 vs older kind), and why avoid recommending community ingress-nginx?

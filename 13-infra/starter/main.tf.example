@@ -18,16 +18,17 @@ terraform {
   # sensitive attributes — team plans should share a locked S3 backend, never a
   # committed state file.
   #
-  # Native S3 locking (TF >= 1.10): set use_lockfile = true and enable
-  # **versioning** on the state bucket. DynamoDB lock tables remain optional
+  # Native S3 locking (TF >= 1.10): set use_lockfile = true. Bucket
+  # **versioning is recommended** (recovery / accidental overwrite) but is not
+  # required for use_lockfile itself. DynamoDB lock tables remain optional
   # for older workflows; prefer use_lockfile for new labs.
   #
   # backend "s3" {
-  #   bucket       = "YOUR_TF_STATE_BUCKET"   # enable versioning on this bucket
+  #   bucket       = "YOUR_TF_STATE_BUCKET"   # versioning recommended
   #   key          = "mailguard/dev/terraform.tfstate"
   #   region       = "us-east-1"
   #   encrypt      = true
-  #   use_lockfile = true                     # TF >= 1.10; needs bucket versioning
+  #   use_lockfile = true                     # TF >= 1.10
   #   # dynamodb_table = "YOUR_TF_LOCK_TABLE" # legacy lock option; optional if use_lockfile
   # }
 }
@@ -81,8 +82,8 @@ resource "aws_s3_bucket" "secure_drop" {
   bucket = var.bucket_name
 }
 
-# Why versioning on object buckets: Soft-delete / recovery for Secure Drop;
-# also required on *state* buckets when using backend use_lockfile = true.
+# Why versioning on object buckets: Soft-delete / recovery for Secure Drop.
+# On *state* buckets, versioning is recommended with use_lockfile (not required).
 resource "aws_s3_bucket_versioning" "secure_drop" {
   bucket = aws_s3_bucket.secure_drop.id
   versioning_configuration {

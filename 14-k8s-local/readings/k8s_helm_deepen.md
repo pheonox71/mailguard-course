@@ -55,7 +55,7 @@ kubectl apply -k starter/kustomize/overlays/dev    # Why -k: build overlay then 
 - **“Helm install without template is faster.”** Rendering first catches missing values and bad YAML before you break the cluster.
 - **“Overlays replace GitOps.”** Env packaging is necessary but not sufficient; Module 16 adds sync + policy so prod is not another laptop apply.
 - **“`:latest` in values is fine for prod.”** Mutable tags make rollbacks and incident timelines guesswork — pin **digests** or unique immutable tags (`local-dev` for kind labs).
-- **“NetworkPolicy waits until Module 16.”** Default-deny + DNS is in this module’s starter; Module 16 deepens admission/GitOps. kindnet may need Calico (or similar) for real enforcement.
+- **“NetworkPolicy waits until Module 16.”** Default-deny + DNS is in this module’s starter (Helm template too); Module 16 deepens admission/GitOps. kind ≥ 0.24 enforces; older kind may need Calico.
 - **“Stretch with ingress-nginx.”** Community ingress-nginx best-effort ended ~March 2026 — prefer **Gateway API** or another maintained controller.
 
 

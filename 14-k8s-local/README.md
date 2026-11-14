@@ -18,11 +18,11 @@ Deploy the MailGuard app shape to kind/minikube with split probes, PSS restricte
 - `starter/kustomize/base` + `starter/kustomize/overlays/dev`
 - `starter/chart/` (Helm) — `helm template` / `helm upgrade --install` after `kind load`
 
-**Done when:** app healthy on kind/minikube; split probes + requests + `runAsNonRoot`; NetworkPolicy applied (note kindnet limits); overlay rendered; README notes GitOps/admission as Module 16 deepen.
+**Done when:** app healthy on kind/minikube; split probes + requests + `runAsNonRoot`; NetworkPolicy applied (kind ≥ 0.24 enforces; older kind needs Calico); overlay rendered; README notes GitOps/admission as Module 16 deepen.
 
 ## Trade-offs / harden next
 
 - Local cluster ≠ production managed Kubernetes.
-- **NetworkPolicy is taught here** (default-deny + DNS). kind’s default **kindnet** may not fully enforce NetworkPolicy — install Calico (or similar) for a real policy lab, or note the gap.
+- **NetworkPolicy is taught here** (default-deny + DNS). kind **≥ 0.24** kindnet enforces NetworkPolicy; on kind **< 0.24**, install Calico (or similar) or upgrade kind.
 - Admission / Conftest / Kyverno deepen in Module 16 (including `runAsNonRoot` Rego already aligned with these manifests).
 - Prefer **Gateway API** (or another maintained ingress controller) for stretch HTTP routing — do **not** recommend the retired community **ingress-nginx** controller (best-effort ended ~March 2026).

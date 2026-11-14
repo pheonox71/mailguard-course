@@ -16,7 +16,7 @@
 4. Map to a MailGuard mitigation you can show (authn, hold rules, least privilege, input validation).
 5. Prefer five solid mapped notes over a laundry list of unrelated CVEs. Use [CWE Top 25](https://cwe.mitre.org/top25/) when you need finer defect vocabulary.
 
-**OWASP Top 10 edition note.** Many labs and older notes still cite **2021** labels (e.g. A01 Broken Access Control, A03 Injection). The [OWASP Top 10:2025](https://owasp.org/Top10/2025/) list reorders and renames some categories — notably elevating **security misconfiguration**, introducing **software supply chain failures**, and **mishandling of exceptional conditions**. When you write notes, prefer **2025** category names when they fit; if you reuse a 2021 label from a lab guide, add a one-line mapping to 2025 so reviewers know you are current. The `owasp_map` kata defaults to `label_web(finding)` → 2021 labels; **stretch:** `label_web(finding, edition="2025")` (SSRF is no longer a standalone 2025 row — the kata returns `CWE-918`).
+**OWASP Top 10 edition note.** Many labs and older notes still cite **2021** labels (e.g. A01 Broken Access Control, A03 Injection). The [OWASP Top 10:2025](https://owasp.org/Top10/2025/) list reorders and renames some categories — notably elevating **security misconfiguration**, introducing **software supply chain failures**, and **mishandling of exceptional conditions**. When you write notes, prefer **2025** category names when they fit; if you reuse a 2021 label from a lab guide, add a one-line mapping to 2025 so reviewers know you are current. The `owasp_map` kata defaults to `label_web(finding)` → 2021 labels; **stretch:** `label_web(finding, edition="2025")` (SSRF is no longer a standalone 2025 row — map it to **`A01:2025`** Broken Access Control; CWE-918 remains the fine-grained defect id).
 
 | 2021 (common in labs) | 2025 (prefer in new notes) |
 |-----------------------|----------------------------|
@@ -29,7 +29,7 @@
 | A07 Identification and Authentication Failures | A07 Authentication Failures |
 | A08 Software and Data Integrity Failures | A08 Software or Data Integrity Failures |
 | A09 Security Logging and Monitoring Failures | A09 Security Logging and Alerting Failures |
-| A10 SSRF (2021) | A10 Mishandling of Exceptional Conditions (2025; SSRF still matters — map via CWE when needed) |
+| A10 SSRF (2021) | A01:2025 Broken Access Control (SSRF / CWE-918 folded here; A10:2025 is Mishandling of Exceptional Conditions) |
 
 ```
 Local lab finding → OWASP/API category → MailGuard mitigation → evidence
