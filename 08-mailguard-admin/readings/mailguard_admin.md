@@ -14,7 +14,7 @@
 2. Forms validate rule fields (predicates, action) before submit.
 3. The hold queue renders rows with **text** bindings — not `innerHTML` — so attacker-controlled subjects cannot inject script ([OWASP XSS Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)).
 4. Dangerous actions (approve / release / reject) need accessible names, focus order, and often an explicit confirm.
-5. Auth uses short-lived session cookies or a backend-for-frontend — never long-lived cloud tokens in git or the browser bundle.
+5. Auth uses short-lived session cookies or a **Backend-for-Frontend (BFF)** — never long-lived cloud tokens in git or the browser bundle. [RFC 10017](https://www.rfc-editor.org/rfc/rfc10017) recommends BFF for browser-based OAuth clients: the SPA gets an HTTP-only session cookie; the BFF holds tokens and calls APIs. Cookie sessions still need **CSRF** defenses (SameSite, anti-CSRF tokens) on state-changing requests.
 6. This module’s graded kata is a small TypeScript helper for validating rule forms and formatting hold-queue rows — enough to prove TS discipline before you wire the full UI.
 
 ```
@@ -52,7 +52,8 @@ The admin is the human control surface for MailGuard: list rules, inspect held m
 
 - **“Internal tools do not need XSS care.”** Held subjects and addresses are untrusted input; `innerHTML` / `v-html` turns the queue into a script host.
 - **“Strict TypeScript slows demos.”** Untyped form state is how allow/hold labels swap; the kata exists to prove discipline before a full SPA.
-- **“Cloud API keys in `.env` shipped to the client are OK.”** Anything in the SPA bundle is readable; use session/BFF patterns.
+- **“Cloud API keys in `.env` shipped to the client are OK.”** Anything in the SPA bundle is readable; use session/BFF patterns ([RFC 10017](https://www.rfc-editor.org/rfc/rfc10017)).
+- **“BFF removes CSRF entirely.”** Moving tokens server-side still leaves cookie-authenticated POSTs CSRF-vulnerable unless you add SameSite / anti-CSRF controls (same RFC).
 - **“Confirm dialogs are optional UX.”** Release is irreversible; accessible confirm reduces miss-clicks and documents intent for audit.
 
 
@@ -67,6 +68,7 @@ The admin is the human control surface for MailGuard: list rules, inspect held m
 2. [TypeScript — Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 3. [MDN — Form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
 4. [OWASP — XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
+5. [RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017) — BFF + CSRF for the admin SPA.
 
 ## Next step
 

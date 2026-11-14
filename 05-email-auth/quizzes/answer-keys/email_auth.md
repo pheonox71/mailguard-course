@@ -10,3 +10,5 @@ Use only after attempting the quiz questions.
 5. Have the ESP **DKIM-sign with `d=yourdomain`** (aligned), and/or use a custom return-path/bounce domain under your domain so SPF aligns. Adding the ESP to SPF alone does not make DMARC pass if the ESP's envelope domain is its own. Then confirm in `rua` reports and step up `p=`.
 
 6. The record is discarded — `v=DMARC1` must be the first tag.
+
+7. Short RSA keys and SHA-1 are weak against modern attacks; RSA ≥ 2048 with `rsa-sha256` is baseline. Ed25519 selectors give smaller keys/signatures where receivers verify them — dual-publish during rollout so older verifiers still see RSA.

@@ -8,7 +8,7 @@
 2. `docker build` produces an **image** (layered filesystem + metadata).
 3. `docker run` starts a **container** (running instance of that image).
 4. **Compose** declares multi-service stacks (API + DB + mail dependencies) in YAML so `docker compose up` tells a story, not twelve manual steps.
-5. Pass secrets at **runtime** (env / secret mounts) — never `ENV AWS_SECRET=…` in a layer. On the job, email/identity services ship as images from laptop → CI → cloud with the same artifact.
+5. Pass secrets at **runtime** (env / secret mounts) — never `ENV AWS_SECRET=…` or `ARG` values that end up in layers. For **build-time** secrets (private pip indexes, etc.), use BuildKit **`RUN --mount=type=secret`** so the secret is never stored in an image layer. On the job, email/identity services ship as images from laptop → CI → cloud with the same artifact.
 
 ### Worked example
 
@@ -45,7 +45,7 @@ Identical artifacts from laptop → CI → cloud; fewer “missing library” in
 | Image vs container | Build once, run many |
 | Dockerfile (awareness) | CI may build an image for a service you own |
 | Compose services | MailGuard demo wiring |
-| No secrets in images | Pass env at runtime; never bake cloud keys into layers |
+| No secrets in images | Pass env at runtime; BuildKit `--mount=type=secret` for build-time needs — never `ARG`/`ENV` cloud keys |
 
 ## Install and run
 
@@ -67,7 +67,32 @@ docker run --rm hello-world
 
 - **“Containers are VMs.”** They share the host kernel; isolation model and patching story differ — still scan images.
 - **“Bake credentials into the image for easier demos.”** Layers are extractable; use runtime env/secrets.
+- **“`ARG TOKEN=…` is fine because it is not `ENV`.”** Build args can still land in image history / cache metadata — prefer BuildKit secret mounts for anything sensitive.
 - **“Compose is only for production orchestration.”** Local Compose approximates topology; production may use other schedulers later (Module 13+).
+
+### BuildKit secrets (vs ARG/ENV leakage)
+
+**Why.** `ENV AWS_SECRET=…` and `ARG PIP_TOKEN=…` used in `RUN` often remain recoverable from layers or build cache. Attackers who pull the image (or a leaked cache) get the credential.
+
+**How.**
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt .
+# Secret file is mounted only for this RUN — not committed to a layer.
+RUN --mount=type=secret,id=pip_token \
+    PIP_TOKEN="$(cat /run/secrets/pip_token)" \
+    pip install --no-cache-dir -r requirements.txt
+```
+
+```bash
+# Supply the secret at build time (file stays on the builder; not in the image)
+DOCKER_BUILDKIT=1 docker build --secret id=pip_token,src=$HOME/.config/pip-token .
+```
+
+Never put real tokens in the course repo — this shape is literacy only.
 
 
 ## Videos (verified)
@@ -80,6 +105,7 @@ docker run --rm hello-world
 1. [Docker overview](https://docs.docker.com/get-started/overview/)
 2. [Docker Compose overview](https://docs.docker.com/compose/)
 3. [Dockerfile reference](https://docs.docker.com/reference/dockerfile/)
+4. [BuildKit — Build-time secrets](https://docs.docker.com/build/building/secrets/) — `--mount=type=secret` vs ARG/ENV leakage
 
 ---
 

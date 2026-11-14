@@ -2,7 +2,9 @@
 # This file is an *example*. Rename to main.tf locally after you set variables.
 
 terraform {
-  required_version = ">= 1.5.0"
+  # use_lockfile = true on the S3 backend needs Terraform >= 1.10.
+  # write-only / ephemeral attributes need Terraform >= 1.11 (see comments below).
+  required_version = ">= 1.10.0"
 
   required_providers {
     aws = {
@@ -13,17 +15,29 @@ terraform {
 
   # Remote state (commented until you own a locking backend).
   # Why remote state: local terraform.tfstate is easy to lose and often contains
-  # sensitive attributes — team plans should share a locked S3/DynamoDB (or
-  # equivalent) backend, never a committed state file.
+  # sensitive attributes — team plans should share a locked S3 backend, never a
+  # committed state file.
+  #
+  # Native S3 locking (TF >= 1.10): set use_lockfile = true and enable
+  # **versioning** on the state bucket. DynamoDB lock tables remain optional
+  # for older workflows; prefer use_lockfile for new labs.
   #
   # backend "s3" {
-  #   bucket         = "YOUR_TF_STATE_BUCKET"
-  #   key            = "mailguard/dev/terraform.tfstate"
-  #   region         = "us-east-1"
-  #   dynamodb_table = "YOUR_TF_LOCK_TABLE"
-  #   encrypt        = true
+  #   bucket       = "YOUR_TF_STATE_BUCKET"   # enable versioning on this bucket
+  #   key          = "mailguard/dev/terraform.tfstate"
+  #   region       = "us-east-1"
+  #   encrypt      = true
+  #   use_lockfile = true                     # TF >= 1.10; needs bucket versioning
+  #   # dynamodb_table = "YOUR_TF_LOCK_TABLE" # legacy lock option; optional if use_lockfile
   # }
 }
+
+# --- Secrets literacy (TF >= 1.11) ------------------------------------------
+# sensitive = true  → redacts values in CLI UI; value still lives in state.
+# write-only / ephemeral (Terraform >= 1.11) → pass secrets into apply without
+# persisting them in state the way ordinary variables do. Prefer write-only /
+# ephemeral for one-shot credentials; keep sensitive for outputs you must store
+# but should not print. Never put real cloud keys in this example file.
 
 provider "aws" {
   region = var.aws_region
@@ -65,6 +79,15 @@ variable "hold_queue_name" {
 
 resource "aws_s3_bucket" "secure_drop" {
   bucket = var.bucket_name
+}
+
+# Why versioning on object buckets: Soft-delete / recovery for Secure Drop;
+# also required on *state* buckets when using backend use_lockfile = true.
+resource "aws_s3_bucket_versioning" "secure_drop" {
+  bucket = aws_s3_bucket.secure_drop.id
+  versioning_configuration {
+    status = "Enabled"
+  }
 }
 
 resource "aws_s3_bucket_public_access_block" "secure_drop" {

@@ -11,10 +11,11 @@
 **How it works.**
 
 1. Reproduce a finding in a **local** Juice Shop / crAPI container only.
-2. Label with Top 10 / API Top 10 (e.g. A01:2021 Broken Access Control; API1:2023 BOLA) — [OWASP Top 10](https://owasp.org/www-project-top-ten/), [API Security Top 10](https://owasp.org/API-Security/).
+2. Label with Top 10 / API Top 10 (e.g. A01:2021 Broken Access Control; API1:2023 BOLA) — [OWASP Top 10](https://owasp.org/www-project-top-ten/), [API Security Top 10](https://owasp.org/API-Security/). Prefer **2025** names in new notes; the kata stretch is `label_web(..., edition="2025")`.
 3. Write the MailGuard fix (authz on hold id, input validation, least privilege) you can point to in-repo or in a test.
 4. For supply chain: CI runs dependency audits ([pip-audit](https://pypi.org/project/pip-audit/), [govulncheck](https://go.dev/security/vuln/), Dependabot).
 5. **Syft** (or similar) emits an **SBOM** so when a CVE drops you can answer “are we affected?” quickly ([Syft](https://github.com/anchore/syft)).
+6. Track federal binding operational directives when they affect vuln management: **BOD 22-01** (reduce significant risk of known exploited vulnerabilities) is **revoked / superseded by [BOD 26-04 — Prioritizing Security Updates Based on Risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)** — cite the current directive, not the retired one.
 
 ```
 Local Juice Shop / crAPI → categorize → MailGuard mitigation
@@ -51,12 +52,20 @@ Map local lab findings to named categories and ship mitigations you can show. Ne
 - **“SBOM is paperwork.”** Without an inventory you cannot answer CVE blast-radius quickly; Syft (or similar) makes that queryable.
 - **“Auditing deps once at kickoff is enough.”** New CVEs land weekly; run audits on every PR.
 - **“The lab is the deliverable.”** Tourism without a MailGuard mitigation row fails the learning goal.
+- **“BOD 22-01 is still the current CISA directive for this topic.”** It has been **revoked/superseded by BOD 26-04** — update notes and playbooks to the current directive.
+
+## Binding Operational Directives (CVE / KEV literacy)
+
+**Why.** Federal civilian agencies (and many vendors who mirror CISA guidance) used **BOD 22-01** to drive remediation of Known Exploited Vulnerabilities (KEV). Citing a revoked directive in a security note looks stale.
+
+**How.** Treat [BOD 22-01 (revoked)](https://www.cisa.gov/news-events/directives/bod-22-01-reducing-significant-risk-known-exploited-vulnerabilities-revoked) as historical. Current successor: **[BOD 26-04 — Prioritizing Security Updates Based on Risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)** (supersedes and revokes BOD 22-01 and BOD 19-02). Pair SBOM + `pip-audit` / `govulncheck` with KEV awareness so “are we affected?” includes *is this actively exploited?*
 
 ## Read these (verified)
 
-1. [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+1. [OWASP Top 10](https://owasp.org/www-project-top-ten/) · [OWASP Top 10:2025](https://owasp.org/Top10/2025/)
 2. [OWASP API Security Top 10 (2023)](https://owasp.org/API-Security/)
 3. [pip-audit](https://pypi.org/project/pip-audit/) · [govulncheck](https://go.dev/security/vuln/) · [Syft](https://github.com/anchore/syft)
+4. [CISA BOD 26-04](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk) (supersedes/revokes BOD 22-01)
 
 ## Keep in mind
 

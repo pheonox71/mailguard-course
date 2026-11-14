@@ -14,7 +14,7 @@ Attackers also **spoof inbound or lookalike domains**. SPF publishes which hosts
 
 1. **SMTP hop.** The sending MTA transfers the message to the next hop (often the receiving MX). Optional TLS on that connection encrypts the pipe for *that* hop only.
 2. **SPF check.** The receiver looks up the SPF TXT for the envelope sender domain (MAIL FROM / Return-Path) or HELO identity and asks: is this connecting IP authorized? SPF does **not** inspect the header `From:`.
-3. **DKIM verify.** The receiver finds a `DKIM-Signature` header, fetches the public key from DNS (`selector._domainkey.domain`), and verifies the signature over the signed headers and body.
+3. **DKIM verify.** The receiver finds a `DKIM-Signature` header, fetches the public key from DNS (`selector._domainkey.domain`), and verifies the signature over the signed headers and body. Prefer **RSA keys ≥ 2048 bits** and **`a=rsa-sha256`** (do **not** use SHA-1 signing algorithms). **Ed25519** DKIM (`k=ed25519`) is increasingly supported as a smaller alternative where receivers accept it — publish and test before relying on it alone.
 4. **DMARC alignment.** The receiver takes the visible `From:` domain and asks whether SPF and/or DKIM **passed and aligned** with that domain (organizational or strict, per policy). At least one aligned pass is enough for DMARC pass.
 5. **Policy + reports.** On failure, the published `p=` (`none` / `quarantine` / `reject`) guides disposition; `rua=` collects aggregate reports so operators can fix legitimate senders before tightening.
 
@@ -33,7 +33,9 @@ DNS (illustrative):
 
 ```text
 example.com.            TXT  "v=spf1 ip4:203.0.113.10 -all"
-selector._domainkey.example.com.  TXT  "v=DKIM1; k=rsa; p=MIIBIj..."
+selector._domainkey.example.com.  TXT  "v=DKIM1; k=rsa; p=<RSA-2048-or-larger-pubkey>"
+# Optional second selector when receivers support Ed25519:
+# ed25519._domainkey.example.com. TXT "v=DKIM1; k=ed25519; p=<Ed25519-pubkey>"
 _dmarc.example.com.     TXT  "v=DMARC1; p=quarantine; rua=mailto:dmarc@example.com"
 ```
 
@@ -44,6 +46,7 @@ Return-Path: <bounce@example.com>
 From: Billing <billing@example.com>
 DKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=selector;
     h=from:to:subject:date; bh=...; b=...
+# Prefer rsa-sha256 (or ed25519-sha256 where published); do not use rsa-sha1.
 ```
 
 If the connecting IP is `203.0.113.10`, SPF can pass for `example.com`. If the DKIM signature verifies with `d=example.com`, DKIM passes. DMARC then checks alignment of those results with header `From:` (`example.com`). A spoofed `From: billing@example.com` sent from an unauthorized IP *without* a valid aligned DKIM signature fails DMARC even if the hop used TLS.
@@ -58,6 +61,7 @@ If the connecting IP is `203.0.113.10`, SPF can pass for `example.com`. If the D
 - **“SPF checks the From: header.”** SPF evaluates the envelope sender / HELO against the connecting IP. Attackers can put any address in `From:` while using a different MAIL FROM — without DMARC alignment, SPF alone does not stop that.
 - **“STARTTLS between MTAs is always enforced.”** Server-to-server STARTTLS is opportunistic unless MTA-STS or DANE require authenticated TLS; an active attacker can strip it, and many hops never validate certificates.
 - **“Flip to p=reject on day one.”** Aggregate reports (`rua=`) exist so you find legitimate relays missing SPF/DKIM/alignment before reject breaks payroll or marketing.
+- **“Any RSA key and SHA-1 DKIM are fine.”** Use **RSA ≥ 2048** and avoid **SHA-1** signing algorithms; prefer `rsa-sha256`, and consider an **Ed25519** selector where your receivers verify it (RFC 6376 + current operator guidance).
 
 ## Videos (verified)
 
@@ -73,7 +77,7 @@ If the connecting IP is `203.0.113.10`, SPF can pass for `example.com`. If the D
 ## Read these (verified)
 
 1. [RFC 7208 — SPF](https://datatracker.ietf.org/doc/html/rfc7208) — skim abstract + mechanism overview (MAIL FROM / HELO identity).
-2. [RFC 6376 — DKIM](https://datatracker.ietf.org/doc/html/rfc6376) — signature + public key in DNS.
+2. [RFC 6376 — DKIM](https://datatracker.ietf.org/doc/html/rfc6376) — signature + public key in DNS. Operator practice: **RSA ≥ 2048**, no **SHA-1** (`rsa-sha1`); **Ed25519** (`k=ed25519`) where supported.
 3. [RFC 9989 — DMARC](https://www.rfc-editor.org/info/rfc9989) — current protocol (Standards Track; obsoletes RFC 7489 and RFC 9091). Companion: [RFC 9990](https://www.rfc-editor.org/info/rfc9990) (aggregate reports), [RFC 9991](https://www.rfc-editor.org/info/rfc9991) (failure reports). RFC 9989 removes `pct`/`rf`/`ri` and adds `t` (test mode), `np`, and `psd`; the Public Suffix List is replaced by a DNS tree walk.
 4. [DMARC.org overview](https://dmarc.org/overview/) — plain-language diagram.
 5. [Cloudflare Learning — What are DMARC, DKIM, and SPF?](https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/) — concise comparison.

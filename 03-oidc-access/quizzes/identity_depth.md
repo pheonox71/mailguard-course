@@ -8,3 +8,5 @@
 5. **Scenario:** The OAuth `state` parameter is omitted. Which attack becomes easier, and why does `state` exist?
 
 6. **Spot the bug:** redirect_uri allow-list uses prefix match on `https://app.example` and accepts `https://app.example.evil.com`. Fix, and why exact match?
+
+7. **Why / how (RFC 10017):** Why prefer a Backend-for-Frontend (BFF) with HTTP-only cookies over storing access tokens in the SPA’s `localStorage`, and what CSRF control still matters after you move tokens server-side?

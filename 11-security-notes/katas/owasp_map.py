@@ -9,6 +9,15 @@ TOP10 = {
     "auth_failure": "A07:2021",
 }
 
+# Stretch: OWASP Top 10:2025 labels (see security_notes.md mapping table).
+# SSRF is no longer a standalone 2025 Top 10 row — return CWE-918 for literacy.
+TOP10_2025 = {
+    "broken_access_control": "A01:2025",
+    "injection": "A05:2025",
+    "ssrf": "CWE-918",
+    "auth_failure": "A07:2025",
+}
+
 API10 = {
     "bola": "API1:2023",
     "broken_auth": "API2:2023",
@@ -16,7 +25,8 @@ API10 = {
 }
 
 
-def label_web(finding: str) -> str:
+def label_web(finding: str, edition: str = "2021") -> str:
+    """Return Top 10 label. Default edition=2021; stretch: edition=\"2025\"."""
     raise NotImplementedError
 
 

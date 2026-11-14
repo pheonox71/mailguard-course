@@ -136,7 +136,7 @@ cd 08-mailguard-admin/starter && npm install && npm run typecheck
 
 - **“Types are just documentation.”** Without `strict` (or equivalent), `any` sneaks back in and the union buys nothing.
 - **“Vue templates do not need types.”** Form models and API responses still do — that is where allow/hold mix-ups hide.
-- **“Put the API key in the SPA for convenience.”** Browser bundles are public; use a backend-for-frontend or short-lived session instead.
+- **“Put the API key in the SPA for convenience.”** Browser bundles are public; use a **Backend-for-Frontend (BFF)** with HTTP-only session cookies and CSRF defenses ([RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017)) instead of tokens in JS storage.
 - **“`v-html` is fine for email subjects.”** Subjects are attacker-controlled text; interpolate as text nodes, not HTML.
 
 
@@ -150,6 +150,7 @@ cd 08-mailguard-admin/starter && npm install && npm run typecheck
 1. [Node.js downloads](https://nodejs.org/)
 2. [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 3. [Vue 3 guide](https://vuejs.org/guide/introduction.html)
+4. [RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017) — BFF + CSRF when the Vue SPA talks to APIs (Module 08).
 
 ---
 

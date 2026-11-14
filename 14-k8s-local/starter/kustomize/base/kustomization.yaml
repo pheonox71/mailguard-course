@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
+  - networkpolicy.yaml
 
 # commonLabels is deprecated (kustomize v5+); labels + includeSelectors
 # preserves the old commonLabels behavior (metadata + selectors).

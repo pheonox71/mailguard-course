@@ -24,6 +24,7 @@
 2. User authenticates; IdP returns an authorization `code` to that redirect URI.
 3. Client redeems the code at the token endpoint, proving possession of `code_verifier`.
 4. Client validates tokens (issuer, audience, signature, nonce where used). Exact redirect matching and issuer checks blunt mix-up (RFC 9700).
+5. For browser apps, prefer a **Backend-for-Frontend (BFF)** that keeps tokens server-side and uses cookie sessions with CSRF defenses ([RFC 10017](https://www.rfc-editor.org/rfc/rfc10017)) rather than storing access tokens in JavaScript storage.
 
 Lab IdPs like Keycloak let you break and fix these checks safely.
 
@@ -66,8 +67,9 @@ If `redirect_uri` differs by a trailing slash, honest clients fail closed — an
 2. [OWASP SAML Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SAML_Security_Cheat_Sheet.html)
 3. [RFC 7636 — PKCE](https://www.rfc-editor.org/rfc/rfc7636)
 4. [RFC 9700 — OAuth Security BCP](https://www.rfc-editor.org/rfc/rfc9700)
-5. [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
-6. [Keycloak — Getting started](https://www.keycloak.org/guides#getting-started)
+5. [RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017) — BFF + CSRF for browser clients.
+6. [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
+7. [Keycloak — Getting started](https://www.keycloak.org/guides#getting-started)
 
 ## Keep in mind
 

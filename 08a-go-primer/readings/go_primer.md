@@ -55,6 +55,7 @@ Ops-friendly deploy (single binary), good standard library for HTTP/JSON, and pr
 | exported names (`TitleCase`) | Public API of your worker package |
 | interfaces | Swap in-memory queue for SQS later |
 | `go test ./...` | Same red/green loop as pytest |
+| `testing/synctest` (Go 1.25+) | Deterministic concurrency tests when Module 09 adds multi-consumer / lease races |
 
 ## Install and run
 
@@ -102,8 +103,8 @@ cd /tmp/mg-go-primer && go test ./...
 ### Common misconceptions / what goes wrong
 
 - **“Go replaces the Python API.”** The split is intentional: HTTP/policy in one process, async side effects in another — shared JSON vocabulary, not a rewrite.
-- **“Call the cloud SDK from every package.”** Interfaces keep LocalStack/in-memory fakes testable; sprinkle SDK calls and unit tests need the network.
-- **“Tests are optional until SQS.”** Table-driven `go test` locks the decision contract before any broker exists.
+- **“Call the cloud SDK from every package.”** Interfaces keep ElasticMQ/in-memory fakes testable; sprinkle SDK calls and unit tests need the network. When you do wire AWS, use **SDK Go v2** only.
+- **“Tests are optional until SQS.”** Table-driven `go test` locks the decision contract before any broker exists. For concurrent lease races, prefer Go 1.25+ `testing/synctest`.
 
 
 ## Videos (verified)
@@ -115,7 +116,7 @@ cd /tmp/mg-go-primer && go test ./...
 
 1. [Go install](https://go.dev/doc/install)
 2. [A Tour of Go](https://go.dev/tour/)
-3. [go test docs](https://pkg.go.dev/testing)
+3. [go test docs](https://pkg.go.dev/testing) · [testing/synctest](https://pkg.go.dev/testing/synctest) (Go 1.25+)
 
 ---
 

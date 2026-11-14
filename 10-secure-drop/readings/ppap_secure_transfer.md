@@ -12,15 +12,16 @@
 
 1. Sender **uploads** the file to object storage (not as a passworded ZIP in mail).
 2. Service creates a share with **expiry** and a **hashed** recipient OTP (never store the OTP in plaintext).
-3. Recipient opens the link and proves possession of the OTP; compare with a constant-time helper such as `hmac.compare_digest`.
-4. On success, issue a **short-lived** download (see [presigned URL limits](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html)) and write an audit event.
-5. On missend, operator **revokes** immediately so further downloads fail even if the URL was copied.
+3. Recipient opens a **landing page** (non-consuming) and proves possession of the OTP; compare with a constant-time helper such as `hmac.compare_digest`. Serve landing with `Referrer-Policy: no-referrer`.
+4. **Redeem** separately: on success, issue a **short-lived** download (see [presigned URL limits](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html)) and write an audit event. Cap reuse — a week-long presign is a reusable bearer; keep post-OTP fetches to minutes, and remember signing-credential revocation is the blunt way to kill outstanding URLs.
+5. On missend, operator **revokes** immediately so further landing/redeem fail even if the URL was copied.
 6. Prefer this over same-channel ZIP+password; S/MIME or portal encryption may fit when you need end-to-end crypto with different threat models. Upload risks still apply — skim [OWASP File Upload](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
 
 ```
-Sender uploads → Secure Drop link + OTP challenge
-Recipient OTP OK → download → audit
-Missend → revoke → further downloads fail
+Sender uploads → Secure Drop link
+Landing (non-consuming, Referrer-Policy: no-referrer) → OTP challenge
+Redeem → short-lived download → audit
+Missend → revoke → landing + redeem fail
 ```
 
 ### Worked example
@@ -40,9 +41,10 @@ Share + OTP verify (conceptual):
 | Step | What happens |
 |------|----------------|
 | Email A | “Your file is ready: https://drop.example/sd_77” (no password in this channel ideal; OTP out-of-band or separate channel) |
+| Landing GET | Non-consuming; headers include `Referrer-Policy: no-referrer` |
 | Recipient posts OTP | `compare_digest(hash(input), otp_hash)` → true |
-| Download | short-lived URL; audit `{share_id, actor, at}` |
-| Missend | `revoked_at = now` → next OTP/download → 403 |
+| Redeem | short-lived URL (minutes); audit `{share_id, actor, at}`; second redeem capped/denied |
+| Missend | `revoked_at = now` → next landing/OTP/redeem → 403 |
 
 Same-channel ZIP+password failure mode: mailbox compromise yields **both** ciphertext and key; scanners see opaque blobs.
 
@@ -57,13 +59,16 @@ Some regions nicknamed this pattern “PPAP”; treat it as a **worldwide** anti
 - **“Passworded ZIP is encrypted email.”** Same-channel password delivery collapses the secrecy; it also blinds malware scanners.
 - **“Store the OTP in the database in plaintext for support.”** Support can reset; a breach then reprints every code — hash and compare constant-time.
 - **“Revoke is optional if expiry is short.”** Missend to the wrong person needs immediate kill; waiting for TTL is still a window of exposure.
-- **“Long-lived presign to the object is fine after OTP.”** OTP then a week-long bearer URL undoes the control; keep post-auth fetches short-lived.
+- **“Long-lived presign to the object is fine after OTP.”** OTP then a week-long reusable bearer undoes the control; keep post-auth fetches short-lived and remember credential-lifetime limits.
+- **“Landing and download are the same GET.”** Separating non-consuming landing from redemption prevents prefetch/bots/email scanners from burning one-time links.
+- **“Referrer leakage is only an XSS problem.”** Tokens in URLs leak to third-party hosts via `Referer` unless you set `Referrer-Policy: no-referrer` on landing/download responses.
 
 ## Read these (verified)
 
 1. [IIJ — PPAP report (English)](https://www.iij.ad.jp/en/dev/iir/pdf/iir_vol51_report_EN.pdf) — historical context
-2. Module Secure Drop reading + object-storage [presigned URL docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html) for mechanism limits
+2. Module Secure Drop reading + object-storage [presigned URL docs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html) for mechanism limits (reuse + credential lifetime)
 3. [OWASP File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
+4. [MDN — Referrer-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) — `no-referrer` on share responses
 
 ## Next step
 

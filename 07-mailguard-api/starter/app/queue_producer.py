@@ -4,10 +4,18 @@ JSON contract (must match Go ``worker.QueueMessage``):
 
     {"id": "...", "subject": "...", "body": "...", "attempt": 0}
 
+``attempt`` models SQS ApproximateReceiveCount when a real broker is wired.
+
 Default backend is an in-memory / file queue so the API starter runs without
-Docker. Comments below show the LocalStack / ElasticMQ (SQS-compatible) shape
-when you point boto3 at ``http://127.0.0.1:9324`` (see
-``09-mailguard-worker/starter/docker-compose.queue.yml``).
+Docker. In production, prefer a **transactional outbox**: write the hold and an
+outbox row in one DB transaction, then let a publisher call ``enqueue`` /
+SQS send (see Module 07 reading). Do not treat "HTTP 200 then best-effort
+send" as durable.
+
+Comments below show the ElasticMQ (SQS-compatible) shape when you point boto3
+at ``http://127.0.0.1:9324`` (course default — see
+``09-mailguard-worker/starter/docker-compose.queue.yml``). Keep payloads under
+SQS **1 MiB**. Create the boto3 client in FastAPI lifespan, not at import time.
 """
 
 from __future__ import annotations
@@ -79,25 +87,19 @@ def enqueue_hold_message(
 
 
 # ---------------------------------------------------------------------------
-# Optional: SQS-compatible producer (ElasticMQ / LocalStack) — sketch only.
-# Uncomment and adapt when docker-compose.queue.yml is running. Do not put
-# real AWS keys in source control; placeholder static keys are fine for
-# ElasticMQ, which does not authenticate.
+# Optional: SQS-compatible producer (ElasticMQ default) — sketch only.
+# Construct ``client`` in FastAPI lifespan (Module 07 main.py), not here at
+# import time. Uncomment and adapt when docker-compose.queue.yml is running.
+# Do not put real AWS keys in source control; ElasticMQ ignores auth but the
+# SDK still wants local-only placeholders from env.
 #
 # import boto3
 #
-# def sqs_enqueue(subject: str, body: str, *, queue_url: str) -> dict[str, Any]:
-#     # ElasticMQ ignores auth; the SDK still wants *some* static placeholders.
-#     # Load them from env (never commit real cloud credentials):
-#     #   AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY = local-only values
-#     client = boto3.client(
-#         "sqs",
-#         endpoint_url="http://127.0.0.1:9324",  # ElasticMQ; LocalStack often :4566
-#         region_name="us-east-1",
-#     )
+# def sqs_enqueue(subject: str, body: str, *, client, queue_url: str) -> dict[str, Any]:
 #     payload = QueueMessage(
 #         id=str(uuid.uuid4()), subject=subject, body=body, attempt=0
 #     )
+#     # Outbox publisher path: only call after the DB transaction committed.
 #     client.send_message(QueueUrl=queue_url, MessageBody=payload.to_json())
 #     return asdict(payload)
 # ---------------------------------------------------------------------------

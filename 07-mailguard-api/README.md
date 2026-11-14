@@ -42,7 +42,10 @@ pytest -q
 ## Trade-offs / harden next
 
 - In-memory store only — swap for Postgres + migrations in a later hardening pass.
-- No auth on the API yet — wire MFA/OIDC from modules 02–03 before any public deploy.
+- Authn alone is not enough — deepen with **tenant-scoped authZ** (OWASP API1 / API3 / API5): every hold/rule access filtered by tenant (+ role). Wire MFA/OIDC from modules 02–03 before any public deploy.
+- Distinguish **409** (FSM conflict), **412** (If-Match / version), and **Idempotency-Key** replay for approve/release (see `readings/hold_state.md`).
+- Prefer a **transactional outbox** toward Module 09 over best-effort enqueue after HTTP commit (`starter/app/queue_producer.py`).
+- Create DB/queue clients in FastAPI **lifespan** (`starter/app/main.py`), not module-level globals.
 - First-match-wins is interview-clear; production DLP often needs priority weights and audit diffs.
 
 **Production gap:** real email gateways need durable queues, idempotent writes, and least-privilege deploy identities (modules 09 / 12).

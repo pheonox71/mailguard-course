@@ -16,7 +16,7 @@
 4. **DANE** (DNSSEC + TLSA) binds MX certs in DNS — powerful where DNSSEC is real; operationally heavier.
 5. **Header analysis** (Received, Authentication-Results, URL paths) supports phishing triage without attacking third parties.
 6. **Attachment sandboxing** detonates or statically inspects files off the user desktop.
-7. **S/MIME/PGP** encrypt/sign content end-to-end; **time-of-click** rewriting proxies links at click time (privacy/availability trade-offs).
+7. **S/MIME** ([RFC 8551](https://www.rfc-editor.org/rfc/rfc8551)) and **OpenPGP** ([RFC 9580](https://www.rfc-editor.org/rfc/rfc9580)) encrypt/sign content end-to-end; **header protection** ([RFC 9788](https://www.rfc-editor.org/rfc/rfc9788), guidance [RFC 9787](https://www.rfc-editor.org/rfc/rfc9787)) covers signed/encrypted header confidentiality so `Subject:` and friends are not left in the clear while the body is protected. **Time-of-click** rewriting proxies links at click time (privacy/availability trade-offs).
 
 ```text
 Auth (SPF/DKIM/DMARC) → transport policy (MTA-STS/DANE) → content controls
@@ -57,6 +57,8 @@ Why reports (`rua` for DMARC, TLS-RPT for STS) before `enforce`: you learn which
 3. [BIMI Group — overview](https://bimigroup.org/)
 4. [DANE (RFC 6698)](https://www.rfc-editor.org/rfc/rfc6698)
 5. [S/MIME (RFC 8551)](https://www.rfc-editor.org/rfc/rfc8551)
+6. [OpenPGP (RFC 9580)](https://www.rfc-editor.org/rfc/rfc9580) — current OpenPGP message format (obsoletes RFC 4880 for new work).
+7. [RFC 9788 — Header Protection for Cryptographically Protected Email](https://www.rfc-editor.org/rfc/rfc9788) · [RFC 9787 — Guidance](https://www.rfc-editor.org/rfc/rfc9787) — protect email headers when using S/MIME or OpenPGP.
 
 ## Lab idea — MTA-STS / TLS-RPT
 

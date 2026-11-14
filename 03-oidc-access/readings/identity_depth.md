@@ -81,6 +81,12 @@ Login without logout design leaves sessions and refresh tokens alive after the u
 - **“Revoking the refresh token kills the current access token instantly.”** Access tokens are usually bearer until expiry unless you add extra controls.
 - **“Back-channel logout is required for every lab.”** Useful in multi-tab estates; start with RP-initiated logout + revoke, then read Keycloak/OIDC back-channel docs as a deepen.
 
+## Browser apps: BFF + CSRF (RFC 10017)
+
+Public SPAs that hold tokens in JavaScript storage are a common anti-pattern. [RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017) recommends a **Backend-for-Frontend (BFF)**: the browser keeps only an HTTP-only session cookie; the BFF holds tokens and talks to APIs. Pair that with **CSRF** defenses on cookie-authenticated state-changing requests (SameSite, anti-CSRF tokens, or double-submit patterns — see the RFC’s browser-app guidance). OAuth `state` still binds the authorize callback to the browser that started the flow; BFF+CSRF protects the *session* after login.
+
+**Why this matters.** Token theft from XSS or a malicious extension is irreversible until expiry/revoke. On the job, admin consoles (Module 08) and IdP-backed SPAs follow BFF+CSRF rather than stuffing access tokens into `localStorage`.
+
 ## Videos (verified)
 
 1. **[OAuth 2.0 and OpenID Connect (in plain English)](https://www.youtube.com/watch?v=996OiexHze0)** — OktaDev  
@@ -98,6 +104,7 @@ Prefer written RFCs/docs below if videos move.
 4. [MDN — Authentication overview](https://developer.mozilla.org/en-US/docs/Web/Security/Authentication) — browser auth landscape; for mTLS see [Cloudflare Learning — What is mutual TLS?](https://www.cloudflare.com/learning/access-management/what-is-mutual-tls/).
 5. [NIST SP 800-63B-4](https://csrc.nist.gov/pubs/sp/800/63/b/4/final) (final, 31 Jul 2025; incorporates syncable authenticators / passkeys) — authenticators & federation high-level. Companion HTML: [pages.nist.gov/800-63-4](https://pages.nist.gov/800-63-4/sp800-63b.html).
 6. [OWASP — Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) — why vaults beat spreadsheets (for apps still on passwords). For server-side password hashing see [Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html).
+7. [RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017) — BFF pattern and CSRF guidance for browser clients (prefer over tokens in JS storage).
 
 ## Quiz (required)
 [`../quizzes/identity_depth.md`](../quizzes/identity_depth.md)

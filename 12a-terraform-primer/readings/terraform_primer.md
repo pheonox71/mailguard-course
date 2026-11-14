@@ -32,7 +32,8 @@ Reviewable infra diffs, repeatable environments, and clearer least-privilege IAM
 | Providers | Talk to AWS (or others) via APIs |
 | Resources | Bucket, queue, IAM policy blocks |
 | `plan` vs `apply` | See blast radius before change |
-| Remote state (awareness) | Team sharing without git-stored secrets |
+| Remote state (awareness) | Team sharing without git-stored secrets; S3 `use_lockfile` needs TF ≥ 1.10 + versioning |
+| `sensitive` vs write-only/ephemeral | `sensitive` redacts CLI but stays in state; write-only/ephemeral (TF ≥ 1.11) for one-shot secrets |
 
 ## Install and run
 
@@ -50,7 +51,7 @@ Local-only HCL (no cloud account) so `plan` still teaches blast-radius review:
 ```hcl
 # Conceptual — do not apply without credentials and a backend you own
 terraform {
-  required_version = ">= 1.5"
+  required_version = ">= 1.10" # use_lockfile on S3 backend; ≥1.11 for write-only/ephemeral
 }
 
 # Why: a local_file resource proves HCL parses without a cloud account
@@ -73,7 +74,8 @@ terraform plan   # Why: see the diff before any apply
 ### Common misconceptions / what goes wrong
 
 - **“`plan` green means production is safe.”** Plan only shows *this* config’s diff; it does not prove least privilege, public-access blocks, or that remote state is locked down.
-- **“Commit `terraform.tfstate` for the team.”** State often holds secrets and resource IDs — use a remote backend with access control, not git history.
+- **“Commit `terraform.tfstate` for the team.”** State often holds secrets and resource IDs — use a remote S3 backend with `use_lockfile = true` (versioned bucket) and access control, not git history.
+- **“`sensitive = true` keeps secrets out of state.”** It only redacts display; learn write-only/ephemeral (TF ≥ 1.11) for one-shot credentials.
 - **“Skip plan and just `apply -auto-approve`.”** You lose the blast-radius review that makes Terraform worth using for mail/identity IAM.
 
 

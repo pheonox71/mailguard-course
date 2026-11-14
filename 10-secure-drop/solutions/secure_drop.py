@@ -8,6 +8,8 @@ import hmac
 import secrets
 import time
 
+REFERRER_POLICY = "no-referrer"
+
 
 @dataclass
 class Share:
@@ -15,6 +17,7 @@ class Share:
     object_key: str
     expires_at: float
     revoked: bool = False
+    redeemed: bool = False
     recipient_email: str | None = None
     otp_hash: str | None = None
 
@@ -59,6 +62,21 @@ def is_download_allowed(share: Share, *, now: float | None = None) -> bool:
     if share.revoked:
         return False
     return ts <= share.expires_at
+
+
+def is_landing_allowed(share: Share, *, now: float | None = None) -> bool:
+    # Non-consuming: same gate as download; does not require or set redeemed.
+    return is_download_allowed(share, now=now)
+
+
+def redeem_download(share: Share, audit: AuditStore, *, now: float | None = None) -> bool:
+    if share.redeemed:
+        return False
+    if not is_download_allowed(share, now=now):
+        return False
+    share.redeemed = True
+    audit.record(f"redeem:{share.token}")
+    return True
 
 
 def revoke(share: Share, audit: AuditStore) -> None:

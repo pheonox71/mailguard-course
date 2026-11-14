@@ -13,7 +13,7 @@
 1. A hold starts in state **held** (message parked for review).
 2. An operator **approves** (policy OK) or **rejects** (do not send).
 3. Only **approved** items may **release** to the next hop (MTA / downstream).
-4. The API rejects illegal jumps (e.g. held → released) with a client error (often **409 Conflict**), not a silent 200.
+4. The API rejects illegal jumps (e.g. held → released) with a client error — usually **409 Conflict** for FSM violations. Distinguish that from **412 Precondition Failed** (If-Match / version mismatch) and from **Idempotency-Key** replay (see below).
 5. Stretch: persist rows in Postgres via SQLAlchemy; **Alembic** migrations version the schema so deploys do not hand-edit production tables ([Alembic tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html)).
 6. Auto-bcc / delete-on-condition are explicit **action kinds**, not silent side effects of allow — so least privilege and audit stay possible.
 
@@ -54,6 +54,30 @@ Persistence (Postgres + SQLAlchemy/Alembic) belongs in your stretch lab — the 
 - **“Illegal transitions can no-op with 200.”** Operators and monitors treat 200 as success; use 4xx so clients retry or surface the error.
 - **“We’ll add states later; strings are fine.”** Unchecked free-text states drift (`aproved`); model an enum/FSM early and test every edge.
 - **“Alembic is optional busywork.”** Hand-edited production schemas diverge across environments; migrations are how schema changes travel with the app.
+- **“409, 412, and Idempotency-Key are interchangeable.”** They answer different questions (see next section).
+
+## 409 vs 412 vs Idempotency-Key
+
+| Signal | When to use | Typical meaning for holds |
+|--------|-------------|---------------------------|
+| **409 Conflict** | Request conflicts with **current resource state** (FSM) | `held → release` without approve; duplicate create of same logical hold id when policy forbids it |
+| **412 Precondition Failed** | Client sent **If-Match** / version / ETag and the server’s version differs | Two operators race: stale UI had `ETag: "3"` but row is now `"4"` — refresh and retry |
+| **Idempotency-Key** (header) | Client retries a **mutating** request safely | Same key + same body → return the original result (often **200** with stored response); same key + different body → **409** or **422** |
+
+**Why it matters.** Operators double-click Release; mobile networks retry POSTs. Without idempotency keys you double-enqueue Module 09 work. Without ETags/If-Match you overwrite a newer decision. Without 409 on illegal FSM jumps, clients cannot tell “wrong state” from “success.”
+
+**How (shape).**
+
+```http
+POST /holds/msg-1/release
+Idempotency-Key: op-release-msg-1-20261114
+If-Match: "2"
+
+→ 200  (first success; store response under the key)
+→ 200  (retry with same key+body; replay stored response — no second side effect)
+→ 412  (If-Match stale)
+→ 409  (hold still held / wrong state — not an idempotency replay)
+```
 
 
 ## Videos (verified)
@@ -66,6 +90,8 @@ Persistence (Postgres + SQLAlchemy/Alembic) belongs in your stretch lab — the 
 1. [FastAPI — Path operation configuration](https://fastapi.tiangolo.com/tutorial/path-operation-configuration/)
 2. [SQLAlchemy 2.0 — ORM quick start](https://docs.sqlalchemy.org/en/20/orm/quickstart.html)
 3. [Alembic tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html)
+4. [MDN — 409 Conflict](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409) · [412 Precondition Failed](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412) · [If-Match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match)
+5. [IETF draft — Idempotency-Key header](https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-idempotency-key-header) (pattern used widely in payment/SaaS APIs)
 
 ## Next step
 

@@ -8,3 +8,4 @@ Use only after attempting the quiz questions.
 4. Instance B never saw the new rule → allow/hold drift across nodes. Shared durable store (e.g. Postgres) plus consistent read path fixes multi-instance policy.
 5. Failures look like success; callers cannot distinguish errors; tests expecting 4xx/5xx never fail for the right reason; operators get silent wrong allows. Loud errors surface incidents.
 6. Gap: data disappears on restart / no multi-instance consistency / weak audit. Start in-memory **why:** prove the evaluate engine fast without infra hiding policy bugs.
+7. Login proves identity, not that the caller may touch *this* hold — filter every access by tenant (+ role) or you get cross-tenant BOLA/function bugs. Lifespan owns client lifecycle for tests/shutdown; a transactional outbox (hold + outbox row, then publish) beats “HTTP 200 then hope SQS send worked.”

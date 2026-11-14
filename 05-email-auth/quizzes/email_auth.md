@@ -8,3 +8,5 @@
 5. **Scenario:** Marketing starts using a new ESP. DMARC aggregate shows SPF fail from new IPs. What should happen before `p=reject`, and why might SPF includes alone be insufficient?
 
 6. **Spot the bug:** A DMARC record places `p=reject` before `v=DMARC1`. What happens and why?
+
+7. **Why / how (DKIM crypto):** Why prefer RSA keys ≥ 2048 bits and `rsa-sha256` (not SHA-1), and when might you also publish an Ed25519 DKIM selector?

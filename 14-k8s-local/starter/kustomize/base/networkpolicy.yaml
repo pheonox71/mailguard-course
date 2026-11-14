@@ -1,0 +1,46 @@
+# Default-deny for mailguard-api pods, then allow DNS egress + in-cluster Service traffic.
+#
+# kind note: the default kindnet CNI does not fully enforce NetworkPolicy.
+# For a local policy lab, install a CNI that does (e.g. Calico) or use a cluster
+# that documents NetworkPolicy support. Manifests still teach the shape.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mailguard-api-default-deny
+spec:
+  podSelector:
+    matchLabels:
+      app: mailguard-api
+  policyTypes:
+    - Ingress
+    - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mailguard-api-allow-dns-and-svc
+spec:
+  podSelector:
+    matchLabels:
+      app: mailguard-api
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    # Allow traffic from other pods in the same namespace (Service → Pod).
+    - from:
+        - podSelector: {}
+      ports:
+        - protocol: TCP
+          port: 8000
+  egress:
+    # DNS (kube-dns / CoreDNS) — required for most in-cluster name lookups.
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53

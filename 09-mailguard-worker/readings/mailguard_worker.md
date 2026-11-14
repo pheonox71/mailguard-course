@@ -11,15 +11,15 @@
 **How it works.**
 
 1. The API (or an ingest path) **enqueues** work as a JSON message.
-2. A Go **worker** pulls messages behind a **queue interface** (in-memory / LocalStack now; cloud SQS later — [SQS overview](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)).
+2. A Go **worker** pulls messages behind a **queue interface** (in-memory for the kata; **ElasticMQ** compose for local SQS API; cloud SQS later — [SQS overview](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)). Wire real AWS with **SDK Go v2 only**.
 3. The worker applies the same decision vocabulary as Module 07 (`hold` / `allow` / `reject`).
 4. It performs side effects (persist hold, notify, release toward an MTA).
-5. On success it **acks/deletes** the message; on crash, at-least-once delivery redelivers — so handlers must be **idempotent**.
-6. Table-driven `go test` locks the JSON contract with the Python API.
+5. On success it **acks/deletes** the message (ends the **visibility lease**); on crash, at-least-once delivery redelivers — so handlers must be **idempotent**. Kata `attempt` models SQS **`ApproximateReceiveCount`** for redrive / DLQ decisions.
+6. Table-driven `go test` locks the JSON contract with the Python API. For concurrent lease tests, use Go **1.25+** [`testing/synctest`](https://pkg.go.dev/testing/synctest).
 
 ```
 Producer / API → Queue → Go worker → apply decision → side effects → ack
-                              ↑ interface: in-memory now, SQS later
+                              ↑ interface: in-memory → ElasticMQ → SQS (SDK Go v2)
 ```
 
 ### Worked example
@@ -57,6 +57,7 @@ API services accept operator input; **workers** apply decisions asynchronously �
 - **“Exactly-once is guaranteed.”** Most queues are at-least-once; idempotency keys (`id` / hold id) are mandatory.
 - **“Python and Go can invent their own field names.”** Field drift causes silent parse failures; document and test one JSON contract.
 - **“The worker can call evaluate with different rules.”** Divergent policy engines are how allow/hold disagree across services — share vocabulary and fixtures.
+- **“Bodies can be arbitrarily large.”** SQS max message size is **1 MiB** — store large content elsewhere and queue a reference.
 
 
 ## Videos (verified)
@@ -67,8 +68,10 @@ API services accept operator input; **workers** apply decisions asynchronously �
 ## Read these (verified)
 
 1. [Go — Getting Started](https://go.dev/doc/tutorial/getting-started)
-2. [Go — testing package](https://pkg.go.dev/testing)
-3. [AWS SQS — How it works](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) (conceptual; use a local interface first)
+2. [Go — testing package](https://pkg.go.dev/testing) · [testing/synctest](https://pkg.go.dev/testing/synctest) (Go 1.25+) for concurrency
+3. [AWS SQS — How it works](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) (conceptual; ElasticMQ locally first)
+4. [AWS SDK for Go v2](https://docs.aws.amazon.com/sdk-for-go/v2/developer-guide/welcome.html) — v2 only when wiring SQS
+5. [ElasticMQ](https://github.com/softwaremill/elasticmq) — default local broker (`starter/docker-compose.queue.yml`)
 
 ## Next step
 

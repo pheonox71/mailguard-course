@@ -11,11 +11,12 @@
 **How it works.**
 
 1. **Write** HCL for provider, (optional) remote backend, and resources (see [`../starter/main.tf.example`](../starter/main.tf.example)).
-2. **`terraform init`** downloads providers and configures the backend (local by default; remote S3+lock when uncommented).
+2. **`terraform init`** downloads providers and configures the backend (local by default; remote S3 with **`use_lockfile = true`** when uncommented — needs Terraform **≥ 1.10** and **versioning** on the state bucket).
 3. **`terraform validate`** checks syntax/types without talking to the cloud APIs for mutations.
 4. **`terraform plan`** refreshes state, computes a diff, and prints `+` / `~` / `-` actions — still no apply.
 5. Only if the plan is least-privilege and Block Public Access is on, run **`terraform apply`** (or apply a saved plan file).
 6. Re-run plan after edits; treat unexpected destroys as stop-the-line.
+7. Secrets literacy (Terraform **≥ 1.11**): `sensitive = true` redacts CLI display but **still stores** the value in state; **write-only / ephemeral** attributes pass secrets into apply without the ordinary state persistence of regular variables — prefer them for one-shot credentials.
 
 ```text
 HCL → init (providers/backend) → validate → plan (diff) → apply (mutate)
@@ -23,7 +24,7 @@ HCL → init (providers/backend) → validate → plan (diff) → apply (mutate)
                          reject wildcards / public exposure here
 ```
 
-Trade-off: local state is simplest for a solo lab and easy to lose or leak; remote state with locking is safer for teams but needs a bootstrapped bucket/table. Prefer plan-time review over “apply and fix later.”
+Trade-off: local state is simplest for a solo lab and easy to lose or leak; remote state with **`use_lockfile`** (TF ≥ 1.10 + versioned bucket) is safer for teams than committing state. Legacy DynamoDB lock tables still work but are optional when `use_lockfile` is on. Prefer plan-time review over “apply and fix later.”
 
 ### Worked example
 
@@ -69,16 +70,18 @@ Why not `sqs:*` on `*`: a compromised worker should not purge unrelated queues. 
 
 - **“Plan is optional if I trust my HCL.”** Apply without plan skips the human diff review — wildcards and public policies still “succeed.”
 - **“Terraform applied cleanly, so IAM is fine.”** Apply success only means the API accepted the config; posture is a separate checklist ([`cloud_iam_posture.md`](./cloud_iam_posture.md)).
-- **“Commit terraform.tfstate for the team.”** State can hold sensitive attributes; use a remote backend with encryption + locking, never git.
+- **“Commit terraform.tfstate for the team.”** State can hold sensitive attributes; use a remote backend with encryption + **`use_lockfile`** (and versioning), never git.
+- **“`sensitive = true` means the secret is not in state.”** It only redacts UI; write-only/ephemeral (TF ≥ 1.11) is the literacy for not persisting one-shot secrets the ordinary way.
 - **“`Action: \"*\"` is fine for a weekend lab role.”** Lab habits leak into prod; start narrow and add statements when a new queue appears.
-- **“Uncomment the S3 backend with placeholder names and apply.”** Backend config must point at buckets/tables *you* own — placeholders fail loudly; never paste real access keys into HCL.
+- **“Uncomment the S3 backend with placeholder names and apply.”** Backend config must point at buckets *you* own with versioning enabled for `use_lockfile` — placeholders fail loudly; never paste real access keys into HCL.
 
 ## Read these (verified)
 
 1. [Terraform — Command: plan](https://developer.hashicorp.com/terraform/cli/commands/plan)
-2. [Terraform — Backend: S3](https://developer.hashicorp.com/terraform/language/backend/s3)
-3. [AWS IAM — Policies and permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)
-4. [Amazon S3 — Blocking public access](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+2. [Terraform — Backend: S3](https://developer.hashicorp.com/terraform/language/backend/s3) — `use_lockfile` (TF ≥ 1.10) + bucket versioning
+3. [Terraform — Sensitive data in state](https://developer.hashicorp.com/terraform/language/state/sensitive-data) · [Ephemeral values](https://developer.hashicorp.com/terraform/language/resources/ephemeral) (TF ≥ 1.11 write-only/ephemeral literacy)
+4. [AWS IAM — Policies and permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)
+5. [Amazon S3 — Blocking public access](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
 
 ## Next step
 

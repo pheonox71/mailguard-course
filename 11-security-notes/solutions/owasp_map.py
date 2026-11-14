@@ -9,6 +9,13 @@ TOP10 = {
     "auth_failure": "A07:2021",
 }
 
+TOP10_2025 = {
+    "broken_access_control": "A01:2025",
+    "injection": "A05:2025",
+    "ssrf": "CWE-918",
+    "auth_failure": "A07:2025",
+}
+
 API10 = {
     "bola": "API1:2023",
     "broken_auth": "API2:2023",
@@ -16,11 +23,14 @@ API10 = {
 }
 
 
-def label_web(finding: str) -> str:
+def label_web(finding: str, edition: str = "2021") -> str:
     key = finding.strip().lower()
-    if key not in TOP10:
+    table = TOP10_2025 if edition == "2025" else TOP10
+    if edition not in ("2021", "2025"):
+        raise ValueError("unknown edition")
+    if key not in table:
         raise ValueError("unknown")
-    return TOP10[key]
+    return table[key]
 
 
 def label_api(finding: str) -> str:

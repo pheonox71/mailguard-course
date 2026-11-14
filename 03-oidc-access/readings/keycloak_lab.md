@@ -73,6 +73,7 @@ Note `authorization_endpoint`, `token_endpoint`, `end_session_endpoint`, `revoca
 - **“Logout = delete the session cookie.”** Without IdP logout and/or refresh-token revoke, SSO and refresh keep the user effectively signed in.
 - **“PKCE is optional for a public SPA.”** Stolen authorization codes are usable without the verifier; turn on S256 for public clients (RFC 7636).
 - **“id_token signature is enough; skip iss/aud/nonce.”** Mix-up and replay succeed when claims are not checked — pair JWKS verify with claim checks (`jwt_checks`).
+- **“Put access tokens in localStorage for the SPA.”** Prefer a **Backend-for-Frontend (BFF)** with HTTP-only session cookies and CSRF defenses ([RFC 10017](https://www.rfc-editor.org/rfc/rfc10017)) — browser-held bearer tokens are XSS-exfiltratable.
 
 ## Videos (verified)
 
@@ -92,6 +93,7 @@ Prefer the Keycloak guides below if a video moves.
 4. [RFC 7009 — OAuth 2.0 Token Revocation](https://www.rfc-editor.org/rfc/rfc7009)
 5. [RFC 7636 — PKCE](https://www.rfc-editor.org/rfc/rfc7636)
 6. [RFC 9700 — OAuth 2.0 Security BCP](https://www.rfc-editor.org/rfc/rfc9700)
+7. [RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017) — BFF + CSRF for SPAs talking to this lab IdP.
 
 ## Next step
 

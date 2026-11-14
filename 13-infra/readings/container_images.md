@@ -14,10 +14,10 @@
 2. Build the worker image from Module 09’s Dockerfile.
 3. Point Compose `image:` fields at those local tags (or `build:` contexts).
 4. Confirm `/healthz` on the API container.
-5. Never bake cloud keys into `ENV` layers — use Compose `environment` / secrets mounts.
+5. Never bake cloud keys into `ENV` or `ARG` layers — use Compose `environment` / secrets mounts at **runtime**, and BuildKit **`RUN --mount=type=secret`** for any **build-time** credential (private indexes, etc.).
 
 ```text
-docker build (07) → mailguard-api:local
+docker build (07) → mailguard-api:local   # Module 14 kind labs also use :local-dev
 docker build (09) → mailguard-worker:local
 compose up → api + db (+ optional queue) → curl /healthz
 ```
@@ -42,8 +42,22 @@ curl -s http://127.0.0.1:8000/healthz
 
 - **“Compose will pull `mailguard-api:local` from a registry.”** `:local` is a laptop tag — you must build it.
 - **“Put AWS keys in the Dockerfile for convenience.”** Layers leak; use runtime env / IAM roles instead.
-- **“Worker image must call cloud SQS on first boot.”** Local queue (LocalStack/ElasticMQ) is enough for the demo path.
+- **“`ARG` is safe because it is not `ENV`.”** Build args still leak via history/cache — use BuildKit `--secret` mounts (see Module 11a).
+- **“Worker image must call cloud SQS on first boot.”** Local queue (**ElasticMQ** default in Module 09; LocalStack optional) is enough for the demo path.
 - **“The default API image includes `solutions/`.”** It does not — Module 07’s Dockerfile uses a multi-stage build so the default target never copies `solutions/` (a `COPY` then `rm` would still leave answers in earlier layers). Use `--target with-solutions` only when you intentionally want the reference rules engine.
+
+### BuildKit secret mount (shape)
+
+```dockerfile
+# syntax=docker/dockerfile:1
+RUN --mount=type=secret,id=npm_token \
+    NPM_TOKEN="$(cat /run/secrets/npm_token)" npm ci
+```
+
+```bash
+DOCKER_BUILDKIT=1 docker build --secret id=npm_token,src=./.npm_token_local .
+# Never commit the secret file; never use ARG/ENV for the same value.
+```
 
 
 ## Videos (verified)
@@ -54,8 +68,9 @@ curl -s http://127.0.0.1:8000/healthz
 ## Read these (verified)
 
 1. [Docker — Build images](https://docs.docker.com/build/)
-2. Module 11a Docker primer
-3. [`../starter/docker-compose.yml`](../starter/docker-compose.yml)
+2. [BuildKit — Build-time secrets](https://docs.docker.com/build/building/secrets/)
+3. Module 11a Docker primer
+4. [`../starter/docker-compose.yml`](../starter/docker-compose.yml)
 
 ## Next step
 

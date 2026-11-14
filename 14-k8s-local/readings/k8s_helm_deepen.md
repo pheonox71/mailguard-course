@@ -30,21 +30,21 @@ Dev vs prod image tag via Helm values (conceptual):
 # values-dev.yaml
 image:
   repository: mailguard-api
-  tag: "local"          # Why pin: reproducible restarts on kind
+  tag: "local-dev"      # Why unique tag: never :latest; prefer digests in registries
 replicaCount: 1
 ```
 
 ```bash
-# kind load still required when the chart/overlay pins mailguard-api:local
-docker build -t mailguard-api:local ../07-mailguard-api
-kind load docker-image mailguard-api:local
+# kind load still required when the chart/overlay pins mailguard-api:local-dev
+docker build -t mailguard-api:local-dev ../07-mailguard-api
+kind load docker-image mailguard-api:local-dev
 
 # Helm chart shipped under starter/chart/
 # Why render before install: catch template errors without mutating the cluster
 helm template mailguard ./starter/chart -f ./starter/chart/values-dev.yaml
 helm upgrade --install mailguard ./starter/chart -f ./starter/chart/values-dev.yaml
 
-# Kustomize (also shipped — overlays patch replicas/image only):
+# Kustomize (also shipped — overlays patch replicas/image; base includes NetworkPolicy):
 kubectl kustomize starter/kustomize/overlays/dev   # Why: inspect rendered YAML first
 kubectl apply -k starter/kustomize/overlays/dev    # Why -k: build overlay then apply
 ```
@@ -54,7 +54,9 @@ kubectl apply -k starter/kustomize/overlays/dev    # Why -k: build overlay then 
 - **“Fork the whole YAML tree per env.”** Drift is inevitable — overlays/charts exist so probes and security fields stay in one base.
 - **“Helm install without template is faster.”** Rendering first catches missing values and bad YAML before you break the cluster.
 - **“Overlays replace GitOps.”** Env packaging is necessary but not sufficient; Module 16 adds sync + policy so prod is not another laptop apply.
-- **“`:latest` in values is fine for prod.”** Mutable tags make rollbacks and incident timelines guesswork — pin digests or immutable tags.
+- **“`:latest` in values is fine for prod.”** Mutable tags make rollbacks and incident timelines guesswork — pin **digests** or unique immutable tags (`local-dev` for kind labs).
+- **“NetworkPolicy waits until Module 16.”** Default-deny + DNS is in this module’s starter; Module 16 deepens admission/GitOps. kindnet may need Calico (or similar) for real enforcement.
+- **“Stretch with ingress-nginx.”** Community ingress-nginx best-effort ended ~March 2026 — prefer **Gateway API** or another maintained controller.
 
 
 ## Videos (verified)

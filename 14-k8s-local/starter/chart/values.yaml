@@ -1,10 +1,10 @@
 # Default values for local kind/minikube demos.
-# Why pin tag "local": matches `docker build -t mailguard-api:local` + `kind load`.
+# Why pin tag "local-dev": unique tag (never :latest); prefer digests in registries.
 replicaCount: 1
 
 image:
   repository: mailguard-api
-  tag: "local"
+  tag: "local-dev"
   pullPolicy: IfNotPresent
 
 service:
@@ -14,17 +14,38 @@ service:
 
 probes:
   readiness:
-    path: /healthz
+    path: /readyz
     port: 8000
     initialDelaySeconds: 3
     periodSeconds: 5
   liveness:
-    path: /healthz
+    path: /livez
     port: 8000
     initialDelaySeconds: 10
     periodSeconds: 10
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop: ["ALL"]
+  seccompProfile:
+    type: RuntimeDefault
 
 resources:
   requests:
     cpu: 50m
     memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi

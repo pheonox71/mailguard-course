@@ -15,7 +15,9 @@
 3. Stop at the **first** match; return that decision (or a documented default if none match).
 4. Keep evaluation as a **pure function** separate from FastAPI handlers so pytest covers edge cases without HTTP.
 5. Pydantic models shape requests; OpenAPI documents the surface ([FastAPI first steps](https://fastapi.tiangolo.com/tutorial/first-steps/)).
-6. Persistence, authn/z, and pagination stay out of the kata on purpose — stretch labs add Postgres later.
+6. Persistence and pagination stay out of the kata on purpose — stretch labs add Postgres later. Production still needs **tenant-scoped authorization** (see deepen below), not only “is the caller logged in?”
+7. Create HTTP clients, DB pools, and queue producers in a FastAPI **lifespan** (startup/shutdown), not as module-level globals that open sockets at import time.
+8. Toward Module 09: prefer a **transactional outbox** (write hold + outbox row in one DB transaction; a publisher drains the outbox to the queue) over “HTTP commit then best-effort enqueue.”
 
 ```
 Client → POST /rules  → store (ordered list)
@@ -79,6 +81,38 @@ Keep the public vocabulary vendor-neutral: rules, holds, allow, reject — not a
 - **“Evaluation inside the route handler is fine.”** Mixing HTTP and policy makes edge-case tests slow and fragile; pure `evaluate(rules, message)` is the contract.
 - **“In-memory means production-ready.”** Restarts wipe rules; two API instances disagree. Production needs authn/z, persistence, pagination, and audit logs — the kata stays small **why:** prove the decision engine before infrastructure hides policy bugs.
 - **“No match → hold for safety.”** Maybe — but only if documented. Silent defaults are how missends (or false blocks) ship.
+- **“Authn alone is enough.”** Broken object/function authorization (OWASP API1 / API5) and unconstrained resource use (API3) still leak cross-tenant holds — scope every hold id to the caller’s tenant.
+- **“Open the DB/queue client at import.”** Module-level globals complicate tests and leak connections; use FastAPI lifespan.
+
+## Tenant-scoped authZ (deepen)
+
+**Why.** A valid JWT that can read *any* hold id is still a broken access control. [OWASP API Security Top 10](https://owasp.org/API-Security/) **API1** (Broken Object Level Authorization), **API3** (Broken Object Property Level Authorization / unconstrained resource consumption depending on edition wording), and **API5** (Broken Function Level Authorization) are the usual mail-gateway failures: tenant A releases tenant B’s hold, or a reviewer calls an admin-only reject.
+
+**How.**
+
+1. Authenticate the caller (OIDC from Module 03 / BFF from RFC 10017).
+2. Bind every hold/rule row to a **tenant_id** (and often a role).
+3. On every read/mutate path: `WHERE id = ? AND tenant_id = ?` (or equivalent) — never trust a client-supplied tenant alone.
+4. Deny cross-tenant and cross-role with **403/404** (prefer 404 to avoid id oracle), not a silent empty success.
+
+## Transactional outbox → Module 09
+
+**Why.** `INSERT hold` then `sqs.send_message` can succeed in the DB and fail on the queue (or the process can crash between them). Workers then never see the work, or you retry and double-enqueue without an idempotency key.
+
+**How.**
+
+1. In one DB transaction: write the hold (or state change) **and** an **outbox** row (`payload`, `created_at`, `published_at=null`).
+2. Commit.
+3. A publisher (same process loop or sidecar) reads unpublished outbox rows and sends to ElasticMQ/SQS, then marks `published_at`.
+4. Module 09 consumers stay **idempotent** on message/hold id (see `09` readings).
+
+Sketch lives in [`../starter/app/queue_producer.py`](../starter/app/queue_producer.py) — treat enqueue as the *publisher* side of an outbox, not as “fire and forget inside the request with no durability.”
+
+## FastAPI lifespan for clients
+
+**Why.** Import-time `boto3.client(...)` / engine globals make pytest order-dependent and skip clean shutdown.
+
+**How.** Use `@asynccontextmanager` lifespan on `FastAPI` to create store/queue/DB resources on startup and close them on shutdown (see [`../starter/app/main.py`](../starter/app/main.py)).
 
 ## Videos (verified)
 
@@ -89,13 +123,15 @@ Keep the public vocabulary vendor-neutral: rules, holds, allow, reject — not a
 ## Read these (verified)
 
 1. [FastAPI — First steps](https://fastapi.tiangolo.com/tutorial/first-steps/) — routing and OpenAPI.
-2. [Pydantic — Models](https://docs.pydantic.dev/latest/concepts/models/) — request/response shapes.
-3. [pytest — Get Started](https://docs.pytest.org/en/stable/getting-started.html) — tests as contract.
-4. Challenge Gym [`hold_rules`](../../01-challenge-gym/readings/hold_rules.md) — same decision vocabulary.
+2. [FastAPI — Lifespan events](https://fastapi.tiangolo.com/advanced/events/) — startup/shutdown for clients (not module-level globals).
+3. [Pydantic — Models](https://docs.pydantic.dev/latest/concepts/models/) — request/response shapes.
+4. [pytest — Get Started](https://docs.pytest.org/en/stable/getting-started.html) — tests as contract.
+5. [OWASP API Security Top 10](https://owasp.org/API-Security/) — tenant-scoped authZ (API1 / API3 / API5).
+6. Challenge Gym [`hold_rules`](../../01-challenge-gym/readings/hold_rules.md) — same decision vocabulary.
 
 ## Keep in mind
 
-Production APIs add authn/z, persistence, pagination, and audit logs. Your kata stays small on purpose — **why:** prove the decision engine before wiring infrastructure that hides policy bugs.
+Production APIs add **tenant-scoped** authn/z, persistence, pagination, audit logs, lifespan-managed clients, and an outbox toward Module 09. Your kata stays small on purpose — **why:** prove the decision engine before wiring infrastructure that hides policy bugs.
 
 ## Next step
 

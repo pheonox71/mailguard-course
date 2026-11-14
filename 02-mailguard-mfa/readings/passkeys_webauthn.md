@@ -62,7 +62,7 @@ Prefer MDN + W3C links below if a video moves.
 ## Read these (verified)
 
 1. [MDN — Web Authentication API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Authentication_API) — ceremonies and browser support.
-2. [W3C WebAuthn Level 3](https://www.w3.org/TR/webauthn-3/) — Candidate Recommendation track; Level 2 is the current W3C Recommendation. Credentials are scoped to the **RP ID** (a registrable domain).
+2. [W3C WebAuthn Level 3](https://www.w3.org/TR/webauthn-3/) — **W3C Recommendation** (current). Prefer Level 3 for RP ID / passkey literacy; Level 2 remains the prior Recommendation for older references. Credentials are scoped to the **RP ID** (a registrable domain).
 3. [passkeys.dev](https://passkeys.dev/) — practitioner-oriented passkey guidance.
 4. [OWASP MFA Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html) — factors and phishing-resistant authenticators.
 5. [NIST SP 800-63B-4](https://csrc.nist.gov/pubs/sp/800/63/b/4/final) (final, 31 Jul 2025; incorporates syncable authenticators / passkeys) — authenticator assurance high-level.
