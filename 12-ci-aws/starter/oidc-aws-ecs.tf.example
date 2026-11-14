@@ -2,7 +2,11 @@
 # GitHub OIDC provider + IAM role trust + ECS Fargate service sketch.
 
 variable "github_repo" { type = string } # e.g. acme/mailguard
+# Optional immutable IDs (repos created after 2026-07-15 / opt-in mint ORG@id/REPO@id):
+# variable "github_owner_id" { type = string } # e.g. "123456"
+# variable "github_repo_id" { type = string }  # e.g. "789012"
 
 # aws_iam_openid_connect_provider for token.actions.githubusercontent.com
-# aws_iam_role with condition StringLike sub = "repo:${var.github_repo}:ref:refs/heads/*"
+# Name-based trust:  StringLike sub = "repo:${var.github_repo}:ref:refs/heads/main"
+# Immutable trust:   StringLike sub = "repo:ORG@${var.github_owner_id}/REPO@${var.github_repo_id}:ref:refs/heads/main"
 # aws_ecs_cluster / aws_ecs_service (Fargate) consuming the built image

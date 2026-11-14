@@ -1,7 +1,8 @@
 """TOTP enroll / verify + one-time recovery codes.
 
-Replay: after a successful verify, reject the same time-step again
-(RFC 6238 §5.2). Throttle: lock the enrollment after too many failures
+Replay: after a successful verify, reject that time-step and any older
+step (``step <= last_used_step``) — RFC 6238 §5.2. Equality-only checks
+leave a clock-skew window hole. Throttle: lock after too many failures
 (NIST SP 800-63B authenticator throttling).
 """
 
@@ -32,8 +33,9 @@ def enroll(*, recovery_count: int = 5) -> Enrollment:
 def verify_totp(enrollment: Enrollment, code: str, *, for_time: int | None = None) -> bool:
     """Verify a TOTP code for the enrollment secret.
 
-    Rejects when locked, when the matching step equals ``last_used_step``
-    (replay), or when the code is wrong (and increments failure count).
+    Rejects when locked, when the matching step is ``<= last_used_step``
+    (replay / older step in the skew window), or when the code is wrong
+    (and increments failure count).
     """
     raise NotImplementedError
 
