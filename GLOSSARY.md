@@ -67,6 +67,7 @@ Course content uses AI assistance — verify important facts against linked prim
 | **End-to-End (E2E)** | Test that drives the full user path (UI → API → storage), not just one unit. |
 | **Dead-Letter Queue (DLQ)** | Side queue for messages that failed processing after retries. |
 | **Idempotent / idempotency key** | An operation is idempotent if repeating it has the same effect as doing it once (HTTP GET/PUT/DELETE; not plain POST). Matters because retries and at-least-once queues (SQS) redeliver; an idempotency key (unique request/message ID recorded server-side) lets duplicates be detected and skipped. |
+| **Cross-Origin Resource Sharing (CORS)** | Browser mechanism letting a server opt in to cross-origin reads via headers such as `Access-Control-Allow-Origin` (with preflight `OPTIONS` for non-simple requests). Allow exact origins; never `*` with credentials. CORS is not an auth control — it only limits what browsers let pages read. |
 
 ## Cloud, CI & platform
 

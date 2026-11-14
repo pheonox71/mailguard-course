@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T12:23:05.986Z",
+  "generatedAt": "2026-11-14T12:25:45.027Z",
   "sections": [
     {
       "title": "Identity & authentication",
@@ -270,6 +270,12 @@
           "term": "Idempotent / idempotency key",
           "abbrev": "",
           "meaning": "An operation is idempotent if repeating it has the same effect as doing it once (HTTP GET/PUT/DELETE; not plain POST). Matters because retries and at-least-once queues (SQS) redeliver; an idempotency key (unique request/message ID recorded server-side) lets duplicates be detected and skipped."
+        },
+        {
+          "id": "cors",
+          "term": "Cross-Origin Resource Sharing",
+          "abbrev": "CORS",
+          "meaning": "Browser mechanism letting a server opt in to cross-origin reads via headers such as `Access-Control-Allow-Origin` (with preflight `OPTIONS` for non-simple requests). Allow exact origins; never `*` with credentials. CORS is not an auth control — it only limits what browsers let pages read."
         }
       ]
     },
