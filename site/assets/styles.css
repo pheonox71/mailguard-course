@@ -827,13 +827,16 @@ html[data-theme='light'] .ai-notice strong {
   font-weight: 600;
   cursor: pointer;
 }
-.module-complete-toggle { margin: 1rem 0 0; }
-.topic-title-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem;
-  align-items: center;
+.module-complete-toggle {
+  display: inline-flex;
+  margin: 1.75rem 0 0;
+  padding: 0.85rem 0 0;
+  border-top: 1px solid var(--line);
+}
+.topic-complete-row {
+  margin-top: 1.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(125, 255, 210, 0.1);
 }
 .btn-key {
   background: rgba(159, 217, 177, 0.14);
@@ -1020,6 +1023,14 @@ html[data-theme='light'] .reading-figure {
 }
 
 html[data-theme='light'] .topic-downloads {
+  border-top-color: rgba(20, 70, 55, 0.12);
+}
+
+html[data-theme='light'] .topic-complete-row {
+  border-top-color: rgba(20, 70, 55, 0.12);
+}
+
+html[data-theme='light'] .module-complete-toggle {
   border-top-color: rgba(20, 70, 55, 0.12);
 }
 

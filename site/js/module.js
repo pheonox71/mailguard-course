@@ -349,17 +349,17 @@ async function main() {
     topicSections.push(`
       <article class="topic-block" id="topic-${escapeHtml(topicId)}" data-topic="${escapeHtml(topicId)}">
         <header class="topic-block-header">
-          <div class="topic-title-row">
-            <h2>${escapeHtml(titleCase(label))}</h2>
-            <label class="progress-toggle">
-              <input type="checkbox" data-topic-complete="${escapeHtml(topicId)}" ${topicDone ? 'checked' : ''} />
-              Topic complete
-            </label>
-          </div>
+          <h2>${escapeHtml(titleCase(label))}</h2>
           <p class="muted">${topicHint}</p>
         </header>
         <div class="reading-body">${readingHtml}</div>
         ${downloadsBlock}
+        <footer class="topic-complete-row">
+          <label class="progress-toggle">
+            <input type="checkbox" data-topic-complete="${escapeHtml(topicId)}" ${topicDone ? 'checked' : ''} />
+            Topic complete
+          </label>
+        </footer>
       </article>
     `)
   }
@@ -396,10 +396,6 @@ async function main() {
           </section>`
         : ''
     }
-    <label class="progress-toggle module-complete-toggle">
-      <input type="checkbox" id="module-complete" ${moduleDone ? 'checked' : ''} />
-      Mark module complete
-    </label>
 
     ${
       isReadOnly || packEmpty
@@ -425,6 +421,11 @@ async function main() {
         `<p class="empty-note">No topics with readings or downloads yet for this module.</p>`
       }
     </section>
+
+    <label class="progress-toggle module-complete-toggle">
+      <input type="checkbox" id="module-complete" ${moduleDone ? 'checked' : ''} />
+      Mark module complete
+    </label>
   `
 
   initGlossaryTooltips(root)
