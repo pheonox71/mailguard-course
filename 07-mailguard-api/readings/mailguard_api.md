@@ -54,15 +54,15 @@ If a broad allow rule were listed *before* the domain hold, the same message wou
 
 1. Default: `store.py` imports from `katas.rules_engine` (your stubs).
 2. Opt-in reference path: set environment variable `MAILGUARD_USE_SOLUTIONS=1`. Then the starter loads `solutions/` and, if a kata function still raises `NotImplementedError`, falls back to the reference implementation and logs a clear warning that fallback happened.
-3. Docker image (`Dockerfile`): copies `katas/` always; copies then **removes** `solutions/` unless you build with `--build-arg INCLUDE_SOLUTIONS=1` (which also sets `MAILGUARD_USE_SOLUTIONS` in the image). Default `mailguard-api:local` therefore does not ship answers.
+3. Docker image (`Dockerfile`): multi-stage build. Default target copies `katas/` only — **`solutions/` never enter those layers** (a `COPY` + `rm` would still leave answer files in earlier layers recoverable by image history). Opt-in: `docker build --target with-solutions` copies `solutions/` and sets `MAILGUARD_USE_SOLUTIONS=1` only in that stage.
 4. Course CI proves reference correctness by copying `solutions/` over `katas/` before pytest (same pattern as other modules) — after that copy, the default kata import is the reference code for that job.
 
 ```bash
-# Student / default demo image (katas only)
+# Student / default demo image (katas only; no solutions layers)
 docker build -t mailguard-api:local .
 
-# Demo before the kata is finished (includes solutions + enables fallback)
-docker build --build-arg INCLUDE_SOLUTIONS=1 -t mailguard-api:local .
+# Demo before the kata is finished (with-solutions stage)
+docker build --target with-solutions -t mailguard-api:local .
 # or locally without Docker:
 MAILGUARD_USE_SOLUTIONS=1 uvicorn starter.app.main:app --port 8000
 ```

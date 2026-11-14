@@ -34,8 +34,8 @@ cd 13-infra/starter && docker compose up -d
 curl -s http://127.0.0.1:8000/healthz
 # → {"status":"ok"}
 
-# Optional: demo /evaluate before finishing Module 07 — include reference engine:
-# docker build --build-arg INCLUDE_SOLUTIONS=1 -t mailguard-api:local ./07-mailguard-api
+# Optional: demo /evaluate before finishing Module 07 — with-solutions stage:
+# docker build --target with-solutions -t mailguard-api:local ./07-mailguard-api
 ```
 
 ### Common misconceptions / what goes wrong
@@ -43,7 +43,7 @@ curl -s http://127.0.0.1:8000/healthz
 - **“Compose will pull `mailguard-api:local` from a registry.”** `:local` is a laptop tag — you must build it.
 - **“Put AWS keys in the Dockerfile for convenience.”** Layers leak; use runtime env / IAM roles instead.
 - **“Worker image must call cloud SQS on first boot.”** Local queue (LocalStack/ElasticMQ) is enough for the demo path.
-- **“The default API image includes `solutions/`.”** It does not — Module 07’s Dockerfile drops `solutions/` unless `INCLUDE_SOLUTIONS=1`. That keeps answer code out of the student demo image; use the build arg only when you intentionally want the reference rules engine.
+- **“The default API image includes `solutions/`.”** It does not — Module 07’s Dockerfile uses a multi-stage build so the default target never copies `solutions/` (a `COPY` then `rm` would still leave answers in earlier layers). Use `--target with-solutions` only when you intentionally want the reference rules engine.
 
 
 ## Videos (verified)

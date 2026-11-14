@@ -51,9 +51,9 @@ kind create cluster   # or: minikube start
 # --- kind load step (required for local tags) ---
 # Why: kind nodes do not see images that only exist in your host Docker daemon.
 # Build the Module 07 image, then import it into the kind cluster before apply.
-# Default build = katas only (no solutions/ in the image). /healthz is enough for
-# probes; for /evaluate before finishing the Module 07 kata, add:
-#   --build-arg INCLUDE_SOLUTIONS=1
+# Default build = katas only (no solutions/ layers). /healthz is enough for
+# probes; for /evaluate before finishing the Module 07 kata, use:
+#   docker build --target with-solutions -t mailguard-api:local ../07-mailguard-api
 docker build -t mailguard-api:local ../07-mailguard-api
 kind load docker-image mailguard-api:local
 # How it works: kind copies the image layers into each node’s container runtime

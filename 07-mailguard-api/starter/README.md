@@ -11,7 +11,9 @@ Persistence is an in-memory store (`starter/app/store.py`). Swap for Postgres in
 The store imports the rules engine from `katas/` by default. Set
 `MAILGUARD_USE_SOLUTIONS=1` only when you intentionally want the reference
 implementation (and optional `NotImplementedError` fallback). The module
-`Dockerfile` omits `solutions/` unless built with `--build-arg INCLUDE_SOLUTIONS=1`.
+`Dockerfile` is multi-stage: default target has no `solutions/`; use
+`docker build --target with-solutions` when you intentionally want the
+reference engine in the image (avoids `COPY`+`rm` layer leakage).
 
 ## Run locally
 

@@ -4,20 +4,25 @@
 
 1. Enroll a TOTP secret and verify codes with a small clock window.
 2. Issue **one-time recovery codes** and consume them safely.
-3. Keep secrets out of git; document what production still needs (rate limits, attestation).
+3. Reject **replay** of a just-accepted code (`last_used_step`) and **throttle** failed guesses to lockout.
+4. Keep secrets out of git; document what production still needs (attestation, hashed recovery at rest).
 
-**Why this matters.** MFA enrollment is where secrets are born. A leaked base32 secret or reusable recovery code is as bad as no MFA. Without a clear enroll → verify → recover story, helpdesk resets become account-takeover paths. On the job, identity and email-admin portals implement the same lifecycle before they federate to passkeys.
+**Why this matters.** MFA enrollment is where secrets are born. A leaked base32 secret, a reusable recovery code, or a phished TOTP that still works a second time is as bad as no MFA. Without enroll → verify-once-per-step → recover, helpdesk resets and live-code phishing become account-takeover paths. On the job, identity and email-admin portals implement the same lifecycle before they federate to passkeys.
 
 **How it works.**
 
 1. Generate a high-entropy **shared secret** (base32 for authenticator apps).
 2. Show the student a provisioning URI / QR (lab) so the app can compute TOTP.
 3. **Verify** a current code before marking enrollment complete (proves the secret was stored).
-4. Issue **recovery codes** (random, single-use); store only hashes in production.
-5. On lost device: consume one recovery code, then force re-enrollment — never email a new TOTP secret in the clear.
+4. On success, record **`last_used_step`** (time-step index). A second verify for that same step **must** fail — [RFC 6238 §5.2](https://www.rfc-editor.org/rfc/rfc6238#section-5.2) requires one-time use of an OTP after successful validation.
+5. Count failed verifies; after `MAX_FAILED_ATTEMPTS`, set **`locked`** so further codes (even valid ones) fail until an out-of-band unlock — throttle/lockout per [NIST SP 800-63B](https://pages.nist.gov/800-63-4/sp800-63b.html) authenticator guidance.
+6. Issue **recovery codes** (random, single-use); store only hashes in production.
+7. On lost device: consume one recovery code, then force re-enrollment — never email a new TOTP secret in the clear.
 
 ```text
-enroll(secret + recovery codes) → verify TOTP → store hashed recovery
+enroll → verify TOTP (record last_used_step) → store hashed recovery
+replay same step → reject
+too many wrong codes → locked
 lost phone → consume_recovery once → re-enroll
 ```
 
@@ -27,7 +32,8 @@ Contract shape (see `katas/mfa_enroll.py`):
 
 ```python
 enrollment = enroll(recovery_count=5)   # secret + 5 codes
-assert verify_totp(enrollment, code_from_app)
+assert verify_totp(enrollment, code_from_app) is True
+assert verify_totp(enrollment, code_from_app) is False  # same step = replay
 assert consume_recovery(enrollment, enrollment.recovery_codes[0]) is True
 assert consume_recovery(enrollment, enrollment.recovery_codes[0]) is False  # one-time
 ```
@@ -37,6 +43,7 @@ assert consume_recovery(enrollment, enrollment.recovery_codes[0]) is False  # on
 - **“Commit a demo secret for classmates.”** Even “test” secrets in git get copy-pasted into real apps — use local-only fixtures and `.env`.
 - **“Recovery codes can be reused until we rotate.”** Reuse enables silent takeover after phishing one code.
 - **“Verify is optional if the QR scanned.”** Without a challenge code, you may have stored a secret the user never controlled.
+- **“`valid_window` already stops replay.”** The window only covers clock skew; without `last_used_step`, a phished live code still works twice in the same step.
 - **“TOTP enroll finishes MFA.”** Passkeys/WebAuthn resist phishing better — see the passkeys reading.
 
 ## Videos (verified)

@@ -93,11 +93,13 @@ server {
 
 ### Caddy — client auth snippet
 
+Use **`require_and_verify`** (not `require`). Caddy’s `require` only demands that a client *presents* a certificate; it does **not** verify the chain. With a `trust_pool`, the documented default is already `require_and_verify` — spell it out so a future config change cannot silently drop verification ([Caddy `tls` directive](https://caddyserver.com/docs/caddyfile/directives/tls)).
+
 ```caddy
 admin.mail.example {
   tls {
     client_auth {
-      mode require
+      mode require_and_verify
       trust_pool file /etc/caddy/lab-ca.crt
     }
   }
@@ -106,6 +108,26 @@ admin.mail.example {
 ```
 
 Document CRL/OCSP: how you revoke `device-42` and how long clients keep a stolen cert trusted.
+
+### Negative lab — untrusted CA must fail the handshake
+
+Issue a second CA and a client cert from it. Point Caddy’s `trust_pool` only at `lab-ca.crt` (the first CA). Present the untrusted client cert:
+
+```bash
+# Second CA + client cert (not in Caddy trust_pool)
+openssl req -x509 -newkey rsa:2048 -nodes -keyout evil-ca.key -out evil-ca.crt \
+  -days 365 -subj "/CN=Untrusted Lab CA"
+openssl req -newkey rsa:2048 -nodes -keyout evil-client.key -out evil-client.csr \
+  -subj "/CN=device-evil"
+openssl x509 -req -in evil-client.csr -CA evil-ca.crt -CAkey evil-ca.key -CAcreateserial \
+  -out evil-client.crt -days 90
+
+# Expect handshake failure (exit non-zero / TLS alert), not HTTP 200:
+curl -vk --cert evil-client.crt --key evil-client.key \
+  https://admin.mail.example/healthz
+```
+
+**Why:** `mode require` would still accept this leaf (any presented cert). `require_and_verify` rejects it because the issuer is outside `trust_pool`.
 
 ## Videos (verified)
 
