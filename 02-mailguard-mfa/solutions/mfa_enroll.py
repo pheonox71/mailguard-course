@@ -61,8 +61,9 @@ def verify_totp(enrollment: Enrollment, code: str, *, for_time: int | None = Non
                 enrollment.locked = True
             return False
 
-    # RFC 6238 §5.2 — do not accept the same OTP/step after a successful verify.
-    if enrollment.last_used_step is not None and step == enrollment.last_used_step:
+    # RFC 6238 §5.2 — reject this step and any older one. Equality-only checks
+    # leave a ±window hole: after accepting N, N-1 still verifies.
+    if enrollment.last_used_step is not None and step <= enrollment.last_used_step:
         return False
 
     enrollment.last_used_step = step

@@ -28,14 +28,18 @@ def test_verify_totp_roundtrip():
 
 
 def test_totp_replay_rejected():
-    """RFC 6238 §5.2 — same successful step must not verify twice."""
+    """RFC 6238 §5.2 — accept N, then reject N-1 and N (not equality-only)."""
     e = enroll()
     totp = pyotp.TOTP(e.secret)
-    t = 1_700_000_000
-    code = totp.at(t)
-    assert verify_totp(e, code, for_time=t) is True
-    assert e.last_used_step == t // totp.interval
-    assert verify_totp(e, code, for_time=t) is False
+    step_n = 1_700_000_000 // totp.interval
+    t_n = step_n * totp.interval
+    t_prev = (step_n - 1) * totp.interval
+    code_n = totp.at(t_n)
+    code_prev = totp.at(t_prev)
+    assert verify_totp(e, code_n, for_time=t_n) is True
+    assert e.last_used_step == step_n
+    assert verify_totp(e, code_prev, for_time=t_prev) is False
+    assert verify_totp(e, code_n, for_time=t_n) is False
 
 
 def test_throttle_lockout():
