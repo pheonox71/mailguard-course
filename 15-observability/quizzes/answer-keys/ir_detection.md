@@ -6,3 +6,5 @@
 4. SP 800-61r3 — a CSF 2.0 Community Profile (not the Rev. 2 four-phase checklist alone). Shared function names reduce handoff confusion across timezones and vendors.
 5. No — English postmortems only; the course stays English-only for artifacts.
 6. Course is product-shaped skill building, not a vendor pitch; mechanisms transfer across tools.
+7. Revoke active sessions / refresh tokens first (containment), then investigate. HARs can embed live cookies/tokens — treat them like credentials (Okta 2023 support HAR lesson).
+8. High-cardinality + secret leakage into scrapes/remote-write/screenshots — label with coarse enums only (e.g. `decision`), never email or session ids.

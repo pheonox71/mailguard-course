@@ -168,13 +168,13 @@ export const MODULE_META = [
     number: '06',
     title: 'Threat model / secure SDLC',
     phase: 'Email & DLP literacy',
-    blurb: 'STRIDE-lite on the hold path plus a lightweight SAMM checklist.',
+    blurb: 'STRIDE-lite on the hold path plus SSDF/ASVS evidence (SAMM optional).',
     hours: 'est. 8-10h',
     language: 'Conceptual',
     languageDetail: 'Written threat-model tables (Markdown)',
     objectives: [
     'Produce a STRIDE-lite table for the hold/release path',
-    'Run a short secure-SDLC self-assessment',
+    'Map one mitigation to SSDF/ASVS evidence (SAMM optional)',
     'Note privacy risks for held message content',
   ],
   },
@@ -189,8 +189,8 @@ export const MODULE_META = [
     language: 'SQL',
     languageDetail: 'SQL literacy for rules/holds persistence (Postgres-shaped)',
     objectives: [
-    'Sketch a small table for held messages with primary keys',
-    'Explain SELECT/INSERT/UPDATE at a literacy level',
+    'Sketch a small table for held messages with primary keys and tenant_id',
+    'Explain one-winner UPDATE + audit in the same transaction',
     'Relate durable state to hold/release audit needs',
   ],
     readOnly: true,
@@ -237,8 +237,8 @@ export const MODULE_META = [
     languageDetail: 'Vue 3 + TypeScript for the admin SPA',
     objectives: [
     'Build a TypeScript/Vue admin for rules and held messages',
-    'Provide accessible forms for approve/release actions',
-    'Keep TypeScript strict with a few meaningful tests',
+    'Ship a WCAG 2.2 keyboard/focus approve dialog',
+    'Keep vue-tsc in CI plus XSS-safe subject render tests',
   ],
   },
   {
@@ -423,9 +423,9 @@ export const MODULE_META = [
     language: 'Ops / metrics',
     languageDetail: 'Metrics/logs/traces config and written SRE assignments',
     objectives: [
-    'Define golden signals for the hold pipeline',
+    'Define golden signals and multi-window burn-rate alerts',
     'Draft SLI/SLO notes and a lightweight postmortem',
-    'Hook at least one metric or structured log in the story',
+    'Keep PII/tokens out of metric labels; apply IR revoke-first lessons',
   ],
   },
   {
@@ -439,7 +439,7 @@ export const MODULE_META = [
     languageDetail: 'Kubernetes YAML + policy-as-code (e.g. Kyverno/Conftest)',
     objectives: [
     'Diagram a sync flow for manifests',
-    'Apply a policy-as-code check that rejects a bad manifest',
+    'Pin digests and verify attestations at admission',
     'Keep claims proportional to what you automated',
   ],
   },
@@ -516,8 +516,8 @@ export const MODULE_META = [
     languageDetail: 'Python 3 + pytest; FastAPI SCIM lab optional',
     objectives: [
     'Parse a SCIM eq filter subset and reason about deprovisioning SLAs',
-    'Contrast JIT vs SCIM vs directory sync',
-    'Map Entra / Google Workspace examples without vendor lock-in copy',
+    'Explain active:false session/token/cache kills and Entra vs Okta PATCH',
+    'Use RFC 9865 cursor pagination literacy alongside RFC 7643/7644',
   ],
   },
   {
@@ -525,13 +525,13 @@ export const MODULE_META = [
     number: '21',
     title: 'Global collaboration & privacy',
     phase: 'Stretch',
-    blurb: 'Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL literacy.',
+    blurb: 'Timezone collaboration norms plus GDPR/CCPA/APPI/LGPD/PIPL and EU AI Act date literacy.',
     hours: 'est. 8-10h',
     language: 'Conceptual',
     languageDetail: 'English readings + a small Python tagging kata',
     objectives: [
     'Practice async handoffs across timezones',
-    'Compare major privacy regimes at a literacy level',
+    'Compare major privacy regimes plus EU AI Act application dates',
     'Connect privacy duties to hold/release queues',
   ],
   },

@@ -6,3 +6,4 @@
 4. What does “blameless” mean in a postmortem, and **why** does blame-first culture hurt detection quality?
 5. **Scenario:** Error budget is exhausted mid-week. What ship/freeze behavior is typical, and **why**?
 6. **Spot the bug / why:** An alert fires on every single failed request with no burn-rate or window. What goes wrong for on-call?
+7. **Why / how:** Why configure **two** burn-rate windows (fast page + slow ticket) instead of a single window on the SLO?

@@ -5,3 +5,4 @@
 3. What personal data might a hold queue contain, and **why** does minimization matter?
 4. List three inclusive practices for global standups — for each, **why** it beats a fixed single-region slot.
 5. When would you refuse cross-border support access to held content? Explain the **how** of escalation (who decides).
+6. Name the EU AI Act dates for **prohibited practices**, **GPAI obligations**, and **general application**. If MailGuard added AI triage of held subjects, which milestone would you check first and **why**?

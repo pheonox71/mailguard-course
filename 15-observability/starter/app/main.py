@@ -25,6 +25,7 @@ from pydantic import BaseModel, Field
 
 app = FastAPI(title="MailGuard observability demo")
 
+# Why only "decision": never put PII, subjects, emails, or tokens in metric labels.
 HOLDS = Counter(
     "mailguard_holds_total",
     "Evaluate decisions (hold vs allow)",

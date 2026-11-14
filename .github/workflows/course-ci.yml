@@ -103,6 +103,11 @@ jobs:
         run: |
           cp solutions/rule_form.ts katas/rule_form.ts
           npm test
+      - name: Admin starter vue-tsc
+        working-directory: 08-mailguard-admin/starter
+        run: |
+          npm ci
+          npm run typecheck
 
   # Runs tests against committed katas/ stubs. Reports per-module status and
   # always exits 0 so unfinished student work does not fail course CI.

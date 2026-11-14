@@ -43,12 +43,20 @@ Suppose 10_000 release attempts in the window:
 release_success{le="30s"} / release_attempts
 ```
 
-Alert on **burn rate over a window**, not every single failure — why: avoid pager fatigue that trains people to ignore real incidents.
+Alert on **multi-window burn rates**, not every single failure — why: a short window catches fast burns (page now), a long window catches slow burns that would still exhaust the budget before the period ends (ticket / next-business-day). Single-window alerts either page too late or page on noise.
+
+```text
+# Conceptual multi-window burn (Google SRE workbook pattern):
+# Fast:  burn over 1h  ≥ 14× budget  → page (will exhaust monthly budget in ~2h)
+# Slow:  burn over 6h  ≥ 6× budget   → ticket (will exhaust before the 30d window)
+# Tune thresholds to your SLO window; the point is *two* horizons, not one magic gauge.
+```
 
 ### Common misconceptions / what goes wrong
 
 - **“CPU/memory dashboards are SLIs.”** SLIs measure *user-visible* success; vanity gauges do not tell you whether to freeze a release.
-- **“Alert on every failed release.”** Single-event pages burn attention; burn-rate alerts over a window distinguish noise from budget threat.
+- **“Alert on every failed release.”** Single-event pages burn attention; **multi-window** burn-rate alerts distinguish noise from budget threat.
+- **“One burn window is enough.”** Fast incidents finish the budget before a long window fires; slow leaks never trip a tiny window — use at least two horizons.
 - **“Error budget is a stick for blameless people.”** Budgets are a *policy* for risk vs reliability; postmortems fix systems/process, not individuals ([Postmortem Culture](https://sre.google/sre-book/postmortem-culture/)).
 - **“Tighter SLO is always better.”** Unrealistic targets force permanent freezes or silent SLO lies — pick targets you can measure and act on.
 

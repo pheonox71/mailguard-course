@@ -130,14 +130,18 @@ function labelFor(d: Decision): string {
 ```bash
 # Why typecheck in CI: catch Decision typos before a reviewer clicks Release
 cd 08-mailguard-admin/starter && npm install && npm run typecheck
+# Course CI runs the same gate: 08-mailguard-admin/starter → npm run typecheck (vue-tsc --noEmit)
 ```
+
+Module 08’s starter also ships a **WCAG 2.2** approve dialog (keyboard/focus) and a **malicious-subject** fixture so XSS regressions fail tests — keep `{{ row.subject }}`, never `v-html`.
 
 ### Common misconceptions / what goes wrong
 
 - **“Types are just documentation.”** Without `strict` (or equivalent), `any` sneaks back in and the union buys nothing.
 - **“Vue templates do not need types.”** Form models and API responses still do — that is where allow/hold mix-ups hide.
+- **“Local typecheck is enough.”** Course CI runs `vue-tsc --noEmit` on the admin starter so broken unions fail the PR, not a demo.
 - **“Put the API key in the SPA for convenience.”** Browser bundles are public; use a **Backend-for-Frontend (BFF)** with HTTP-only session cookies and CSRF defenses ([RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017)) instead of tokens in JS storage.
-- **“`v-html` is fine for email subjects.”** Subjects are attacker-controlled text; interpolate as text nodes, not HTML.
+- **“`v-html` is fine for email subjects.”** Subjects are attacker-controlled text; interpolate as text nodes, not HTML ([WCAG 2.2](https://www.w3.org/TR/WCAG22/) still applies to the approve dialog around that text).
 
 
 ## Videos (verified)

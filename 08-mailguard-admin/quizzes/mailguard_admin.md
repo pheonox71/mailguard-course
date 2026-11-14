@@ -6,5 +6,6 @@ Complete after the module reading. Check the separate answer key only after you 
 2. **Why / how (RFC 10017):** Where should long-lived API tokens *not* live, what **BFF** pattern replaces them for a SPA calling a rules API, and why CSRF defenses still matter with cookie sessions?
 3. **Scenario:** An operator releases a held message from the admin. Which audit fields would you log, and **why** is “previous state → new state” more useful than only “released”?
 4. **Spot the bug / why:** `innerHTML = message.subject` in the hold queue. What is the risk, and what safer approach should you use?
-5. **How / a11y:** Name one accessibility requirement for an Approve/Release control and **why** icon-only buttons fail operators using assistive tech.
+5. **How / a11y (WCAG 2.2):** Name focus/keyboard requirements for an Approve confirm dialog (`role="dialog"`, Escape, focus return) and **why** icon-only buttons fail operators using assistive tech.
 6. **Trade-off:** Why might you confirm “Release” with a second step even though it slows the happy path?
+7. **Scenario / XSS:** The hold queue shows subject `<img src=x onerror="alert(1)">`. What binding must the UI use, and how does CI’s `vue-tsc` / render test help catch regressions?

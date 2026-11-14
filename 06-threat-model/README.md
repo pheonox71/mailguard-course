@@ -8,7 +8,7 @@ name threats on the MailGuard hold path, tie them to mitigations you already bui
 
 - **STRIDE**-lite (Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege) on a concrete feature
 - Optional privacy lens (**LINDDUN**-lite awareness — Linking, Identifying, Non-repudiation, Detecting, Data disclosure, Unawareness & unintervenability, Non-compliance)
-- Lightweight secure SDLC / Open Worldwide Application Security Project (**OWASP**) Software Assurance Maturity Model (**SAMM**) *awareness* — not a certification wall
+- Lightweight secure SDLC evidence via **NIST SSDF** and **OWASP ASVS**, with optional Open Worldwide Application Security Project (**OWASP**) Software Assurance Maturity Model (**SAMM**) *awareness* — not a certification wall
 
 ## Workflow
 
@@ -16,9 +16,9 @@ name threats on the MailGuard hold path, tie them to mitigations you already bui
 2. [`quizzes/threat_model_sdlc.md`](./quizzes/threat_model_sdlc.md)
 3. [`assignments/threat_model_sdlc.md`](./assignments/threat_model_sdlc.md) — produce a one-page threat table for MailGuard hold/release
 
-**Done when:** assignment table has ≥6 STRIDE rows mapped to MailGuard mitigations or explicit “not yet”; one SAMM/self-assessment paragraph; no attacks on real systems.
+**Done when:** assignment table has ≥6 STRIDE rows mapped to MailGuard mitigations or explicit “not yet”; one SSDF/ASVS evidence mapping (SAMM optional); no attacks on real systems.
 
 ## Trade-offs
 
 - Diagram-and-table literacy, not a full threat-modeling tool chain.
-- SAMM is self-score awareness only — honesty beats inflated maturity claims.
+- SSDF/ASVS are evidence maps; SAMM is optional self-score awareness — honesty beats inflated maturity claims.

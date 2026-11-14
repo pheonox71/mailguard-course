@@ -8,3 +8,4 @@ Use only after attempting the quiz questions.
 4. Kyverno, OPA/Gatekeeper, Conftest, etc. — validate YAML against rules (e.g. require readinessProbe) and fail the check/admission.
 5. Cluster drifted from git; sync/reconcile missing or paused. Repair by syncing (or fixing git then syncing) — not by quietly leaving the cluster as source of truth.
 6. Non-reproducible deploys; surprise supply-chain updates when the tag moves.
+7. Admission catches apply paths that skip CI; digests name exact bits so verify/attest cannot be fooled by a retargeted tag.

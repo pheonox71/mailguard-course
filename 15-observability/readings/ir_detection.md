@@ -49,11 +49,24 @@ Alert: admin Ada signed in from Region A at 10:00 UTC and Region B at 10:25 UTC
 4. Recover / Govern — timeline, impact (accounts/queues touched), detection gap, owners + due dates
 ```
 
+### Case study — Okta support HAR / session tokens (2023)
+
+**Why this matters.** Session tokens that leak into support artifacts are as powerful as a password reset — and they often bypass MFA until revoked.
+
+**What happened (verified):** Between late September and mid-October 2023, an unauthorized party accessed Okta’s support case-management system and obtained HTTP Archive (**HAR**) files that contained **live session tokens**. Okta tracked the access publicly and **revoked** those session tokens (notably on 17 Oct 2023, with a follow-up revocation pass) so stolen sessions could not keep acting as the victim ([Okta — Tracking Unauthorized Access](https://sec.okta.com/articles/2023/10/tracking-unauthorized-access-oktas-support-system/); [root-cause writeup](https://sec.okta.com/articles/2023/11/unauthorized-access-oktas-support-case-management-system-root-cause/)).
+
+**How you apply it (vendor-neutral):**
+
+1. Treat HAR / browser-export / support-bundle files as **credential material** — never paste them into tickets, chat, or shared drives.
+2. On suspected exposure: **revoke sessions and refresh tokens first**, then rotate related secrets; investigate only after containment.
+3. Prefer redacted logs and short-lived tokens so a support artifact ages out quickly.
+
 ### Common misconceptions / what goes wrong
 
 - **“800-61r3 is still the Rev. 2 four phases.”** Rev. 3 is a CSF 2.0 profile — map Detect / Respond / Recover (with Govern / Identify / Protect for readiness), and cite Rev. 2 only as historical language.
 - **“Jump straight to eradication.”** Without containment first, stolen sessions keep reading hold queues while you “investigate.”
 - **“Auto-lockout every impossible-travel alert.”** Legitimate travel and VPN exit nodes create false positives — document human review so on-call does not disable detection.
+- **“HAR files are just debugging.”** They can embed live session cookies/tokens — the 2023 Okta support incident is the teaching case for revoke-first.
 - **“Postmortem = name who clicked.”** Blame-heavy writeups do not prevent recurrence; fix logging, access, and playbooks ([NIST SP 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final)).
 - **“EDR/MDR brand names are the course.”** Concepts matter; stay vendor-neutral and keep detection artifacts in English.
 
@@ -71,8 +84,9 @@ EDR/MDR are concepts here — stay vendor-neutral. Detection content is English-
 
 1. [NIST SP 800-61r3](https://csrc.nist.gov/pubs/sp/800/61/r3/final) (CSF 2.0 Community Profile)
 2. [NIST CSF 2.0](https://www.nist.gov/cyberframework)
-3. Existing module SRE / golden signals reading
-4. Cloud identity sign-in log docs for the IdP you use in lab
+3. [Okta — Tracking Unauthorized Access to Okta’s Support System (2023)](https://sec.okta.com/articles/2023/10/tracking-unauthorized-access-oktas-support-system/) — HAR / session-token revocation lesson
+4. Existing module SRE / golden signals reading
+5. Cloud identity sign-in log docs for the IdP you use in lab
 
 ## On the job
 

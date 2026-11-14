@@ -29,4 +29,4 @@ For each row, explain **why** this SLI is user-visible (not vanity).
 
 ## Alert idea
 
-One alert that pages a human vs one that should only ticket — justify **why** each severity (burn rate / user impact).
+Design a **multi-window burn-rate** pair: one alert that **pages** a human (fast window / high burn) vs one that should only **ticket** (slow window). Justify **why** each severity (burn rate × window / user impact) — not “CPU high.”

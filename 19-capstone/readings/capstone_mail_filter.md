@@ -11,6 +11,7 @@ This module closes the course: ship a **coherent demo** of outbound message filt
 3. Prove behavior with **table-driven tests** that fail on empty stubs — why: green stubs would not prove your code.
 4. Show an **operator path** (print held queue or approve/release helper).
 5. Map each Must rubric row to a file/command; keep Stretch optional and honest.
+6. If you touch identity lifecycle (Module 20 SCIM stretch): document that **`active: false` kills sessions, tokens, and caches** — deprovision is not a boolean flip.
 
 ```text
 fixtures → rule engine → hold | allow | reject
@@ -54,6 +55,7 @@ Continue with the assignment from the downloads on this page. The quiz is **requ
 - **“Unordered rules are fine if ‘mostly right.’”** First-match order is policy; silent reorder changes allow/hold outcomes.
 - **“Skip the operator path — automation is enough.”** Human-in-the-loop release is part of the MailGuard story and the rubric.
 - **“Claim production gateway readiness.”** Capstone is a coherent demo with honest gaps — not a live MTA.
+- **“Disabled user flag is enough.”** Capstone identity notes should say deactivate revokes sessions/tokens/caches (Module 20) — a still-valid admin session is an incomplete demo.
 
 ---
 

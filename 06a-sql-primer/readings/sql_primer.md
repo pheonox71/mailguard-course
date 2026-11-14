@@ -51,6 +51,8 @@ Relational stores give strong consistency for account, rule, and audit data. Sec
 | `CHECK` constraints | Reject impossible `state` values early |
 | Indexes | Fast lookup by state / created_at for operator queues |
 | Transactions | Approve+audit insert commits together or not at all |
+| Optimistic concurrency | One-winner `UPDATE … WHERE state = ?` so two operators cannot both “win” a release |
+| Tenant isolation | Every hold/rule/audit row carries `tenant_id`; mutate with `AND tenant_id = ?` |
 | Parameterized queries | Stop SQL injection from operator/search input |
 | Migrations (awareness) | Schema changes ship with app versions (Alembic later) |
 
@@ -65,35 +67,71 @@ SELECT id, state FROM holds WHERE id = ?;   -- SQLite-style placeholder
 -- or $1 / %(id)s depending on the driver
 ```
 
-## Transactions
+## Transactions + one-winner approval
+
+**Why:** Two operators clicking Release at once must not both succeed — that is a silent double-release and a broken audit story. **How:** treat the `UPDATE` as optimistic concurrency: only the row that still has the expected state is updated, and the audit row lands in the **same transaction**.
 
 ```sql
 BEGIN;
-UPDATE holds SET state = 'released' WHERE id = ? AND state = 'approved';
-INSERT INTO audit(hold_id, actor, action) VALUES (?, ?, 'release');
+-- One winner: only a row still 'approved' (or 'held' → 'approved') flips.
+-- Check rowcount / RETURNING; if 0 rows, the other operator already won.
+UPDATE holds
+   SET state = 'released', updated_at = ?
+ WHERE id = ? AND tenant_id = ? AND state = 'approved';
+-- Same txn: never release without an audit row (or the reverse)
+INSERT INTO audit(hold_id, tenant_id, actor, action, at)
+VALUES (?, ?, ?, 'release', ?);
 COMMIT;
--- On error: ROLLBACK so you never release without an audit row (or the reverse)
+-- On error: ROLLBACK
 ```
+
+Approve follows the same pattern (`WHERE state = 'held'` → `'approved'`). If `UPDATE` affects 0 rows, return conflict to the UI — do not insert a lonely audit row.
+
+## Tenant isolation
+
+**Why:** A valid operator session in tenant A must not release tenant B’s hold (BOLA / broken object authz). **How:** store `tenant_id` on every sensitive row and require it on every mutate/read:
+
+```sql
+SELECT id, state FROM holds
+ WHERE id = ? AND tenant_id = ?;
+
+UPDATE holds SET state = 'approved'
+ WHERE id = ? AND tenant_id = ? AND state = 'held';
+```
+
+Never trust a client-supplied tenant alone as authorization — bind it from the authenticated session.
 
 ## CHECK, foreign keys, indexes
 
 ```sql
 CREATE TABLE accounts (
   id TEXT PRIMARY KEY,
+  tenant_id TEXT NOT NULL,
   email TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE holds (
   id          TEXT PRIMARY KEY,
+  tenant_id   TEXT NOT NULL,
   account_id  TEXT NOT NULL REFERENCES accounts(id),
   state       TEXT NOT NULL CHECK (state IN ('held', 'approved', 'released', 'rejected')),
-  created_at  TEXT NOT NULL
+  created_at  TEXT NOT NULL,
+  updated_at  TEXT NOT NULL
 );
 
-CREATE INDEX holds_state_idx ON holds (state);
+CREATE TABLE audit (
+  id         TEXT PRIMARY KEY,
+  hold_id    TEXT NOT NULL REFERENCES holds(id),
+  tenant_id  TEXT NOT NULL,
+  actor      TEXT NOT NULL,
+  action     TEXT NOT NULL,
+  at         TEXT NOT NULL
+);
+
+CREATE INDEX holds_tenant_state_idx ON holds (tenant_id, state);
 ```
 
-Why FKs: deleting an account should not leave holds that point nowhere (or should cascade deliberately). Why CHECK: typos like `relased` fail closed. Why index: operator UIs filter `WHERE state = 'held'` constantly.
+Why FKs: deleting an account should not leave holds that point nowhere (or should cascade deliberately). Why CHECK: typos like `relased` fail closed. Why index: operator UIs filter `WHERE tenant_id = ? AND state = 'held'` constantly.
 
 ## Install and run
 
@@ -108,8 +146,10 @@ Use the SQL sketch in **Worked example** above (`CREATE` → `INSERT` → `SELEC
 - **“Logs are enough for audit.”** Append-only logs help forensics, but hold/release needs queryable current state with constraints — tables answer “is this still held?” in one row.
 - **“In-memory is fine until launch.”** Restarts wipe holds; multi-instance APIs disagree on state. Sketch SQL early even if the kata stays in-memory.
 - **“Any string in `state` is fine.”** Without CHECK constraints, typos (`relased`) become silent bugs; treat legal states as part of the schema design.
+- **“`UPDATE … WHERE id = ?` is enough for approve/release.”** Without the expected `state` (and `tenant_id`) predicate, concurrent clicks and cross-tenant ids both “succeed.”
+- **“Audit can be a best-effort insert after COMMIT.”** A crash between release and audit leaves an unauditable privileged action — same transaction or rollback.
 - **“Escaping by hand is as good as parameters.”** Drivers’ bound parameters are the reliable fix; hand escaping misses encodings.
-- **“Indexes are free.”** They speed reads and slow writes — index the filter columns operators actually use.
+- **“Indexes are free.”** They speed reads and slow writes — index the filter columns operators actually use (`tenant_id`, `state`).
 
 
 ## Videos (verified)

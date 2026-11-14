@@ -8,3 +8,4 @@ Use only after attempting the quiz questions.
 4. Focus on systems/process fixes, not punishing individuals. Blame-first discourages honest timelines and under-reporting of near misses.
 5. Pause risky feature launches; prioritize reliability work until budget recovers — protects users and preserves the SLO as a real policy.
 6. Alert noise / fatigue; people ignore pages. Use SLO burn alerts over windows instead of one-off failures.
+7. Fast window catches rapid budget exhaustion before the long window fires; slow window catches leaks that never trip a tiny window — together they cover both failure shapes.

@@ -12,7 +12,8 @@ spec:
     spec:
       containers:
         - name: good
-          image: good:1.2.3
+          # Why digest: admission + forensics need immutable bits (not a floating tag).
+          image: good@sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
           securityContext:
             runAsNonRoot: true
           readinessProbe:

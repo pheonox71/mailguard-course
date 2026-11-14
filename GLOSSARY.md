@@ -95,7 +95,9 @@ Course content uses AI assistance — verify important facts against linked prim
 | **Open Worldwide Application Security Project (OWASP)** | Community publishing practical app-sec guidance (cheat sheets, Juice Shop, etc.). |
 | **National Institute of Standards and Technology (NIST)** | U.S. standards body; SP 800-63 covers digital identity; SP 800-207 covers zero trust architecture. |
 | **STRIDE** | Threat-category mnemonic: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege. |
-| **Software Assurance Maturity Model (SAMM)** | OWASP model for measuring secure-SDLC practices (awareness in this course — not a cert). |
+| **Software Assurance Maturity Model (SAMM)** | OWASP model for measuring secure-SDLC practices (optional awareness in this course — not a cert). |
+| **Secure Software Development Framework (SSDF)** | NIST SP 800-218 practices for producing and maintaining well-secured software; pair mitigations with example evidence. |
+| **Application Security Verification Standard (ASVS)** | OWASP catalog of verification requirements (access control, logging, session, etc.) used as review evidence. |
 | **Secure Software Development Life Cycle (SDLC)** | Building security activities into requirements, design, build, test, and operate. |
 | **Open-source software (OSS)** | Software with source available under an open license; contribution practice is an optional stretch here. |
 

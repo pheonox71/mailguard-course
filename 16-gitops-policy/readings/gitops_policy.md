@@ -26,7 +26,7 @@ Trade-off: pull GitOps needs an agent and RBAC in-cluster; push is simpler to st
 
 ### Worked example
 
-Fail CI before sync (Conftest-class; Kyverno/OPA equivalent works the same idea). Good shape mirrors [`../fixtures/good_deployment.yaml`](../fixtures/good_deployment.yaml) (probes + pinned tag + requests):
+Fail CI before sync (Conftest-class; Kyverno/OPA equivalent works the same idea). Good shape mirrors [`../fixtures/good_deployment.yaml`](../fixtures/good_deployment.yaml) (probes + **digest-pinned** image + requests). Prefer digests over floating tags so admission can attest the exact bits:
 
 ```bash
 # Why fail CI before sync: stop bad desired-state from rolling out

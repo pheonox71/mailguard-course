@@ -15,3 +15,9 @@ def deprovision_priority(event: Event) -> int:
 def stale_access_risk(hours_since_leave: float, *, sla_hours: float = 24.0) -> str:
     """Return 'ok' | 'elevated' | 'critical' based on SLA breach."""
     raise NotImplementedError
+
+
+def active_false_kill_checklist() -> list[str]:
+    """Ordered kills required when SCIM sets active:false (sessions/tokens/caches/…)."""
+    raise NotImplementedError
+

@@ -70,7 +70,7 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
   **Done when:** BIMI/MTA-STS/TLS-RPT/DANE + phishing-header/sandboxing/S/MIME-PGP/URL-rewrite assignment + quiz done (vendor-neutral).
 
 - [ ] **06 — Threat model / secure SDLC** · est. 8-10h · [`06-threat-model/`](./06-threat-model/)  
-  **Done when:** STRIDE-lite table for hold/release (≥6 rows); SAMM self-check paragraph; privacy note on held content.
+  **Done when:** STRIDE-lite table for hold/release (≥6 rows); SSDF/ASVS evidence mapping (SAMM optional); privacy note on held content.
 
 ### Product build (MailGuard)
 
@@ -144,7 +144,7 @@ Hours are **solo student estimates** (CS background, Python-strong). They includ
   **Done when:** SCIM filter + joiner-mover-leaver katas green; deprovisioning assignment + quiz done.
 
 - [ ] **21 — Global collaboration & privacy** · est. 8-10h · [`21-global-privacy-collab/`](./21-global-privacy-collab/)  
-  **Done when:** Timezone/collaboration + privacy-regime assignments done; `privacy_tags` green; quiz done. English only — no language-learning track.
+  **Done when:** Timezone/collaboration + privacy-regime (+ EU AI Act dates) assignments done; `privacy_tags` green; quiz done. English only — no language-learning track.
 
 - [ ] **22 — Git & code review** · est. 8-10h · [`22-collab-review/`](./22-collab-review/)  
   **Done when:** `pr_hygiene` green; security review checklist assignment + quiz done (practice repo optional).

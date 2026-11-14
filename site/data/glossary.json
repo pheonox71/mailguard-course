@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T03:53:24.182Z",
+  "generatedAt": "2026-11-14T04:58:20.098Z",
   "sections": [
     {
       "title": "Identity & authentication",
@@ -393,7 +393,19 @@
           "id": "samm",
           "term": "Software Assurance Maturity Model",
           "abbrev": "SAMM",
-          "meaning": "OWASP model for measuring secure-SDLC practices (awareness in this course — not a cert)."
+          "meaning": "OWASP model for measuring secure-SDLC practices (optional awareness in this course — not a cert)."
+        },
+        {
+          "id": "ssdf",
+          "term": "Secure Software Development Framework",
+          "abbrev": "SSDF",
+          "meaning": "NIST SP 800-218 practices for producing and maintaining well-secured software; pair mitigations with example evidence."
+        },
+        {
+          "id": "asvs",
+          "term": "Application Security Verification Standard",
+          "abbrev": "ASVS",
+          "meaning": "OWASP catalog of verification requirements (access control, logging, session, etc.) used as review evidence."
         },
         {
           "id": "sdlc",

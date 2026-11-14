@@ -49,6 +49,7 @@ You meet the capstone when **all Must** rows are honest **yes**, and at least **
 | S9 | **Threat model** | STRIDE-lite table for hold/release (`06`) attached or linked. |
 | S10 | **Identity / access depth** | Passkeys *or* SAML/ZTNA assignment evidence (`02` / `03` / `04`) without inflated claims. |
 | S11 | **OSS or security UX** *(optional)* | Upstream issue/PR note or warning-UX redesign (`18`). |
+| S12 | **Deprovision kills access** *(optional SCIM)* | Notes or demo that `active: false` revokes sessions, tokens, and auth caches — not only a disabled flag (`20`). |
 
 ---
 

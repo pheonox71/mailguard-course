@@ -13,7 +13,7 @@
 1. A Vue 3 + TypeScript SPA talks to the Module 07 rules/hold API over HTTPS.
 2. Forms validate rule fields (predicates, action) before submit.
 3. The hold queue renders rows with **text** bindings — not `innerHTML` — so attacker-controlled subjects cannot inject script ([OWASP XSS Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)).
-4. Dangerous actions (approve / release / reject) need accessible names, focus order, and often an explicit confirm.
+4. Dangerous actions (approve / release / reject) need accessible names, focus order, and an explicit confirm dialog that meets **WCAG 2.2** keyboard/focus rules (`role="dialog"`, `aria-modal`, Escape to dismiss, focus moves into the dialog and returns on close, visible `:focus-visible`).
 5. Auth uses short-lived session cookies or a **Backend-for-Frontend (BFF)** — never long-lived cloud tokens in git or the browser bundle. [RFC 10017](https://www.rfc-editor.org/rfc/rfc10017) recommends BFF for browser-based OAuth clients: the SPA gets an HTTP-only session cookie; the BFF holds tokens and calls APIs. Cookie sessions still need **CSRF** defenses (SameSite, anti-CSRF tokens) on state-changing requests.
 6. This module’s graded kata is a small TypeScript helper for validating rule forms and formatting hold-queue rows — enough to prove TS discipline before you wire the full UI.
 
@@ -42,6 +42,15 @@ function rowLabel(h: HoldRow): string {
 // Avoid: v-html="hold.subject"   — XSS if subject is <img onerror=...>
 ```
 
+Approve dialog (WCAG 2.2 focus / keyboard — see [`../starter/src/App.vue`](../starter/src/App.vue)):
+
+```text
+Open Approve → focus moves into dialog (Cancel)
+Tab / Shift+Tab cycle actions · Escape closes · focus returns to opener
+role="dialog" aria-modal="true" aria-labelledby=title · :focus-visible ring
+Subject still via text binding inside the dialog (never v-html)
+```
+
 **On the job.** Security products live or die on operator clarity: release is irreversible, subjects may contain attacker-controlled strings, and auditors ask who clicked what. Vendor-neutral skills — strict TS models, XSS-safe rendering, accessible confirmations — transfer to any cloud identity or DLP console.
 
 ## Short intro
@@ -55,6 +64,7 @@ The admin is the human control surface for MailGuard: list rules, inspect held m
 - **“Cloud API keys in `.env` shipped to the client are OK.”** Anything in the SPA bundle is readable; use session/BFF patterns ([RFC 10017](https://www.rfc-editor.org/rfc/rfc10017)).
 - **“BFF removes CSRF entirely.”** Moving tokens server-side still leaves cookie-authenticated POSTs CSRF-vulnerable unless you add SameSite / anti-CSRF controls (same RFC).
 - **“Confirm dialogs are optional UX.”** Release is irreversible; accessible confirm reduces miss-clicks and documents intent for audit.
+- **“Focus can stay on the page behind the modal.”** WCAG 2.2 expects operable keyboard focus inside the dialog and a return path — trap/cycle Tab, Escape dismisses, restore focus on close.
 
 
 ## Videos (verified)
@@ -68,7 +78,8 @@ The admin is the human control surface for MailGuard: list rules, inspect held m
 2. [TypeScript — Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 3. [MDN — Form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
 4. [OWASP — XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
-5. [RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017) — BFF + CSRF for the admin SPA.
+5. [WCAG 2.2](https://www.w3.org/TR/WCAG22/) — focus visible / not obscured; keyboard operable dialogs.
+6. [RFC 10017 — OAuth 2.0 for Browser-Based Apps](https://www.rfc-editor.org/rfc/rfc10017) — BFF + CSRF for the admin SPA.
 
 ## Next step
 

@@ -30,9 +30,10 @@ Copy and fill (≥6 rows). Prefer **abuse stories + why the mitigation works** o
 
 One paragraph: who can read held bodies and audit logs? Retention? Redaction? **Why** does email-hold content need a stricter disclosure story than a public marketing site?
 
-## Part D — SAMM self-check (honest)
+## Part D — SSDF / ASVS evidence (honest; SAMM optional)
 
-Pick **one** OWASP SAMM practice stream. Score yourself 0–1 informally and write the *next* concrete improvement (e.g. “add CI dependency scan”). Explain **why** that improvement beats claiming a higher maturity level you have not earned.
+1. Pick **one** STRIDE row from Part B. Map it to a [NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final) practice *and* an [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) requirement class (e.g. access control, logging). State **what evidence** you could show (test name, SQL pattern, CI job) — not a slogan.
+2. *(Optional)* Pick **one** OWASP SAMM practice stream. Score yourself 0–1 informally and write the *next* concrete improvement (e.g. “add CI dependency scan”). Explain **why** that improvement beats claiming a higher maturity level you have not earned.
 
 ## Capstone link
 

@@ -55,6 +55,7 @@ Saturation (queue depth) belongs on the worker/SQS side — document it even if 
 - **“Dashboards without scrape targets are observability.”** If Prometheus has no job for the API, charts are empty — verify `/metrics` and `up == 1` first.
 - **“Traces replace metrics for SLOs.”** Traces explain individuals; SLOs need aggregatable good/bad events (usually metrics).
 - **“Export every debug gauge.”** High-cardinality labels (`msg_id`, emails) explode series cost — label by decision/rule class, not message id.
+- **“Put PII or tokens in metric labels.”** Never label with email addresses, subject lines, bearer tokens, session ids, or API keys — they leak into scrapes, remote-write sinks, and screenshots. Use coarse enums (`decision=hold|allow`) as in [`../starter/app/main.py`](../starter/app/main.py).
 - **“OTel collector alone scrapes the app.”** In this compose file the collector receives OTLP; Prometheus still scrapes `/metrics` (and optionally the collector’s exporter). Wire an OTLP SDK when you leave the lab stub.
 
 ## Read these (verified)

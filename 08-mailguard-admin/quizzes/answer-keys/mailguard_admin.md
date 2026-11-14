@@ -6,5 +6,6 @@ Use only after attempting the quiz questions.
 2. Not in the public SPA bundle or git. Prefer a Backend-for-Frontend that holds tokens server-side and issues an HTTP-only session cookie to the browser ([RFC 10017](https://www.rfc-editor.org/rfc/rfc10017)). Cookie sessions still need CSRF defenses (SameSite, anti-CSRF token) on state-changing requests — moving tokens out of JS storage does not remove CSRF.
 3. Operator id, message id, previous state, new state, timestamp, reason if required. State transition proves the machine was followed (e.g. approved→released), not just a button label.
 4. XSS if subject contains HTML/JS; use textContent or a framework text binding (Vue `{{ }}` / `v-text`), never raw HTML for untrusted mail fields.
-5. Clear accessible name (not icon-only); visible focus. Icon-only leaves screen-reader users without “Approve” vs “Reject” — wrong irreversible action.
+5. Clear accessible name (not icon-only); dialog with `role="dialog"` / `aria-modal`, Escape to dismiss, focus moves into the dialog and returns on close, visible `:focus-visible`. Icon-only leaves screen-reader users without “Approve” vs “Reject” — wrong irreversible action.
 6. Release is high-impact / hard to undo; a confirm reduces accidental clicks at acceptable cost for privileged actions.
+7. Vue text interpolation / `textContent` (never `v-html` / `innerHTML`); CI `vue-tsc` keeps types strict and the malicious-subject render test asserts escaped text with no element children.
