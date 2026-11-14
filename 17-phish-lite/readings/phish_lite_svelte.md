@@ -29,8 +29,11 @@ Ethics + metrics helpers (implementations live in the kata; contract shape):
 ethicalSimOk({ consent: true, capturesCredentials: false })  // → true
 ethicalSimOk({ consent: true, capturesCredentials: true })   // → false
 
-// reportRate(reported, clicked) = reported / (reported + clicked)
-reportRate(3, 1)  // → 0.75
+// reportVsClickRatio(reported, clicked) = reported / (reported + clicked)
+reportVsClickRatio(3, 1)  // → 0.75
+reportRate(30, 100)       // uniqueReporters / delivered → 0.30
+clickRate(10, 100)        // uniqueClickers / delivered → 0.10
+# Weak evidence (Ho et al.): treat ratios as ops signals, not proof of security.
 
 // timeToReportSeconds(sentAt, reportedAt) — faster reporting is the job skill
 ```

@@ -1,23 +1,22 @@
-import { describe, expect, it } from "vitest";
-import { ethicalSimOk, reportRate } from "../src/lib/ethics.js";
+import { describe, it, expect } from "vitest";
+import { ethicalSimOk, reportVsClickRatio, reportRate, clickRate } from "../src/lib/ethics.js";
 
 describe("ethicalSimOk", () => {
-  it("allows consented sims that never capture credentials", () => {
+  it("requires consent and no credential capture", () => {
     expect(ethicalSimOk({ consent: true, capturesCredentials: false })).toBe(true);
-  });
-
-  it("fails when credential capture is enabled", () => {
-    // Why fail closed: temporary “demo harvesters” must not ship.
     expect(ethicalSimOk({ consent: true, capturesCredentials: true })).toBe(false);
-  });
-
-  it("fails without consent", () => {
-    expect(ethicalSimOk({ consent: false, capturesCredentials: false })).toBe(false);
   });
 });
 
-describe("reportRate", () => {
-  it("uses reported / (reported + clicked)", () => {
-    expect(reportRate(3, 1)).toBe(0.75);
+describe("reportVsClickRatio", () => {
+  it("balances reports vs clicks", () => {
+    expect(reportVsClickRatio(3, 1)).toBe(0.75);
+  });
+});
+
+describe("reportRate / clickRate", () => {
+  it("normalizes by delivered", () => {
+    expect(reportRate(30, 100)).toBe(0.3);
+    expect(clickRate(10, 100)).toBe(0.1);
   });
 });

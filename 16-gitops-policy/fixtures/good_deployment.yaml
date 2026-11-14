@@ -13,6 +13,8 @@ spec:
       containers:
         - name: good
           image: good:1.2.3
+          securityContext:
+            runAsNonRoot: true
           readinessProbe:
             httpGet: { path: /healthz, port: 8080 }
           livenessProbe:

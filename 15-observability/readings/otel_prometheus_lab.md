@@ -2,8 +2,8 @@
 
 ## Learning objectives
 
-1. Expose at least one **Prometheus** metric from a tiny MailGuard-shaped API.
-2. Explain **how** scrape configs and `/metrics` cooperate (and where an OpenTelemetry collector fits).
+1. Expose at least one **Prometheus** metric from a tiny MailGuard-shaped API (Prometheus **3.x** path in compose).
+2. Explain **how** scrape configs and `/metrics` cooperate, and when **native OTLP push** is a better fit than scrape.
 3. Map golden signals (traffic, errors, latency, saturation) to hold-pipeline counters/histograms.
 
 **Why this matters.** Logs alone do not tell you whether hold-enqueue latency is burning an error budget. Metrics give aggregatable SLI events; traces explain a single slow release. Without a local scrape path, “we will add observability later” stays aspirational. On the job, email/identity on-call expects named counters and latency histograms before paging on vibes.
@@ -12,17 +12,18 @@
 
 1. The app increments **counters** / observes **histograms** on the evaluate path.
 2. It exposes Prometheus text format at **`GET /metrics`**.
-3. **Prometheus** scrapes that path on an interval (see `starter/prometheus/prometheus.yml`). Compose maps `host.docker.internal` to the Docker host so Prometheus can scrape the published `:8000` port on Linux and Desktop alike.
+3. **Prometheus 3.x** scrapes that path on an interval (see `starter/prometheus/prometheus.yml`). Compose maps `host.docker.internal` to the Docker host so Prometheus can scrape the published `:8000` port on Linux and Desktop alike.
 4. Optionally, an **OpenTelemetry (OTel) collector** receives OTLP and re-exports metrics (compose service `otel-collector`) — useful when many languages speak OTLP but you still want Prometheus. The lab collector uses the **`debug`** exporter (the old `logging` exporter was removed).
-5. You query Prometheus (`rate()`, histograms) and feed SLI/SLO math from Module 15’s SRE reading.
+5. **Compare push vs scrape:** scrape (`/metrics` ← Prometheus) is pull-based and fits long-lived services in this lab. **Native OTLP push** (app/SDK → collector or a Prometheus OTLP receiver) fits short-lived jobs and multi-language fleets already on OTel — but you must size the collector and still avoid high-cardinality labels.
+6. You query Prometheus (`rate()`, histograms) and feed SLI/SLO math from Module 15’s SRE reading.
 
 ```text
 evaluate() → counters/histograms → /metrics
-                                      ↑ scrape
-                                 Prometheus ← (optional) OTel collector ← OTLP
+                                      ↑ scrape (Prometheus 3.x)
+                                 Prometheus ← (optional) OTel collector ← OTLP push
 ```
 
-Trade-off: app-exposed `/metrics` is the simplest lab; a collector adds a hop but standardizes export across services. Prefer working scrapes over a perfect topology diagram.
+Trade-off: app-exposed `/metrics` is the simplest lab; OTLP push + collector adds a hop but standardizes export across languages. Prefer working scrapes over a perfect topology diagram.
 
 ### Worked example
 

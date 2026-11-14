@@ -9,10 +9,20 @@ export function scoreAnswers(answers, key) {
   return { correct, total: key.length, pct: correct / key.length }
 }
 
-export function reportRate(reported, clicked) {
+export function reportVsClickRatio(reported, clicked) {
   const denom = reported + clicked
   if (denom <= 0) return 0
   return reported / denom
+}
+
+export function reportRate(uniqueReporters, delivered) {
+  if (delivered <= 0) return 0
+  return uniqueReporters / delivered
+}
+
+export function clickRate(uniqueClickers, delivered) {
+  if (delivered <= 0) return 0
+  return uniqueClickers / delivered
 }
 
 export function timeToReportSeconds(sentAt, reportedAt) {

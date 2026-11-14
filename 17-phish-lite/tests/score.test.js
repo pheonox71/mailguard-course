@@ -1,6 +1,13 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { scoreAnswers, reportRate, timeToReportSeconds, ethicalSimOk } from '../katas/score.js'
+import {
+  scoreAnswers,
+  reportVsClickRatio,
+  reportRate,
+  clickRate,
+  timeToReportSeconds,
+  ethicalSimOk,
+} from '../katas/score.js'
 
 test('score', () => {
   const r = scoreAnswers(['a', 'b'], ['a', 'c'])
@@ -8,9 +15,16 @@ test('score', () => {
   assert.equal(r.total, 2)
 })
 
-test('reportRate', () => {
-  assert.equal(reportRate(3, 1), 0.75)
+test('reportVsClickRatio', () => {
+  assert.equal(reportVsClickRatio(3, 1), 0.75)
+  assert.equal(reportVsClickRatio(0, 0), 0)
+})
+
+test('reportRate and clickRate vs delivered', () => {
+  assert.equal(reportRate(30, 100), 0.3)
+  assert.equal(clickRate(10, 100), 0.1)
   assert.equal(reportRate(0, 0), 0)
+  assert.equal(clickRate(5, 0), 0)
 })
 
 test('timeToReport', () => {

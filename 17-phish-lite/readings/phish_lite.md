@@ -28,8 +28,11 @@ Trade-off: hyper-realistic login clones teach recognition but cross into credent
 Report-rate metric (same idea as `score.js` in this module’s kata):
 
 ```text
-report_rate = reported / (reported + clicked)
-# Example: reportRate(3, 1) → 0.75  (three reports, one click-without-report)
+report_vs_click = reported / (reported + clicked)   # reportVsClickRatio(3, 1) → 0.75
+report_rate = unique_reporters / delivered           # reportRate(30, 100) → 0.30
+click_rate = unique_clickers / delivered             # clickRate(10, 100) → 0.10
+# Evidence that these ratios alone “prove” awareness quality is weak (Ho et al.);
+# prefer them as operational signals beside time-to-report, not vanity gotcha scores.
 # “clicked” here means non-report outcomes that still count toward the denom.
 # Why prefer this over vanity click rates alone: rewards the behavior you want on real mail.
 ```

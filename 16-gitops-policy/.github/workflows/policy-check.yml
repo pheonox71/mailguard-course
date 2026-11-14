@@ -19,13 +19,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Conftest
+      - name: Install Conftest and OPA
         run: |
           set -euo pipefail
-          VER=0.56.0
-          curl -fsSL "https://github.com/open-policy-agent/conftest/releases/download/v${VER}/conftest_${VER}_Linux_x86_64.tar.gz" \
+          CONFTEST_VER=0.71.1
+          curl -fsSL "https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VER}/conftest_${CONFTEST_VER}_Linux_x86_64.tar.gz" \
             | tar -xz -C /usr/local/bin conftest
           conftest --version
+          OPA_VER=1.22.4
+          curl -fsSL -o /usr/local/bin/opa \
+            "https://openpolicyagent.org/downloads/v${OPA_VER}/opa_linux_amd64_static"
+          chmod +x /usr/local/bin/opa
+          opa version
+      - name: opa check (Rego v1 syntax)
+        working-directory: 16-gitops-policy
+        run: opa check policy/
+      - name: opa test
+        working-directory: 16-gitops-policy
+        run: opa test policy/ -v
       - name: Good fixture must pass
         working-directory: 16-gitops-policy
         run: conftest test fixtures/good_deployment.yaml -p policy/

@@ -7,7 +7,7 @@ Minimal SvelteKit-shaped training UI with a visible **SIMULATION** label and con
 ```bash
 cd 17-phish-lite/starter
 npm install        # generates .svelte-kit/ (gitignored) for tsconfig extends
-npm test           # Vitest — ethics + reportRate
+npm test           # Vitest — ethics + reportVsClickRatio + reportRate
 npm run dev        # local UI
 npx playwright install chromium   # once, for e2e
 npm run test:e2e   # Playwright smoke (builds + previews)

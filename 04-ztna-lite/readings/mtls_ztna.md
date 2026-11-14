@@ -13,8 +13,9 @@
 1. Stand up a **private CA** (lab: `openssl` or `step-ca`) and define who may receive client certificates.
 2. Issue a **client certificate** (and private key) to an enrolled device or user.
 3. Configure the reverse proxy (nginx/Caddy) to **require and verify** the client cert during the TLS handshake for the admin vhost.
-4. On successful verify, optionally forward identity headers to the app; reject the handshake otherwise.
-5. Operate **revocation** (CRL and/or OCSP): document lag — a stolen cert stays trusted until revocation data is published and fetched. Map the admission signal to ZTNA: identity + device proof → per-app access ([NIST SP 1800-35](https://www.nccoe.nist.gov/projects/implementing-zero-trust-architecture) for patterns, not a commercial mesh mandate).
+4. Bind **service identity to Subject Alternative Name (SAN)** per [RFC 9525](https://www.rfc-editor.org/rfc/rfc9525) (DNS names for hosts). Treat **CN** as an optional *app-chosen client id* after verify — not as the hostname identity check.
+5. On successful verify, optionally forward identity headers to the app **only from the trusted proxy**; reject the handshake otherwise. Never trust `X-Client-DN` / `x-client-cert-verified` from a direct client that skipped the proxy.
+6. Operate **revocation** (CRL and/or OCSP): document lag — a stolen cert stays trusted until revocation data is published and fetched. Map the admission signal to ZTNA: identity + device proof → per-app access ([NIST SP 1800-35](https://www.nccoe.nist.gov/projects/implementing-zero-trust-architecture) for patterns, not a commercial mesh mandate).
 
 ```text
 Client --TLS+client cert--> Proxy (verify vs private CA) --headers?--> Admin app
@@ -39,6 +40,8 @@ Why CA → issue → require that order: without a CA and issued cert first, “
 - **“Server HTTPS already proves the client.”** Server TLS authenticates the server; without mTLS (or another client proof) any TCP client can still connect.
 - **“Revocation is automatic once we issue certs.”** CRL/OCSP lag and fail-open defaults leave stolen certs trusted — document the workflow.
 - **“mTLS replaces SSO/MFA.”** It is a strong *device* signal; user identity still comes from the IdP for ZTNA-style admission.
+- **“CN is the hostname identity.”** Modern TLS clients and servers authenticate names via SAN ([RFC 9525](https://www.rfc-editor.org/rfc/rfc9525)); CN is legacy. Apps may still read CN as a lab client id *after* the proxy verified the cert.
+- **“If the header says SUCCESS, trust it.”** Spoofed `X-Client-DN` / verify headers from a non-proxy client bypass mTLS — only accept those headers on the proxy→app hop.
 - **“Any client cert in the trust store is fine forever.”** Missing rotation/revocation turns a lost laptop into a permanent admin key.
 
 ## Read these (verified)
